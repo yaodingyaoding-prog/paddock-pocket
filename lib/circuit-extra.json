@@ -1,0 +1,163 @@
+{
+  "ab874741-bfd4-4d27-7c84-08d9161fe87b": {
+    "latitude": -37.8497,
+    "longitude": 144.968,
+    "trackDirection": "Clockwise",
+    "poleSide": "Left",
+    "currentLayout": "2026"
+  },
+  "a18e0166-6188-4b0f-7c87-08d9161fe87b": {
+    "latitude": 31.3389,
+    "longitude": 121.22,
+    "trackDirection": "Clockwise",
+    "poleSide": "Left",
+    "currentLayout": "2026"
+  },
+  "c2fa59a7-c57a-4757-7c7e-08d9161fe87b": {
+    "latitude": 34.8431,
+    "longitude": 136.541,
+    "trackDirection": "Clockwise",
+    "poleSide": "Left",
+    "currentLayout": "2026"
+  },
+  "712b535e-edb5-49c3-af5b-a9ff8f7e6b80": {
+    "latitude": 25.9581,
+    "longitude": -80.2389,
+    "trackDirection": "AntiClockwise",
+    "poleSide": "Left",
+    "currentLayout": "2026"
+  },
+  "53e98619-a09a-4741-7c75-08d9161fe87b": {
+    "latitude": 45.5,
+    "longitude": -73.5228,
+    "trackDirection": "Clockwise",
+    "poleSide": "Left",
+    "currentLayout": "2026"
+  },
+  "d7fa6d12-55ae-4da7-7c4b-08d9161fe87b": {
+    "latitude": 43.7347,
+    "longitude": 7.42056,
+    "trackDirection": "Clockwise",
+    "poleSide": "Right",
+    "currentLayout": "2026"
+  },
+  "00c587ef-3e4a-4cef-7c81-08d9161fe87b": {
+    "latitude": 41.57,
+    "longitude": 2.26111,
+    "trackDirection": "Clockwise",
+    "poleSide": "Left",
+    "currentLayout": "2026"
+  },
+  "0002d9f6-faa7-4d60-7c8f-08d9161fe87b": {
+    "latitude": 47.2197,
+    "longitude": 14.7647,
+    "trackDirection": "Clockwise",
+    "poleSide": "Left",
+    "currentLayout": "2026"
+  },
+  "351e95e1-329f-456d-7c4a-08d9161fe87b": {
+    "latitude": 52.0786,
+    "longitude": -1.01694,
+    "trackDirection": "Clockwise",
+    "poleSide": "Left",
+    "currentLayout": "2026"
+  },
+  "d49564dc-1e19-46d3-7c4e-08d9161fe87b": {
+    "latitude": 50.4372,
+    "longitude": 5.97139,
+    "trackDirection": "Clockwise",
+    "poleSide": "Left",
+    "currentLayout": "2026"
+  },
+  "2a1c1543-abf1-4796-7c7d-08d9161fe87b": {
+    "latitude": 47.5789,
+    "longitude": 19.2486,
+    "trackDirection": "Clockwise",
+    "poleSide": "Right",
+    "currentLayout": "2026"
+  },
+  "17625dab-2d8f-45c6-7c54-08d9161fe87b": {
+    "latitude": 52.3888,
+    "longitude": 4.54092,
+    "trackDirection": "Clockwise",
+    "poleSide": "Left",
+    "currentLayout": "2026"
+  },
+  "62ed1e15-500a-4e18-7c50-08d9161fe87b": {
+    "latitude": 45.6156,
+    "longitude": 9.28111,
+    "trackDirection": "Clockwise",
+    "poleSide": "Left",
+    "currentLayout": "2026"
+  },
+  "5d783bbf-35e3-4805-9137-9c1bbcc52819": {
+    "latitude": 40.465278,
+    "longitude": -3.615278,
+    "trackDirection": "Clockwise",
+    "poleSide": "Right",
+    "currentLayout": "2026"
+  },
+  "c271b9c9-b10f-484d-aa3d-2968f310391d": {
+    "latitude": 40.3725,
+    "longitude": 49.8533,
+    "trackDirection": "AntiClockwise",
+    "poleSide": "Right",
+    "currentLayout": "2026"
+  },
+  "117d13ed-7373-4347-7c85-08d9161fe87b": {
+    "latitude": 2.76083,
+    "longitude": 101.738,
+    "trackDirection": "Clockwise",
+    "poleSide": "Left",
+    "currentLayout": "2016"
+  },
+  "02118f4e-0b55-462b-7c8a-08d9161fe87b": {
+    "latitude": 1.2914,
+    "longitude": 103.864,
+    "trackDirection": "AntiClockwise",
+    "poleSide": "Right",
+    "currentLayout": "2026"
+  },
+  "33935829-9247-4314-7c8e-08d9161fe87b": {
+    "latitude": 30.1328,
+    "longitude": -97.6411,
+    "trackDirection": "AntiClockwise",
+    "poleSide": "Right",
+    "currentLayout": "2026"
+  },
+  "1334cbc1-8d76-4283-7c60-08d9161fe87b": {
+    "latitude": 19.4042,
+    "longitude": -99.0907,
+    "trackDirection": "Clockwise",
+    "poleSide": "Left",
+    "currentLayout": "2026"
+  },
+  "1e65f843-4846-4b60-7c6e-08d9161fe87b": {
+    "latitude": -23.7036,
+    "longitude": -46.6997,
+    "trackDirection": "AntiClockwise",
+    "poleSide": "Right",
+    "currentLayout": "2026"
+  },
+  "ed58dd38-e80c-4cd0-9706-92aeff3b468d": {
+    "latitude": 36.1147,
+    "longitude": -115.173,
+    "trackDirection": "AntiClockwise",
+    "poleSide": "Right",
+    "currentLayout": "2026"
+  },
+  "7e4e00b0-f154-4530-890b-08d9a12419f9": {
+    "latitude": 25.49,
+    "longitude": 51.4542,
+    "trackDirection": "Clockwise",
+    "poleSide": "Left",
+    "currentLayout": "2026"
+  },
+  "36d922c2-e0ae-4e6d-7c8b-08d9161fe87b": {
+    "latitude": 24.4672,
+    "longitude": 54.6031,
+    "trackDirection": "AntiClockwise",
+    "poleSide": "Right",
+    "currentLayout": "2026"
+  }
+}

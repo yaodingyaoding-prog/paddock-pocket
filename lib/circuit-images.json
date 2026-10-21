@@ -1,0 +1,444 @@
+{
+  "title": "赛道图来源与版权",
+  "retrieved": "2026-10-20",
+  "copyright": "© Formula One World Championship Limited. All rights reserved.",
+  "circuits": [
+    {
+      "id": "ab874741-bfd4-4d27-7c84-08d9161fe87b",
+      "nameKey": "Albert Park Grand Prix Circuit",
+      "name": "阿尔伯特公园赛道",
+      "file": "/circuits/ab874741-bfd4-4d27-7c84-08d9161fe87b.webp",
+      "sourcePage": "https://www.formula1.com/en/racing/2026/australia/circuit",
+      "imageUrl": "https://media.formula1.com/image/upload/c_fit,h_704/q_auto/v1740000001/common/f1/2026/track/2026trackmelbournedetailed.webp",
+      "status": 200,
+      "contentType": "image/webp",
+      "bytes": 108926,
+      "sha256": "48d6f44c791c199b4d4f03ec8b114fb93a4f19ef129d92485e56325a3a291863",
+      "copyright": "Formula One World Championship Limited",
+      "rights": "All rights reserved",
+      "changes": "None; original downloaded file",
+      "dimensions": [
+        1252,
+        704
+      ]
+    },
+    {
+      "id": "a18e0166-6188-4b0f-7c87-08d9161fe87b",
+      "nameKey": "Shanghai International Circuit",
+      "name": "上海国际赛车场",
+      "file": "/circuits/a18e0166-6188-4b0f-7c87-08d9161fe87b.webp",
+      "sourcePage": "https://www.formula1.com/en/racing/2026/china/circuit",
+      "imageUrl": "https://media.formula1.com/image/upload/c_fit,h_704/q_auto/v1740000001/common/f1/2026/track/2026trackshanghaidetailed.webp",
+      "status": 200,
+      "contentType": "image/webp",
+      "bytes": 92878,
+      "sha256": "7e094ed2cb3491694eaf36614529029a457f06d8037cca920fedecf03a735240",
+      "copyright": "Formula One World Championship Limited",
+      "rights": "All rights reserved",
+      "changes": "None; original downloaded file",
+      "dimensions": [
+        1252,
+        704
+      ]
+    },
+    {
+      "id": "c2fa59a7-c57a-4757-7c7e-08d9161fe87b",
+      "nameKey": "Suzuka Circuit",
+      "name": "铃鹿赛道",
+      "file": "/circuits/c2fa59a7-c57a-4757-7c7e-08d9161fe87b.webp",
+      "sourcePage": "https://www.formula1.com/en/racing/2026/japan/circuit",
+      "imageUrl": "https://media.formula1.com/image/upload/c_fit,h_704/q_auto/v1740000001/common/f1/2026/track/2026tracksuzukadetailed.webp",
+      "status": 200,
+      "contentType": "image/webp",
+      "bytes": 89610,
+      "sha256": "ba014c39a604cb580f38841f973e73aba9d10ef6e845930edceec750e3b89a94",
+      "copyright": "Formula One World Championship Limited",
+      "rights": "All rights reserved",
+      "changes": "None; original downloaded file",
+      "dimensions": [
+        1252,
+        704
+      ]
+    },
+    {
+      "id": "712b535e-edb5-49c3-af5b-a9ff8f7e6b80",
+      "nameKey": "Miami International Autodrome",
+      "name": "迈阿密国际赛道",
+      "file": "/circuits/712b535e-edb5-49c3-af5b-a9ff8f7e6b80.webp",
+      "sourcePage": "https://www.formula1.com/en/racing/2026/miami/circuit",
+      "imageUrl": "https://media.formula1.com/image/upload/c_fit,h_704/q_auto/v1740000001/common/f1/2026/track/2026trackmiamidetailed.webp",
+      "status": 200,
+      "contentType": "image/webp",
+      "bytes": 148040,
+      "sha256": "90a92e62b3c2f9d2f01d2d718667925eadb7880f5253ae0a2ccf7157d07f3846",
+      "copyright": "Formula One World Championship Limited",
+      "rights": "All rights reserved",
+      "changes": "None; original downloaded file",
+      "dimensions": [
+        1252,
+        704
+      ]
+    },
+    {
+      "id": "53e98619-a09a-4741-7c75-08d9161fe87b",
+      "nameKey": "Circuit Gilles Villeneuve",
+      "name": "吉尔·维伦纽夫赛道",
+      "file": "/circuits/53e98619-a09a-4741-7c75-08d9161fe87b.webp",
+      "sourcePage": "https://www.formula1.com/en/racing/2026/canada/circuit",
+      "imageUrl": "https://media.formula1.com/image/upload/c_fit,h_704/q_auto/v1740000001/common/f1/2026/track/2026trackmontrealdetailed.webp",
+      "status": 200,
+      "contentType": "image/webp",
+      "bytes": 93170,
+      "sha256": "972af926ac1367f683d4356532b0b02172ff4060b44bcf30ae1973eb05cb1da7",
+      "copyright": "Formula One World Championship Limited",
+      "rights": "All rights reserved",
+      "changes": "None; original downloaded file",
+      "dimensions": [
+        1252,
+        704
+      ]
+    },
+    {
+      "id": "d7fa6d12-55ae-4da7-7c4b-08d9161fe87b",
+      "nameKey": "Circuit de Monaco",
+      "name": "蒙特卡洛赛道",
+      "file": "/circuits/d7fa6d12-55ae-4da7-7c4b-08d9161fe87b.webp",
+      "sourcePage": "https://www.formula1.com/en/racing/2026/monaco/circuit",
+      "imageUrl": "https://media.formula1.com/image/upload/c_fit,h_704/q_auto/v1740000001/common/f1/2026/track/2026trackmontecarlodetailed.webp",
+      "status": 200,
+      "contentType": "image/webp",
+      "bytes": 77164,
+      "sha256": "fc3953be38805357b22519f5d83af8c6864e446e3d5f762397d643e4a31239f7",
+      "copyright": "Formula One World Championship Limited",
+      "rights": "All rights reserved",
+      "changes": "None; original downloaded file",
+      "dimensions": [
+        1252,
+        704
+      ]
+    },
+    {
+      "id": "00c587ef-3e4a-4cef-7c81-08d9161fe87b",
+      "nameKey": "Circuit de Barcelona-Catalunya",
+      "name": "加泰罗尼亚赛道",
+      "file": "/circuits/00c587ef-3e4a-4cef-7c81-08d9161fe87b.webp",
+      "sourcePage": "https://www.formula1.com/en/racing/2026/barcelona-catalunya/circuit",
+      "imageUrl": "https://media.formula1.com/image/upload/c_fit,h_704/q_auto/v1740000001/common/f1/2026/track/2026trackcatalunyadetailed.webp",
+      "status": 200,
+      "contentType": "image/webp",
+      "bytes": 115934,
+      "sha256": "eb4d4f1cc93f541d8d8350fba2d3aad617212f6e020f00fbd1e88e3decad86d7",
+      "copyright": "Formula One World Championship Limited",
+      "rights": "All rights reserved",
+      "changes": "None; original downloaded file",
+      "dimensions": [
+        1252,
+        704
+      ]
+    },
+    {
+      "id": "0002d9f6-faa7-4d60-7c8f-08d9161fe87b",
+      "nameKey": "Red Bull Ring",
+      "name": "红牛环赛道",
+      "file": "/circuits/0002d9f6-faa7-4d60-7c8f-08d9161fe87b.webp",
+      "sourcePage": "https://www.formula1.com/en/racing/2026/austria/circuit",
+      "imageUrl": "https://media.formula1.com/image/upload/c_fit,h_704/q_auto/v1740000001/common/f1/2026/track/2026trackspielbergdetailed.webp",
+      "status": 200,
+      "contentType": "image/webp",
+      "bytes": 106104,
+      "sha256": "97b1614b0b5328f4c9bd9e9c12b523d158c6e9f09ec1d39333eeafd0e1aa2c8e",
+      "copyright": "Formula One World Championship Limited",
+      "rights": "All rights reserved",
+      "changes": "None; original downloaded file",
+      "dimensions": [
+        1252,
+        704
+      ]
+    },
+    {
+      "id": "351e95e1-329f-456d-7c4a-08d9161fe87b",
+      "nameKey": "Silverstone Circuit",
+      "name": "银石赛道",
+      "file": "/circuits/351e95e1-329f-456d-7c4a-08d9161fe87b.webp",
+      "sourcePage": "https://www.formula1.com/en/racing/2026/great-britain/circuit",
+      "imageUrl": "https://media.formula1.com/image/upload/c_fit,h_704/q_auto/v1740000001/common/f1/2026/track/2026tracksilverstonedetailed.webp",
+      "status": 200,
+      "contentType": "image/webp",
+      "bytes": 106240,
+      "sha256": "1378b033fd8a6f92b1445a9be19c8ca34bccee480871a4c574a8ab75fe91948b",
+      "copyright": "Formula One World Championship Limited",
+      "rights": "All rights reserved",
+      "changes": "None; original downloaded file",
+      "dimensions": [
+        1252,
+        704
+      ]
+    },
+    {
+      "id": "d49564dc-1e19-46d3-7c4e-08d9161fe87b",
+      "nameKey": "Circuit de Spa-Francorchamps",
+      "name": "斯帕-弗朗科尔尚赛道",
+      "file": "/circuits/d49564dc-1e19-46d3-7c4e-08d9161fe87b.webp",
+      "sourcePage": "https://www.formula1.com/en/racing/2026/belgium/circuit",
+      "imageUrl": "https://media.formula1.com/image/upload/c_fit,h_704/q_auto/v1740000001/common/f1/2026/track/2026trackspafrancorchampsdetailed.webp",
+      "status": 200,
+      "contentType": "image/webp",
+      "bytes": 102574,
+      "sha256": "25bc175e7072ec880ce17d9cb6f28c72c235ed112fd453e2f91e30012a47338e",
+      "copyright": "Formula One World Championship Limited",
+      "rights": "All rights reserved",
+      "changes": "None; original downloaded file",
+      "dimensions": [
+        1252,
+        704
+      ]
+    },
+    {
+      "id": "2a1c1543-abf1-4796-7c7d-08d9161fe87b",
+      "nameKey": "Hungaroring",
+      "name": "亨格罗林赛道",
+      "file": "/circuits/2a1c1543-abf1-4796-7c7d-08d9161fe87b.webp",
+      "sourcePage": "https://www.formula1.com/en/racing/2026/hungary/circuit",
+      "imageUrl": "https://media.formula1.com/image/upload/c_fit,h_704/q_auto/v1740000001/common/f1/2026/track/2026trackhungaroringdetailed.webp",
+      "status": 200,
+      "contentType": "image/webp",
+      "bytes": 92362,
+      "sha256": "9cc895218bef1519b6bd9fd4568306213c55f2bfefd5b8ce2948d99892f64422",
+      "copyright": "Formula One World Championship Limited",
+      "rights": "All rights reserved",
+      "changes": "None; original downloaded file",
+      "dimensions": [
+        1252,
+        704
+      ]
+    },
+    {
+      "id": "17625dab-2d8f-45c6-7c54-08d9161fe87b",
+      "nameKey": "Circuit Park Zandvoort",
+      "name": "赞德沃特赛道",
+      "file": "/circuits/17625dab-2d8f-45c6-7c54-08d9161fe87b.webp",
+      "sourcePage": "https://www.formula1.com/en/racing/2026/netherlands/circuit",
+      "imageUrl": "https://media.formula1.com/image/upload/c_fit,h_704/q_auto/v1740000001/common/f1/2026/track/2026trackzandvoortdetailed.webp",
+      "status": 200,
+      "contentType": "image/webp",
+      "bytes": 96328,
+      "sha256": "69dced800aa19ad9629e2e7ed94d4e053fd7fd2312629a85cd77dabc981362ac",
+      "copyright": "Formula One World Championship Limited",
+      "rights": "All rights reserved",
+      "changes": "None; original downloaded file",
+      "dimensions": [
+        1252,
+        704
+      ]
+    },
+    {
+      "id": "62ed1e15-500a-4e18-7c50-08d9161fe87b",
+      "nameKey": "Autodromo Nazionale di Monza",
+      "name": "蒙扎国家赛道",
+      "file": "/circuits/62ed1e15-500a-4e18-7c50-08d9161fe87b.webp",
+      "sourcePage": "https://www.formula1.com/en/racing/2026/italy/circuit",
+      "imageUrl": "https://media.formula1.com/image/upload/c_fit,h_704/q_auto/v1740000001/common/f1/2026/track/2026trackmonzadetailed.webp",
+      "status": 200,
+      "contentType": "image/webp",
+      "bytes": 93658,
+      "sha256": "79fb55d89aefc1c930c67c22272383c26bd426ec37d140b4752ab7fb7cb5e3c8",
+      "copyright": "Formula One World Championship Limited",
+      "rights": "All rights reserved",
+      "changes": "None; original downloaded file",
+      "dimensions": [
+        1252,
+        704
+      ]
+    },
+    {
+      "id": "5d783bbf-35e3-4805-9137-9c1bbcc52819",
+      "nameKey": "Circuito de Madring",
+      "name": "马德里街区赛道",
+      "file": "/circuits/5d783bbf-35e3-4805-9137-9c1bbcc52819.webp",
+      "sourcePage": "https://www.formula1.com/en/racing/2026/spain/circuit",
+      "imageUrl": "https://media.formula1.com/image/upload/c_fit,h_704/q_auto/v1740000001/common/f1/2026/track/2026trackmadringdetailed.webp",
+      "status": 200,
+      "contentType": "image/webp",
+      "bytes": 86344,
+      "sha256": "907ad12a0bdf837ea7e295f70461e66368f475dcd47426f1efa46ada33fbff91",
+      "copyright": "Formula One World Championship Limited",
+      "rights": "All rights reserved",
+      "changes": "None; original downloaded file",
+      "dimensions": [
+        1252,
+        704
+      ]
+    },
+    {
+      "id": "c271b9c9-b10f-484d-aa3d-2968f310391d",
+      "nameKey": "Baku City Circuit",
+      "name": "巴库城市赛道",
+      "file": "/circuits/c271b9c9-b10f-484d-aa3d-2968f310391d.webp",
+      "sourcePage": "https://www.formula1.com/en/racing/2026/azerbaijan/circuit",
+      "imageUrl": "https://media.formula1.com/image/upload/c_fit,h_704/q_auto/v1740000001/common/f1/2026/track/2026trackbakudetailed.webp",
+      "status": 200,
+      "contentType": "image/webp",
+      "bytes": 108054,
+      "sha256": "b218311c71dec020a8cfcd8dfc9c010fc6470c6425518707daad9ebd81fe7062",
+      "copyright": "Formula One World Championship Limited",
+      "rights": "All rights reserved",
+      "changes": "None; original downloaded file",
+      "dimensions": [
+        1252,
+        704
+      ]
+    },
+    {
+      "id": "117d13ed-7373-4347-7c85-08d9161fe87b",
+      "nameKey": "Sepang International Circuit",
+      "name": "雪邦国际赛车场",
+      "file": "/circuits/117d13ed-7373-4347-7c85-08d9161fe87b.webp",
+      "sourcePage": "https://www.formula1.com/en/racing/2026/bahrain/circuit",
+      "imageUrl": "https://media.formula1.com/image/upload/c_fit,h_704/q_auto/v1740000001/common/f1/2026/track/2026trackkualalumpurdetailed.webp",
+      "status": 200,
+      "contentType": "image/webp",
+      "bytes": 91238,
+      "sha256": "4605624cb80d857b143189f47b154d2cb19f3287edf6c41363f3213d50aa2b70",
+      "copyright": "Formula One World Championship Limited",
+      "rights": "All rights reserved",
+      "changes": "None; original downloaded file",
+      "dimensions": [
+        1252,
+        704
+      ]
+    },
+    {
+      "id": "02118f4e-0b55-462b-7c8a-08d9161fe87b",
+      "nameKey": "Marina Bay Street Circuit",
+      "name": "滨海湾街区赛道",
+      "file": "/circuits/02118f4e-0b55-462b-7c8a-08d9161fe87b.webp",
+      "sourcePage": "https://www.formula1.com/en/racing/2026/singapore/circuit",
+      "imageUrl": "https://media.formula1.com/image/upload/c_fit,h_704/q_auto/v1740000001/common/f1/2026/track/2026tracksingaporedetailed.webp",
+      "status": 200,
+      "contentType": "image/webp",
+      "bytes": 120620,
+      "sha256": "2f0b65101641c5de7799467f8802c46381b31ecfa3274b39ded884c6bf38b815",
+      "copyright": "Formula One World Championship Limited",
+      "rights": "All rights reserved",
+      "changes": "None; original downloaded file",
+      "dimensions": [
+        1252,
+        704
+      ]
+    },
+    {
+      "id": "33935829-9247-4314-7c8e-08d9161fe87b",
+      "nameKey": "Circuit of the Americas",
+      "name": "美洲赛道",
+      "file": "/circuits/33935829-9247-4314-7c8e-08d9161fe87b.webp",
+      "sourcePage": "https://www.formula1.com/en/racing/2026/united-states/circuit",
+      "imageUrl": "https://media.formula1.com/image/upload/c_fit,h_704/q_auto/v1740000001/common/f1/2026/track/2026trackaustindetailed.webp",
+      "status": 200,
+      "contentType": "image/webp",
+      "bytes": 105122,
+      "sha256": "a5a3a52e80d69a752b32b55e92c44895240898620a631308fd48511fed79273d",
+      "copyright": "Formula One World Championship Limited",
+      "rights": "All rights reserved",
+      "changes": "None; original downloaded file",
+      "dimensions": [
+        1252,
+        704
+      ]
+    },
+    {
+      "id": "1334cbc1-8d76-4283-7c60-08d9161fe87b",
+      "nameKey": "Autódromo Hermanos Rodríguez",
+      "name": "罗德里格斯兄弟赛道",
+      "file": "/circuits/1334cbc1-8d76-4283-7c60-08d9161fe87b.webp",
+      "sourcePage": "https://www.formula1.com/en/racing/2026/mexico/circuit",
+      "imageUrl": "https://media.formula1.com/image/upload/c_fit,h_704/q_auto/v1740000001/common/f1/2026/track/2026trackmexicocitydetailed.webp",
+      "status": 200,
+      "contentType": "image/webp",
+      "bytes": 52448,
+      "sha256": "93900a37c2bfa9592f3b74c1bf403c61c4ee72b7826cbf91c7d3f579bae63fcf",
+      "copyright": "Formula One World Championship Limited",
+      "rights": "All rights reserved",
+      "changes": "None; original downloaded file",
+      "dimensions": [
+        1252,
+        704
+      ]
+    },
+    {
+      "id": "1e65f843-4846-4b60-7c6e-08d9161fe87b",
+      "nameKey": "Autódromo José Carlos Pace",
+      "name": "英特拉格斯赛道",
+      "file": "/circuits/1e65f843-4846-4b60-7c6e-08d9161fe87b.webp",
+      "sourcePage": "https://www.formula1.com/en/racing/2026/brazil/circuit",
+      "imageUrl": "https://media.formula1.com/image/upload/c_fit,h_704/q_auto/v1740000001/common/f1/2026/track/2026trackinterlagosdetailed.webp",
+      "status": 200,
+      "contentType": "image/webp",
+      "bytes": 87240,
+      "sha256": "a82be8f44bc122f872c0b9adeca50018fc69d6c59fb826c5e54736e69af1e04b",
+      "copyright": "Formula One World Championship Limited",
+      "rights": "All rights reserved",
+      "changes": "None; original downloaded file",
+      "dimensions": [
+        1252,
+        704
+      ]
+    },
+    {
+      "id": "ed58dd38-e80c-4cd0-9706-92aeff3b468d",
+      "nameKey": "Las Vegas Strip Street Circuit",
+      "name": "拉斯维加斯大奖赛赛道",
+      "file": "/circuits/ed58dd38-e80c-4cd0-9706-92aeff3b468d.webp",
+      "sourcePage": "https://www.formula1.com/en/racing/2026/las-vegas/circuit",
+      "imageUrl": "https://media.formula1.com/image/upload/c_fit,h_704/q_auto/v1740000001/common/f1/2026/track/2026tracklasvegasdetailed.webp",
+      "status": 200,
+      "contentType": "image/webp",
+      "bytes": 61708,
+      "sha256": "d0c54879fb9f44f79543a4a3f4e39f9147689fb22eb490b795954a5df51a7cb3",
+      "copyright": "Formula One World Championship Limited",
+      "rights": "All rights reserved",
+      "changes": "None; original downloaded file",
+      "dimensions": [
+        1252,
+        704
+      ]
+    },
+    {
+      "id": "7e4e00b0-f154-4530-890b-08d9a12419f9",
+      "nameKey": "Losail International Circuit",
+      "name": "卢赛尔国际赛道",
+      "file": "/circuits/7e4e00b0-f154-4530-890b-08d9a12419f9.webp",
+      "sourcePage": "https://www.formula1.com/en/racing/2026/qatar/circuit",
+      "imageUrl": "https://media.formula1.com/image/upload/c_fit,h_704/q_auto/v1740000001/common/f1/2026/track/2026tracklusaildetailed.webp",
+      "status": 200,
+      "contentType": "image/webp",
+      "bytes": 67984,
+      "sha256": "2cd4ccffe51f63acdeb1a902b9c4179fee76fae0a76f99a86a8806046be40050",
+      "copyright": "Formula One World Championship Limited",
+      "rights": "All rights reserved",
+      "changes": "None; original downloaded file",
+      "dimensions": [
+        1252,
+        704
+      ]
+    },
+    {
+      "id": "36d922c2-e0ae-4e6d-7c8b-08d9161fe87b",
+      "nameKey": "Yas Marina Circuit",
+      "name": "亚斯码头赛道",
+      "file": "/circuits/36d922c2-e0ae-4e6d-7c8b-08d9161fe87b.webp",
+      "sourcePage": "https://www.formula1.com/en/racing/2026/united-arab-emirates/circuit",
+      "imageUrl": "https://media.formula1.com/image/upload/c_fit,h_704/q_auto/v1740000001/common/f1/2026/track/2026trackyasmarinacircuitdetailed.webp",
+      "status": 200,
+      "contentType": "image/webp",
+      "bytes": 76544,
+      "sha256": "c2ed54391799103bd8a708c9062f143470b74c6911153c32add994a15058dbb1",
+      "copyright": "Formula One World Championship Limited",
+      "rights": "All rights reserved",
+      "changes": "None; original downloaded file",
+      "dimensions": [
+        1252,
+        704
+      ]
+    }
+  ]
+}

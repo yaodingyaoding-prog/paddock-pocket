@@ -1,0 +1,702 @@
+{
+  "title": "赛道立体模型素材来源",
+  "retrieved": "2026-10-21",
+  "copyright": "Copyright (c) 2019-2025 Tomislav Bacinger",
+  "license": "MIT",
+  "source": "https://github.com/bacinger/f1-circuits/blob/8094e957b8d6aa8b9f4510c93968556cccd30e02/f1-circuits.geojson",
+  "commit": "8094e957b8d6aa8b9f4510c93968556cccd30e02",
+  "originalGeoJsonSha256": "7dcd3b9a5fe25b46c7ea276ea513475854a4187cebcf4384f9cd9a3465deee55",
+  "method": "WGS84 centerline projected locally, normalized and extruded into a closed solid display ribbon. X east, Y north, Z up. No per-point elevation or measured road width. Not the original F1push STL.",
+  "models": [
+    {
+      "circuitId": "ab874741-bfd4-4d27-7c84-08d9161fe87b",
+      "name": "阿尔伯特公园赛道",
+      "round": 1,
+      "sourceId": "au-1953",
+      "sourceName": "Albert Park Circuit",
+      "sourcePoints": 146,
+      "meshStations": 145,
+      "triangles": 1160,
+      "bytes": 58084,
+      "sha256": "0f8c3d69852f4f5c10598ad1d10ab49a9176c5a809676f4421c6196fdf74d931",
+      "bounds": {
+        "min": [
+          -41.64713565219321,
+          -51.02107765381726,
+          0
+        ],
+        "max": [
+          41.68657206377788,
+          50.68478796032537,
+          1.5
+        ]
+      },
+      "minimumTriangleArea": 0.012904828374666593,
+      "edgeIncidenceTwo": true,
+      "closedRibbon": true,
+      "finiteCoordinates": true,
+      "selfIntersectionsChecked": false,
+      "notes": "Flat XY ribbon with stylized width/thickness, not measured road width or elevation. Suzuka crossing may intersect because no per-point elevation is supplied."
+    },
+    {
+      "circuitId": "a18e0166-6188-4b0f-7c87-08d9161fe87b",
+      "name": "上海国际赛车场",
+      "round": 2,
+      "sourceId": "cn-2004",
+      "sourceName": "Shanghai International Circuit",
+      "sourcePoints": 141,
+      "meshStations": 140,
+      "triangles": 1120,
+      "bytes": 56084,
+      "sha256": "60f7fbe7388002253855d7878c7c1eb714a50dec55326c090ad3029c998eda64",
+      "bounds": {
+        "min": [
+          -34.46360518227385,
+          -40.375417232880956,
+          0
+        ],
+        "max": [
+          67.2635687555293,
+          49.035818675760545,
+          1.5
+        ]
+      },
+      "minimumTriangleArea": 0.09409580793128498,
+      "edgeIncidenceTwo": true,
+      "closedRibbon": true,
+      "finiteCoordinates": true,
+      "selfIntersectionsChecked": false,
+      "notes": "Flat XY ribbon with stylized width/thickness, not measured road width or elevation. Suzuka crossing may intersect because no per-point elevation is supplied."
+    },
+    {
+      "circuitId": "c2fa59a7-c57a-4757-7c7e-08d9161fe87b",
+      "name": "铃鹿赛道",
+      "round": 3,
+      "sourceId": "jp-1962",
+      "sourceName": "Suzuka International Racing Course",
+      "sourcePoints": 172,
+      "meshStations": 171,
+      "triangles": 1368,
+      "bytes": 68484,
+      "sha256": "b7179307ae1ad284983d20288a8dc140b691c1c1e13a6af80edc58ec50ebf5aa",
+      "bounds": {
+        "min": [
+          -51.53256081343238,
+          -32.74457095759465,
+          0
+        ],
+        "max": [
+          50.17505930910653,
+          22.35029551175168,
+          1.5
+        ]
+      },
+      "minimumTriangleArea": 0.0009372261725482752,
+      "edgeIncidenceTwo": true,
+      "closedRibbon": true,
+      "finiteCoordinates": true,
+      "selfIntersectionsChecked": false,
+      "notes": "Flat XY ribbon with stylized width/thickness, not measured road width or elevation. Suzuka crossing may intersect because no per-point elevation is supplied."
+    },
+    {
+      "circuitId": "712b535e-edb5-49c3-af5b-a9ff8f7e6b80",
+      "name": "迈阿密国际赛道",
+      "round": 4,
+      "sourceId": "us-2022",
+      "sourceName": "Miami International Autodrome",
+      "sourcePoints": 103,
+      "meshStations": 102,
+      "triangles": 816,
+      "bytes": 40884,
+      "sha256": "cc2dfbe705a57075413f8e89886ce0a69ccc835b4ff0a78e8ea31863506c62a2",
+      "bounds": {
+        "min": [
+          -47.698563285904164,
+          -18.735931450366657,
+          0
+        ],
+        "max": [
+          54.04308953343248,
+          22.728923150973046,
+          1.5
+        ]
+      },
+      "minimumTriangleArea": 0.08918763540045979,
+      "edgeIncidenceTwo": true,
+      "closedRibbon": true,
+      "finiteCoordinates": true,
+      "selfIntersectionsChecked": false,
+      "notes": "Flat XY ribbon with stylized width/thickness, not measured road width or elevation. Suzuka crossing may intersect because no per-point elevation is supplied."
+    },
+    {
+      "circuitId": "53e98619-a09a-4741-7c75-08d9161fe87b",
+      "name": "吉尔·维伦纽夫赛道",
+      "round": 5,
+      "sourceId": "ca-1978",
+      "sourceName": "Circuit Gilles-Villeneuve",
+      "sourcePoints": 102,
+      "meshStations": 101,
+      "triangles": 808,
+      "bytes": 40484,
+      "sha256": "b7e5be29116e97cb6c51424072abd644247a39f28a8f990dc636874731bc9518",
+      "bounds": {
+        "min": [
+          -15.153741513714671,
+          -43.34219121458581,
+          0
+        ],
+        "max": [
+          19.05274750185915,
+          58.381723458339906,
+          1.5
+        ]
+      },
+      "minimumTriangleArea": 0.004505183039229404,
+      "edgeIncidenceTwo": true,
+      "closedRibbon": true,
+      "finiteCoordinates": true,
+      "selfIntersectionsChecked": false,
+      "notes": "Flat XY ribbon with stylized width/thickness, not measured road width or elevation. Suzuka crossing may intersect because no per-point elevation is supplied."
+    },
+    {
+      "circuitId": "d7fa6d12-55ae-4da7-7c4b-08d9161fe87b",
+      "name": "蒙特卡洛赛道",
+      "round": 6,
+      "sourceId": "mc-1929",
+      "sourceName": "Circuit de Monaco",
+      "sourcePoints": 160,
+      "meshStations": 159,
+      "triangles": 1272,
+      "bytes": 63684,
+      "sha256": "d6fa8a78422daa25e4695552f49c68e43ac67140e719a44d18f0fb35511f57cb",
+      "bounds": {
+        "min": [
+          -34.5763392813906,
+          -55.64445055720815,
+          0
+        ],
+        "max": [
+          42.64038885756515,
+          46.091106011109424,
+          1.5
+        ]
+      },
+      "minimumTriangleArea": 0.020042107266136634,
+      "edgeIncidenceTwo": true,
+      "closedRibbon": true,
+      "finiteCoordinates": true,
+      "selfIntersectionsChecked": false,
+      "notes": "Flat XY ribbon with stylized width/thickness, not measured road width or elevation. Suzuka crossing may intersect because no per-point elevation is supplied."
+    },
+    {
+      "circuitId": "00c587ef-3e4a-4cef-7c81-08d9161fe87b",
+      "name": "加泰罗尼亚赛道",
+      "round": 7,
+      "sourceId": "es-1991",
+      "sourceName": "Circuit de Barcelona-Catalunya",
+      "sourcePoints": 150,
+      "meshStations": 149,
+      "triangles": 1192,
+      "bytes": 59684,
+      "sha256": "a19ecadcb0f3af512aa53068dc9d65f114b96554a16f1cb12f4cf7d0276d8402",
+      "bounds": {
+        "min": [
+          -37.951300467867675,
+          -46.481866225027886,
+          0
+        ],
+        "max": [
+          45.4349281159274,
+          55.22053840475262,
+          1.5
+        ]
+      },
+      "minimumTriangleArea": 0.2527352062761234,
+      "edgeIncidenceTwo": true,
+      "closedRibbon": true,
+      "finiteCoordinates": true,
+      "selfIntersectionsChecked": false,
+      "notes": "Flat XY ribbon with stylized width/thickness, not measured road width or elevation. Suzuka crossing may intersect because no per-point elevation is supplied."
+    },
+    {
+      "circuitId": "0002d9f6-faa7-4d60-7c8f-08d9161fe87b",
+      "name": "红牛环赛道",
+      "round": 8,
+      "sourceId": "at-1969",
+      "sourceName": "Red Bull Ring",
+      "sourcePoints": 81,
+      "meshStations": 80,
+      "triangles": 640,
+      "bytes": 32084,
+      "sha256": "37d698abe167ce315729942e4f7955ae6a68a92874b0708e3498d9e389d7d83c",
+      "bounds": {
+        "min": [
+          -48.95778572112835,
+          -37.18748348187125,
+          0
+        ],
+        "max": [
+          52.771158218386624,
+          27.631182609299067,
+          1.5
+        ]
+      },
+      "minimumTriangleArea": 0.07660226999463692,
+      "edgeIncidenceTwo": true,
+      "closedRibbon": true,
+      "finiteCoordinates": true,
+      "selfIntersectionsChecked": false,
+      "notes": "Flat XY ribbon with stylized width/thickness, not measured road width or elevation. Suzuka crossing may intersect because no per-point elevation is supplied."
+    },
+    {
+      "circuitId": "351e95e1-329f-456d-7c4a-08d9161fe87b",
+      "name": "银石赛道",
+      "round": 9,
+      "sourceId": "gb-1948",
+      "sourceName": "Silverstone Circuit",
+      "sourcePoints": 135,
+      "meshStations": 134,
+      "triangles": 1072,
+      "bytes": 53684,
+      "sha256": "a53c23134d36f3f373e019d7cfd030ac2f48e3bbd36fc1b83f811ad1e876aa94",
+      "bounds": {
+        "min": [
+          -32.483361984291705,
+          -54.74662531487262,
+          0
+        ],
+        "max": [
+          29.095236071447406,
+          46.96431383630563,
+          1.5
+        ]
+      },
+      "minimumTriangleArea": 0.11504609330725371,
+      "edgeIncidenceTwo": true,
+      "closedRibbon": true,
+      "finiteCoordinates": true,
+      "selfIntersectionsChecked": false,
+      "notes": "Flat XY ribbon with stylized width/thickness, not measured road width or elevation. Suzuka crossing may intersect because no per-point elevation is supplied."
+    },
+    {
+      "circuitId": "d49564dc-1e19-46d3-7c4e-08d9161fe87b",
+      "name": "斯帕-弗朗科尔尚赛道",
+      "round": 10,
+      "sourceId": "be-1925",
+      "sourceName": "Circuit de Spa-Francorchamps",
+      "sourcePoints": 153,
+      "meshStations": 152,
+      "triangles": 1216,
+      "bytes": 60884,
+      "sha256": "604b0386f3174034418875e26f9666b3a06d97079c78bdffb6bb060bc4ec093c",
+      "bounds": {
+        "min": [
+          -31.9302899912626,
+          -38.82770984261549,
+          0
+        ],
+        "max": [
+          31.478174032760688,
+          62.91595038486856,
+          1.5
+        ]
+      },
+      "minimumTriangleArea": 0.015549674065797516,
+      "edgeIncidenceTwo": true,
+      "closedRibbon": true,
+      "finiteCoordinates": true,
+      "selfIntersectionsChecked": false,
+      "notes": "Flat XY ribbon with stylized width/thickness, not measured road width or elevation. Suzuka crossing may intersect because no per-point elevation is supplied."
+    },
+    {
+      "circuitId": "2a1c1543-abf1-4796-7c7d-08d9161fe87b",
+      "name": "亨格罗林赛道",
+      "round": 11,
+      "sourceId": "hu-1986",
+      "sourceName": "Hungaroring",
+      "sourcePoints": 141,
+      "meshStations": 140,
+      "triangles": 1120,
+      "bytes": 56084,
+      "sha256": "c49913e04cdb27bf7249cd891722be587c238dd6905e4a2c19e5ae1cf516660d",
+      "bounds": {
+        "min": [
+          -53.40547476610734,
+          -48.170950526376025,
+          0
+        ],
+        "max": [
+          36.673426059359365,
+          53.539042597527796,
+          1.5
+        ]
+      },
+      "minimumTriangleArea": 0.08092292812278108,
+      "edgeIncidenceTwo": true,
+      "closedRibbon": true,
+      "finiteCoordinates": true,
+      "selfIntersectionsChecked": false,
+      "notes": "Flat XY ribbon with stylized width/thickness, not measured road width or elevation. Suzuka crossing may intersect because no per-point elevation is supplied."
+    },
+    {
+      "circuitId": "17625dab-2d8f-45c6-7c54-08d9161fe87b",
+      "name": "赞德沃特赛道",
+      "round": 12,
+      "sourceId": "nl-1948",
+      "sourceName": "Circuit Zandvoort",
+      "sourcePoints": 119,
+      "meshStations": 118,
+      "triangles": 944,
+      "bytes": 47284,
+      "sha256": "ff68a8c1ff12dd328b5cf69b6a63163c1edb993fd2164b69743948a7d100a5af",
+      "bounds": {
+        "min": [
+          -48.06874721071637,
+          -38.88447856369619,
+          0
+        ],
+        "max": [
+          53.63780014774407,
+          48.053277742802905,
+          1.5
+        ]
+      },
+      "minimumTriangleArea": 0.3196654154868512,
+      "edgeIncidenceTwo": true,
+      "closedRibbon": true,
+      "finiteCoordinates": true,
+      "selfIntersectionsChecked": false,
+      "notes": "Flat XY ribbon with stylized width/thickness, not measured road width or elevation. Suzuka crossing may intersect because no per-point elevation is supplied."
+    },
+    {
+      "circuitId": "62ed1e15-500a-4e18-7c50-08d9161fe87b",
+      "name": "蒙扎国家赛道",
+      "round": 13,
+      "sourceId": "it-1922",
+      "sourceName": "Autodromo Nazionale Monza",
+      "sourcePoints": 125,
+      "meshStations": 124,
+      "triangles": 992,
+      "bytes": 49684,
+      "sha256": "7c9d9f91c248c17d5b1872592b6ede93f96f007db13fa9daba182cdf9ca6ce72",
+      "bounds": {
+        "min": [
+          -21.817270440004243,
+          -59.95070269054001,
+          0
+        ],
+        "max": [
+          37.82116701075802,
+          41.75482928328427,
+          1.5
+        ]
+      },
+      "minimumTriangleArea": 0.0018781880170883778,
+      "edgeIncidenceTwo": true,
+      "closedRibbon": true,
+      "finiteCoordinates": true,
+      "selfIntersectionsChecked": false,
+      "notes": "Flat XY ribbon with stylized width/thickness, not measured road width or elevation. Suzuka crossing may intersect because no per-point elevation is supplied."
+    },
+    {
+      "circuitId": "5d783bbf-35e3-4805-9137-9c1bbcc52819",
+      "name": "马德里街区赛道",
+      "round": 14,
+      "sourceId": "es-2026",
+      "sourceName": "Circuito de Madring",
+      "sourcePoints": 116,
+      "meshStations": 115,
+      "triangles": 920,
+      "bytes": 46084,
+      "sha256": "2c7745f9c649bd6a23edb3073bd09fad57684ba5aac49978792c69c2d5e857ee",
+      "bounds": {
+        "min": [
+          -19.043944035343156,
+          -52.69288875781112,
+          0
+        ],
+        "max": [
+          44.77544354866924,
+          49.01423417843861,
+          1.5
+        ]
+      },
+      "minimumTriangleArea": 0.023397683718191533,
+      "edgeIncidenceTwo": true,
+      "closedRibbon": true,
+      "finiteCoordinates": true,
+      "selfIntersectionsChecked": false,
+      "notes": "Flat XY ribbon with stylized width/thickness, not measured road width or elevation. Suzuka crossing may intersect because no per-point elevation is supplied."
+    },
+    {
+      "circuitId": "c271b9c9-b10f-484d-aa3d-2968f310391d",
+      "name": "巴库城市赛道",
+      "round": 15,
+      "sourceId": "az-2016",
+      "sourceName": "Baku City Circuit",
+      "sourcePoints": 86,
+      "meshStations": 85,
+      "triangles": 680,
+      "bytes": 34084,
+      "sha256": "104f60349c35ff8e4efcb8dd76dcd84b337d0062f3a8951e9c1a32cc9bf9b22a",
+      "bounds": {
+        "min": [
+          -41.96288890451721,
+          -35.73591198281717,
+          0
+        ],
+        "max": [
+          59.74816930851637,
+          39.64236382235823,
+          1.5
+        ]
+      },
+      "minimumTriangleArea": 0.01300705027586371,
+      "edgeIncidenceTwo": true,
+      "closedRibbon": true,
+      "finiteCoordinates": true,
+      "selfIntersectionsChecked": false,
+      "notes": "Flat XY ribbon with stylized width/thickness, not measured road width or elevation. Suzuka crossing may intersect because no per-point elevation is supplied."
+    },
+    {
+      "circuitId": "117d13ed-7373-4347-7c85-08d9161fe87b",
+      "name": "雪邦国际赛车场",
+      "round": 16,
+      "sourceId": "my-1999",
+      "sourceName": "Sepang International Circuit",
+      "sourcePoints": 104,
+      "meshStations": 103,
+      "triangles": 824,
+      "bytes": 41284,
+      "sha256": "1b4dfdb859d37f19ba6e3cd65461a5010f69a5460636fbfe5fca796c9c5e632e",
+      "bounds": {
+        "min": [
+          -42.80113525282396,
+          -40.56519314367386,
+          0
+        ],
+        "max": [
+          58.91958102324885,
+          43.0833255856282,
+          1.5
+        ]
+      },
+      "minimumTriangleArea": 0.33249991789972966,
+      "edgeIncidenceTwo": true,
+      "closedRibbon": true,
+      "finiteCoordinates": true,
+      "selfIntersectionsChecked": false,
+      "notes": "Flat XY ribbon with stylized width/thickness, not measured road width or elevation. Suzuka crossing may intersect because no per-point elevation is supplied."
+    },
+    {
+      "circuitId": "02118f4e-0b55-462b-7c8a-08d9161fe87b",
+      "name": "滨海湾街区赛道",
+      "round": 17,
+      "sourceId": "sg-2008",
+      "sourceName": "Marina Bay Street Circuit",
+      "sourcePoints": 116,
+      "meshStations": 115,
+      "triangles": 920,
+      "bytes": 46084,
+      "sha256": "c17c8e7d1a165b0f34887c1eb2aeb0394d0b774103f1a8535f195d181ad177f1",
+      "bounds": {
+        "min": [
+          -50.98355968463342,
+          -32.876973506823525,
+          0
+        ],
+        "max": [
+          50.73494106052897,
+          33.639738098099116,
+          1.5
+        ]
+      },
+      "minimumTriangleArea": 0.012204883409454059,
+      "edgeIncidenceTwo": true,
+      "closedRibbon": true,
+      "finiteCoordinates": true,
+      "selfIntersectionsChecked": false,
+      "notes": "Flat XY ribbon with stylized width/thickness, not measured road width or elevation. Suzuka crossing may intersect because no per-point elevation is supplied."
+    },
+    {
+      "circuitId": "33935829-9247-4314-7c8e-08d9161fe87b",
+      "name": "美洲赛道",
+      "round": 18,
+      "sourceId": "us-2012",
+      "sourceName": "Circuit of the Americas",
+      "sourcePoints": 171,
+      "meshStations": 170,
+      "triangles": 1360,
+      "bytes": 68084,
+      "sha256": "339460b2454f9e1b588acb20ac63d2373abc4ccaf316929c1c1a1c4dc93a7696",
+      "bounds": {
+        "min": [
+          -46.62390002904559,
+          -32.24923327510495,
+          0
+        ],
+        "max": [
+          55.143967721434684,
+          26.805626764105238,
+          1.5
+        ]
+      },
+      "minimumTriangleArea": 0.011901333046592362,
+      "edgeIncidenceTwo": true,
+      "closedRibbon": true,
+      "finiteCoordinates": true,
+      "selfIntersectionsChecked": false,
+      "notes": "Flat XY ribbon with stylized width/thickness, not measured road width or elevation. Suzuka crossing may intersect because no per-point elevation is supplied."
+    },
+    {
+      "circuitId": "1334cbc1-8d76-4283-7c60-08d9161fe87b",
+      "name": "罗德里格斯兄弟赛道",
+      "round": 19,
+      "sourceId": "mx-1962",
+      "sourceName": "Autódromo Hermanos Rodríguez",
+      "sourcePoints": 101,
+      "meshStations": 100,
+      "triangles": 800,
+      "bytes": 40084,
+      "sha256": "ebed262402d0b033b19ac795224eb11d68de9ea882f5843479a4a2b89a25a6e9",
+      "bounds": {
+        "min": [
+          -52.3767308946163,
+          -44.86741968807354,
+          0
+        ],
+        "max": [
+          49.33210011830429,
+          29.046458026421845,
+          1.5
+        ]
+      },
+      "minimumTriangleArea": 0.007923198223283648,
+      "edgeIncidenceTwo": true,
+      "closedRibbon": true,
+      "finiteCoordinates": true,
+      "selfIntersectionsChecked": false,
+      "notes": "Flat XY ribbon with stylized width/thickness, not measured road width or elevation. Suzuka crossing may intersect because no per-point elevation is supplied."
+    },
+    {
+      "circuitId": "1e65f843-4846-4b60-7c6e-08d9161fe87b",
+      "name": "英特拉格斯赛道",
+      "round": 20,
+      "sourceId": "br-1940",
+      "sourceName": "Autódromo José Carlos Pace - Interlagos",
+      "sourcePoints": 171,
+      "meshStations": 170,
+      "triangles": 1360,
+      "bytes": 68084,
+      "sha256": "0b3896417c18d4eb85da7ca9acc35ff3a8528ab897f8d5d7df280b1d488afdad",
+      "bounds": {
+        "min": [
+          -25.078793975892854,
+          -58.678610960246125,
+          0
+        ],
+        "max": [
+          39.79986221812659,
+          43.02941756342717,
+          1.5
+        ]
+      },
+      "minimumTriangleArea": 0.2131805402988822,
+      "edgeIncidenceTwo": true,
+      "closedRibbon": true,
+      "finiteCoordinates": true,
+      "selfIntersectionsChecked": false,
+      "notes": "Flat XY ribbon with stylized width/thickness, not measured road width or elevation. Suzuka crossing may intersect because no per-point elevation is supplied."
+    },
+    {
+      "circuitId": "ed58dd38-e80c-4cd0-9706-92aeff3b468d",
+      "name": "拉斯维加斯大奖赛赛道",
+      "round": 21,
+      "sourceId": "us-2023",
+      "sourceName": "Las Vegas Street Circuit",
+      "sourcePoints": 100,
+      "meshStations": 99,
+      "triangles": 792,
+      "bytes": 39684,
+      "sha256": "bba86e38c1205b97d4a15132660f66c7cdbe66b3f35993459aa59f20acbf6b40",
+      "bounds": {
+        "min": [
+          -35.1171079383965,
+          -49.12952116414847,
+          0
+        ],
+        "max": [
+          26.561327237025907,
+          52.591218250346415,
+          1.5
+        ]
+      },
+      "minimumTriangleArea": 0.007428171496995231,
+      "edgeIncidenceTwo": true,
+      "closedRibbon": true,
+      "finiteCoordinates": true,
+      "selfIntersectionsChecked": false,
+      "notes": "Flat XY ribbon with stylized width/thickness, not measured road width or elevation. Suzuka crossing may intersect because no per-point elevation is supplied."
+    },
+    {
+      "circuitId": "7e4e00b0-f154-4530-890b-08d9a12419f9",
+      "name": "卢赛尔国际赛道",
+      "round": 22,
+      "sourceId": "qa-2004",
+      "sourceName": "Losail International Circuit",
+      "sourcePoints": 107,
+      "meshStations": 106,
+      "triangles": 848,
+      "bytes": 42484,
+      "sha256": "2219ec5bb68f7e2beace007759b5d8635f469dfc98b803992b99049fd23f4cbd",
+      "bounds": {
+        "min": [
+          -46.80445495483568,
+          -60.43012610040898,
+          0
+        ],
+        "max": [
+          39.61035927515227,
+          41.286335938662376,
+          1.5
+        ]
+      },
+      "minimumTriangleArea": 0.3152848570828052,
+      "edgeIncidenceTwo": true,
+      "closedRibbon": true,
+      "finiteCoordinates": true,
+      "selfIntersectionsChecked": false,
+      "notes": "Flat XY ribbon with stylized width/thickness, not measured road width or elevation. Suzuka crossing may intersect because no per-point elevation is supplied."
+    },
+    {
+      "circuitId": "36d922c2-e0ae-4e6d-7c8b-08d9161fe87b",
+      "name": "亚斯码头赛道",
+      "round": 23,
+      "sourceId": "ae-2009",
+      "sourceName": "Yas Marina Circuit",
+      "sourcePoints": 133,
+      "meshStations": 132,
+      "triangles": 1056,
+      "bytes": 52884,
+      "sha256": "19198aed646297215c8c1ab8ea300d75365beeb209438487d7c0d77f5699d8f1",
+      "bounds": {
+        "min": [
+          -24.49762458690032,
+          -40.86922132456409,
+          0
+        ],
+        "max": [
+          24.158822498299223,
+          60.838603254150335,
+          1.5
+        ]
+      },
+      "minimumTriangleArea": 0.020357262885002517,
+      "edgeIncidenceTwo": true,
+      "closedRibbon": true,
+      "finiteCoordinates": true,
+      "selfIntersectionsChecked": false,
+      "notes": "Flat XY ribbon with stylized width/thickness, not measured road width or elevation. Suzuka crossing may intersect because no per-point elevation is supplied."
+    }
+  ]
+}

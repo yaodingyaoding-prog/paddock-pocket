@@ -1,0 +1,554 @@
+{
+  "ab874741-bfd4-4d27-7c84-08d9161fe87b": {
+    "file": "/circuits/models/ab874741-bfd4-4d27-7c84-08d9161fe87b.stl",
+    "sourceId": "au-1953",
+    "plane": "XY",
+    "upAxis": "Z",
+    "bounds": {
+      "min": [
+        -41.64713565219321,
+        -51.02107765381726,
+        0
+      ],
+      "max": [
+        41.68657206377788,
+        50.68478796032537,
+        1.5
+      ]
+    },
+    "width": 1.7,
+    "thickness": 1.5,
+    "units": "display units; longest centerline XY extent = 100",
+    "kind": "centerline-reconstruction",
+    "source": "https://github.com/bacinger/f1-circuits/blob/8094e957b8d6aa8b9f4510c93968556cccd30e02/f1-circuits.geojson",
+    "license": "MIT"
+  },
+  "a18e0166-6188-4b0f-7c87-08d9161fe87b": {
+    "file": "/circuits/models/a18e0166-6188-4b0f-7c87-08d9161fe87b.stl",
+    "sourceId": "cn-2004",
+    "plane": "XY",
+    "upAxis": "Z",
+    "bounds": {
+      "min": [
+        -34.46360518227385,
+        -40.375417232880956,
+        0
+      ],
+      "max": [
+        67.2635687555293,
+        49.035818675760545,
+        1.5
+      ]
+    },
+    "width": 1.7,
+    "thickness": 1.5,
+    "units": "display units; longest centerline XY extent = 100",
+    "kind": "centerline-reconstruction",
+    "source": "https://github.com/bacinger/f1-circuits/blob/8094e957b8d6aa8b9f4510c93968556cccd30e02/f1-circuits.geojson",
+    "license": "MIT"
+  },
+  "c2fa59a7-c57a-4757-7c7e-08d9161fe87b": {
+    "file": "/circuits/models/c2fa59a7-c57a-4757-7c7e-08d9161fe87b.stl",
+    "sourceId": "jp-1962",
+    "plane": "XY",
+    "upAxis": "Z",
+    "bounds": {
+      "min": [
+        -51.53256081343238,
+        -32.74457095759465,
+        0
+      ],
+      "max": [
+        50.17505930910653,
+        22.35029551175168,
+        1.5
+      ]
+    },
+    "width": 1.7,
+    "thickness": 1.5,
+    "units": "display units; longest centerline XY extent = 100",
+    "kind": "centerline-reconstruction",
+    "source": "https://github.com/bacinger/f1-circuits/blob/8094e957b8d6aa8b9f4510c93968556cccd30e02/f1-circuits.geojson",
+    "license": "MIT"
+  },
+  "712b535e-edb5-49c3-af5b-a9ff8f7e6b80": {
+    "file": "/circuits/models/712b535e-edb5-49c3-af5b-a9ff8f7e6b80.stl",
+    "sourceId": "us-2022",
+    "plane": "XY",
+    "upAxis": "Z",
+    "bounds": {
+      "min": [
+        -47.698563285904164,
+        -18.735931450366657,
+        0
+      ],
+      "max": [
+        54.04308953343248,
+        22.728923150973046,
+        1.5
+      ]
+    },
+    "width": 1.7,
+    "thickness": 1.5,
+    "units": "display units; longest centerline XY extent = 100",
+    "kind": "centerline-reconstruction",
+    "source": "https://github.com/bacinger/f1-circuits/blob/8094e957b8d6aa8b9f4510c93968556cccd30e02/f1-circuits.geojson",
+    "license": "MIT"
+  },
+  "53e98619-a09a-4741-7c75-08d9161fe87b": {
+    "file": "/circuits/models/53e98619-a09a-4741-7c75-08d9161fe87b.stl",
+    "sourceId": "ca-1978",
+    "plane": "XY",
+    "upAxis": "Z",
+    "bounds": {
+      "min": [
+        -15.153741513714671,
+        -43.34219121458581,
+        0
+      ],
+      "max": [
+        19.05274750185915,
+        58.381723458339906,
+        1.5
+      ]
+    },
+    "width": 1.7,
+    "thickness": 1.5,
+    "units": "display units; longest centerline XY extent = 100",
+    "kind": "centerline-reconstruction",
+    "source": "https://github.com/bacinger/f1-circuits/blob/8094e957b8d6aa8b9f4510c93968556cccd30e02/f1-circuits.geojson",
+    "license": "MIT"
+  },
+  "d7fa6d12-55ae-4da7-7c4b-08d9161fe87b": {
+    "file": "/circuits/models/d7fa6d12-55ae-4da7-7c4b-08d9161fe87b.stl",
+    "sourceId": "mc-1929",
+    "plane": "XY",
+    "upAxis": "Z",
+    "bounds": {
+      "min": [
+        -34.5763392813906,
+        -55.64445055720815,
+        0
+      ],
+      "max": [
+        42.64038885756515,
+        46.091106011109424,
+        1.5
+      ]
+    },
+    "width": 1.7,
+    "thickness": 1.5,
+    "units": "display units; longest centerline XY extent = 100",
+    "kind": "centerline-reconstruction",
+    "source": "https://github.com/bacinger/f1-circuits/blob/8094e957b8d6aa8b9f4510c93968556cccd30e02/f1-circuits.geojson",
+    "license": "MIT"
+  },
+  "00c587ef-3e4a-4cef-7c81-08d9161fe87b": {
+    "file": "/circuits/models/00c587ef-3e4a-4cef-7c81-08d9161fe87b.stl",
+    "sourceId": "es-1991",
+    "plane": "XY",
+    "upAxis": "Z",
+    "bounds": {
+      "min": [
+        -37.951300467867675,
+        -46.481866225027886,
+        0
+      ],
+      "max": [
+        45.4349281159274,
+        55.22053840475262,
+        1.5
+      ]
+    },
+    "width": 1.7,
+    "thickness": 1.5,
+    "units": "display units; longest centerline XY extent = 100",
+    "kind": "centerline-reconstruction",
+    "source": "https://github.com/bacinger/f1-circuits/blob/8094e957b8d6aa8b9f4510c93968556cccd30e02/f1-circuits.geojson",
+    "license": "MIT"
+  },
+  "0002d9f6-faa7-4d60-7c8f-08d9161fe87b": {
+    "file": "/circuits/models/0002d9f6-faa7-4d60-7c8f-08d9161fe87b.stl",
+    "sourceId": "at-1969",
+    "plane": "XY",
+    "upAxis": "Z",
+    "bounds": {
+      "min": [
+        -48.95778572112835,
+        -37.18748348187125,
+        0
+      ],
+      "max": [
+        52.771158218386624,
+        27.631182609299067,
+        1.5
+      ]
+    },
+    "width": 1.7,
+    "thickness": 1.5,
+    "units": "display units; longest centerline XY extent = 100",
+    "kind": "centerline-reconstruction",
+    "source": "https://github.com/bacinger/f1-circuits/blob/8094e957b8d6aa8b9f4510c93968556cccd30e02/f1-circuits.geojson",
+    "license": "MIT"
+  },
+  "351e95e1-329f-456d-7c4a-08d9161fe87b": {
+    "file": "/circuits/models/351e95e1-329f-456d-7c4a-08d9161fe87b.stl",
+    "sourceId": "gb-1948",
+    "plane": "XY",
+    "upAxis": "Z",
+    "bounds": {
+      "min": [
+        -32.483361984291705,
+        -54.74662531487262,
+        0
+      ],
+      "max": [
+        29.095236071447406,
+        46.96431383630563,
+        1.5
+      ]
+    },
+    "width": 1.7,
+    "thickness": 1.5,
+    "units": "display units; longest centerline XY extent = 100",
+    "kind": "centerline-reconstruction",
+    "source": "https://github.com/bacinger/f1-circuits/blob/8094e957b8d6aa8b9f4510c93968556cccd30e02/f1-circuits.geojson",
+    "license": "MIT"
+  },
+  "d49564dc-1e19-46d3-7c4e-08d9161fe87b": {
+    "file": "/circuits/models/d49564dc-1e19-46d3-7c4e-08d9161fe87b.stl",
+    "sourceId": "be-1925",
+    "plane": "XY",
+    "upAxis": "Z",
+    "bounds": {
+      "min": [
+        -31.9302899912626,
+        -38.82770984261549,
+        0
+      ],
+      "max": [
+        31.478174032760688,
+        62.91595038486856,
+        1.5
+      ]
+    },
+    "width": 1.7,
+    "thickness": 1.5,
+    "units": "display units; longest centerline XY extent = 100",
+    "kind": "centerline-reconstruction",
+    "source": "https://github.com/bacinger/f1-circuits/blob/8094e957b8d6aa8b9f4510c93968556cccd30e02/f1-circuits.geojson",
+    "license": "MIT"
+  },
+  "2a1c1543-abf1-4796-7c7d-08d9161fe87b": {
+    "file": "/circuits/models/2a1c1543-abf1-4796-7c7d-08d9161fe87b.stl",
+    "sourceId": "hu-1986",
+    "plane": "XY",
+    "upAxis": "Z",
+    "bounds": {
+      "min": [
+        -53.40547476610734,
+        -48.170950526376025,
+        0
+      ],
+      "max": [
+        36.673426059359365,
+        53.539042597527796,
+        1.5
+      ]
+    },
+    "width": 1.7,
+    "thickness": 1.5,
+    "units": "display units; longest centerline XY extent = 100",
+    "kind": "centerline-reconstruction",
+    "source": "https://github.com/bacinger/f1-circuits/blob/8094e957b8d6aa8b9f4510c93968556cccd30e02/f1-circuits.geojson",
+    "license": "MIT"
+  },
+  "17625dab-2d8f-45c6-7c54-08d9161fe87b": {
+    "file": "/circuits/models/17625dab-2d8f-45c6-7c54-08d9161fe87b.stl",
+    "sourceId": "nl-1948",
+    "plane": "XY",
+    "upAxis": "Z",
+    "bounds": {
+      "min": [
+        -48.06874721071637,
+        -38.88447856369619,
+        0
+      ],
+      "max": [
+        53.63780014774407,
+        48.053277742802905,
+        1.5
+      ]
+    },
+    "width": 1.7,
+    "thickness": 1.5,
+    "units": "display units; longest centerline XY extent = 100",
+    "kind": "centerline-reconstruction",
+    "source": "https://github.com/bacinger/f1-circuits/blob/8094e957b8d6aa8b9f4510c93968556cccd30e02/f1-circuits.geojson",
+    "license": "MIT"
+  },
+  "62ed1e15-500a-4e18-7c50-08d9161fe87b": {
+    "file": "/circuits/models/62ed1e15-500a-4e18-7c50-08d9161fe87b.stl",
+    "sourceId": "it-1922",
+    "plane": "XY",
+    "upAxis": "Z",
+    "bounds": {
+      "min": [
+        -21.817270440004243,
+        -59.95070269054001,
+        0
+      ],
+      "max": [
+        37.82116701075802,
+        41.75482928328427,
+        1.5
+      ]
+    },
+    "width": 1.7,
+    "thickness": 1.5,
+    "units": "display units; longest centerline XY extent = 100",
+    "kind": "centerline-reconstruction",
+    "source": "https://github.com/bacinger/f1-circuits/blob/8094e957b8d6aa8b9f4510c93968556cccd30e02/f1-circuits.geojson",
+    "license": "MIT"
+  },
+  "5d783bbf-35e3-4805-9137-9c1bbcc52819": {
+    "file": "/circuits/models/5d783bbf-35e3-4805-9137-9c1bbcc52819.stl",
+    "sourceId": "es-2026",
+    "plane": "XY",
+    "upAxis": "Z",
+    "bounds": {
+      "min": [
+        -19.043944035343156,
+        -52.69288875781112,
+        0
+      ],
+      "max": [
+        44.77544354866924,
+        49.01423417843861,
+        1.5
+      ]
+    },
+    "width": 1.7,
+    "thickness": 1.5,
+    "units": "display units; longest centerline XY extent = 100",
+    "kind": "centerline-reconstruction",
+    "source": "https://github.com/bacinger/f1-circuits/blob/8094e957b8d6aa8b9f4510c93968556cccd30e02/f1-circuits.geojson",
+    "license": "MIT"
+  },
+  "c271b9c9-b10f-484d-aa3d-2968f310391d": {
+    "file": "/circuits/models/c271b9c9-b10f-484d-aa3d-2968f310391d.stl",
+    "sourceId": "az-2016",
+    "plane": "XY",
+    "upAxis": "Z",
+    "bounds": {
+      "min": [
+        -41.96288890451721,
+        -35.73591198281717,
+        0
+      ],
+      "max": [
+        59.74816930851637,
+        39.64236382235823,
+        1.5
+      ]
+    },
+    "width": 1.7,
+    "thickness": 1.5,
+    "units": "display units; longest centerline XY extent = 100",
+    "kind": "centerline-reconstruction",
+    "source": "https://github.com/bacinger/f1-circuits/blob/8094e957b8d6aa8b9f4510c93968556cccd30e02/f1-circuits.geojson",
+    "license": "MIT"
+  },
+  "117d13ed-7373-4347-7c85-08d9161fe87b": {
+    "file": "/circuits/models/117d13ed-7373-4347-7c85-08d9161fe87b.stl",
+    "sourceId": "my-1999",
+    "plane": "XY",
+    "upAxis": "Z",
+    "bounds": {
+      "min": [
+        -42.80113525282396,
+        -40.56519314367386,
+        0
+      ],
+      "max": [
+        58.91958102324885,
+        43.0833255856282,
+        1.5
+      ]
+    },
+    "width": 1.7,
+    "thickness": 1.5,
+    "units": "display units; longest centerline XY extent = 100",
+    "kind": "centerline-reconstruction",
+    "source": "https://github.com/bacinger/f1-circuits/blob/8094e957b8d6aa8b9f4510c93968556cccd30e02/f1-circuits.geojson",
+    "license": "MIT"
+  },
+  "02118f4e-0b55-462b-7c8a-08d9161fe87b": {
+    "file": "/circuits/models/02118f4e-0b55-462b-7c8a-08d9161fe87b.stl",
+    "sourceId": "sg-2008",
+    "plane": "XY",
+    "upAxis": "Z",
+    "bounds": {
+      "min": [
+        -50.98355968463342,
+        -32.876973506823525,
+        0
+      ],
+      "max": [
+        50.73494106052897,
+        33.639738098099116,
+        1.5
+      ]
+    },
+    "width": 1.7,
+    "thickness": 1.5,
+    "units": "display units; longest centerline XY extent = 100",
+    "kind": "centerline-reconstruction",
+    "source": "https://github.com/bacinger/f1-circuits/blob/8094e957b8d6aa8b9f4510c93968556cccd30e02/f1-circuits.geojson",
+    "license": "MIT"
+  },
+  "33935829-9247-4314-7c8e-08d9161fe87b": {
+    "file": "/circuits/models/33935829-9247-4314-7c8e-08d9161fe87b.stl",
+    "sourceId": "us-2012",
+    "plane": "XY",
+    "upAxis": "Z",
+    "bounds": {
+      "min": [
+        -46.62390002904559,
+        -32.24923327510495,
+        0
+      ],
+      "max": [
+        55.143967721434684,
+        26.805626764105238,
+        1.5
+      ]
+    },
+    "width": 1.7,
+    "thickness": 1.5,
+    "units": "display units; longest centerline XY extent = 100",
+    "kind": "centerline-reconstruction",
+    "source": "https://github.com/bacinger/f1-circuits/blob/8094e957b8d6aa8b9f4510c93968556cccd30e02/f1-circuits.geojson",
+    "license": "MIT"
+  },
+  "1334cbc1-8d76-4283-7c60-08d9161fe87b": {
+    "file": "/circuits/models/1334cbc1-8d76-4283-7c60-08d9161fe87b.stl",
+    "sourceId": "mx-1962",
+    "plane": "XY",
+    "upAxis": "Z",
+    "bounds": {
+      "min": [
+        -52.3767308946163,
+        -44.86741968807354,
+        0
+      ],
+      "max": [
+        49.33210011830429,
+        29.046458026421845,
+        1.5
+      ]
+    },
+    "width": 1.7,
+    "thickness": 1.5,
+    "units": "display units; longest centerline XY extent = 100",
+    "kind": "centerline-reconstruction",
+    "source": "https://github.com/bacinger/f1-circuits/blob/8094e957b8d6aa8b9f4510c93968556cccd30e02/f1-circuits.geojson",
+    "license": "MIT"
+  },
+  "1e65f843-4846-4b60-7c6e-08d9161fe87b": {
+    "file": "/circuits/models/1e65f843-4846-4b60-7c6e-08d9161fe87b.stl",
+    "sourceId": "br-1940",
+    "plane": "XY",
+    "upAxis": "Z",
+    "bounds": {
+      "min": [
+        -25.078793975892854,
+        -58.678610960246125,
+        0
+      ],
+      "max": [
+        39.79986221812659,
+        43.02941756342717,
+        1.5
+      ]
+    },
+    "width": 1.7,
+    "thickness": 1.5,
+    "units": "display units; longest centerline XY extent = 100",
+    "kind": "centerline-reconstruction",
+    "source": "https://github.com/bacinger/f1-circuits/blob/8094e957b8d6aa8b9f4510c93968556cccd30e02/f1-circuits.geojson",
+    "license": "MIT"
+  },
+  "ed58dd38-e80c-4cd0-9706-92aeff3b468d": {
+    "file": "/circuits/models/ed58dd38-e80c-4cd0-9706-92aeff3b468d.stl",
+    "sourceId": "us-2023",
+    "plane": "XY",
+    "upAxis": "Z",
+    "bounds": {
+      "min": [
+        -35.1171079383965,
+        -49.12952116414847,
+        0
+      ],
+      "max": [
+        26.561327237025907,
+        52.591218250346415,
+        1.5
+      ]
+    },
+    "width": 1.7,
+    "thickness": 1.5,
+    "units": "display units; longest centerline XY extent = 100",
+    "kind": "centerline-reconstruction",
+    "source": "https://github.com/bacinger/f1-circuits/blob/8094e957b8d6aa8b9f4510c93968556cccd30e02/f1-circuits.geojson",
+    "license": "MIT"
+  },
+  "7e4e00b0-f154-4530-890b-08d9a12419f9": {
+    "file": "/circuits/models/7e4e00b0-f154-4530-890b-08d9a12419f9.stl",
+    "sourceId": "qa-2004",
+    "plane": "XY",
+    "upAxis": "Z",
+    "bounds": {
+      "min": [
+        -46.80445495483568,
+        -60.43012610040898,
+        0
+      ],
+      "max": [
+        39.61035927515227,
+        41.286335938662376,
+        1.5
+      ]
+    },
+    "width": 1.7,
+    "thickness": 1.5,
+    "units": "display units; longest centerline XY extent = 100",
+    "kind": "centerline-reconstruction",
+    "source": "https://github.com/bacinger/f1-circuits/blob/8094e957b8d6aa8b9f4510c93968556cccd30e02/f1-circuits.geojson",
+    "license": "MIT"
+  },
+  "36d922c2-e0ae-4e6d-7c8b-08d9161fe87b": {
+    "file": "/circuits/models/36d922c2-e0ae-4e6d-7c8b-08d9161fe87b.stl",
+    "sourceId": "ae-2009",
+    "plane": "XY",
+    "upAxis": "Z",
+    "bounds": {
+      "min": [
+        -24.49762458690032,
+        -40.86922132456409,
+        0
+      ],
+      "max": [
+        24.158822498299223,
+        60.838603254150335,
+        1.5
+      ]
+    },
+    "width": 1.7,
+    "thickness": 1.5,
+    "units": "display units; longest centerline XY extent = 100",
+    "kind": "centerline-reconstruction",
+    "source": "https://github.com/bacinger/f1-circuits/blob/8094e957b8d6aa8b9f4510c93968556cccd30e02/f1-circuits.geojson",
+    "license": "MIT"
+  }
+}

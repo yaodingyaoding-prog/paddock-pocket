@@ -1,0 +1,727 @@
+[
+  {
+    "driverId": "albon",
+    "name": "Alexander Albon",
+    "reason": "curl: (22) The requested URL returned error: 429\r\n"
+  },
+  {
+    "driverId": "alexander_dunne",
+    "name": "Alexander Dunne",
+    "reason": "date of birth mismatch or missing"
+  },
+  {
+    "driverId": "antonelli",
+    "name": "Andrea Kimi Antonelli",
+    "reason": "curl: (22) The requested URL returned error: 429\r\n"
+  },
+  {
+    "driverId": "antonio_fuoco",
+    "name": "Antonio Fuoco",
+    "reason": "date of birth mismatch or missing"
+  },
+  {
+    "driverId": "arthur_leclerc",
+    "name": "Arthur Leclerc",
+    "reason": "date of birth mismatch or missing"
+  },
+  {
+    "driverId": "ayumu_iwasa",
+    "name": "Ayumu Iwasa",
+    "reason": "date of birth mismatch or missing"
+  },
+  {
+    "driverId": "baumgartner",
+    "name": "Zsolt Baumgartner",
+    "reason": "Visual QA rejected candidate: racing car or multiple primary people, unsuitable as an unambiguous portrait."
+  },
+  {
+    "driverId": "cian_shields",
+    "name": "Cian Shields",
+    "reason": "date of birth mismatch or missing"
+  },
+  {
+    "driverId": "dino_beganovic",
+    "name": "Dino Beganovic",
+    "reason": "date of birth mismatch or missing"
+  },
+  {
+    "driverId": "felipe_drugovich",
+    "name": "Felipe Drugovich",
+    "reason": "date of birth mismatch or missing"
+  },
+  {
+    "driverId": "frederik_vesti",
+    "name": "Frederik Vesti",
+    "reason": "date of birth mismatch or missing"
+  },
+  {
+    "driverId": "gene",
+    "name": "Marc Gené",
+    "reason": "Visual QA rejected candidate: racing car or multiple primary people, unsuitable as an unambiguous portrait."
+  },
+  {
+    "driverId": "jak_crawford",
+    "name": "Jak Crawford",
+    "reason": "date of birth mismatch or missing"
+  },
+  {
+    "driverId": "luke_browning",
+    "name": "Luke Browning",
+    "reason": "date of birth mismatch or missing"
+  },
+  {
+    "driverId": "montagny",
+    "name": "Franck Montagny",
+    "reason": "curl: (22) The requested URL returned error: 429\r\n"
+  },
+  {
+    "driverId": "patricio_o_ward",
+    "name": "Patricio O'Ward",
+    "reason": "date of birth mismatch or missing"
+  },
+  {
+    "driverId": "paul_aron",
+    "name": "Paul Aron",
+    "reason": "date of birth mismatch or missing"
+  },
+  {
+    "driverId": "rossi",
+    "name": "Alexander Rossi",
+    "reason": "curl: (22) The requested URL returned error: 429\r\n"
+  },
+  {
+    "driverId": "ryo_hirakawa",
+    "name": "Ryo Hirakawa",
+    "reason": "date of birth mismatch or missing"
+  },
+  {
+    "driverId": "sirotkin",
+    "name": "Sergey Sirotkin",
+    "reason": "Commons file metadata unavailable"
+  },
+  {
+    "driverId": "victor_martins",
+    "name": "Victor Martins",
+    "reason": "date of birth mismatch or missing"
+  },
+  {
+    "driverId": "adamich",
+    "name": "Andrea de Adamich",
+    "reason": "Visual QA rejected candidate: racing car or multiple primary people, unsuitable as an unambiguous portrait."
+  },
+  {
+    "driverId": "adams",
+    "name": "Philippe Adams",
+    "reason": "Visual QA rejected candidate: racing car or multiple primary people, unsuitable as an unambiguous portrait."
+  },
+  {
+    "driverId": "alliot",
+    "name": "Philippe Alliot",
+    "reason": "date of birth mismatch or missing"
+  },
+  {
+    "driverId": "amati",
+    "name": "Giovanna Amati",
+    "reason": "no Wikidata P18 image"
+  },
+  {
+    "driverId": "andretti",
+    "name": "Michael Andretti",
+    "reason": "curl: (22) The requested URL returned error: 429\r\n"
+  },
+  {
+    "driverId": "apicella",
+    "name": "Marco Apicella",
+    "reason": "no Wikidata P18 image"
+  },
+  {
+    "driverId": "arnoux",
+    "name": "René Arnoux",
+    "reason": "curl: (22) The requested URL returned error: 429\r\n"
+  },
+  {
+    "driverId": "bailey",
+    "name": "Julian Bailey",
+    "reason": "date of birth mismatch or missing"
+  },
+  {
+    "driverId": "barbazza",
+    "name": "Fabrizio Barbazza",
+    "reason": "Visual QA rejected candidate: racing car or multiple primary people, unsuitable as an unambiguous portrait."
+  },
+  {
+    "driverId": "barilla",
+    "name": "Paolo Barilla",
+    "reason": "no Wikidata P18 image"
+  },
+  {
+    "driverId": "bell",
+    "name": "Derek Bell",
+    "reason": "curl: (22) The requested URL returned error: 429\r\n"
+  },
+  {
+    "driverId": "belmondo",
+    "name": "Paul Belmondo",
+    "reason": "date of birth mismatch or missing"
+  },
+  {
+    "driverId": "beltoise",
+    "name": "Jean-Pierre Beltoise",
+    "reason": "curl: (22) The requested URL returned error: 429\r\n"
+  },
+  {
+    "driverId": "beretta",
+    "name": "Olivier Beretta",
+    "reason": "curl: (22) The requested URL returned error: 429\r\n"
+  },
+  {
+    "driverId": "berger",
+    "name": "Gerhard Berger",
+    "reason": "curl: (22) The requested URL returned error: 429\r\n"
+  },
+  {
+    "driverId": "bernard",
+    "name": "Éric Bernard",
+    "reason": "no Wikidata P18 image"
+  },
+  {
+    "driverId": "blundell",
+    "name": "Mark Blundell",
+    "reason": "curl: (22) The requested URL returned error: 429\r\n"
+  },
+  {
+    "driverId": "bonnier",
+    "name": "Jo Bonnier",
+    "reason": "curl: (22) The requested URL returned error: 429\r\n"
+  },
+  {
+    "driverId": "boullion",
+    "name": "Jean-Christophe Boullion",
+    "reason": "curl: (22) The requested URL returned error: 429\r\n"
+  },
+  {
+    "driverId": "boutsen",
+    "name": "Thierry Boutsen",
+    "reason": "curl: (22) The requested URL returned error: 429\r\n"
+  },
+  {
+    "driverId": "brabham",
+    "name": "David Brabham",
+    "reason": "curl: (22) The requested URL returned error: 429\r\n"
+  },
+  {
+    "driverId": "caffi",
+    "name": "Alex Caffi",
+    "reason": "curl: (22) The requested URL returned error: 429\r\n"
+  },
+  {
+    "driverId": "capelli",
+    "name": "Ivan Capelli",
+    "reason": "curl: (22) The requested URL returned error: 429\r\n"
+  },
+  {
+    "driverId": "cevert",
+    "name": "François Cevert",
+    "reason": "curl: (22) The requested URL returned error: 429\r\n"
+  },
+  {
+    "driverId": "charlton",
+    "name": "Dave Charlton",
+    "reason": "no Wikidata P18 image"
+  },
+  {
+    "driverId": "chaves",
+    "name": "Pedro Chaves",
+    "reason": "no Wikidata P18 image"
+  },
+  {
+    "driverId": "cheever",
+    "name": "Eddie Cheever",
+    "reason": "curl: (22) The requested URL returned error: 429\r\n"
+  },
+  {
+    "driverId": "chiesa",
+    "name": "Andrea Chiesa",
+    "reason": "curl: (22) The requested URL returned error: 429\r\n"
+  },
+  {
+    "driverId": "cogan",
+    "name": "Kevin Cogan",
+    "reason": "no Wikidata P18 image"
+  },
+  {
+    "driverId": "dalmas",
+    "name": "Yannick Dalmas",
+    "reason": "curl: (22) The requested URL returned error: 429\r\n"
+  },
+  {
+    "driverId": "daly",
+    "name": "Derek Daly",
+    "reason": "curl: (22) The requested URL returned error: 429\r\n"
+  },
+  {
+    "driverId": "depailler",
+    "name": "Patrick Depailler",
+    "reason": "curl: (22) The requested URL returned error: 429\r\n"
+  },
+  {
+    "driverId": "desire_wilson",
+    "name": "Desiré Wilson",
+    "reason": "curl: (22) The requested URL returned error: 429\r\n"
+  },
+  {
+    "driverId": "donnelly",
+    "name": "Martin Donnelly",
+    "reason": "curl: (22) The requested URL returned error: 429\r\n"
+  },
+  {
+    "driverId": "eaton",
+    "name": "George Eaton",
+    "reason": "date of birth mismatch or missing"
+  },
+  {
+    "driverId": "ertl",
+    "name": "Harald Ertl",
+    "reason": "curl: (22) The requested URL returned error: 429\r\n"
+  },
+  {
+    "driverId": "fittipaldi",
+    "name": "Christian Fittipaldi",
+    "reason": "curl: (22) The requested URL returned error: 429\r\n"
+  },
+  {
+    "driverId": "foitek",
+    "name": "Gregor Foitek",
+    "reason": "no Wikidata P18 image"
+  },
+  {
+    "driverId": "fontana",
+    "name": "Norberto Fontana",
+    "reason": "no Wikidata P18 image"
+  },
+  {
+    "driverId": "gachot",
+    "name": "Bertrand Gachot",
+    "reason": "curl: (22) The requested URL returned error: 429\r\n"
+  },
+  {
+    "driverId": "galli",
+    "name": "Nanni Galli",
+    "reason": "curl: (22) The requested URL returned error: 429\r\n"
+  },
+  {
+    "driverId": "gary_brabham",
+    "name": "Gary Brabham",
+    "reason": "no Wikidata P18 image"
+  },
+  {
+    "driverId": "gavin",
+    "name": "Johnny Servoz-Gavin",
+    "reason": "curl: (22) The requested URL returned error: 429\r\n"
+  },
+  {
+    "driverId": "gethin",
+    "name": "Peter Gethin",
+    "reason": "curl: (22) The requested URL returned error: 429\r\n"
+  },
+  {
+    "driverId": "giacomelli",
+    "name": "Bruno Giacomelli",
+    "reason": "curl: (22) The requested URL returned error: 429\r\n"
+  },
+  {
+    "driverId": "gilles_villeneuve",
+    "name": "Gilles Villeneuve",
+    "reason": "curl: (22) The requested URL returned error: 429\r\n"
+  },
+  {
+    "driverId": "giunti",
+    "name": "Ignazio Giunti",
+    "reason": "curl: (22) The requested URL returned error: 429\r\n"
+  },
+  {
+    "driverId": "gounon",
+    "name": "Jean-Marc Gounon",
+    "reason": "curl: (22) The requested URL returned error: 429\r\n"
+  },
+  {
+    "driverId": "grouillard",
+    "name": "Olivier Grouillard",
+    "reason": "curl: (22) The requested URL returned error: 429\r\n"
+  },
+  {
+    "driverId": "gugelmin",
+    "name": "Maurício Gugelmin",
+    "reason": "curl: (22) The requested URL returned error: 429\r\n"
+  },
+  {
+    "driverId": "gurney",
+    "name": "Dan Gurney",
+    "reason": "curl: (22) The requested URL returned error: 429\r\n"
+  },
+  {
+    "driverId": "hahne",
+    "name": "Hubert Hahne",
+    "reason": "curl: (22) The requested URL returned error: 429\r\n"
+  },
+  {
+    "driverId": "hattori",
+    "name": "Naoki Hattori",
+    "reason": "curl: (22) The requested URL returned error: 429\r\n"
+  },
+  {
+    "driverId": "hutchison",
+    "name": "Gus Hutchison",
+    "reason": "no Wikidata P18 image"
+  },
+  {
+    "driverId": "ickx",
+    "name": "Jacky Ickx",
+    "reason": "curl: (22) The requested URL returned error: 429\r\n"
+  },
+  {
+    "driverId": "inoue",
+    "name": "Taki Inoue",
+    "reason": "Visual QA rejected candidate: racing car or multiple primary people, unsuitable as an unambiguous portrait."
+  },
+  {
+    "driverId": "jabouille",
+    "name": "Jean-Pierre Jabouille",
+    "reason": "curl: (22) The requested URL returned error: 429\r\n"
+  },
+  {
+    "driverId": "jarier",
+    "name": "Jean-Pierre Jarier",
+    "reason": "curl: (22) The requested URL returned error: 429\r\n"
+  },
+  {
+    "driverId": "johansson",
+    "name": "Stefan Johansson",
+    "reason": "curl: (22) The requested URL returned error: 429\r\n"
+  },
+  {
+    "driverId": "katayama",
+    "name": "Ukyo Katayama",
+    "reason": "curl: (22) The requested URL returned error: 429\r\n"
+  },
+  {
+    "driverId": "keegan",
+    "name": "Rupert Keegan",
+    "reason": "curl: (22) The requested URL returned error: 429\r\n"
+  },
+  {
+    "driverId": "kennedy",
+    "name": "Dave Kennedy",
+    "reason": "no Wikidata P18 image"
+  },
+  {
+    "driverId": "klerk",
+    "name": "Peter de Klerk",
+    "reason": "no Wikidata P18 image"
+  },
+  {
+    "driverId": "laffite",
+    "name": "Jacques Laffite",
+    "reason": "curl: (22) The requested URL returned error: 429\r\n"
+  },
+  {
+    "driverId": "lagorce",
+    "name": "Franck Lagorce",
+    "reason": "curl: (22) The requested URL returned error: 429\r\n"
+  },
+  {
+    "driverId": "lammers",
+    "name": "Jan Lammers",
+    "reason": "curl: (22) The requested URL returned error: 429\r\n"
+  },
+  {
+    "driverId": "lamy",
+    "name": "Pedro Lamy",
+    "reason": "curl: (22) The requested URL returned error: 429\r\n"
+  },
+  {
+    "driverId": "langes",
+    "name": "Claudio Langes",
+    "reason": "date of birth mismatch or missing"
+  },
+  {
+    "driverId": "lavaggi",
+    "name": "Giovanni Lavaggi",
+    "reason": "curl: (22) The requested URL returned error: 429\r\n"
+  },
+  {
+    "driverId": "lees",
+    "name": "Geoff Lees",
+    "reason": "date of birth mismatch or missing"
+  },
+  {
+    "driverId": "love",
+    "name": "John Love",
+    "reason": "curl: (22) The requested URL returned error: 429\r\n"
+  },
+  {
+    "driverId": "lovely",
+    "name": "Pete Lovely",
+    "reason": "no Wikidata P18 image"
+  },
+  {
+    "driverId": "magnussen",
+    "name": "Jan Magnussen",
+    "reason": "curl: (22) The requested URL returned error: 429\r\n"
+  },
+  {
+    "driverId": "manfred_winkelhock",
+    "name": "Manfred Winkelhock",
+    "reason": "curl: (22) The requested URL returned error: 429\r\n"
+  },
+  {
+    "driverId": "martini",
+    "name": "Pierluigi Martini",
+    "reason": "curl: (22) The requested URL returned error: 429\r\n"
+  },
+  {
+    "driverId": "mass",
+    "name": "Jochen Mass",
+    "reason": "curl: (22) The requested URL returned error: 429\r\n"
+  },
+  {
+    "driverId": "mccarthy",
+    "name": "Perry McCarthy",
+    "reason": "curl: (22) The requested URL returned error: 429\r\n"
+  },
+  {
+    "driverId": "mclaren",
+    "name": "Bruce McLaren",
+    "reason": "curl: (22) The requested URL returned error: 429\r\n"
+  },
+  {
+    "driverId": "modena",
+    "name": "Stefano Modena",
+    "reason": "curl: (22) The requested URL returned error: 429\r\n"
+  },
+  {
+    "driverId": "montermini",
+    "name": "Andrea Montermini",
+    "reason": "curl: (22) The requested URL returned error: 429\r\n"
+  },
+  {
+    "driverId": "morbidelli",
+    "name": "Gianni Morbidelli",
+    "reason": "curl: (22) The requested URL returned error: 429\r\n"
+  },
+  {
+    "driverId": "moreno",
+    "name": "Roberto Moreno",
+    "reason": "curl: (22) The requested URL returned error: 429\r\n"
+  },
+  {
+    "driverId": "nakano",
+    "name": "Shinji Nakano",
+    "reason": "curl: (22) The requested URL returned error: 429\r\n"
+  },
+  {
+    "driverId": "nannini",
+    "name": "Alessandro Nannini",
+    "reason": "curl: (22) The requested URL returned error: 429\r\n"
+  },
+  {
+    "driverId": "naspetti",
+    "name": "Emanuele Naspetti",
+    "reason": "curl: (22) The requested URL returned error: 429\r\n"
+  },
+  {
+    "driverId": "needell",
+    "name": "Tiff Needell",
+    "reason": "curl: (22) The requested URL returned error: 429\r\n"
+  },
+  {
+    "driverId": "noda",
+    "name": "Hideki Noda",
+    "reason": "curl: (22) The requested URL returned error: 429\r\n"
+  },
+  {
+    "driverId": "oliver",
+    "name": "Jackie Oliver",
+    "reason": "curl: (22) The requested URL returned error: 429\r\n"
+  },
+  {
+    "driverId": "papis",
+    "name": "Massimiliano Papis",
+    "reason": "curl: (22) The requested URL returned error: 429\r\n"
+  },
+  {
+    "driverId": "patrese",
+    "name": "Riccardo Patrese",
+    "reason": "curl: (22) The requested URL returned error: 429\r\n"
+  },
+  {
+    "driverId": "pescarolo",
+    "name": "Henri Pescarolo",
+    "reason": "curl: (22) The requested URL returned error: 429\r\n"
+  },
+  {
+    "driverId": "peterson",
+    "name": "Ronnie Peterson",
+    "reason": "curl: (22) The requested URL returned error: 429\r\n"
+  },
+  {
+    "driverId": "pironi",
+    "name": "Didier Pironi",
+    "reason": "curl: (22) The requested URL returned error: 429\r\n"
+  },
+  {
+    "driverId": "pirro",
+    "name": "Emanuele Pirro",
+    "reason": "curl: (22) The requested URL returned error: 429\r\n"
+  },
+  {
+    "driverId": "poele",
+    "name": "Eric van de Poele",
+    "reason": "curl: (22) The requested URL returned error: 429\r\n"
+  },
+  {
+    "driverId": "ratzenberger",
+    "name": "Roland Ratzenberger",
+    "reason": "curl: (22) The requested URL returned error: 429\r\n"
+  },
+  {
+    "driverId": "rebaque",
+    "name": "Hector Rebaque",
+    "reason": "curl: (22) The requested URL returned error: 429\r\n"
+  },
+  {
+    "driverId": "redman",
+    "name": "Brian Redman",
+    "reason": "curl: (22) The requested URL returned error: 429\r\n"
+  },
+  {
+    "driverId": "roig",
+    "name": "Alex Soler-Roig",
+    "reason": "date of birth mismatch or missing"
+  },
+  {
+    "driverId": "rosset",
+    "name": "Ricardo Rosset",
+    "reason": "curl: (22) The requested URL returned error: 429\r\n"
+  },
+  {
+    "driverId": "sarrazin",
+    "name": "Stéphane Sarrazin",
+    "reason": "curl: (22) The requested URL returned error: 429\r\n"
+  },
+  {
+    "driverId": "satoru_nakajima",
+    "name": "Satoru Nakajima",
+    "reason": "curl: (22) The requested URL returned error: 429\r\n"
+  },
+  {
+    "driverId": "schenken",
+    "name": "Tim Schenken",
+    "reason": "curl: (22) The requested URL returned error: 429\r\n"
+  },
+  {
+    "driverId": "schiattarella",
+    "name": "Domenico Schiattarella",
+    "reason": "Visual QA rejected candidate: racing car or multiple primary people, unsuitable as an unambiguous portrait."
+  },
+  {
+    "driverId": "schneider",
+    "name": "Bernd Schneider",
+    "reason": "curl: (22) The requested URL returned error: 429\r\n"
+  },
+  {
+    "driverId": "siffert",
+    "name": "Jo Siffert",
+    "reason": "curl: (22) The requested URL returned error: 429\r\n"
+  },
+  {
+    "driverId": "sospiri",
+    "name": "Vincenzo Sospiri",
+    "reason": "curl: (22) The requested URL returned error: 429\r\n"
+  },
+  {
+    "driverId": "south",
+    "name": "Stephen South",
+    "reason": "no Wikidata P18 image"
+  },
+  {
+    "driverId": "stewart",
+    "name": "Jackie Stewart",
+    "reason": "Visual QA rejected candidate: racing car or multiple primary people, unsuitable as an unambiguous portrait."
+  },
+  {
+    "driverId": "stommelen",
+    "name": "Rolf Stommelen",
+    "reason": "curl: (22) The requested URL returned error: 429\r\n"
+  },
+  {
+    "driverId": "surer",
+    "name": "Marc Surer",
+    "reason": "curl: (22) The requested URL returned error: 429\r\n"
+  },
+  {
+    "driverId": "suzuki",
+    "name": "Aguri Suzuki",
+    "reason": "curl: (22) The requested URL returned error: 429\r\n"
+  },
+  {
+    "driverId": "takagi",
+    "name": "Toranosuke Takagi",
+    "reason": "curl: (22) The requested URL returned error: 429\r\n"
+  },
+  {
+    "driverId": "tarquini",
+    "name": "Gabriele Tarquini",
+    "reason": "curl: (22) The requested URL returned error: 429\r\n"
+  },
+  {
+    "driverId": "thackwell",
+    "name": "Mike Thackwell",
+    "reason": "curl: (22) The requested URL returned error: 429\r\n"
+  },
+  {
+    "driverId": "toshio_suzuki",
+    "name": "Toshio Suzuki",
+    "reason": "curl: (22) The requested URL returned error: 429\r\n"
+  },
+  {
+    "driverId": "tuero",
+    "name": "Esteban Tuero",
+    "reason": "curl: (22) The requested URL returned error: 429\r\n"
+  },
+  {
+    "driverId": "warwick",
+    "name": "Derek Warwick",
+    "reason": "curl: (22) The requested URL returned error: 429\r\n"
+  },
+  {
+    "driverId": "watson",
+    "name": "John Watson",
+    "reason": "curl: (22) The requested URL returned error: 429\r\n"
+  },
+  {
+    "driverId": "wendlinger",
+    "name": "Karl Wendlinger",
+    "reason": "curl: (22) The requested URL returned error: 429\r\n"
+  },
+  {
+    "driverId": "wisell",
+    "name": "Reine Wisell",
+    "reason": "curl: (22) The requested URL returned error: 429\r\n"
+  },
+  {
+    "driverId": "zanardi",
+    "name": "Alessandro Zanardi",
+    "reason": "curl: (22) The requested URL returned error: 429\r\n"
+  },
+  {
+    "driverId": "zunino",
+    "name": "Ricardo Zunino",
+    "reason": "curl: (22) The requested URL returned error: 429\r\n"
+  },
+  {
+    "driverId": "clark",
+    "name": "Jim Clark",
+    "reason": "Visual QA rejected candidate: racing car or multiple primary people, unsuitable as an unambiguous portrait."
+  }
+]

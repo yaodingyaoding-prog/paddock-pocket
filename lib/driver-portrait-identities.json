@@ -1,0 +1,1913 @@
+{
+  "schemaVersion": 1,
+  "generatedUtc": "2026-10-21T05:59:17.210586+00:00",
+  "source": "Public standings in English and Chinese; exact UUID joins between language variants. Raw responses retained in analysis/historic-portraits/_provenance.",
+  "drivers": {
+    "0740c1ad-81f8-5275-5e96-f7fe68dcbf44": {
+      "jolpicaDriverId": "senna",
+      "englishName": "Ayrton·Senna",
+      "aliases": [
+        "Ayrton·Senna",
+        "埃尔顿·塞纳"
+      ],
+      "verifiedSeasons": [
+        1990
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "2535bade-56ae-5c70-2fac-b196e6e913b7": {
+      "jolpicaDriverId": "prost",
+      "englishName": "Alain·Prost",
+      "aliases": [
+        "Alain·Prost",
+        "Alain·普罗斯特"
+      ],
+      "verifiedSeasons": [
+        1990
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "a6e2a494-2a96-3707-afa4-768f88eb1f91": {
+      "jolpicaDriverId": "piquet",
+      "englishName": "Nelson·Piquet",
+      "aliases": [
+        "Nelson·Piquet",
+        "Nelson·皮奎特"
+      ],
+      "verifiedSeasons": [
+        1990
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "96f43894-0df7-c251-fd48-dfef8cac533a": {
+      "jolpicaDriverId": "berger",
+      "englishName": "Gerhard·Berger",
+      "aliases": [
+        "Gerhard·Berger",
+        "Gerhard·伯格"
+      ],
+      "verifiedSeasons": [
+        1990,
+        1995
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "f370ebbb-b22c-3547-be70-2dab09cf63d0": {
+      "jolpicaDriverId": "mansell",
+      "englishName": "Nigel·Mansell",
+      "aliases": [
+        "Nigel·Mansell",
+        "奈杰尔·Mansell"
+      ],
+      "verifiedSeasons": [
+        1990
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "73cb5d02-c01c-68af-56a7-c2aa2ab190ee": {
+      "jolpicaDriverId": "boutsen",
+      "englishName": "Thierry·Boutsen",
+      "aliases": [
+        "Thierry·Boutsen"
+      ],
+      "verifiedSeasons": [
+        1990
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "81077540-e9c6-d67b-3064-1fbc02ba78f8": {
+      "jolpicaDriverId": "patrese",
+      "englishName": "Riccardo·Patrese",
+      "aliases": [
+        "Riccardo·Patrese"
+      ],
+      "verifiedSeasons": [
+        1990
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "1ed79794-dae6-78e6-2606-47efdee752d7": {
+      "jolpicaDriverId": "nannini",
+      "englishName": "Alessandro·Nannini",
+      "aliases": [
+        "Alessandro·Nannini"
+      ],
+      "verifiedSeasons": [
+        1990
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "5ee066f1-5bb4-ff57-288d-25f7afd6a392": {
+      "jolpicaDriverId": "alesi",
+      "englishName": "Jean·Alesi",
+      "aliases": [
+        "Jean·Alesi",
+        "让·Alesi"
+      ],
+      "verifiedSeasons": [
+        1990,
+        1995,
+        2000
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "f8bb297f-486a-ed92-f7a6-96c51b6227c2": {
+      "jolpicaDriverId": "capelli",
+      "englishName": "Ivan·Capelli",
+      "aliases": [
+        "Ivan·Capelli"
+      ],
+      "verifiedSeasons": [
+        1990
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "10863502-01e5-2a68-5bed-f8eb26d8e9cb": {
+      "jolpicaDriverId": "moreno",
+      "englishName": "Roberto·Moreno",
+      "aliases": [
+        "Roberto·Moreno"
+      ],
+      "verifiedSeasons": [
+        1990
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "2c161e36-f7b0-ae39-016d-0b1720a2d3f4": {
+      "jolpicaDriverId": "suzuki",
+      "englishName": "Aguri·Suzuki",
+      "aliases": [
+        "Aguri·Suzuki"
+      ],
+      "verifiedSeasons": [
+        1990,
+        1995
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "23f3a032-e510-0225-8a82-1fc5f71c0b4a": {
+      "jolpicaDriverId": "bernard",
+      "englishName": "Éric·Bernard",
+      "aliases": [
+        "Éric·Bernard"
+      ],
+      "verifiedSeasons": [
+        1990
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "72d56008-7d1b-938d-c9e6-d412f0a67c33": {
+      "jolpicaDriverId": "warwick",
+      "englishName": "Derek·Warwick",
+      "aliases": [
+        "Derek·Warwick"
+      ],
+      "verifiedSeasons": [
+        1990
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "e7aa62d1-d955-e222-08d9-7fc5d6392d37": {
+      "jolpicaDriverId": "satoru_nakajima",
+      "englishName": "Satoru·Nakajima",
+      "aliases": [
+        "Satoru·Nakajima"
+      ],
+      "verifiedSeasons": [
+        1990
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "5d9724f0-967d-f873-e842-92f4f57031f1": {
+      "jolpicaDriverId": "modena",
+      "englishName": "Stefano·Modena",
+      "aliases": [
+        "Stefano·Modena"
+      ],
+      "verifiedSeasons": [
+        1990
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "b40ba56e-4041-dc11-60f3-2df4b68991d9": {
+      "jolpicaDriverId": "caffi",
+      "englishName": "Alex·Caffi",
+      "aliases": [
+        "Alex·Caffi",
+        "亚历克斯·Caffi"
+      ],
+      "verifiedSeasons": [
+        1990
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "4e112229-e803-b280-3c3d-553c318f21e9": {
+      "jolpicaDriverId": "gugelmin",
+      "englishName": "Maurício·Gugelmin",
+      "aliases": [
+        "Maurício·Gugelmin"
+      ],
+      "verifiedSeasons": [
+        1990
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "71cbdcd4-5db0-4a4b-3936-8e3f30277332": {
+      "jolpicaDriverId": "michael_schumacher",
+      "englishName": "Michael·Schumacher",
+      "aliases": [
+        "Michael·Schumacher",
+        "迈克尔·舒马赫"
+      ],
+      "verifiedSeasons": [
+        1995,
+        2000,
+        2005,
+        2006,
+        2010,
+        2012
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "01c09bae-e080-fcbe-ab13-409e4b62534c": {
+      "jolpicaDriverId": "damon_hill",
+      "englishName": "Damon·Hill",
+      "aliases": [
+        "Damon·Hill"
+      ],
+      "verifiedSeasons": [
+        1995
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "d53ca137-39eb-7d07-77b4-64df627c0bdd": {
+      "jolpicaDriverId": "coulthard",
+      "englishName": "David·Coulthard",
+      "aliases": [
+        "David·Coulthard",
+        "大卫·库特哈德"
+      ],
+      "verifiedSeasons": [
+        1995,
+        2000,
+        2005,
+        2006,
+        2008
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "6309effb-9552-8601-7ae7-01914a7f211a": {
+      "jolpicaDriverId": "herbert",
+      "englishName": "Johnny·Herbert",
+      "aliases": [
+        "Johnny·Herbert"
+      ],
+      "verifiedSeasons": [
+        1995,
+        2000
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "fe21e723-4acf-b66a-d8ff-633c690a49f5": {
+      "jolpicaDriverId": "hakkinen",
+      "englishName": "Mika·Häkkinen",
+      "aliases": [
+        "Mika·Häkkinen",
+        "米卡·Häkkinen"
+      ],
+      "verifiedSeasons": [
+        1995,
+        2000
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "2a401f25-96f1-6bae-8347-805e5b4a0257": {
+      "jolpicaDriverId": "panis",
+      "englishName": "Olivier·Panis",
+      "aliases": [
+        "Olivier·Panis"
+      ],
+      "verifiedSeasons": [
+        1995
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "6eb340d7-1397-502e-6734-f4b684e0b7ce": {
+      "jolpicaDriverId": "frentzen",
+      "englishName": "Heinz-Harald·Frentzen",
+      "aliases": [
+        "Heinz-Harald·Frentzen"
+      ],
+      "verifiedSeasons": [
+        1995,
+        2000
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "d2be1be0-8dd2-be69-3af1-b0afb433d240": {
+      "jolpicaDriverId": "blundell",
+      "englishName": "Mark·Blundell",
+      "aliases": [
+        "Mark·Blundell"
+      ],
+      "verifiedSeasons": [
+        1995
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "8b1595a4-050f-7a9d-48bb-27f77056c7dd": {
+      "jolpicaDriverId": "barrichello",
+      "englishName": "Rubens·Barrichello",
+      "aliases": [
+        "Rubens·Barrichello",
+        "鲁本斯·巴里切罗"
+      ],
+      "verifiedSeasons": [
+        1995,
+        2000,
+        2005,
+        2006,
+        2008,
+        2010
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "a7fcc351-c964-8c76-773e-762fcc3e95a1": {
+      "jolpicaDriverId": "irvine",
+      "englishName": "Eddie·Irvine",
+      "aliases": [
+        "Eddie·Irvine"
+      ],
+      "verifiedSeasons": [
+        1995,
+        2000
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "c993f839-f7a9-bccb-65a9-c83067e74b1a": {
+      "jolpicaDriverId": "brundle",
+      "englishName": "Martin·Brundle",
+      "aliases": [
+        "Martin·Brundle"
+      ],
+      "verifiedSeasons": [
+        1995
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "5dbca089-ea7e-da9b-b579-419b02af9961": {
+      "jolpicaDriverId": "morbidelli",
+      "englishName": "Gianni·Morbidelli",
+      "aliases": [
+        "Gianni·Morbidelli"
+      ],
+      "verifiedSeasons": [
+        1995
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "defa13f8-a4ff-6757-3ab6-dbed2bdbd8f1": {
+      "jolpicaDriverId": "salo",
+      "englishName": "Mika·Salo",
+      "aliases": [
+        "Mika·Salo",
+        "米卡·Salo"
+      ],
+      "verifiedSeasons": [
+        1995,
+        2000
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "abf5fd4e-eada-6857-918f-f406bf2d129a": {
+      "jolpicaDriverId": "boullion",
+      "englishName": "Jean-Christophe·Boullion",
+      "aliases": [
+        "Jean-Christophe·Boullion",
+        "让-Christophe·Boullion"
+      ],
+      "verifiedSeasons": [
+        1995
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "78ec044e-c345-051f-f5eb-81d3e5ee4750": {
+      "jolpicaDriverId": "lamy",
+      "englishName": "Pedro·Lamy",
+      "aliases": [
+        "Pedro·Lamy"
+      ],
+      "verifiedSeasons": [
+        1995
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "5600091c-60a5-45db-3f51-3bc4c61048e4": {
+      "jolpicaDriverId": "ralf_schumacher",
+      "englishName": "Ralf·Schumacher",
+      "aliases": [
+        "Ralf·Schumacher"
+      ],
+      "verifiedSeasons": [
+        2000,
+        2005,
+        2006
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "61d9a490-98f0-f6f8-74cf-c100ce5048ae": {
+      "jolpicaDriverId": "fisichella",
+      "englishName": "Giancarlo·Fisichella",
+      "aliases": [
+        "Giancarlo·Fisichella"
+      ],
+      "verifiedSeasons": [
+        2000,
+        2005,
+        2006,
+        2008
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "cf2f59f5-22d6-5e7d-f202-c0b493cc837d": {
+      "jolpicaDriverId": "villeneuve",
+      "englishName": "Jacques·Villeneuve",
+      "aliases": [
+        "Jacques·Villeneuve"
+      ],
+      "verifiedSeasons": [
+        2000,
+        2005,
+        2006
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "8ae8d7f0-1d31-bf52-3f6f-870eb24e9d7b": {
+      "jolpicaDriverId": "button",
+      "englishName": "Jenson·Button",
+      "aliases": [
+        "Jenson·Button",
+        "简森·巴顿"
+      ],
+      "verifiedSeasons": [
+        2000,
+        2005,
+        2006,
+        2008,
+        2010,
+        2012,
+        2015
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "2b69843d-e0d6-b1cb-515a-1c5c79330fa5": {
+      "jolpicaDriverId": "trulli",
+      "englishName": "Jarno·Trulli",
+      "aliases": [
+        "Jarno·Trulli",
+        "亚诺·特鲁利"
+      ],
+      "verifiedSeasons": [
+        2000,
+        2005,
+        2006,
+        2008,
+        2010
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "a2993e67-c81f-4cce-bddb-05aca42b1762": {
+      "jolpicaDriverId": "verstappen",
+      "englishName": "Jos·Verstappen",
+      "aliases": [
+        "Jos·Verstappen",
+        "Jos·维斯塔潘"
+      ],
+      "verifiedSeasons": [
+        2000
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "6e782491-c6e7-30ee-0687-2ca785f2eabf": {
+      "jolpicaDriverId": "zonta",
+      "englishName": "Ricardo·Zonta",
+      "aliases": [
+        "Ricardo·Zonta"
+      ],
+      "verifiedSeasons": [
+        2000
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "4a4769df-6f17-be60-75f1-aadfc889a2f1": {
+      "jolpicaDriverId": "wurz",
+      "englishName": "Alexander·Wurz",
+      "aliases": [
+        "Alexander·Wurz",
+        "亚历山大·Wurz"
+      ],
+      "verifiedSeasons": [
+        2000,
+        2005
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "e504d758-d72c-530c-10e2-757afa11afd9": {
+      "jolpicaDriverId": "rosa",
+      "englishName": "Pedro·de la Rosa",
+      "aliases": [
+        "Pedro·de la Rosa",
+        "佩德罗·德拉罗萨"
+      ],
+      "verifiedSeasons": [
+        2000,
+        2005,
+        2006,
+        2010,
+        2012
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "c5016f3b-d554-3d71-09f5-b44b0badc008": {
+      "jolpicaDriverId": "diniz",
+      "englishName": "Pedro·Diniz",
+      "aliases": [
+        "Pedro·Diniz"
+      ],
+      "verifiedSeasons": [
+        2000
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "5afcc503-2972-5714-8ea1-d87a4f978d73": {
+      "jolpicaDriverId": "gene",
+      "englishName": "Marc·Gené",
+      "aliases": [
+        "Marc·Gené"
+      ],
+      "verifiedSeasons": [
+        2000
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "4eea3562-1648-4f98-c48e-8b7cd8b8e24f": {
+      "jolpicaDriverId": "heidfeld",
+      "englishName": "Nick·Heidfeld",
+      "aliases": [
+        "Nick·Heidfeld",
+        "尼克·海菲尔德"
+      ],
+      "verifiedSeasons": [
+        2000,
+        2005,
+        2006,
+        2008,
+        2010
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "c89ec486-4c2d-19fd-e185-fc2e35bfed43": {
+      "jolpicaDriverId": "mazzacane",
+      "englishName": "Gastón·Mazzacane",
+      "aliases": [
+        "Gastón·Mazzacane"
+      ],
+      "verifiedSeasons": [
+        2000
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "ad551af1-3c6a-80cf-daa0-020303f48e57": {
+      "jolpicaDriverId": "burti",
+      "englishName": "Luciano·Burti",
+      "aliases": [
+        "Luciano·Burti"
+      ],
+      "verifiedSeasons": [
+        2000
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "730bf7a5-44f2-b679-7606-f3fcbd9a484b": {
+      "jolpicaDriverId": "alonso",
+      "englishName": "Fernando·Alonso",
+      "aliases": [
+        "Fernando·Alonso",
+        "费尔南多·阿隆索"
+      ],
+      "verifiedSeasons": [
+        2005,
+        2006,
+        2008,
+        2010,
+        2012,
+        2015,
+        2017,
+        2022,
+        2025,
+        2026
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "03ea2965-b32a-6c93-3d76-32574cef1ec6": {
+      "jolpicaDriverId": "raikkonen",
+      "englishName": "Kimi·Räikkönen",
+      "aliases": [
+        "Kimi·Räikkönen",
+        "基米·莱科宁"
+      ],
+      "verifiedSeasons": [
+        2005,
+        2006,
+        2008,
+        2012,
+        2015,
+        2017,
+        2020
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "fd998811-1e9b-60d5-4246-5ce7c1140d3e": {
+      "jolpicaDriverId": "montoya",
+      "englishName": "Juan·Pablo Montoya",
+      "aliases": [
+        "Juan·Pablo Montoya",
+        "胡安·帕布罗·蒙托亚"
+      ],
+      "verifiedSeasons": [
+        2005,
+        2006
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "9b5f2f5f-2935-bbc2-2839-f8b0867b57ee": {
+      "jolpicaDriverId": "webber",
+      "englishName": "Mark·Webber",
+      "aliases": [
+        "Mark·Webber",
+        "马克·韦伯"
+      ],
+      "verifiedSeasons": [
+        2005,
+        2006,
+        2008,
+        2010,
+        2012
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "68f1254b-8530-f405-63e0-bc2d4e4e34cc": {
+      "jolpicaDriverId": "massa",
+      "englishName": "Felipe·Massa",
+      "aliases": [
+        "Felipe·Massa",
+        "费利佩·马萨"
+      ],
+      "verifiedSeasons": [
+        2005,
+        2006,
+        2008,
+        2010,
+        2012,
+        2015,
+        2017
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "dc9bb6bc-9434-1f11-1f4a-7d41f3812902": {
+      "jolpicaDriverId": "klien",
+      "englishName": "Christian·Klien",
+      "aliases": [
+        "Christian·Klien",
+        "克里斯蒂安·克莱恩"
+      ],
+      "verifiedSeasons": [
+        2005,
+        2006,
+        2010
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "74781343-bffc-e12f-ed57-64b066cf6925": {
+      "jolpicaDriverId": "monteiro",
+      "englishName": "Tiago·Monteiro",
+      "aliases": [
+        "Tiago·Monteiro"
+      ],
+      "verifiedSeasons": [
+        2005,
+        2006
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "8402f9e8-b211-42fb-b729-0b268d054007": {
+      "jolpicaDriverId": "karthikeyan",
+      "englishName": "Narain·Karthikeyan",
+      "aliases": [
+        "Narain·Karthikeyan",
+        "纳拉因·卡蒂克延"
+      ],
+      "verifiedSeasons": [
+        2005,
+        2012
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "70fc900c-710f-31a8-1dda-8332117f3bf1": {
+      "jolpicaDriverId": "albers",
+      "englishName": "Christijan·Albers",
+      "aliases": [
+        "Christijan·Albers"
+      ],
+      "verifiedSeasons": [
+        2005,
+        2006
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "7d48fdbd-b023-21c2-33de-6236875c4be7": {
+      "jolpicaDriverId": "friesacher",
+      "englishName": "Patrick·Friesacher",
+      "aliases": [
+        "Patrick·Friesacher"
+      ],
+      "verifiedSeasons": [
+        2005
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "08549de1-d3a2-31ad-5d18-f9007f15c5d9": {
+      "jolpicaDriverId": "pizzonia",
+      "englishName": "Antônio·Pizzonia",
+      "aliases": [
+        "Antônio·Pizzonia"
+      ],
+      "verifiedSeasons": [
+        2005
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "e7791c4b-7fae-96c2-baeb-24303379ab24": {
+      "jolpicaDriverId": "sato",
+      "englishName": "Takuma·Sato",
+      "aliases": [
+        "Takuma·Sato"
+      ],
+      "verifiedSeasons": [
+        2005,
+        2006,
+        2008
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "385fd432-efe1-ce26-be80-fac91857442a": {
+      "jolpicaDriverId": "liuzzi",
+      "englishName": "Vitantonio·Liuzzi",
+      "aliases": [
+        "Vitantonio·Liuzzi",
+        "维塔尼奥·柳齐"
+      ],
+      "verifiedSeasons": [
+        2005,
+        2006,
+        2010
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "51c8d44b-3eea-ce44-3ff7-7a187e421df3": {
+      "jolpicaDriverId": "doornbos",
+      "englishName": "Robert·Doornbos",
+      "aliases": [
+        "Robert·Doornbos"
+      ],
+      "verifiedSeasons": [
+        2005,
+        2006
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "9e73fec9-016e-c613-2100-c7ad5bd9c2d0": {
+      "jolpicaDriverId": "kubica",
+      "englishName": "Robert·Kubica",
+      "aliases": [
+        "Robert·Kubica",
+        "罗伯特·库比卡"
+      ],
+      "verifiedSeasons": [
+        2006,
+        2008,
+        2010
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "3383b26c-d614-bb62-b864-775dd6c4fda9": {
+      "jolpicaDriverId": "rosberg",
+      "englishName": "Nico·Rosberg",
+      "aliases": [
+        "Nico·Rosberg",
+        "尼科·罗斯伯格"
+      ],
+      "verifiedSeasons": [
+        2006,
+        2008,
+        2010,
+        2012,
+        2015
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "791ca432-7eb4-f95f-7404-539295a6f4ac": {
+      "jolpicaDriverId": "speed",
+      "englishName": "Scott·Speed",
+      "aliases": [
+        "Scott·Speed"
+      ],
+      "verifiedSeasons": [
+        2006
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "575e978e-1bb5-6bb1-fcf4-d0f2c8e097bc": {
+      "jolpicaDriverId": "ide",
+      "englishName": "Yuji·Ide",
+      "aliases": [
+        "Yuji·Ide"
+      ],
+      "verifiedSeasons": [
+        2006
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "926d9db3-75f7-f316-fd92-5615de9be994": {
+      "jolpicaDriverId": "yamamoto",
+      "englishName": "Sakon·Yamamoto",
+      "aliases": [
+        "Sakon·Yamamoto",
+        "左近·山本"
+      ],
+      "verifiedSeasons": [
+        2006,
+        2010
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "f0238182-b623-1172-7a98-e5d6a50ee089": {
+      "jolpicaDriverId": "montagny",
+      "englishName": "Franck·Montagny",
+      "aliases": [
+        "Franck·Montagny"
+      ],
+      "verifiedSeasons": [
+        2006
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "2da57a52-c546-d307-280d-254264ea39b2": {
+      "jolpicaDriverId": "hamilton",
+      "englishName": "Lewis·Hamilton",
+      "aliases": [
+        "Lewis·Hamilton",
+        "刘易斯·汉密尔顿"
+      ],
+      "verifiedSeasons": [
+        2008,
+        2010,
+        2012,
+        2015,
+        2017,
+        2020,
+        2022,
+        2025,
+        2026
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "0b443d00-029a-2ca1-2ce8-ad10a1e6f6ba": {
+      "jolpicaDriverId": "kovalainen",
+      "englishName": "Heikki·Kovalainen",
+      "aliases": [
+        "Heikki·Kovalainen",
+        "海基·科瓦莱宁"
+      ],
+      "verifiedSeasons": [
+        2008,
+        2010,
+        2012
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "26de22f6-a7ff-c6e7-d975-51c1c30ef5f2": {
+      "jolpicaDriverId": "vettel",
+      "englishName": "Sebastian·Vettel",
+      "aliases": [
+        "Sebastian·Vettel",
+        "塞巴斯蒂安·维特尔"
+      ],
+      "verifiedSeasons": [
+        2008,
+        2010,
+        2012,
+        2015,
+        2017,
+        2020,
+        2022
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "c19643e8-3af5-5913-daa0-9d5a2d44716f": {
+      "jolpicaDriverId": "glock",
+      "englishName": "Timo·Glock",
+      "aliases": [
+        "Timo·Glock",
+        "蒂莫·格洛克"
+      ],
+      "verifiedSeasons": [
+        2008,
+        2010,
+        2012
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "95b539c0-f839-0ef8-9e4b-5b1f7e8e5503": {
+      "jolpicaDriverId": "piquet_jr",
+      "englishName": "Nelson·Piquet Jr",
+      "aliases": [
+        "Nelson·Piquet Jr",
+        "Nelson·皮奎特·小"
+      ],
+      "verifiedSeasons": [
+        2008
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "9f17a1d7-497e-a69f-0994-927e9927b792": {
+      "jolpicaDriverId": "nakajima",
+      "englishName": "Kazuki·Nakajima",
+      "aliases": [
+        "Kazuki·Nakajima"
+      ],
+      "verifiedSeasons": [
+        2008
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "8713a070-d06a-0415-5ca1-10f4a7ee19b9": {
+      "jolpicaDriverId": "bourdais",
+      "englishName": "Sébastien·Bourdais",
+      "aliases": [
+        "Sébastien·Bourdais"
+      ],
+      "verifiedSeasons": [
+        2008
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "547d00dd-abff-ea9c-6c22-45cc82d12f77": {
+      "jolpicaDriverId": "sutil",
+      "englishName": "Adrian·Sutil",
+      "aliases": [
+        "Adrian·Sutil",
+        "阿德里安·苏蒂尔"
+      ],
+      "verifiedSeasons": [
+        2008,
+        2010
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "5a8aa3c9-d0b2-916f-1cca-07aea9e0d2f2": {
+      "jolpicaDriverId": "davidson",
+      "englishName": "Anthony·Davidson",
+      "aliases": [
+        "Anthony·Davidson"
+      ],
+      "verifiedSeasons": [
+        2008
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "34bac3da-d19a-78f2-48b5-a94d0c559119": {
+      "jolpicaDriverId": "kobayashi",
+      "englishName": "Kamui·Kobayashi",
+      "aliases": [
+        "Kamui·Kobayashi",
+        "神威·小林"
+      ],
+      "verifiedSeasons": [
+        2010,
+        2012
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "e5a9304d-914e-7da8-7d3b-2faea03b9d92": {
+      "jolpicaDriverId": "petrov",
+      "englishName": "Vitaly·Petrov",
+      "aliases": [
+        "Vitaly·Petrov",
+        "维塔利·彼得罗夫"
+      ],
+      "verifiedSeasons": [
+        2010,
+        2012
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "ad3273d4-69c6-1255-0867-7911972849e5": {
+      "jolpicaDriverId": "hulkenberg",
+      "englishName": "Nico·Hülkenberg",
+      "aliases": [
+        "Nico·Hülkenberg",
+        "尼科·霍肯伯格"
+      ],
+      "verifiedSeasons": [
+        2010,
+        2012,
+        2015,
+        2017,
+        2020,
+        2022,
+        2025,
+        2026
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "001a87f9-6889-703e-912a-f98f1e2d2974": {
+      "jolpicaDriverId": "buemi",
+      "englishName": "Sébastien·Buemi",
+      "aliases": [
+        "Sébastien·Buemi",
+        "塞巴斯蒂安·布埃米"
+      ],
+      "verifiedSeasons": [
+        2010
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "51b10b5d-16a7-a981-c7ae-b01264247a1c": {
+      "jolpicaDriverId": "alguersuari",
+      "englishName": "Jaime·Alguersuari",
+      "aliases": [
+        "Jaime·Alguersuari",
+        "杰米·阿尔古尔苏阿里"
+      ],
+      "verifiedSeasons": [
+        2010
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "fb5ab191-ea33-274d-e7b9-c923611e9b41": {
+      "jolpicaDriverId": "chandhok",
+      "englishName": "Karun·Chandhok",
+      "aliases": [
+        "Karun·Chandhok",
+        "卡伦·昌多"
+      ],
+      "verifiedSeasons": [
+        2010
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "fa35bc47-39d7-332b-5de5-3583a7f8d7c1": {
+      "jolpicaDriverId": "bruno_senna",
+      "englishName": "Bruno·Senna",
+      "aliases": [
+        "Bruno·Senna",
+        "布鲁诺·塞纳"
+      ],
+      "verifiedSeasons": [
+        2010,
+        2012
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "f381a616-d4f9-e3b9-6dfa-d4f876e828e8": {
+      "jolpicaDriverId": "grassi",
+      "englishName": "Lucas·di Grassi",
+      "aliases": [
+        "Lucas·di Grassi",
+        "卢卡斯·迪格拉西"
+      ],
+      "verifiedSeasons": [
+        2010
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "5f21c554-3a54-18de-0910-98a539145049": {
+      "jolpicaDriverId": "grosjean",
+      "englishName": "Romain·Grosjean",
+      "aliases": [
+        "Romain·Grosjean",
+        "罗曼·格罗斯让"
+      ],
+      "verifiedSeasons": [
+        2012,
+        2015,
+        2017,
+        2020
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "955724d0-47bc-ba28-b112-01e362a4a1b2": {
+      "jolpicaDriverId": "perez",
+      "englishName": "Sergio·Pérez",
+      "aliases": [
+        "Sergio·Pérez",
+        "塞尔吉奥·佩雷兹"
+      ],
+      "verifiedSeasons": [
+        2012,
+        2015,
+        2017,
+        2020,
+        2022,
+        2026
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "37c5f551-e747-a409-9a56-2b3a52d51bf9": {
+      "jolpicaDriverId": "resta",
+      "englishName": "Paul·di Resta",
+      "aliases": [
+        "Paul·di Resta",
+        "保罗·迪雷斯塔"
+      ],
+      "verifiedSeasons": [
+        2012
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "8c48babb-9674-2552-a762-8f3e050dcee3": {
+      "jolpicaDriverId": "maldonado",
+      "englishName": "Pastor·Maldonado",
+      "aliases": [
+        "Pastor·Maldonado",
+        "帕斯托·马尔多纳多"
+      ],
+      "verifiedSeasons": [
+        2012,
+        2015
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "0bb89849-f416-b9d6-b709-09391f69dfc7": {
+      "jolpicaDriverId": "vergne",
+      "englishName": "Jean-Éric·Vergne",
+      "aliases": [
+        "Jean-Éric·Vergne",
+        "让-埃里克·韦尔涅"
+      ],
+      "verifiedSeasons": [
+        2012
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "b8759722-a187-19c8-4a42-645305573fe0": {
+      "jolpicaDriverId": "ricciardo",
+      "englishName": "Daniel·Ricciardo",
+      "aliases": [
+        "Daniel·Ricciardo",
+        "丹尼尔·里卡多"
+      ],
+      "verifiedSeasons": [
+        2012,
+        2015,
+        2017,
+        2020,
+        2022
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "7f9dc335-1909-bbfb-034d-763c65985a10": {
+      "jolpicaDriverId": "pic",
+      "englishName": "Charles·Pic",
+      "aliases": [
+        "Charles·Pic",
+        "夏尔·皮克"
+      ],
+      "verifiedSeasons": [
+        2012
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "0200ce20-c1a4-0d96-cb77-ebedfd43a962": {
+      "jolpicaDriverId": "ambrosio",
+      "englishName": "Jérôme·d'Ambrosio",
+      "aliases": [
+        "Jérôme·d'Ambrosio",
+        "热罗姆·丹布罗西奥"
+      ],
+      "verifiedSeasons": [
+        2012
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "5e0b2810-8728-0c2e-f3b7-d6fdd74f4ccf": {
+      "jolpicaDriverId": "bottas",
+      "englishName": "Valtteri·Bottas",
+      "aliases": [
+        "Valtteri·Bottas",
+        "瓦尔特里·博塔斯"
+      ],
+      "verifiedSeasons": [
+        2015,
+        2017,
+        2020,
+        2022,
+        2026
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "d4b9f839-699a-0844-8ce7-3fefe0fad8d8": {
+      "jolpicaDriverId": "kvyat",
+      "englishName": "Daniil·Kvyat",
+      "aliases": [
+        "Daniil·Kvyat",
+        "丹尼尔·科维亚特"
+      ],
+      "verifiedSeasons": [
+        2015,
+        2017,
+        2020
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "01e19e1a-89fb-4765-53c2-16fb5d2bdf4a": {
+      "jolpicaDriverId": "max_verstappen",
+      "englishName": "Max·Verstappen",
+      "aliases": [
+        "Max·Verstappen",
+        "马克斯·维斯塔潘"
+      ],
+      "verifiedSeasons": [
+        2015,
+        2017,
+        2020,
+        2022,
+        2025,
+        2026
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "356ffa06-1331-ca54-d407-7d7ecafbab82": {
+      "jolpicaDriverId": "nasr",
+      "englishName": "Felipe·Nasr",
+      "aliases": [
+        "Felipe·Nasr",
+        "费利佩·纳斯尔"
+      ],
+      "verifiedSeasons": [
+        2015
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "4d3c4639-bc5f-45e1-162b-6849a239bd6a": {
+      "jolpicaDriverId": "sainz",
+      "englishName": "Carlos·Sainz",
+      "aliases": [
+        "Carlos·Sainz",
+        "卡洛斯·塞恩斯"
+      ],
+      "verifiedSeasons": [
+        2015,
+        2017,
+        2020,
+        2022,
+        2025,
+        2026
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "2b8af660-9691-383f-68cf-e9541590e40b": {
+      "jolpicaDriverId": "ericsson",
+      "englishName": "Marcus·Ericsson",
+      "aliases": [
+        "Marcus·Ericsson"
+      ],
+      "verifiedSeasons": [
+        2015,
+        2017
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "9c721a9c-9aa1-aaf1-2c18-9e98de008762": {
+      "jolpicaDriverId": "merhi",
+      "englishName": "Roberto·Merhi",
+      "aliases": [
+        "Roberto·Merhi",
+        "罗伯托·梅尔希"
+      ],
+      "verifiedSeasons": [
+        2015
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "b585361c-f149-b7c2-9ab7-b8278e579803": {
+      "jolpicaDriverId": "rossi",
+      "englishName": "Alexander·Rossi",
+      "aliases": [
+        "Alexander·Rossi",
+        "亚历山大·罗西"
+      ],
+      "verifiedSeasons": [
+        2015
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "5a5d883f-9532-b153-583d-cec9378462d9": {
+      "jolpicaDriverId": "stevens",
+      "englishName": "Will·Stevens",
+      "aliases": [
+        "Will·Stevens",
+        "威尔·史蒂文斯"
+      ],
+      "verifiedSeasons": [
+        2015
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "3d456329-ad6c-ed02-d22a-372245b4d33f": {
+      "jolpicaDriverId": "ocon",
+      "englishName": "Esteban·Ocon",
+      "aliases": [
+        "Esteban·Ocon",
+        "埃斯特班·奥康"
+      ],
+      "verifiedSeasons": [
+        2017,
+        2020,
+        2022,
+        2025,
+        2026
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "c4f3266c-9383-f1b2-58b4-8422d88479fc": {
+      "jolpicaDriverId": "stroll",
+      "englishName": "Lance·Stroll",
+      "aliases": [
+        "Lance·Stroll",
+        "兰斯·斯特罗尔"
+      ],
+      "verifiedSeasons": [
+        2017,
+        2020,
+        2022,
+        2025,
+        2026
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "e51f36ab-2a30-4fe0-1165-4be8d300d54a": {
+      "jolpicaDriverId": "kevin_magnussen",
+      "englishName": "Kevin·Magnussen",
+      "aliases": [
+        "Kevin·Magnussen",
+        "凯文·马格努森"
+      ],
+      "verifiedSeasons": [
+        2017,
+        2020,
+        2022
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "c90cb1b5-45c6-36c4-17aa-4b3f47559a8c": {
+      "jolpicaDriverId": "vandoorne",
+      "englishName": "Stoffel·Vandoorne",
+      "aliases": [
+        "Stoffel·Vandoorne",
+        "斯托费尔·范多恩"
+      ],
+      "verifiedSeasons": [
+        2017
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "9955d53a-e234-98bf-73b2-b9d0316e915c": {
+      "jolpicaDriverId": "jolyon_palmer",
+      "englishName": "Jolyon·Palmer",
+      "aliases": [
+        "Jolyon·Palmer",
+        "乔里恩·帕尔默"
+      ],
+      "verifiedSeasons": [
+        2017
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "72df5d46-89e6-bb70-6294-3f138ec9083e": {
+      "jolpicaDriverId": "wehrlein",
+      "englishName": "Pascal·Wehrlein",
+      "aliases": [
+        "Pascal·Wehrlein",
+        "帕斯卡·韦尔莱因"
+      ],
+      "verifiedSeasons": [
+        2017
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "2c943da5-7588-7c37-d812-aec32f2fff61": {
+      "jolpicaDriverId": "gasly",
+      "englishName": "Pierre·Gasly",
+      "aliases": [
+        "Pierre·Gasly",
+        "皮埃尔·加斯利"
+      ],
+      "verifiedSeasons": [
+        2017,
+        2020,
+        2022,
+        2025,
+        2026
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "1f9a3e45-4a09-d40a-3e9d-88375a72f0f2": {
+      "jolpicaDriverId": "giovinazzi",
+      "englishName": "Antonio·Giovinazzi",
+      "aliases": [
+        "Antonio·Giovinazzi",
+        "安东尼奥·焦维纳齐"
+      ],
+      "verifiedSeasons": [
+        2017,
+        2020
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "88e66745-f839-2304-cdda-75307606c95b": {
+      "jolpicaDriverId": "brendon_hartley",
+      "englishName": "Brendon·Hartley",
+      "aliases": [
+        "Brendon·Hartley",
+        "布伦登·哈特利"
+      ],
+      "verifiedSeasons": [
+        2017
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "90c1fc1d-51fa-a1ce-954b-c9b45c90c05a": {
+      "jolpicaDriverId": "albon",
+      "englishName": "Alexander·Albon",
+      "aliases": [
+        "Alexander·Albon",
+        "亚历山大·阿尔本"
+      ],
+      "verifiedSeasons": [
+        2020,
+        2022,
+        2025,
+        2026
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "8a00bce3-d93c-a089-9be1-545b5e3984e1": {
+      "jolpicaDriverId": "leclerc",
+      "englishName": "Charles·Leclerc",
+      "aliases": [
+        "Charles·Leclerc",
+        "夏尔·勒克莱尔"
+      ],
+      "verifiedSeasons": [
+        2020,
+        2022,
+        2025,
+        2026
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "f6900633-3512-3a15-d903-f912318b93d4": {
+      "jolpicaDriverId": "norris",
+      "englishName": "Lando·Norris",
+      "aliases": [
+        "Lando·Norris",
+        "兰多·诺里斯"
+      ],
+      "verifiedSeasons": [
+        2020,
+        2022,
+        2025,
+        2026
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "c4892599-323a-5e2d-cfe6-29d0c3566033": {
+      "jolpicaDriverId": "russell",
+      "englishName": "George·Russell",
+      "aliases": [
+        "George·Russell",
+        "乔治·拉塞尔"
+      ],
+      "verifiedSeasons": [
+        2020,
+        2022,
+        2025,
+        2026
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "fc902730-1413-2920-570a-713aae4ed973": {
+      "jolpicaDriverId": "latifi",
+      "englishName": "Nicholas·Latifi",
+      "aliases": [
+        "Nicholas·Latifi",
+        "尼古拉斯·拉蒂菲"
+      ],
+      "verifiedSeasons": [
+        2020,
+        2022
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "7b5bfa0b-0729-3a1d-eb3d-180ce0940797": {
+      "jolpicaDriverId": "aitken",
+      "englishName": "Jack·Aitken",
+      "aliases": [
+        "Jack·Aitken",
+        "杰克·艾特肯"
+      ],
+      "verifiedSeasons": [
+        2020
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "068379c0-34e0-565d-7ab6-6f3d5fd9bd20": {
+      "jolpicaDriverId": "pietro_fittipaldi",
+      "englishName": "Pietro·Fittipaldi",
+      "aliases": [
+        "Pietro·Fittipaldi",
+        "Pietro·菲蒂帕尔迪"
+      ],
+      "verifiedSeasons": [
+        2020
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "14dff640-60b0-59ee-33cc-e3ed29feb90c": {
+      "jolpicaDriverId": "mick_schumacher",
+      "englishName": "Mick·Schumacher",
+      "aliases": [
+        "Mick·Schumacher",
+        "米克·舒马赫"
+      ],
+      "verifiedSeasons": [
+        2022
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "7399d11f-1588-8739-029c-57d9bdd0f7ee": {
+      "jolpicaDriverId": "tsunoda",
+      "englishName": "Yuki·Tsunoda",
+      "aliases": [
+        "Yuki·Tsunoda",
+        "角田裕毅"
+      ],
+      "verifiedSeasons": [
+        2022,
+        2025,
+        2026
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "18860200-3fc4-ca47-e268-948af89f01c9": {
+      "jolpicaDriverId": "zhou",
+      "englishName": "Guanyu·Zhou",
+      "aliases": [
+        "Guanyu·Zhou",
+        "周冠宇"
+      ],
+      "verifiedSeasons": [
+        2022
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "2e7b8b49-e7f6-432b-dd3c-05984931ac33": {
+      "jolpicaDriverId": "de_vries",
+      "englishName": "Nyck·De Vries",
+      "aliases": [
+        "Nyck·De Vries",
+        "尼克·德弗里斯"
+      ],
+      "verifiedSeasons": [
+        2022
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "ea8a68ee-9660-47e9-6d56-b2f5963f9dfc": {
+      "jolpicaDriverId": "piastri",
+      "englishName": "Oscar·Piastri",
+      "aliases": [
+        "Oscar·Piastri",
+        "奥斯卡·皮亚斯特里"
+      ],
+      "verifiedSeasons": [
+        2025,
+        2026
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "6edccd34-a617-6e67-792e-dfff4e0a814b": {
+      "jolpicaDriverId": "antonelli",
+      "englishName": "Andrea Kimi·Antonelli",
+      "aliases": [
+        "Andrea Kimi·Antonelli",
+        "基米·安东内利"
+      ],
+      "verifiedSeasons": [
+        2025,
+        2026
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "52e0e312-819f-d9a7-3da7-30932cd5dfdc": {
+      "jolpicaDriverId": "hadjar",
+      "englishName": "Isack·Hadjar",
+      "aliases": [
+        "Isack·Hadjar",
+        "伊萨克·哈贾尔"
+      ],
+      "verifiedSeasons": [
+        2025,
+        2026
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "a68dd303-a3ac-0a2f-b5e7-8bf994ed5764": {
+      "jolpicaDriverId": "bearman",
+      "englishName": "Oliver·Bearman",
+      "aliases": [
+        "Oliver·Bearman",
+        "奥利弗·贝尔曼"
+      ],
+      "verifiedSeasons": [
+        2025,
+        2026
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "eaa7bec1-d4b9-fa03-e10d-414898e1d614": {
+      "jolpicaDriverId": "lawson",
+      "englishName": "Liam·Lawson",
+      "aliases": [
+        "Liam·Lawson",
+        "利亚姆·劳森"
+      ],
+      "verifiedSeasons": [
+        2025,
+        2026
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "40f68eee-8f93-aa4c-44b1-52cf95ba5663": {
+      "jolpicaDriverId": "bortoleto",
+      "englishName": "Gabriel·Bortoleto",
+      "aliases": [
+        "Gabriel·Bortoleto",
+        "加布里埃尔·博托莱托"
+      ],
+      "verifiedSeasons": [
+        2025,
+        2026
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "ad1fb39d-62f8-3ffa-71ed-0966e1eae74e": {
+      "jolpicaDriverId": "colapinto",
+      "englishName": "Franco·Colapinto",
+      "aliases": [
+        "Franco·Colapinto",
+        "弗朗哥·科拉平托"
+      ],
+      "verifiedSeasons": [
+        2025,
+        2026
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "3e784511-6179-19f8-fea8-18c1983b547e": {
+      "jolpicaDriverId": "doohan",
+      "englishName": "Jack·Doohan",
+      "aliases": [
+        "Jack·Doohan",
+        "杰克·杜汉"
+      ],
+      "verifiedSeasons": [
+        2025
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    },
+    "1dd44a2e-d5b0-1c39-4a7f-f2c56c2ca899": {
+      "jolpicaDriverId": "arvid_lindblad",
+      "englishName": "Arvid·Lindblad",
+      "aliases": [
+        "Arvid·Lindblad",
+        "阿尔维德·林德布拉德"
+      ],
+      "verifiedSeasons": [
+        2026
+      ],
+      "identityMethod": "Exact normalized full English name (or explicit known full-name alias), joined to Chinese row by identical stable API UUID. Never TLA-only."
+    }
+  },
+  "unmatched": [],
+  "responses": [
+    {
+      "year": 1990,
+      "language": "en",
+      "url": "https://api.f1push.com/api/v1/seasons/c0f91839-94f3-4130-893d-a5ae61684421/drivers-standings?page=1&pageSize=100&isLastStanding=true",
+      "file": "_provenance\\public-api-1990-en.json",
+      "count": 18
+    },
+    {
+      "year": 1990,
+      "language": "zh",
+      "url": "https://api.f1push.com/api/v1/seasons/c0f91839-94f3-4130-893d-a5ae61684421/drivers-standings?page=1&pageSize=100&isLastStanding=true&lang=zh",
+      "file": "_provenance\\public-api-1990-zh.json",
+      "count": 18
+    },
+    {
+      "year": 1995,
+      "language": "en",
+      "url": "https://api.f1push.com/api/v1/seasons/8ffbd431-4387-7168-afdf-9c043ab3d96c/drivers-standings?page=1&pageSize=100&isLastStanding=true",
+      "file": "_provenance\\public-api-1995-en.json",
+      "count": 18
+    },
+    {
+      "year": 1995,
+      "language": "zh",
+      "url": "https://api.f1push.com/api/v1/seasons/8ffbd431-4387-7168-afdf-9c043ab3d96c/drivers-standings?page=1&pageSize=100&isLastStanding=true&lang=zh",
+      "file": "_provenance\\public-api-1995-zh.json",
+      "count": 18
+    },
+    {
+      "year": 2000,
+      "language": "en",
+      "url": "https://api.f1push.com/api/v1/seasons/e90ce5cc-2285-261c-37be-727a82dec227/drivers-standings?page=1&pageSize=100&isLastStanding=true",
+      "file": "_provenance\\public-api-2000-en.json",
+      "count": 23
+    },
+    {
+      "year": 2000,
+      "language": "zh",
+      "url": "https://api.f1push.com/api/v1/seasons/e90ce5cc-2285-261c-37be-727a82dec227/drivers-standings?page=1&pageSize=100&isLastStanding=true&lang=zh",
+      "file": "_provenance\\public-api-2000-zh.json",
+      "count": 23
+    },
+    {
+      "year": 2005,
+      "language": "en",
+      "url": "https://api.f1push.com/api/v1/seasons/65677d79-ff64-be6f-9bd0-ed39fcaa913f/drivers-standings?page=1&pageSize=100&isLastStanding=true",
+      "file": "_provenance\\public-api-2005-en.json",
+      "count": 25
+    },
+    {
+      "year": 2005,
+      "language": "zh",
+      "url": "https://api.f1push.com/api/v1/seasons/65677d79-ff64-be6f-9bd0-ed39fcaa913f/drivers-standings?page=1&pageSize=100&isLastStanding=true&lang=zh",
+      "file": "_provenance\\public-api-2005-zh.json",
+      "count": 25
+    },
+    {
+      "year": 2006,
+      "language": "en",
+      "url": "https://api.f1push.com/api/v1/seasons/10ec63dd-aa33-37ef-4154-22ac884cc18a/drivers-standings?page=1&pageSize=100&isLastStanding=true",
+      "file": "_provenance\\public-api-2006-en.json",
+      "count": 27
+    },
+    {
+      "year": 2006,
+      "language": "zh",
+      "url": "https://api.f1push.com/api/v1/seasons/10ec63dd-aa33-37ef-4154-22ac884cc18a/drivers-standings?page=1&pageSize=100&isLastStanding=true&lang=zh",
+      "file": "_provenance\\public-api-2006-zh.json",
+      "count": 27
+    },
+    {
+      "year": 2008,
+      "language": "en",
+      "url": "https://api.f1push.com/api/v1/seasons/2749b233-787f-7f3a-a05a-cfdd6e6fd2a5/drivers-standings?page=1&pageSize=100&isLastStanding=true",
+      "file": "_provenance\\public-api-2008-en.json",
+      "count": 22
+    },
+    {
+      "year": 2008,
+      "language": "zh",
+      "url": "https://api.f1push.com/api/v1/seasons/2749b233-787f-7f3a-a05a-cfdd6e6fd2a5/drivers-standings?page=1&pageSize=100&isLastStanding=true&lang=zh",
+      "file": "_provenance\\public-api-2008-zh.json",
+      "count": 22
+    },
+    {
+      "year": 2010,
+      "language": "en",
+      "url": "https://api.f1push.com/api/v1/seasons/63560729-0f32-5a0e-bb7b-1827d5dc3852/drivers-standings?page=1&pageSize=100&isLastStanding=true",
+      "file": "_provenance\\public-api-2010-en.json",
+      "count": 27
+    },
+    {
+      "year": 2010,
+      "language": "zh",
+      "url": "https://api.f1push.com/api/v1/seasons/63560729-0f32-5a0e-bb7b-1827d5dc3852/drivers-standings?page=1&pageSize=100&isLastStanding=true&lang=zh",
+      "file": "_provenance\\public-api-2010-zh.json",
+      "count": 27
+    },
+    {
+      "year": 2012,
+      "language": "en",
+      "url": "https://api.f1push.com/api/v1/seasons/4bed3da0-873b-4d01-0838-3234922444b2/drivers-standings?page=1&pageSize=100&isLastStanding=true",
+      "file": "_provenance\\public-api-2012-en.json",
+      "count": 25
+    },
+    {
+      "year": 2012,
+      "language": "zh",
+      "url": "https://api.f1push.com/api/v1/seasons/4bed3da0-873b-4d01-0838-3234922444b2/drivers-standings?page=1&pageSize=100&isLastStanding=true&lang=zh",
+      "file": "_provenance\\public-api-2012-zh.json",
+      "count": 25
+    },
+    {
+      "year": 2015,
+      "language": "en",
+      "url": "https://api.f1push.com/api/v1/seasons/35edf976-0955-51eb-c52c-a0f5f1679e14/drivers-standings?page=1&pageSize=100&isLastStanding=true",
+      "file": "_provenance\\public-api-2015-en.json",
+      "count": 21
+    },
+    {
+      "year": 2015,
+      "language": "zh",
+      "url": "https://api.f1push.com/api/v1/seasons/35edf976-0955-51eb-c52c-a0f5f1679e14/drivers-standings?page=1&pageSize=100&isLastStanding=true&lang=zh",
+      "file": "_provenance\\public-api-2015-zh.json",
+      "count": 21
+    },
+    {
+      "year": 2017,
+      "language": "en",
+      "url": "https://api.f1push.com/api/v1/seasons/564cd759-3abe-3863-02c1-2daaa544146c/drivers-standings?page=1&pageSize=100&isLastStanding=true",
+      "file": "_provenance\\public-api-2017-en.json",
+      "count": 23
+    },
+    {
+      "year": 2017,
+      "language": "zh",
+      "url": "https://api.f1push.com/api/v1/seasons/564cd759-3abe-3863-02c1-2daaa544146c/drivers-standings?page=1&pageSize=100&isLastStanding=true&lang=zh",
+      "file": "_provenance\\public-api-2017-zh.json",
+      "count": 23
+    },
+    {
+      "year": 2020,
+      "language": "en",
+      "url": "https://api.f1push.com/api/v1/seasons/0151d4fc-4ac2-0884-f756-a57e8506df5e/drivers-standings?page=1&pageSize=100&isLastStanding=true",
+      "file": "_provenance\\public-api-2020-en.json",
+      "count": 23
+    },
+    {
+      "year": 2020,
+      "language": "zh",
+      "url": "https://api.f1push.com/api/v1/seasons/0151d4fc-4ac2-0884-f756-a57e8506df5e/drivers-standings?page=1&pageSize=100&isLastStanding=true&lang=zh",
+      "file": "_provenance\\public-api-2020-zh.json",
+      "count": 23
+    },
+    {
+      "year": 2022,
+      "language": "en",
+      "url": "https://api.f1push.com/api/v1/seasons/ed99cbe2-cfc9-7165-cdce-fbe11b9bdbeb/drivers-standings?page=1&pageSize=100&isLastStanding=true",
+      "file": "_provenance\\public-api-2022-en.json",
+      "count": 22
+    },
+    {
+      "year": 2022,
+      "language": "zh",
+      "url": "https://api.f1push.com/api/v1/seasons/ed99cbe2-cfc9-7165-cdce-fbe11b9bdbeb/drivers-standings?page=1&pageSize=100&isLastStanding=true&lang=zh",
+      "file": "_provenance\\public-api-2022-zh.json",
+      "count": 22
+    },
+    {
+      "year": 2025,
+      "language": "en",
+      "url": "https://api.f1push.com/api/v1/seasons/8bbf19c4-7055-c0a0-55d9-21212c85e3e4/drivers-standings?page=1&pageSize=100&isLastStanding=true",
+      "file": "_provenance\\public-api-2025-en.json",
+      "count": 21
+    },
+    {
+      "year": 2025,
+      "language": "zh",
+      "url": "https://api.f1push.com/api/v1/seasons/8bbf19c4-7055-c0a0-55d9-21212c85e3e4/drivers-standings?page=1&pageSize=100&isLastStanding=true&lang=zh",
+      "file": "_provenance\\public-api-2025-zh.json",
+      "count": 21
+    },
+    {
+      "year": 2026,
+      "language": "en",
+      "url": "https://api.f1push.com/api/v1/seasons/3589dd46-e3ab-9929-435d-93b14f52cf6e/drivers-standings?page=1&pageSize=100&isLastStanding=true",
+      "file": "_provenance\\public-api-2026-en.json",
+      "count": 23
+    },
+    {
+      "year": 2026,
+      "language": "zh",
+      "url": "https://api.f1push.com/api/v1/seasons/3589dd46-e3ab-9929-435d-93b14f52cf6e/drivers-standings?page=1&pageSize=100&isLastStanding=true&lang=zh",
+      "file": "_provenance\\public-api-2026-zh.json",
+      "count": 23
+    }
+  ]
+}

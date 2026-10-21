@@ -1,0 +1,21 @@
+import fs from 'node:fs';import assert from 'node:assert/strict';import ts from 'typescript';
+async function module(file){const source=ts.transpileModule(fs.readFileSync(file,'utf8'),{compilerOptions:{module:ts.ModuleKind.ES2022,target:ts.ScriptTarget.ES2022}}).outputText;return import('data:text/javascript;base64,'+Buffer.from(source).toString('base64'));}
+const w=await module('lib/weather.ts'),v=await module('lib/viewing.ts');
+const start=Date.parse('2026-10-25T19:00:00Z'),session={id:'race',type:'MainRace',startDate:new Date(start).toISOString(),endDate:new Date(start+2*3600000).toISOString()};
+assert.equal(w.weatherRefreshMs([session],start-31*60000),3600000);
+assert.equal(w.weatherRefreshMs([session],start-30*60000),300000);
+assert.equal(w.weatherRefreshMs([session],start+2.5*3600000),300000);
+assert.equal(w.weatherRefreshMs([session],start+2.5*3600000+1),3*3600000);
+assert.equal(w.weatherRefreshMs([session],start-49*3600000),3*3600000);
+assert.equal(w.weatherRefreshMs([],start),3*3600000);
+const hours=Array.from({length:7},(_,i)=>start/1000+(i-1)*3600);
+assert.equal(w.weatherHourIndex(hours,start/1000+1800),1);
+assert.equal(w.weatherHourIndex(hours,start/1000+3600),2);
+assert.equal(w.weatherForecastStatus(session,hours,start-1),'available');
+assert.equal(w.weatherForecastStatus(session,hours,start+3*3600000),'finished');
+assert.equal(w.weatherForecastStatus(session,[],start-20*86400000),'outside-range');
+assert.equal(w.weatherForecastStatus(undefined,hours,start),'missing');
+const url=new URL(w.weatherUrl('30.1328,-97.6411'));assert.equal(url.searchParams.get('timezone'),'auto');assert.equal(url.searchParams.get('forecast_days'),'16');assert.equal(url.searchParams.get('latitude'),'30.1328');
+assert.throws(()=>w.weatherUrl('https://example.com'));assert.throws(()=>w.weatherUrl('91,10'));
+assert.equal(v.detectViewingPlatform('Mozilla/5.0 Android 16'),'android');assert.equal(v.detectViewingPlatform('Mozilla/5.0 iPhone'),'ios');assert.equal(v.detectViewingPlatform('Mozilla/5.0 Macintosh','MacIntel',5),'ios');assert.equal(v.detectViewingPlatform('Mozilla/5.0 Windows NT'),'windows');
+console.log('Weather: 5-minute session window, 48-hour cadence, ended/out-of-range handling, hourly UTC boundaries and coordinates passed. Android/iPhone/iPad/desktop detection passed.');

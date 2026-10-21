@@ -1,0 +1,4 @@
+export type Sample={sampleTime:string;offsetMs:number;speed?:number;throttle?:number;brake?:boolean;rpm?:number;nGear?:number;drs?:number};
+export function sampleAt(items:Sample[],at:number){let lo=0,hi=items.length-1,index=-1;while(lo<=hi){const mid=(lo+hi)>>1;if(+new Date(items[mid].sampleTime)<=at){index=mid;lo=mid+1;}else hi=mid-1;}return index<0?undefined:items[index];}
+export function lapTime(ms:unknown){if(typeof ms!=='number'||ms<=0)return '—';return `${Math.floor(ms/60000)}:${((ms%60000)/1000).toFixed(3).padStart(6,'0')}`;}
+export function normaliseSamples(data:Record<string,any>){const seen=new Set<number>();return (data.items||[]).filter((s:Sample)=>Number.isFinite(+new Date(s.sampleTime))).sort((a:Sample,b:Sample)=>+new Date(a.sampleTime)-+new Date(b.sampleTime)).filter((s:Sample)=>{const time=+new Date(s.sampleTime);if(seen.has(time))return false;seen.add(time);return true;}) as Sample[];}

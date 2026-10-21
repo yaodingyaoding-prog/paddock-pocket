@@ -1,0 +1,9 @@
+{
+  "version": "0.5.0",
+  "package": "dev.paddock.pocket",
+  "sha256": "32A1DF2A3F5D4743C2D63D971541050165CFD6B2EE75E3CEDEE4F136D94D7C99",
+  "bytes": 20575679,
+  "builtAt": "2026-10-21T11:56:17.8231112Z",
+  "debuggable": false,
+  "validation": "Shared website source/assets, compilation, v2/v3 signature and ZIP alignment passed. Weather cadence/date matching/device detection tests and responsive browser checks passed. New isolated native live window/script injection, Tencent app launch and real video playback not yet runtime-verified on Android or physical iOS."
+}
