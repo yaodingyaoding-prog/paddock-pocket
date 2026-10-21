@@ -9,6 +9,10 @@
   "workers_dev": true,
   "routes": [
     {
+      "pattern": "f1.xiaodinglab.com",
+      "custom_domain": true
+    },
+    {
       "pattern": "xiaodinglab.com",
       "custom_domain": true
     }

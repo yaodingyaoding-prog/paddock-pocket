@@ -3,10 +3,12 @@ import "./globals.css";
 import { bootStatusScript } from '../lib/boot-status';
 
 export const metadata: Metadata = {
-  title: "围场口袋 · 我的比赛周末",
-  description: "在 iPhone 上查看 F1 赛程、倒计时、积分与比赛成绩。你的随身围场。",
+  metadataBase: new URL('https://f1.xiaodinglab.com'),
+  title: "围场口袋 · F1 赛事与数据",
+  description: "F1 赛程、积分、赛道天气、遥测分析与赛事回放。",
+  alternates: { canonical: '/' },
   manifest: "/manifest.webmanifest",
-  appleWebApp: { capable: true, title: "我的围场", statusBarStyle: "black-translucent" },
+  appleWebApp: { capable: true, title: "围场口袋", statusBarStyle: "black-translucent" },
   icons: {
     icon: "/favicon.svg",
     shortcut: "/favicon.svg",

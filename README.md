@@ -2,6 +2,8 @@
 
 保留现有赛程、排名、天气、赛道、遥测、新闻与观赛入口。使用自己的 Cloudflare Workers 账号运行，不依赖 ChatGPT 登录或 Sites 访问令牌。
 
+公开地址显示为 **F1.xiaodinglab.com**（DNS 与 HTTPS 主机名规范形式为 `f1.xiaodinglab.com`）。根域名保持兼容访问。赛事回放位于“探索 → 赛事回放”，按所选赛季、分站与场次生成 B 站、腾讯视频检索入口；不抓取、托管或承诺视频可用性。
+
 ## 本地
 
 Node.js 24，npm ci，npm run dev。检查：npm run check。生产构建：npm run build。已构建版本本地预览：npm run preview。
