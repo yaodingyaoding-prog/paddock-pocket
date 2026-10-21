@@ -6,6 +6,8 @@ const scripts = [
   ['scripts/verify-telemetry.mjs'],
   ['scripts/verify-v4.mjs'],
   ['scripts/verify-weather-viewing.mjs'],
+  ['scripts/verify-portraits.mjs'],
+  ['scripts/verify-boot-status.mjs'],
 ];
 for (const args of scripts) {
   const result = spawnSync(process.execPath, args, { stdio: 'inherit' });

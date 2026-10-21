@@ -82,6 +82,7 @@ export default function App() {
 
 
   useEffect(() => {
+    window.dispatchEvent(new Event('paddock:ready'));
     setNow(Date.now());
     setLocalTimezone(Intl.DateTimeFormat().resolvedOptions().timeZone);
     setTimezone(safeGet('paddock-timezone', 'Asia/Shanghai'));

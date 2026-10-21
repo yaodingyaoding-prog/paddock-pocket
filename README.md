@@ -29,3 +29,9 @@ Node.js 24，npm ci，npm run dev。检查：npm run check。生产构建：npm 
 此目录只包含网站源码、公开资源、版权记录和构建配置，不包含原参考 APK、Android 签名密钥、SDK、个人账号、Cookie 或云端令牌。静态资源的署名记录保留在 public 中。不要将 .env、.dev.vars 或 .wrangler 上传到仓库。
 
 未来优化以此仓库为源；推送到关联生产分支后由 Cloudflare 自动构建发布。现有 Sites 站点保持不动，等待独立网址验收后再决定是否停用。
+
+## 首屏加载
+
+头像运行索引由 `node scripts/build-portrait-index.mjs` 从完整资料生成。修改头像资料后重新生成并运行 `npm run check`；检查会验证现有姓名与身份匹配结果。完整研究与版权记录继续保留，不进入首屏 JavaScript。
+
+HTML 自带一个不依赖 React 的启动提示：应用 12 秒内未启动或主脚本下载失败时显示重试按钮，启动成功自动隐藏。它只能说明启动未完成，不能修复网络到托管服务器的连接故障。
