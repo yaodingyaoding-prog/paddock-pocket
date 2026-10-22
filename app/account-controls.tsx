@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import type { AccountStatus } from '../lib/auth/contracts';
 import { accountRequest } from './auth-screen';
 
-export function AccountControls({ visible = true }: { visible?: boolean }) {
+export function useAccountControls() {
   const [status, setStatus] = useState<AccountStatus | null>(null);
   const [error, setError] = useState('');
   const [busy, setBusy] = useState(false);
@@ -25,7 +25,6 @@ export function AccountControls({ visible = true }: { visible?: boolean }) {
     document.addEventListener('visibilitychange', refresh);
     return () => { live = false; clearInterval(timer); document.removeEventListener('visibilitychange', refresh); };
   }, []);
-  if (!status?.configured || !visible) return null;
   async function logout() {
     setBusy(true); setError('');
     try {
@@ -35,5 +34,5 @@ export function AccountControls({ visible = true }: { visible?: boolean }) {
     } catch (failure) { setError(failure instanceof Error ? failure.message : '暂时无法退出，请重试。'); }
     finally { setBusy(false); }
   }
-  return <section className="card account-controls"><div><strong>{status.user?.name || '围场账号'}</strong><small>{status.user?.email || '登录后使用账号功能'}</small>{error && <p role="alert">{error}</p>}</div>{status.user ? <button disabled={busy} onClick={() => void logout()}>{busy ? '正在退出' : '退出登录'}</button> : <a className="text-button" href="/login">登录</a>}</section>;
+  return { status, error, busy, logout };
 }
