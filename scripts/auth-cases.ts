@@ -59,6 +59,9 @@ check(!unifiedAuthConfig({ ...env, SUPABASE_PUBLISHABLE_KEY: 'sb_secret_this_mus
 check(unifiedAuthConfig({ ...env, AUTH_MODE: 'require' }).required && !unifiedAuthConfig({ ...env, AUTH_MODE: 'require' }).configured, 'A misspelled access mode fails closed');
 for (const path of ['https://evil.test', '//evil.test', '/\\evil.test', '/login', '/#discover\nLocation:evil', '/#discover/%2f%2fevil']) check(safeReturnPath(path) === '/#schedule', 'External or malformed return paths are rejected');
 check(safeReturnPath('/#discover/replays') === '/#discover/replays', 'Valid app return path preserved');
+const driverReturn = '/#rankings/driver/11111111-1111-4111-8111-111111111111?season=22222222-2222-4222-8222-222222222222&from=rankings';
+check(safeReturnPath(driverReturn) === driverReturn, 'Driver archive and season survive the existing login return flow');
+check(safeReturnPath('/#rankings/driver/invalid?season=bad&from=https://evil.test') === '/#schedule', 'Malformed driver return paths are rejected');
 for (const path of ['/login', '/auth/confirm', '/privacy', '/api/auth/session', '/favicon.svg']) check(!protectedAccountPath(path), 'Authentication and necessary public assets are reachable');
 for (const path of ['/', '/api/data', '/api/tools', '/api/data.json']) check(protectedAccountPath(path), 'Business pages and APIs are protected');
 

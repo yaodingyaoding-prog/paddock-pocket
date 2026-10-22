@@ -1,6 +1,7 @@
 'use client';
 import {useEffect,useState} from 'react';
 import {Activity,ArrowUpRight,BookOpen,ChevronRight,Clapperboard,Flag,Map,Newspaper,Play,Settings2,Trophy} from 'lucide-react';
+import { driverRouteHash, parseDriverRoute, type DriverReturnTab } from '../lib/driver-route';
 
 export type NavTab='schedule'|'rankings'|'widgets'|'discover'|'profile';
 export const detailPages={
@@ -18,20 +19,31 @@ export const detailPages={
 export type DetailPage=keyof typeof detailPages;
 const tabs:NavTab[]=['schedule','rankings','widgets','discover','profile'];
 function readRoute(){
+ const driver = parseDriverRoute(window.location.hash);
+ if (driver) return {tab:'rankings' as NavTab,detail:'' as const,...driver};
  const [name,id]=window.location.hash.slice(1).split('/');
  const tab=tabs.includes(name as NavTab)?name as NavTab:'schedule';
  const detail=id&&Object.hasOwn(detailPages,id)&&detailPages[id as DetailPage].parent===tab?id as DetailPage:'' as const;
- return {tab,detail};
+ return {tab,detail,driverId:'',driverSeason:'',driverFrom:'rankings' as DriverReturnTab};
 }
 export function usePaddockNavigation(){
- const [route,setRoute]=useState<{tab:NavTab;detail:DetailPage|''}>({tab:'schedule',detail:''});
+ const [route,setRoute]=useState<{tab:NavTab;detail:DetailPage|'';driverId:string;driverSeason:string;driverFrom:DriverReturnTab}>({tab:'schedule',detail:'',driverId:'',driverSeason:'',driverFrom:'rankings'});
  useEffect(()=>{const sync=()=>{setRoute(readRoute());window.scrollTo({top:0});};sync();window.addEventListener('hashchange',sync);window.addEventListener('popstate',sync);return()=>{window.removeEventListener('hashchange',sync);window.removeEventListener('popstate',sync);};},[]);
  function navigate(tab:NavTab,detail:DetailPage|''=''){
   const hash='#'+tab+(detail?'/'+detail:'');
   if(window.location.hash!==hash)window.history.pushState(null,'',hash);
-  setRoute({tab,detail});window.scrollTo({top:0});
+  setRoute({tab,detail,driverId:'',driverSeason:'',driverFrom:'rankings'});window.scrollTo({top:0});
  }
- return {...route,setTab:(tab:NavTab)=>navigate(tab),openDetail:(id:DetailPage)=>navigate(detailPages[id].parent,id)};
+ function openDriver(id:string,season:string,from:NavTab){
+  const hash=driverRouteHash(id,season,from);
+  if(window.location.hash!==hash)window.history.pushState({paddockDriverEntry:true},'',hash);
+  setRoute(readRoute());window.scrollTo({top:0});
+ }
+ function closeDriver(){
+  if(window.history.state?.paddockDriverEntry)window.history.back();
+  else {window.history.replaceState(null,'','#'+route.driverFrom);setRoute(readRoute());window.scrollTo({top:0});}
+ }
+ return {...route,setTab:(tab:NavTab)=>navigate(tab),openDetail:(id:DetailPage)=>navigate(detailPages[id].parent,id),openDriver,closeDriver};
 }
 export function SectionLink({id,onOpen,compact=false}:{id:DetailPage;onOpen:(id:DetailPage)=>void;compact?:boolean}){
  const p=detailPages[id],Icon=p.Icon;

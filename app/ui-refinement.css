@@ -1,0 +1,193 @@
+/* Shared reading and interaction scale. Existing theme tokens remain authoritative. */
+:root{--ui-radius:20px;--ui-gap:24px;--ui-label:12px;--ui-body:14px}
+body{font-size:15px;line-height:1.5}
+.app-shell .main-content{padding-top:36px;max-width:1460px}
+.app-shell .page-heading{margin-bottom:28px}
+.app-shell .page-heading h1{font-size:32px;line-height:1.3;letter-spacing:-1px}
+.app-shell .page-heading .eyebrow{font-size:11px;letter-spacing:2px}
+.app-shell .panel-title h2{font-size:20px;line-height:1.4}
+.app-shell .panel-title .eyebrow{font-size:11px;letter-spacing:1.5px}
+.app-shell .card{border-radius:var(--ui-radius);padding:24px}
+.app-shell .muted-text,.app-shell .intro-copy{font-size:14px;line-height:1.8}
+.app-shell .text-button,.app-shell .small-button{font-size:13px;min-height:44px}
+.app-shell .icon-button{width:42px;height:42px;border-radius:12px}
+.app-shell .segmented{border-radius:13px}
+.app-shell .segmented button{min-height:40px;padding:9px 18px;font-size:13px}
+.app-shell .season-select select{min-height:44px;font-size:13px}
+.app-shell .data-footer{font-size:11px;margin-top:32px}
+.app-shell button:focus-visible,.app-shell a:focus-visible,.app-shell input:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+.app-shell button,.app-shell a{transition:background-color .18s,border-color .18s,color .18s}
+
+/* One race, one visual anchor. The circuit is drawn by the existing Three.js model. */
+.weekend-hero{isolation:isolate;position:relative;overflow:hidden;border:1px solid color-mix(in srgb,var(--accent) 25%,var(--line));border-radius:26px;background:radial-gradient(ellipse at 88% 30%,color-mix(in srgb,var(--accent) 12%,transparent),transparent 60%),var(--panel);padding:26px 32px 0}
+.weekend-hero::before{content:'';position:absolute;top:0;left:32px;right:55%;height:3px;background:linear-gradient(90deg,var(--accent),transparent)}
+.weekend-hero-heading{display:flex;justify-content:space-between;align-items:center;gap:12px;position:relative;z-index:1}
+.hero-round{display:flex;align-items:center;gap:9px;color:var(--text);font:600 13px 'Barlow Condensed',sans-serif;letter-spacing:1.6px}
+.hero-round>svg{color:var(--accent)}.hero-round>span{font-size:12px;color:var(--muted);margin-left:2px}
+.hero-race-status{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--accent)}
+.hero-race-status i{width:6px;height:6px;border-radius:50%;background:currentColor;box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 10%,transparent)}
+.hero-race-status.is-finished{color:var(--muted)}
+.weekend-hero-body{display:grid;grid-template-columns:minmax(0,1fr) minmax(320px,1fr);align-items:center;gap:20px;position:relative}
+.weekend-hero-copy{padding:32px 0 26px;position:relative;z-index:1;min-width:0}
+.hero-event-name{font:500 12px/1.8 'Barlow Condensed',sans-serif;letter-spacing:2.8px;text-transform:uppercase;color:var(--muted);max-width:100%;overflow-wrap:anywhere}
+.weekend-hero h2{font-size:clamp(32px,3.5vw,54px);line-height:1.3;letter-spacing:-1.7px;margin:8px 0 20px;font-weight:750}
+.hero-venue{display:flex;align-items:flex-start;gap:9px;font-size:14px;line-height:1.7;color:var(--text)}.hero-venue>svg{margin-top:4px;color:var(--accent);flex:none}
+.hero-venue small{display:block;color:var(--muted);font-size:12px;margin-top:3px}
+.hero-event-date{display:flex;align-items:center;gap:9px;color:var(--muted);font-size:13px;margin-top:13px}
+.hero-event-date>svg{flex:none}
+.hero-race-facts{display:flex;gap:28px;margin-top:26px}
+.hero-race-facts>div{min-width:0;border-left:1px solid var(--line);padding-left:23px}
+.hero-race-facts>div:first-child{padding-left:0;border-left:0}
+.hero-race-facts strong{display:block;font:600 31px/1 'Barlow Condensed',sans-serif;white-space:nowrap}
+.hero-race-facts strong small{font:400 12px system-ui;color:var(--muted);margin-left:5px}
+.hero-race-facts>div>span{display:block;color:var(--muted);font-size:12px;margin-top:8px}
+.hero-race-actions{display:flex;align-items:center;gap:20px;flex-wrap:wrap;margin-top:28px}
+.hero-race-actions>button{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:44px;font-size:13px;font-weight:600}
+.race-primary-action{border-radius:11px;padding:11px 16px;background:var(--accent);color:var(--bg)}
+.race-primary-action:hover{background:color-mix(in srgb,var(--accent) 85%,var(--text))}
+.race-secondary-action{color:var(--text);border-bottom:1px solid color-mix(in srgb,var(--text) 28%,transparent)}
+.weekend-hero-stage{position:relative;isolation:isolate;min-width:0;height:350px;display:grid;place-items:center}
+.weekend-hero-stage::before{content:'';position:absolute;inset:40px 0 30px;background-image:linear-gradient(color-mix(in srgb,var(--accent) 8%,transparent) 1px,transparent 1px),linear-gradient(90deg,color-mix(in srgb,var(--accent) 8%,transparent) 1px,transparent 1px);background-size:32px 32px;transform:perspective(460px) rotateX(36deg) rotateZ(-14deg);mask-image:radial-gradient(ellipse,#000 5%,transparent 72%);z-index:-1}
+.hero-track-orbit{position:absolute;width:86%;height:63%;border:1px solid color-mix(in srgb,var(--accent) 12%,transparent);border-radius:50%;transform:rotate(-20deg);z-index:-1}
+.hero-track-orbit::after{content:'';position:absolute;inset:19px -19px;border:1px solid color-mix(in srgb,var(--accent) 7%,transparent);border-radius:50%}
+.hero-stage-title{position:absolute;top:12px;left:15px;font:500 11px 'Barlow Condensed',sans-serif;letter-spacing:2.2px;color:var(--muted);z-index:1;display:flex;align-items:center;gap:10px;pointer-events:none}
+.hero-stage-title>span{font-size:10px;padding:2px 5px;border:1px solid var(--line);border-radius:4px;letter-spacing:1px}
+.weekend-hero-stage .circuit-preview{width:100%;height:100%;margin:0;padding:0;min-width:0;z-index:1;border-radius:16px}
+.weekend-hero-stage .circuit-preview>span{bottom:34px;right:14px;font-size:11px;background:var(--panel);border:1px solid var(--line);padding:7px 9px;border-radius:7px;color:var(--accent)}
+.hero-stage-caption{position:absolute;bottom:5px;left:15px;font-size:12px;color:var(--text);pointer-events:none;z-index:1}
+.hero-stage-caption>span{font-size:11px;display:block;color:var(--muted);margin-top:4px}
+.hero-round-watermark{position:absolute;right:-8px;bottom:-4px;font:600 130px/1 'Barlow Condensed',sans-serif;letter-spacing:-4px;color:color-mix(in srgb,var(--accent) 7%,transparent);z-index:-1;pointer-events:none}
+.weekend-hero-timing{display:flex;justify-content:space-between;align-items:center;gap:28px;border-top:1px solid color-mix(in srgb,var(--accent) 18%,var(--line));padding:21px 0 24px}
+.hero-timing-copy>span{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--text)}
+.hero-timing-copy>small{display:block;margin:6px 0 0 23px;color:var(--muted);font-size:11px;letter-spacing:1px}
+.weekend-hero-timing .countdown{width:45%;max-width:400px;margin:0;gap:16px}
+.weekend-hero-timing .countdown>div{justify-content:center;align-items:center;gap:8px;border:0}
+.weekend-hero-timing .countdown strong{color:var(--text);font-size:40px;letter-spacing:.5px}
+.weekend-hero-timing .countdown span{font-size:11px;color:var(--muted)}
+.hero-finished-mark{display:flex;align-items:center;gap:12px;color:var(--muted);font:500 20px 'Barlow Condensed',sans-serif;letter-spacing:3px}
+
+/* A compact launchpad lets the weekend schedule remain close to the hero. */
+.app-shell .weekend-launchpad{padding:0;margin:24px 0 28px;border:0;border-radius:0;background:none;gap:12px}
+.app-shell .launchpad-heading{display:flex;align-items:center;gap:12px}
+.app-shell .launchpad-heading h2{font-size:15px;margin:0;font-weight:600}
+.app-shell .launchpad-heading .eyebrow{font-size:10px;letter-spacing:1.6px;order:1;color:var(--muted)}
+.app-shell .quick-actions{grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.app-shell .quick-actions .section-link{padding:14px 12px;border:1px solid var(--line);background:var(--panel);gap:10px;border-radius:14px;min-height:72px}
+.app-shell .quick-actions .section-link:hover{border-color:var(--section-color);background:color-mix(in srgb,var(--section-color) 5%,var(--panel));transform:none}
+.app-shell .quick-actions .section-icon{width:32px;height:36px;background:none}
+.app-shell .quick-actions .section-link strong{font-size:14px}
+.app-shell .quick-actions .section-link small{display:none}
+.app-shell .quick-actions .section-link>svg{width:14px}
+.app-shell .weekend-detail-grid{gap:24px}
+.app-shell .schedule-section{padding:26px;border-radius:var(--ui-radius)}
+.app-shell .day-group>h3{font-size:13px;margin:26px 0 13px;color:var(--muted)}
+.app-shell .session-row{border-radius:13px;min-height:76px}
+.app-shell .session-main strong{font-size:14px;line-height:1.5}
+.app-shell .session-main div>span{font-size:12px;line-height:1.6;margin-top:4px}
+.app-shell .session-mark{font-size:12px}
+.app-shell .session-main time{font-size:25px}
+.app-shell .calendar-button{min-width:44px;min-height:44px}
+.app-shell .zone-select{font-size:12px}.app-shell .timezone-trigger{font-size:12px;min-height:42px}
+.app-shell .circuit-brief h3{font-size:17px}.app-shell .circuit-brief-stats span{font-size:12px}
+.app-shell .follow-card p,.app-shell .replay-weekend-card p{font-size:13px;line-height:1.8}
+.app-shell .weather-card .weather-facts,.app-shell .weather-card .weather-session,.app-shell .weather-card .weather-status{font-size:12px}
+.app-shell .weather-card .weather-next>p small{font-size:11px}
+.app-shell .weather-card .weather-view-controls>select{font-size:12px;min-height:42px}
+.app-shell .weather-card .weather-range-message p{font-size:13px}
+.app-shell .rank-row{padding:16px 18px;border-radius:15px}
+.app-shell .rank-person strong{font-size:15px;line-height:1.5}
+.app-shell .rank-person small{font-size:12px;line-height:1.7}
+.app-shell .rank-points>span{font-size:11px}
+.app-shell .rank-points strong{font-size:32px}
+.app-shell .favorite-button{min-width:44px;min-height:44px}
+.app-shell .ranking-spotlight{padding:20px 24px;border-radius:18px;margin-bottom:24px}
+.app-shell .explore-card>p:not(.eyebrow),.app-shell .discovery-feature>p{font-size:14px;line-height:1.8}
+.app-shell .explore-card .eyebrow,.app-shell .explore-card-bottom{font-size:11px}
+.app-shell .feature-action{font-size:14px;min-height:44px}
+.app-shell .personal-center .pass-greeting,.app-shell .personal-center .pass-email,.app-shell .personal-center .personal-section-heading>p,.app-shell .personal-center .personal-preference-note{font-size:12px}
+.app-shell .personal-settings-row small,.app-shell .personal-security-link small{font-size:12px;line-height:1.7}
+
+/* Driver profiles use the page canvas, with a strong team identity and generous reading width. */
+.app-shell .main-content.driver-page{max-width:1320px;padding-top:26px}
+.driver-profile-page{min-width:0}
+.driver-page-toolbar{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:22px}
+.driver-page-toolbar .eyebrow{font-size:11px;color:var(--muted);letter-spacing:2.4px}
+.driver-back-button,.driver-share-button{display:flex;align-items:center;gap:8px;min-height:44px;font-size:13px;color:var(--muted)}
+.driver-back-button:hover,.driver-share-button:hover{color:var(--text)}
+.driver-profile-page .driver-dossier{position:relative}
+.driver-profile-page .dossier-identity{gap:28px;min-height:260px;padding:28px 36px 0;background:radial-gradient(ellipse at 15% 110%,color-mix(in srgb,var(--driver-tint) 20%,transparent),transparent 70%),var(--panel);border:1px solid var(--line);border-bottom:0;border-radius:24px 24px 0 0;overflow:hidden;align-items:center}
+.driver-profile-page .dossier-portrait{height:228px;width:178px;align-self:end;border-radius:18px 18px 0 0;background:linear-gradient(0deg,color-mix(in srgb,var(--driver-tint) 12%,transparent),transparent);z-index:1}
+.driver-profile-page .dossier-season{font-size:13px;letter-spacing:.3px;margin-bottom:12px}
+.driver-profile-page .dossier-identity h1{font-size:clamp(26px,3.1vw,45px);line-height:1.35;letter-spacing:-1px;position:relative;z-index:1;overflow-wrap:anywhere}
+.driver-profile-page .dossier-tla{font-size:16px;letter-spacing:4px;margin-top:15px}
+.driver-profile-page .dossier-number{font-size:150px;letter-spacing:-5px;opacity:.22;position:relative;z-index:0;align-self:center;padding-left:0}
+.driver-profile-page .dossier-season-stats{margin:0 0 28px;padding:23px 36px 25px;gap:24px;background:var(--panel);border:1px solid var(--line);border-top-color:color-mix(in srgb,var(--driver-tint) 18%,var(--line));border-radius:0 0 24px 24px}
+.driver-profile-page .dossier-season-stats>div>span{font-size:12px;margin-bottom:8px}
+.driver-profile-page .dossier-season-stats strong{font-size:36px}
+.driver-profile-page .dossier-season-stats button{min-height:44px;font-size:13px;padding:12px 18px;border-radius:12px}
+.driver-profile-page .driver-dossier-tabs{gap:24px;margin:0 0 28px;justify-content:flex-start}
+.driver-profile-page .driver-dossier-tabs>button{flex:none;min-height:54px;padding:10px 8px;font-size:15px}
+.driver-profile-page .driver-overview-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:28px;align-items:start}
+.driver-overview-main{min-width:0}
+.driver-profile-page .driver-facts{gap:10px;margin-bottom:24px}
+.driver-profile-page .driver-facts>span{padding:16px;min-width:115px;border:1px solid var(--line);background:var(--panel)}
+.driver-profile-page .driver-facts strong{font-size:13px}
+.driver-profile-page .driver-facts small{font-size:11px}
+.driver-profile-page .driver-biography{padding:24px;background:var(--panel);border-radius:18px}
+.driver-profile-page .driver-aliases>span{font-size:12px;padding:7px 12px}
+.driver-profile-page .driver-biography>p{font-size:14px;line-height:1.9}
+.driver-profile-page .driver-biography .driver-number-history{font-size:13px;line-height:1.9}
+.driver-profile-page .driver-number-history strong{font-size:13px}
+.driver-profile-page .driver-biography>a{font-size:11px;min-height:36px}
+.driver-profile-page .driver-career-preview h3{font-size:17px;margin-bottom:18px}
+.driver-profile-page .driver-career-stats{gap:12px}
+.driver-profile-page .driver-career-stats>div{padding:20px;background:var(--panel);border-radius:15px}
+.driver-profile-page .driver-career-stats strong{font-size:42px}
+.driver-profile-page .driver-career-stats span{font-size:12px}
+.driver-profile-page .all-career-stats{grid-template-columns:repeat(5,minmax(0,1fr));margin-bottom:26px}
+.driver-profile-page .driver-title-years{padding:20px;border-radius:15px;margin:26px 0 34px}
+.driver-profile-page .driver-title-years>span{font-size:12px}.driver-profile-page .driver-title-years strong{font-size:15px}
+.driver-profile-page .driver-section-heading h3{font-size:18px}.driver-profile-page .driver-section-heading small{font-size:12px}
+.driver-profile-page .driver-history-list{border:1px solid var(--line);padding:4px 24px;border-radius:18px;background:var(--panel)}
+.driver-profile-page .driver-history-list>div{padding:20px 0;grid-template-columns:65px 1fr auto}
+.driver-profile-page .driver-history-list>div:last-child{border-bottom:0}
+.driver-profile-page .driver-history-list b{font-size:15px}.driver-profile-page .driver-history-list small{font-size:12px}
+.driver-profile-page .driver-history-list>div>strong{font-size:28px}
+.driver-profile-page .driver-history-list>div>span:last-child{font-size:25px}
+.driver-profile-page .driver-history-more{font-size:14px;margin-top:18px}
+.driver-profile-page .driver-stat-note{font-size:12px;line-height:1.8}
+.driver-profile-page .weekend-look{padding:24px;margin:0;border:1px solid var(--line);background:var(--panel);border-radius:20px}
+.driver-profile-page .driver-section-heading .eyebrow{font-size:11px;margin-bottom:7px}
+.driver-profile-page .driver-media-empty{font-size:14px;line-height:1.9;min-height:210px;padding:26px 16px}
+.driver-profile-page .driver-media-empty small{font-size:12px}
+.driver-profile-page .weekend-look figcaption{padding:18px}.driver-profile-page .weekend-look figcaption span{font-size:11px}.driver-profile-page .weekend-look figcaption strong{font-size:14px}
+.driver-profile-page .driver-media-switch>button{min-height:40px;font-size:12px;padding:8px 13px}
+.driver-profile-page .driver-media-source{font-size:12px;line-height:1.8}
+.driver-profile-page .driver-data-loading,.driver-profile-page .driver-archive-error{font-size:14px;line-height:1.8;margin-bottom:24px}
+.driver-page-empty{min-height:55vh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;text-align:center;padding:28px;border:1px solid var(--line);border-radius:24px;background:var(--panel);color:var(--muted)}
+.driver-page-empty h1{font-size:24px;color:var(--text)}.driver-page-empty p{font-size:14px;line-height:1.8}
+
+@media(min-width:701px){.weekend-hero,.driver-profile-page{animation:paddock-arrive .25s ease-out both}}
+@keyframes paddock-arrive{from{opacity:.65;transform:translateY(7px)}to{opacity:1;transform:none}}
+@media(max-width:1100px) and (min-width:701px){
+ .weekend-hero{padding:24px 26px 0}.weekend-hero-body{grid-template-columns:minmax(0,1fr) minmax(250px,.9fr);gap:10px}.weekend-hero-stage{height:320px}.weekend-hero h2{font-size:35px}.hero-race-facts{gap:18px}.hero-race-facts>div{padding-left:16px}.hero-race-actions{gap:10px}.hero-race-actions>button{font-size:12px}.driver-profile-page .dossier-identity{padding-left:26px;padding-right:26px;gap:20px}.driver-profile-page .dossier-portrait{width:145px;height:210px}.driver-profile-page .dossier-number{font-size:110px}.driver-profile-page .driver-overview-grid{grid-template-columns:1fr}.driver-profile-page .dossier-identity h1{font-size:30px}
+}
+@media(max-width:850px){
+ .app-shell .main-content{padding:26px 22px 120px}.app-shell .page-heading h1{font-size:29px}.app-shell .main-content.driver-page{padding-top:18px}.driver-profile-page .dossier-identity h1{font-size:32px}
+}
+@media(max-width:700px){
+ .app-shell .main-content{padding:24px 18px 116px}.app-shell .page-heading{margin-bottom:22px}.app-shell .page-heading h1{font-size:28px}.app-shell .page-heading .eyebrow{font-size:10px}.app-shell .card{padding:22px 19px;border-radius:18px}.app-shell .panel-title h2{font-size:19px}.app-shell .season-select select{min-width:108px;padding-right:21px;font-size:12px}.app-shell .text-button{font-size:13px}
+ .weekend-hero{padding:21px 20px 0;border-radius:22px}.hero-round{font-size:12px;gap:6px}.hero-round>span{font-size:11px}.hero-race-status{font-size:11px}.weekend-hero-body{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0;margin-top:22px}.weekend-hero-copy{display:contents}.hero-event-name{grid-column:1/-1;grid-row:1;font-size:11px;letter-spacing:2px}.weekend-hero h2{grid-column:1/-1;grid-row:2;font-size:34px;line-height:1.4;letter-spacing:-1px;margin:7px 0 16px}.hero-venue{grid-column:1;grid-row:3;font-size:13px;line-height:1.8;gap:6px;margin-top:6px;align-self:start}.hero-venue small{font-size:12px}.hero-event-date{grid-column:1;grid-row:4;font-size:12px;line-height:1.8;gap:6px;margin-top:12px;align-self:start}.weekend-hero-stage{grid-column:2;grid-row:3/span 2;height:172px;min-height:0;margin:-10px -10px -10px 0}.hero-stage-title{font-size:9px;left:6px;top:6px;letter-spacing:1.3px;gap:7px}.hero-stage-title>span{font-size:8px;padding:1px 4px}.hero-stage-caption{display:none}.weekend-hero-stage .circuit-preview>span{bottom:5px;right:7px;font-size:10px;padding:5px 7px}.hero-round-watermark{font-size:85px;bottom:0;right:0}.hero-race-facts{grid-column:1/-1;grid-row:5;gap:0;justify-content:space-between;margin-top:24px}.hero-race-facts>div{flex:1;padding-left:20px}.hero-race-facts strong{font-size:30px}.hero-race-facts>div>span{font-size:11px;margin-top:8px}.hero-race-facts strong small{font-size:11px}.hero-race-actions{grid-column:1/-1;grid-row:6;gap:14px;margin:24px 0}.hero-race-actions>button{font-size:12px;gap:7px;flex:1}.race-primary-action{padding:11px}.race-secondary-action{border-bottom:0}
+ .weekend-hero-timing{padding:18px 0 20px;align-items:center;gap:16px}.hero-timing-copy{max-width:43%;flex:1}.hero-timing-copy>span{font-size:12px;gap:6px;align-items:flex-start;line-height:1.7}.hero-timing-copy>span>svg{margin-top:3px;flex:none}.hero-timing-copy>small{font-size:10px;margin:5px 0 0 21px;letter-spacing:0}.weekend-hero-timing .countdown{width:57%;gap:8px}.weekend-hero-timing .countdown>div{flex-direction:column;align-items:center;gap:5px}.weekend-hero-timing .countdown strong{font-size:30px;letter-spacing:0}.weekend-hero-timing .countdown span{font-size:10px}.hero-finished-mark{font-size:17px;letter-spacing:2px}
+ .app-shell .weekend-launchpad{margin:22px 0 24px;gap:12px}.app-shell .launchpad-heading h2{font-size:14px}.app-shell .launchpad-heading .eyebrow{font-size:9px}.app-shell .quick-actions{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.app-shell .quick-actions .section-link{padding:13px 12px;min-height:60px;gap:9px;border-radius:13px}.app-shell .quick-actions .section-icon{width:26px;height:30px}.app-shell .quick-actions .section-icon svg{width:20px}.app-shell .quick-actions .section-link strong{font-size:14px}.app-shell .quick-actions .section-link>svg{display:block;width:13px}
+ .app-shell .weekend-detail-grid{gap:20px}.app-shell .schedule-section{padding:22px 16px;border-radius:18px}.app-shell .session-main strong{font-size:14px}.app-shell .session-main div>span{font-size:11px}.app-shell .session-main time{font-size:23px}.app-shell .session-mark{font-size:11px}.app-shell .rank-toolbar{gap:8px}.app-shell .rank-toolbar .segmented button{padding:9px 12px}.app-shell .rank-toolbar>.muted-text{font-size:12px}.app-shell .rank-row{padding:13px 10px}.app-shell .rank-person{gap:10px;min-width:0}.app-shell .rank-person strong{font-size:14px}.app-shell .rank-person small{font-size:11px}.app-shell .rank-points strong{font-size:29px}.app-shell .rank-points>span{font-size:10px}.app-shell .ranking-spotlight{padding:20px;gap:15px}.app-shell .explore-card{padding:20px 16px}.app-shell .explore-card>p:not(.eyebrow){font-size:13px;min-height:48px}.app-shell .explore-card .eyebrow{font-size:10px}.app-shell .explore-card-bottom{font-size:11px}.app-shell .discovery-feature>p{font-size:14px}.app-shell .feature-action{font-size:13px}
+ .driver-page-toolbar{gap:10px;margin-bottom:18px}.driver-page-toolbar .eyebrow{font-size:10px;letter-spacing:1.3px}.driver-back-button,.driver-share-button{font-size:12px;gap:6px}.driver-share-button>span{display:none}.driver-share-button{justify-content:center;width:44px;border:1px solid var(--line);border-radius:12px}.app-shell .main-content.driver-page{padding-top:14px}.driver-profile-page .dossier-identity{min-height:185px;padding:22px 18px 0;gap:15px;border-radius:20px 20px 0 0;align-items:center}.driver-profile-page .dossier-portrait{width:96px;height:155px;flex:none;border-radius:14px 14px 0 0}.driver-profile-page .dossier-season{font-size:11px;line-height:1.8;margin-bottom:8px;max-width:170px}.driver-profile-page .dossier-identity h1{font-size:25px;letter-spacing:-.7px;line-height:1.4;padding-right:2px}.driver-profile-page .dossier-tla{font-size:13px;margin-top:10px;letter-spacing:3px}.driver-profile-page .dossier-number{position:absolute;right:10px;bottom:-2px;font-size:110px;line-height:1;opacity:.1;z-index:0}.driver-profile-page .dossier-season-stats{padding:21px 18px;gap:12px;margin-bottom:20px;border-radius:0 0 20px 20px;grid-template-columns:repeat(3,minmax(0,1fr)) auto}.driver-profile-page .dossier-season-stats>div>span{font-size:11px}.driver-profile-page .dossier-season-stats strong{font-size:30px}.driver-profile-page .dossier-season-stats button{width:42px;min-height:42px;padding:0}.driver-profile-page .driver-dossier-tabs{gap:12px;margin-bottom:22px;justify-content:space-between}.driver-profile-page .driver-dossier-tabs>button{font-size:14px;min-height:50px;padding:10px 7px}.driver-profile-page .driver-overview-grid{grid-template-columns:1fr;gap:22px}.driver-profile-page .driver-facts{gap:8px;margin-bottom:20px}.driver-profile-page .driver-facts>span{min-width:90px;padding:12px 10px;gap:5px 6px}.driver-profile-page .driver-facts strong{font-size:12px}.driver-profile-page .driver-facts small{font-size:11px}.driver-profile-page .driver-biography{padding:20px;border-radius:16px;margin-bottom:24px}.driver-profile-page .driver-biography>p{font-size:14px}.driver-profile-page .driver-aliases>span{font-size:11px;padding:6px 10px}.driver-profile-page .driver-career-preview{margin-bottom:0}.driver-profile-page .driver-career-stats{gap:9px}.driver-profile-page .driver-career-stats>div{padding:17px 12px;border-radius:13px}.driver-profile-page .driver-career-stats strong{font-size:36px}.driver-profile-page .driver-career-stats span{font-size:11px}.driver-profile-page .all-career-stats{grid-template-columns:repeat(3,minmax(0,1fr))}.driver-profile-page .weekend-look{padding:20px 16px;border-radius:18px}.driver-profile-page .driver-section-heading h3{font-size:17px}.driver-profile-page .driver-section-heading .eyebrow{font-size:10px}.driver-profile-page .driver-title-years strong{font-size:13px;line-height:1.8}.driver-profile-page .driver-history-list{padding:2px 17px;border-radius:16px}.driver-profile-page .driver-history-list>div{padding:18px 0;grid-template-columns:48px 1fr auto;gap:10px}.driver-profile-page .driver-history-list>div>strong{font-size:25px}.driver-profile-page .driver-history-list b{font-size:14px}.driver-profile-page .driver-history-list small{font-size:11px}.driver-profile-page .driver-history-list>div>span:last-child{font-size:23px}.driver-profile-page .driver-history-list>div>span:last-child small{font-size:11px}.driver-page-empty h1{font-size:21px}
+}
+@media(max-width:700px){
+ .app-shell .schedule-main{padding-top:20px}.app-shell .schedule-main .page-heading{margin-bottom:16px}.app-shell .schedule-main .page-heading h1{font-size:26px;margin-top:3px}.app-shell .schedule-main .schedule-toolbar{margin-bottom:16px}
+ .weekend-hero-body{margin-top:18px}.weekend-hero h2{font-size:32px;margin-bottom:12px}.weekend-hero-stage{height:140px}.hero-race-facts{margin-top:18px}.hero-race-actions{margin:18px 0}.weekend-hero-timing{padding-top:14px;padding-bottom:15px}
+}
+@media(max-width:370px){
+ .app-shell .main-content{padding-left:14px;padding-right:14px}.weekend-hero{padding-left:16px;padding-right:16px}.weekend-hero h2{font-size:31px}.hero-race-facts>div{padding-left:15px}.hero-race-actions{gap:7px}.hero-race-actions>button{font-size:11px}.weekend-hero-timing .countdown{gap:6px}.weekend-hero-timing .countdown strong{font-size:28px}.driver-page-toolbar .eyebrow{font-size:9px}.driver-profile-page .dossier-identity{gap:12px;padding-left:15px;padding-right:15px}.driver-profile-page .dossier-portrait{width:82px}.driver-profile-page .dossier-identity h1{font-size:23px}.driver-profile-page .dossier-season-stats{padding-left:15px;padding-right:15px;gap:8px}.app-shell .rank-person strong{font-size:13px}.app-shell .rank-person small{font-size:10px}.app-shell .favorite-button{min-width:36px;width:36px}.driver-profile-page .driver-facts>span{min-width:85px;padding:11px 8px}.driver-profile-page .driver-facts strong{font-size:11px}
+}
+@media(prefers-reduced-motion:reduce){.app-shell *,.app-shell *::before,.app-shell *::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
