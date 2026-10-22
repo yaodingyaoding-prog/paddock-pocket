@@ -22,9 +22,6 @@ html[data-page-transition=active] .route-content{will-change:transform,opacity}
 /* Quiet controls sit together in the lower right, leaving the model unobstructed. */
 .app-shell .scene-reset,.app-shell .scene-maximize{position:absolute;inset:auto 12px 12px auto;display:grid;place-items:center;width:31px;height:31px;padding:0;border:1px solid color-mix(in srgb,var(--accent) 12%,transparent);border-radius:50%;background:color-mix(in srgb,var(--bg) 45%,transparent);color:color-mix(in srgb,var(--text) 65%,transparent);box-shadow:none;opacity:.7;z-index:2;cursor:pointer}
 .app-shell .circuit-preview .scene-reset{right:50px}.app-shell .scene-reset:hover,.app-shell .scene-maximize:hover{opacity:1;background:var(--panel);color:var(--accent)}
-.race-car-art{display:block;width:100%;height:auto;color:var(--accent)}
-.discovery-feature{isolation:isolate}.discovery-racecar{position:absolute;width:78%;right:-8%;bottom:5%;z-index:-1;opacity:.38;transform:rotate(-5deg);transition:transform .4s ease,opacity .4s}
-.discovery-feature:hover .discovery-racecar{transform:rotate(-5deg) translateX(-5px);opacity:.48}
 .github-star{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);padding:9px 13px;border-radius:20px;color:var(--text);font-size:11px;white-space:nowrap}.github-star svg:last-child{color:var(--gold)}
 .personal-about{flex-wrap:wrap;gap:14px}.native-widget-pin{display:none}html[data-native=android] .native-widget-pin{display:inline-flex;margin:12px 0}
 :root[data-theme=carbon]{--bg:#141619;--panel:#202327;--panel-2:#2c3036;--line:#3d434c;--text:#f1f3f5;--muted:#a8b0bb;color-scheme:dark}
