@@ -51,8 +51,8 @@ export class SupabaseAccountRepository implements AccountRepository {
   async register(email: string, password: string, name: string, redirectTo: string) {
     const { data, error } = await this.client.auth.signUp({ email, password, options: { data: { name }, emailRedirectTo: redirectTo } });
     if (error) providerError(error);
-    // Auto-confirm must be disabled in the provider before public registration.
-    if (data.session) { await this.logout(); throw new AccountError('VERIFICATION_REQUIRED', '邮箱验证配置尚未就绪，请稍后再试。', 503); }
+    // Provider auto-confirm returns a normal session; recovery still requires its email grant.
+    return data.session && data.user ? identity(data.user) : null;
   }
   async resend(email: string, redirectTo: string) {
     const { error } = await this.client.auth.resend({ type: 'signup', email, options: { emailRedirectTo: redirectTo } });

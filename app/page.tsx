@@ -8,6 +8,7 @@ import { useAccountControls } from './account-controls';
 import { ProfilePage } from './profile';
 import { DriverDetails, WeekendLook } from './driver-details';
 import { RaceHero } from './race-hero';
+import { pruneClientCache } from '../lib/client-cache';
 import { TeamCarStage } from './team-car';
 import { GlassNavigation } from './glass-navigation';
 import './ui-refinement.css';
@@ -107,6 +108,11 @@ export default function App() {
 
   useEffect(() => {
     window.dispatchEvent(new Event('paddock:ready'));
+    const native=/PaddockPocket\//.test(navigator.userAgent);
+    const smg=()=>{if(native)window.location.href='paddock://smg-live';};
+    const tencent=()=>{if(native)window.location.href='paddock://open-tencent';};
+    window.addEventListener('paddock:open-smg',smg);window.addEventListener('paddock:open-tencent',tencent);
+    if(native)window.addEventListener('pagehide',()=>{window.removeEventListener('paddock:open-smg',smg);window.removeEventListener('paddock:open-tencent',tencent);},{once:true});
     setNow(Date.now());
     setLocalTimezone(Intl.DateTimeFormat().resolvedOptions().timeZone);
     const savedTimezone = safeGet('paddock-timezone', 'Asia/Shanghai');
@@ -114,12 +120,13 @@ export default function App() {
     setFollowing(readFollowing(safeGet('paddock-following-v1', null), safeGet('paddock-favorite', '')));
     setTheme(safeGet('paddock-theme', 'dark'));
     setAccent(safeGet('paddock-accent','mint'));
+    try { pruneClientCache(localStorage); } catch {}
     const cached = safeGet('paddock-cache', null);
     if (cached?.season === snapshotSeason && cached.data?.next && cached.data?.races) { setData(cached.data); setMeta(cached.meta); }
     const id = setInterval(() => setNow(Date.now()), 1000);
     return () => clearInterval(id);
   }, []);
-  useEffect(() => { document.documentElement.dataset.theme = theme; }, [theme]);
+  useEffect(() => { document.documentElement.dataset.theme = theme; document.documentElement.dataset.native = /PaddockPocket\//.test(navigator.userAgent)?'android':'web'; }, [theme]);
   useEffect(() => { document.documentElement.dataset.accent = accent; }, [accent]);
   useEffect(() => { if (!toast) return; const t = setTimeout(() => setToast(''), 3500); return () => clearTimeout(t); }, [toast]);
   useEffect(() => { load(season); const id=setInterval(()=>{if(document.visibilityState==='visible')load(season);},300000); return ()=>clearInterval(id); }, [season]);
@@ -140,7 +147,7 @@ export default function App() {
       const merged = { ...data, ...nextData };
       const info = successful.find(r => r.source === 'snapshot') || successful[0];
       setData(merged); setMeta(info);
-      try { localStorage.setItem('paddock-cache', JSON.stringify({ season: seasonId, data: merged, meta: { ...info, data: null } })); } catch { /* Private mode / storage quota: browsing still works. */ }
+      try { localStorage.setItem('paddock-cache', JSON.stringify({ storedAt: Date.now(), season: seasonId, data: merged, meta: { ...info, data: null } })); } catch { /* Private mode / storage quota: browsing still works. */ }
     }
     if (responses.some(r => r.status === 'rejected')) setError('部分数据未能更新，可以稍后重试。');
     setBusy(false);

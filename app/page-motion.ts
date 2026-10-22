@@ -7,6 +7,7 @@ const motion = createPageMotion({
   start: update => document.startViewTransition(update),
   signal: (active, direction) => {
     if (typeof document === 'undefined') return;
+    document.documentElement.dataset.motionEngine = typeof document.startViewTransition === 'function' ? 'native' : 'css';
     document.documentElement.style.setProperty('--route-travel', direction === 'back' ? '-46px' : '46px');
     if (active) document.documentElement.dataset.pageTransition = 'active';
     else delete document.documentElement.dataset.pageTransition;

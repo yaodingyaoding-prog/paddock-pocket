@@ -6,7 +6,7 @@ export {WeatherCard} from './weather';
 export {ViewingRoom} from './viewing-room';
 
 export function WatchGuide() {
- return <section className="card watch-guide"><div className="panel-title"><div><p className="eyebrow">APPS & WIDGETS</p><h2>设备支持</h2></div><Watch size={24}/></div><div className="android-download"><h3>Android</h3><p>赛程、积分与天气桌面组件</p><a className="text-button" download href="/downloads/Paddock-Pocket-0.5.0.apk"><Download size={16}/>下载 Android 预览版 · 0.5.0</a></div><details className="source-details"><summary>安装与兼容性</summary><p>Android 8.0 及以上；预览版通过 APK 安装。iPhone 与 iPad 可从 Safari 添加到主屏幕。Apple Watch 原生组件暂未提供。</p><a className="text-button" target="_blank" rel="noopener noreferrer" href="/downloads/android-build.json">版本与文件校验 <Link2 size={13}/></a></details></section>;
+ return <section className="card watch-guide"><div className="panel-title"><div><p className="eyebrow">APPS & WIDGETS</p><h2>设备支持</h2></div><Watch size={24}/></div><div className="android-download"><h3>Android</h3><p>赛程、积分与天气桌面组件</p><a className="text-button" download href="/downloads/Paddock-Pocket-0.6.0.apk"><Download size={16}/>下载 Android 预览版 · 0.6.0</a></div><button className="text-button native-widget-pin" onClick={()=>{window.location.href='paddock://pin-widget';}}>添加桌面小组件</button><button className="text-button native-widget-pin" onClick={()=>{window.location.href='paddock://check-updates';}}>检查安装包更新</button><details className="source-details"><summary>安装与兼容性</summary><p>Android 8.0 及以上；在线版通过 APK 安装，页面随网站更新。系统功能升级需要安装新包。iPhone 与 iPad 可从 Safari 添加到主屏幕。Apple Watch 原生组件暂未提供。</p><a className="text-button" target="_blank" rel="noopener noreferrer" href="/downloads/android-build.json">版本与文件校验 <Link2 size={13}/></a></details></section>;
 }
 
 const classics = [

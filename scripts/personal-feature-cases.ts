@@ -50,7 +50,7 @@ const config=unifiedAuthConfig(env);
 const owner:AccountIdentity={id:'11111111-1111-4111-8111-111111111111',email:'fixture@example.test',name:'Fixture',verified:true};
 class Repository implements AccountRepository {
   user:AccountIdentity|null=owner; writes:string[]=[];
-  async current(){return this.user;} async login(){return owner;} async register(){} async resend(){} async recover(){} async verify(){return owner;} async updatePassword(){} async logout(){} clearSession(){}
+  async current(){return this.user;} async login(){return owner;} async register(){return null;} async resend(){} async recover(){} async verify(){return owner;} async updatePassword(){} async logout(){} clearSession(){}
   async uploadAvatar(id:string){this.writes.push(id);return {...owner,avatarUrl:'/api/auth/avatar?v=fixture'};}
   async removeAvatar(id:string){this.writes.push(id);return owner;}
   async downloadAvatar(id:string){this.writes.push(id);return new Blob([container()],{type:'image/webp'});}

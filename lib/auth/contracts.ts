@@ -8,7 +8,7 @@ export type AccountIdentity = AccountUser & { verified: boolean };
 export interface AccountRepository {
   current(): Promise<AccountIdentity | null>;
   login(email: string, password: string): Promise<AccountIdentity>;
-  register(email: string, password: string, name: string, redirectTo: string): Promise<void>;
+  register(email: string, password: string, name: string, redirectTo: string): Promise<AccountIdentity | null>;
   resend(email: string, redirectTo: string): Promise<void>;
   recover(email: string, redirectTo: string): Promise<void>;
   verify(hash: string, type: 'signup' | 'recovery'): Promise<AccountIdentity>;

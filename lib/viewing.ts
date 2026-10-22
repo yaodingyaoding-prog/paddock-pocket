@@ -5,4 +5,4 @@ export function detectViewingPlatform(userAgent:string,platform='',maxTouchPoint
  return 'windows';
 }
 export const tencentAppLink='txvideo://v.qq.com/VideoDetailActivity?isAutoPlay=0&cid=';
-export function nativeAndroidAvailable(){return typeof window!=='undefined'&&location.hostname==='appassets.androidplatform.net'&&!!document.querySelector('meta[name="paddock-native-token"]');}
+export function nativeAndroidAvailable(){return typeof window!=='undefined'&&((location.hostname==='f1.xiaodinglab.com'&&/PaddockPocket\//.test(navigator.userAgent))||(location.hostname==='appassets.androidplatform.net'&&!!document.querySelector('meta[name="paddock-native-token"]')));}

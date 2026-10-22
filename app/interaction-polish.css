@@ -6,9 +6,9 @@
 ::view-transition-group(paddock-stage){animation-duration:.52s;animation-timing-function:cubic-bezier(.2,.72,.2,1)}
 ::view-transition-old(paddock-stage){animation:stage-depart .28s ease-in both;mix-blend-mode:normal;transform-origin:50% 20%}
 ::view-transition-new(paddock-stage){animation:stage-reveal .52s cubic-bezier(.16,.8,.2,1) both;mix-blend-mode:normal;transform-origin:50% 20%}
-html[data-page-transition=active] .route-content{animation:none}
-@keyframes stage-depart{to{opacity:0;transform:translateX(calc(var(--route-travel,46px)*-.48)) scale(.965);filter:blur(3px)}}
-@keyframes stage-reveal{from{opacity:0;transform:translateX(var(--route-travel,46px)) scale(.98);filter:blur(4px)}65%{opacity:1;filter:blur(0)}to{opacity:1;transform:none;filter:blur(0)}}
+html[data-motion-engine=native] .route-content,html[data-motion-engine=native] .rank-list,html[data-motion-engine=native] .rank-row,html[data-motion-engine=native] .explore-card{animation:none}
+@keyframes stage-depart{to{opacity:0;transform:translateX(calc(var(--route-travel,46px)*-.48)) scale(.985)}}
+@keyframes stage-reveal{from{opacity:0;transform:translateX(var(--route-travel,46px)) scale(.99)}to{opacity:1;transform:none}}
 .app-shell .route-content{animation-duration:.42s;animation-timing-function:cubic-bezier(.16,.8,.2,1)}
 .rank-list .rank-row,.explore-card-grid .explore-card{animation:item-rise .38s cubic-bezier(.18,.8,.2,1) both}
 .rank-list .rank-row:nth-child(2),.explore-card-grid .explore-card:nth-child(2){animation-delay:35ms}.rank-list .rank-row:nth-child(3),.explore-card-grid .explore-card:nth-child(3){animation-delay:65ms}.rank-list .rank-row:nth-child(4),.explore-card-grid .explore-card:nth-child(4){animation-delay:90ms}.rank-list .rank-row:nth-child(5),.explore-card-grid .explore-card:nth-child(5){animation-delay:115ms}.explore-card-grid .explore-card:nth-child(6){animation-delay:140ms}
@@ -27,3 +27,21 @@ html[data-page-transition=active] .route-content{animation:none}
 @keyframes glass-liquid-travel{0%{transform:scale(.92,1.07);filter:brightness(1.08)}34%{transform:scale(1.25,.86);filter:brightness(1.17)}62%{transform:scale(.95,1.07)}82%{transform:scale(1.025,.975)}100%{transform:scale(1);filter:brightness(1)}}
 @media(max-width:700px){.app-shell .rank-open-arrow{padding:4px;width:12px;height:12px;flex:none}.app-shell .rank-person{gap:6px}.podium-driver>svg{top:35px;right:0}}
 @media(prefers-reduced-motion:reduce){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}.app-shell .route-content,.rank-list .rank-row,.explore-card-grid .explore-card,.driver-tab-panel,.liquid-nav .glass-liquid{animation:none}.liquid-nav .glass-lens{transition:none}.app-shell .rank-person:hover .rank-open-arrow{transform:none}}
+
+/* Quiet controls sit together in the lower right, leaving the model unobstructed. */
+.app-shell .scene-reset,.app-shell .scene-maximize{position:absolute;inset:auto 12px 12px auto;display:grid;place-items:center;width:31px;height:31px;padding:0;border:1px solid color-mix(in srgb,var(--accent) 12%,transparent);border-radius:50%;background:color-mix(in srgb,var(--bg) 45%,transparent);color:color-mix(in srgb,var(--text) 65%,transparent);box-shadow:none;opacity:.7;z-index:2;cursor:pointer}
+.app-shell .circuit-preview .scene-reset{right:50px}.app-shell .scene-reset:hover,.app-shell .scene-maximize:hover{opacity:1;background:var(--panel);color:var(--accent)}
+.race-car-art{display:block;width:100%;height:auto;color:var(--accent)}
+.discovery-feature{isolation:isolate}.discovery-racecar{position:absolute;width:68%;right:-8%;bottom:-1%;z-index:-1;color:var(--section-color);opacity:.22;transform:rotate(-7deg);transition:transform .45s ease,opacity .45s}
+.discovery-feature:hover .discovery-racecar{transform:rotate(-7deg) translateX(-6px);opacity:.32}
+.github-star{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);padding:9px 13px;border-radius:20px;color:var(--text);font-size:11px;white-space:nowrap}.github-star svg:last-child{color:var(--gold)}
+.personal-about{flex-wrap:wrap;gap:14px}.native-widget-pin{display:none}html[data-native=android] .native-widget-pin{display:inline-flex;margin:12px 0}
+:root[data-theme=carbon]{--bg:#141619;--panel:#202327;--panel-2:#2c3036;--line:#3d434c;--text:#f1f3f5;--muted:#a8b0bb;color-scheme:dark}
+:root[data-theme=burgundy]{--bg:#221219;--panel:#331d27;--panel-2:#462735;--line:#5f3949;--text:#fff2f6;--muted:#c7a4b2;color-scheme:dark}
+:root[data-theme=ocean]{--bg:#0c1d25;--panel:#15303b;--panel-2:#1d414d;--line:#305563;--text:#edfaff;--muted:#9cbec9;color-scheme:dark}
+:root[data-theme=sand],:root[data-theme=ice]{--text:#27313a;--muted:#5c6874;--tone-orange:#98500d;--tone-blue:#285fa3;--tone-purple:#7748a9;--tone-rose:#ad3e60;--tone-gold:#80620b;--tone-mint:#087c67;color-scheme:light;--accent-ink:white}
+:root[data-theme=sand]{--bg:#f4efe6;--panel:#fffbf5;--panel-2:#eae2d6;--line:#d9cdbb}
+:root[data-theme=ice]{--bg:#edf4f8;--panel:#faffff;--panel-2:#dfebf2;--line:#c6d7e1}
+[data-accent=cyan]{--accent:#65d9ed;--accent-ink:#092c33}[data-accent=lime]{--accent:#c9e979;--accent-ink:#24310b}[data-accent=pink]{--accent:#efa4d3;--accent-ink:#3b102c}[data-accent=silver]{--accent:#b6c6d5;--accent-ink:#182a38}[data-accent=coral]{--accent:#ff9c82;--accent-ink:#3c160c}[data-accent=violet]{--accent:#a99bff;--accent-ink:#1e1444}
+:root:is([data-theme=light],[data-theme=sand],[data-theme=ice])[data-accent=cyan]{--accent:#08768c}:root:is([data-theme=light],[data-theme=sand],[data-theme=ice])[data-accent=lime]{--accent:#547014}:root:is([data-theme=light],[data-theme=sand],[data-theme=ice])[data-accent=pink]{--accent:#a33378}:root:is([data-theme=light],[data-theme=sand],[data-theme=ice])[data-accent=silver]{--accent:#4d6378}:root:is([data-theme=light],[data-theme=sand],[data-theme=ice])[data-accent=coral]{--accent:#a94729}:root:is([data-theme=light],[data-theme=sand],[data-theme=ice])[data-accent=violet]{--accent:#6550b7}
+:root:is([data-theme=sand],[data-theme=ice])[data-accent=mint]{--accent:#087a65}:root:is([data-theme=sand],[data-theme=ice])[data-accent=red]{--accent:#bc283c}:root:is([data-theme=sand],[data-theme=ice])[data-accent=orange]{--accent:#a34e00}:root:is([data-theme=sand],[data-theme=ice])[data-accent=blue]{--accent:#265dc1}:root:is([data-theme=sand],[data-theme=ice])[data-accent=purple]{--accent:#7647b8}:root:is([data-theme=sand],[data-theme=ice])[data-accent=gold]{--accent:#806314}

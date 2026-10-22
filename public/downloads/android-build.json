@@ -1,9 +1,12 @@
 {
-  "version": "0.5.0",
+  "validation": "Java compile, v2/v3 signature and ZIP alignment passed; Android device acceptance pending",
+  "bytes": 95447,
+  "version": "0.6.0",
+  "webOrigin": "https://f1.xiaodinglab.com",
+  "channel": "preview",
+  "updateMode": "Web content follows production; native updates require user-confirmed APK installation",
   "package": "dev.paddock.pocket",
-  "sha256": "32A1DF2A3F5D4743C2D63D971541050165CFD6B2EE75E3CEDEE4F136D94D7C99",
-  "bytes": 20575679,
-  "builtAt": "2026-10-21T11:56:17.8231112Z",
-  "debuggable": false,
-  "validation": "Shared website source/assets, compilation, v2/v3 signature and ZIP alignment passed. Weather cadence/date matching/device detection tests and responsive browser checks passed. New isolated native live window/script injection, Tencent app launch and real video playback not yet runtime-verified on Android or physical iOS."
+  "sha256": "358C31F7F6520D3D9BF17ECF9151E83119368A4F86466B8AB5410238CC5DC290",
+  "download": "/downloads/Paddock-Pocket-0.6.0.apk",
+  "versionCode": 6
 }

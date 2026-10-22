@@ -29,8 +29,12 @@ export class AccountService {
       }
       case 'register': {
         const body = actionSchemas.register.parse(input);
-        try { await repo.register(body.email, body.password, body.name, this.config.baseUrl + '/auth/confirm'); }
-        catch (error) { if (!(error instanceof AccountError && error.code === 'ACCOUNT_EXISTS')) throw error; }
+        this.cookies.setRemember(true);
+        this.recovery.clear();
+        try { const user = await repo.register(body.email, body.password, body.name, this.config.baseUrl + '/auth/confirm');
+          if (user?.verified) return { user: { id: user.id, email: user.email, name: user.name }, next: safeReturnPath(body.next) };
+        }
+        catch (error) { if (!(error instanceof AccountError && error.code === 'ACCOUNT_EXISTS')) throw error; return { next:'/login', message:'请登录账号，或通过邮箱找回密码。' }; }
         return { message: '请检查邮箱，按照邮件提示完成验证；如果已注册，请直接登录或找回密码。' };
       }
       case 'resend': {

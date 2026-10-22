@@ -114,7 +114,7 @@ Account features use Supabase Auth Free and Resend Free through the application'
 ## Platform and data notes
 
 - The web application supports phones, tablets and desktop browsers. On iPhone and iPad, it can be added to the Home Screen through Safari.
-- The Android APK is a preview release with a separately maintained native project. This repository focuses on the web application and its server deployment.
+- The Android 0.6.0 online preview uses the production website and adds a home-screen widget and APK update checks. [Native sources](native/android) and [delivery details](docs/refinement-0.6.0.md) are maintained in this repository.
 - A native Apple Watch application, watch-face complications and Smart Stack widgets are not yet available.
 - When a race-data request fails, the interface displays an available cache or snapshot with its timestamp. Historical snapshots are not labeled as live data.
 - Weather refreshes while the page is in the foreground and online, with more frequent updates around sessions and lower frequency outside those periods.

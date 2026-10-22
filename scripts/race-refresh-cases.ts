@@ -5,6 +5,12 @@ import { providerError } from '../lib/auth/SupabaseAccountRepository';
 import { AuthApiError } from '@supabase/supabase-js';
 import { AccountError } from '../lib/auth/contracts';
 import { createPageMotion } from '../lib/page-motion';
+import { pruneClientCache } from '../lib/client-cache';
+
+const dataCache=new Map([['paddock-cache',JSON.stringify({storedAt:1})],['paddock-weather-v2-old',JSON.stringify({fetchedAt:1})],['paddock-weather-v2-fresh',JSON.stringify({fetchedAt:100000000})],['paddock-theme','"forest"'],['paddock-following-v1','{"driverIds":["a"]}'],['sb-account','private-session-fixture']]);
+pruneClientCache({get length(){return dataCache.size;},key:i=>[...dataCache.keys()][i],getItem:k=>dataCache.get(k)||null,removeItem:k=>{dataCache.delete(k);}},100000100);
+assert(!dataCache.has('paddock-cache')&&!dataCache.has('paddock-weather-v2-old'),'Expired disposable data is pruned');
+assert(dataCache.has('paddock-weather-v2-fresh')&&dataCache.has('paddock-following-v1')&&dataCache.has('paddock-theme')&&dataCache.has('sb-account'),'Fresh weather, user settings and sessions survive cleanup');
 
 let plainCommits=0;
 const plainMotion=createPageMotion({enabled:()=>false,start:()=>{throw Error('must not start');},signal:()=>{}});

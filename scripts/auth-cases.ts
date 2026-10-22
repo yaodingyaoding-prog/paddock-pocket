@@ -23,7 +23,7 @@ class FakeRepository implements AccountRepository {
   calls: string[] = [];
   async current() { return this.user; }
   async login(email: string, password: string) { this.calls.push('login'); if (password === 'wrong') throw new AccountError('INVALID_CREDENTIALS', '邮箱或密码不正确。', 401); this.user = { ...user, email }; return this.user; }
-  async register() { this.calls.push('register'); }
+  async register(): Promise<AccountIdentity | null> { this.calls.push('register'); return null; }
   async resend() { this.calls.push('resend'); }
   async recover() { this.calls.push('recover'); }
   async verify() { this.calls.push('verify'); this.user = user; return user; }
@@ -99,10 +99,15 @@ response = await account.controller.post(post('register', { name: 'Fan', email: 
 check(response.status === 400, 'Five-character registration password is rejected before provider call');
 response = await account.controller.post(post('register', { name: 'Fan', email: 'fan@example.test', password: '123456' }), 'register');
 check(response.status === 200 && account.repository.calls.includes('register'), 'Six-character registration password reaches the repository');
+const instant = setup();
+instant.repository.register = async () => user;
+response = await instant.controller.post(post('register', { name:'Fan', email:'fan@example.test', password:'123456', next:'/#profile' }), 'register');
+check(response.status === 200 && (await response.json() as {next:string}).next === '/#profile', 'Auto-confirm registration enters the app immediately');
+check(!instant.repository.calls.includes('logout'), 'Auto-confirm signup preserves its provider session');
 const duplicate = setup();
 duplicate.repository.register = async () => { throw new AccountError('ACCOUNT_EXISTS', 'existing', 400); };
 response = await duplicate.controller.post(post('register', { name: 'Fan', email: 'fan@example.test', password: '123456789012' }), 'register');
-check(response.status === 200 && (await response.json() as { message: string }).message.includes('请检查邮箱'), 'Registration response does not disclose an existing account');
+check(response.status === 200 && (await response.json() as { next: string }).next==='/login', 'Duplicate signup returns a generic login route without exposing account details');
 response = await account.controller.post(new Request(origin + '/api/auth/login', { method: 'POST', headers: { origin, 'content-type': 'application/json' }, body: '{broken' }), 'login');
 check(response.status === 400, 'Malformed JSON produces a controlled error');
 response = await account.controller.post(post('login', { oversized: 'x'.repeat(9000) }), 'login');
@@ -159,6 +164,10 @@ const fixtureFetch: typeof fetch = async input => {
   throw new Error('Unexpected fixture endpoint');
 };
 const sdk = new SupabaseAccountRepository(config, sdkCookies, fixtureFetch);
+const signupCookies = new AccountCookies(new Request(origin + '/'), config);
+const signupSdk = new SupabaseAccountRepository(config,signupCookies,async () => Response.json({access_token:access,refresh_token:'signup-fixture-refresh',token_type:'bearer',expires_in:3600,user:sdkUser}));
+check((await signupSdk.register('fan@example.test','123456','Fan',origin+'/auth/confirm'))?.id===sdkUser.id,'Provider auto-confirm returns the new signed-in account');
+check(signupCookies.all().some(item=>item.name.startsWith('sb-')),'Instant registration retains its HttpOnly cookie session');
 const sdkIdentity = await sdk.login('fan@example.test', 'fixture-password-123');
 const sdkResponse = sdkCookies.apply(Response.json({ user: sdkIdentity }));
 check(sdkIdentity.verified && sdkCalls.some(url => url.includes('grant_type=password')), 'Official SDK calls the password endpoint and checks verified email');
