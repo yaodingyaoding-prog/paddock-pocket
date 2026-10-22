@@ -55,7 +55,9 @@ function DriverPortrait({driver}:{driver:Row}) {
   useEffect(()=>setFailed(false),[portrait?.file]);
   return <span className={'driver-portrait '+(portrait?.historical?'historical-portrait':'')}>{portrait&&!failed?<img src={portrait.file} alt={driver.driverName+'的头像'} loading="lazy" onError={()=>setFailed(true)}/>:<UserRound aria-label="头像暂缺"/>}</span>;
 }
-function Countdown({ date, now }: { date?: string; now: number }) {
+function Countdown({ date }: { date?: string }) {
+  const [now,setNow]=useState(0);
+  useEffect(()=>{const sync=()=>{if(!document.hidden)setNow(Date.now());};sync();const timer=setInterval(sync,1000);document.addEventListener('visibilitychange',sync);return()=>{clearInterval(timer);document.removeEventListener('visibilitychange',sync);};},[date]);
   const remaining = date && now ? Math.max(0, new Date(date).getTime() - now) : 0;
   const values = [Math.floor(remaining / 86400000), Math.floor(remaining / 3600000) % 24, Math.floor(remaining / 60000) % 60, Math.floor(remaining / 1000) % 60];
   return <div className="countdown" aria-label="开赛倒计时">{values.map((v, i) => <div key={i}><strong>{now ? String(v).padStart(2, '0') : '—'}</strong><span>{['天', '小时', '分钟', '秒'][i]}</span></div>)}</div>;
@@ -123,9 +125,15 @@ export default function App() {
     try { pruneClientCache(localStorage); } catch {}
     const cached = safeGet('paddock-cache', null);
     if (cached?.season === snapshotSeason && cached.data?.next && cached.data?.races) { setData(cached.data); setMeta(cached.meta); }
-    const id = setInterval(() => setNow(Date.now()), 1000);
-    return () => clearInterval(id);
+    const id = setInterval(() => setNow(Date.now()), 60000);
+    const syncClock=()=>{if(!document.hidden)setNow(Date.now());};document.addEventListener('visibilitychange',syncClock);
+    return () => {clearInterval(id);document.removeEventListener('visibilitychange',syncClock);};
   }, []);
+  useEffect(()=>{
+    const time=Date.now(),boundary=sessions.flatMap(s=>[+new Date(s.startDate),+new Date(s.endDate)]).filter(at=>Number.isFinite(at)&&at>time).sort((a,b)=>a-b)[0];
+    if(!boundary||boundary-time>60000)return;
+    const timer=setTimeout(()=>setNow(Date.now()),boundary-time+30);return()=>clearTimeout(timer);
+  },[now,race?.id,race?.schedule]);
   useEffect(() => { document.documentElement.dataset.theme = theme; document.documentElement.dataset.native = /PaddockPocket\//.test(navigator.userAgent)?'android':'web'; }, [theme]);
   useEffect(() => { document.documentElement.dataset.accent = accent; }, [accent]);
   useEffect(() => { if (!toast) return; const t = setTimeout(() => setToast(''), 3500); return () => clearTimeout(t); }, [toast]);
@@ -186,7 +194,7 @@ export default function App() {
       {tab === 'schedule' && !detail && <>
         <div className="schedule-toolbar"><div className="segmented"><button className={!raceList ? 'selected' : ''} onClick={() => setRaceList(false)}>比赛周末</button><button className={raceList ? 'selected' : ''} onClick={() => setRaceList(true)}>完整赛历 <span>{races.length || '—'}</span></button></div>{selected && <button className="text-button" onClick={() => {setSelected(null);setRaceList(false);}}>返回下一站 <CircleEllipsis size={15}/></button>}</div>
         {raceList ? <section className="calendar-grid" aria-label="完整赛历">{races.length ? races.map(r => <button key={r.id} className={'race-tile ' + (r.id === race?.id ? 'chosen' : '')} onClick={() => {setSelected(r);setRaceList(false);}}><span className="round">ROUND {String(r.round).padStart(2,'0')}</span><span className={'status-pill ' + (r.status === 'Finished' ? 'muted' : '')}>{r.status === 'Finished' ? '已完赛' : '待发车'}</span><h3>{r.name}</h3><p>{r.circuit?.place || r.circuit?.name}</p><div><span>{dateParts(r.startDate, timezone, {month:'2-digit',day:'2-digit'})} — {dateParts(r.endDate, timezone, {month:'2-digit',day:'2-digit'})}</span><CircleEllipsis size={19}/></div></button>) : <div className="empty">{busy ? '正在载入赛历…' : '这个赛季暂时没有赛历数据。'}</div>}</section> : race ? <div className="weekend-dashboard">
-          <RaceHero race={race} year={year} selected={!!selected} dateLabel={dateParts(race.startDate, timezone, {month:'long',day:'numeric'})+' — '+dateParts(race.endDate, timezone, {month:'long',day:'numeric'})} sessionLabel={nextSession?sessionName(nextSession):''} countdown={nextSession?<Countdown date={nextSession.startDate} now={now}/>:null}/>
+          <RaceHero race={race} year={year} selected={!!selected} dateLabel={dateParts(race.startDate, timezone, {month:'long',day:'numeric'})+' — '+dateParts(race.endDate, timezone, {month:'long',day:'numeric'})} sessionLabel={nextSession?sessionName(nextSession):''} countdown={nextSession?<Countdown date={nextSession.startDate}/>:null}/>
           <div className="weather-slot"><WeatherCard race={race} timezone={timezone}/></div><div className="weekend-detail-grid"><section className="schedule-section"><PanelTitle title="赛事时间安排" eyebrow="THE WEEKEND"><label className="zone-select"><Clock3 size={13}/><TimezonePicker label="时间显示方式" value={timezone} localTimezone={localTimezone} onChange={value=>{setTimezone(value);savePreference('timezone',value);}}/></label></PanelTitle>{Object.entries(dateGroups).map(([day, items]) => <div className="day-group" key={day}><h3>{day}</h3>{items.map(s => <div className={'session-row ' + (s.id === nextSession?.id ? 'up-next' : '')} key={s.id}><button className="session-main" onClick={() => viewResults(s)}><span className={'session-mark ' + (/Race/.test(s.type) ? 'race' : /Qualifying/.test(s.type) ? 'quali' : '')}>{s.sessionShortName}</span><div><strong>{sessionName(s)}</strong><span>{+new Date(s.startDate) > now ? '即将开始' : +new Date(s.endDate) > now ? '场次进行中' : '查看比赛成绩'}</span></div><time>{dateParts(s.startDate, timezone, {hour:'2-digit',minute:'2-digit',hour12:false})}</time></button><button className="calendar-button" aria-label={'添加' + sessionName(s) + '到日历'} onClick={() => calendar(s)}><Bell size={17}/></button></div>)}</div>)}</section>
         <aside className="weekend-secondary"><section className="card circuit-brief tone-mint"><div className="panel-title"><div><p className="eyebrow">KNOW THE CIRCUIT</p><h2>赛道概览</h2></div><Flag size={20}/></div><h3>{race.circuit?.name}</h3><div className="circuit-brief-stats"><div><strong>{race.trackLength || (race.circuit?.trackSize?race.circuit.trackSize/1000:'—')}<small> km</small></strong><span>单圈长度</span></div><div><strong>{race.scheduledLaps || '—'}<small> 圈</small></strong><span>正赛圈数</span></div></div><SectionLink id="circuit" onOpen={openDetail} compact/></section>
           <section className="card"><PanelTitle title="本站轮胎" eyebrow="ON THE RUBBER"/><div className="tyres">{(race.tyreSet?.tyres || []).filter((t: Row) => !t.isWet).map((t: Row) => <div key={t.type}><span className={'tyre ' + t.type.toLowerCase()}>{t.compound || t.type[0]}</span><small>{({Hard:'硬胎',Medium:'中性胎',Soft:'软胎'} as Record<string,string>)[t.type] || t.type}</small></div>)}</div>{!race.tyreSet?.tyres?.length && <p className="muted-text">轮胎配方尚未公布</p>}</section>

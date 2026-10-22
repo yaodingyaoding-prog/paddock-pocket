@@ -5,6 +5,7 @@ import { providerError } from '../lib/auth/SupabaseAccountRepository';
 import { AuthApiError } from '@supabase/supabase-js';
 import { AccountError } from '../lib/auth/contracts';
 import { createPageMotion } from '../lib/page-motion';
+import { contentTransition } from '../lib/content-motion';
 import { pruneClientCache } from '../lib/client-cache';
 
 const dataCache=new Map([['paddock-cache',JSON.stringify({storedAt:1})],['paddock-weather-v2-old',JSON.stringify({fetchedAt:1})],['paddock-weather-v2-fresh',JSON.stringify({fetchedAt:100000000})],['paddock-theme','"forest"'],['paddock-following-v1','{"driverIds":["a"]}'],['sb-account','private-session-fixture']]);
@@ -28,6 +29,19 @@ const rejectedMotion=createPageMotion({enabled:()=>true,signal:()=>{},start:()=>
 rejectedMotion(()=>recovered++);
 await new Promise<void>(resolve=>queueMicrotask(()=>queueMicrotask(resolve)));
 assert.equal(recovered,1,'An asynchronously interrupted capture still commits navigation');
+
+const phases:Array<{finish:()=>void;reject:(e:Error)=>void}>=[];
+let liveCommits=0,committedStyles=0;
+const surface={animate:()=>{let finish!:()=>void,reject!:(e:Error)=>void;const finished=new Promise<void>((resolve,fail)=>{finish=resolve;reject=fail;});phases.push({finish,reject});return {finished,cancel:()=>reject(Error('superseded')),commitStyles:()=>{committedStyles++;}};}};
+const interrupted=contentTransition(()=>liveCommits++,()=>surface,18);
+interrupted.skipTransition();await interrupted.finished;
+assert.equal(liveCommits,0,'Cancelling an outgoing pane cannot commit its obsolete destination');
+assert.equal(committedStyles,1,'Interruption preserves the current visual position before cancellation');
+const live=contentTransition(()=>liveCommits++,()=>surface,18);
+assert.equal(liveCommits,0,'Outgoing content remains live until its short exit completes');
+phases.at(-1)!.finish();await Promise.resolve();
+assert.equal(liveCommits,1,'The route commits between exit and entrance, once');
+phases.at(-1)!.finish();await live.finished;
 
 const old = readFollowing(null, 'driver-a');
 assert.deepEqual(old, { driverIds: ['driver-a'], teamIds: [] });

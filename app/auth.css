@@ -43,7 +43,7 @@
 @media(prefers-reduced-motion:reduce){.auth-shell *,.auth-main:before{animation:none!important;will-change:auto!important}.auth-motion-toggle{display:none}.auth-speed-streak{display:none}}
 .auth-machine{position:relative;width:100%;margin-top:clamp(25px,7vh,90px);padding:20px 0 22px;color:#68e4c2;isolation:isolate}
 .auth-story-bottom{margin-top:auto}
-.auth-machine .race-car-art{color:#68e4c2;position:relative;z-index:1;animation:auth-machine-glide 6s ease-in-out infinite alternate;filter:drop-shadow(0 14px 25px #0004)}
+.auth-machine .race-car-art{display:block;width:110%;height:auto;max-width:none;margin-left:-5%;object-fit:contain;position:relative;z-index:1;animation:auth-machine-glide 8s ease-in-out infinite alternate}
 .auth-machine-number{position:absolute;right:5%;top:-12%;font:700 clamp(110px,13vw,220px)/1 'Barlow Condensed',sans-serif;color:#83d9c00a;letter-spacing:-9px}
 .auth-start-lights{display:flex;gap:8px;justify-content:center;margin:6px 0 12px}.auth-start-lights i{height:6px;width:22px;border-radius:2px;background:#76e5c7;animation:auth-start-pulse 4s ease-in-out infinite}
 @keyframes auth-machine-glide{from{transform:translate3d(-7px,0,0)}to{transform:translate3d(8px,-6px,0)}}

@@ -30,22 +30,25 @@ function readRoute(){
 }
 export function usePaddockNavigation(){
  const [route,setRoute]=useState<{tab:NavTab;detail:DetailPage|'';driverId:string;driverSeason:string;driverFrom:DriverReturnTab}>({tab:'schedule',detail:'',driverId:'',driverSeason:'',driverFrom:'rankings'});
- const currentHash=useRef('');
- useEffect(()=>{currentHash.current=window.location.hash;setRoute(readRoute());const sync=()=>{if(currentHash.current===window.location.hash)return;currentHash.current=window.location.hash;transitionPage(()=>{setRoute(readRoute());window.scrollTo({top:0});},'back');};window.addEventListener('hashchange',sync);window.addEventListener('popstate',sync);return()=>{window.removeEventListener('hashchange',sync);window.removeEventListener('popstate',sync);};},[]);
+ const currentHash=useRef(''),pendingHash=useRef('');
+ useEffect(()=>{currentHash.current=window.location.hash;setRoute(readRoute());const sync=()=>{if(currentHash.current===window.location.hash)return;currentHash.current=window.location.hash;pendingHash.current='';transitionPage(()=>{setRoute(readRoute());window.scrollTo({top:0});},'back');};window.addEventListener('hashchange',sync);window.addEventListener('popstate',sync);return()=>{window.removeEventListener('hashchange',sync);window.removeEventListener('popstate',sync);};},[]);
  function navigate(tab:NavTab,detail:DetailPage|''=''){
   const hash='#'+tab+(detail?'/'+detail:'');
-  if(window.location.hash===hash){window.scrollTo({top:0});return;}
+  if(pendingHash.current===hash)return;
+  if(window.location.hash===hash&&!pendingHash.current){window.scrollTo({top:0});return;}
+  pendingHash.current=hash;
   const direction=(route.detail&&!detail&&route.tab===tab)||tabs.indexOf(tab)<tabs.indexOf(route.tab)?'back':'forward';
-  transitionPage(()=>{window.history.pushState(null,'',hash);currentHash.current=hash;setRoute({tab,detail,driverId:'',driverSeason:'',driverFrom:'rankings'});window.scrollTo({top:0});},direction);
+  transitionPage(()=>{if(window.location.hash!==hash)window.history.pushState(null,'',hash);currentHash.current=hash;pendingHash.current='';setRoute({tab,detail,driverId:'',driverSeason:'',driverFrom:'rankings'});window.scrollTo({top:0});},direction);
  }
  function openDriver(id:string,season:string,from:NavTab){
   const hash=driverRouteHash(id,season,from);
-  if(window.location.hash===hash)return;
-  transitionPage(()=>{window.history.pushState({paddockDriverEntry:true},'',hash);currentHash.current=hash;setRoute(readRoute());window.scrollTo({top:0});});
+  if(pendingHash.current===hash||window.location.hash===hash&&!pendingHash.current)return;
+  pendingHash.current=hash;
+  transitionPage(()=>{if(window.location.hash!==hash)window.history.pushState({paddockDriverEntry:true},'',hash);currentHash.current=hash;pendingHash.current='';setRoute(readRoute());window.scrollTo({top:0});});
  }
  function closeDriver(){
   if(window.history.state?.paddockDriverEntry)window.history.back();
-  else transitionPage(()=>{window.history.replaceState(null,'','#'+route.driverFrom);currentHash.current=window.location.hash;setRoute(readRoute());window.scrollTo({top:0});},'back');
+  else transitionPage(()=>{window.history.replaceState(null,'','#'+route.driverFrom);currentHash.current=window.location.hash;pendingHash.current='';setRoute(readRoute());window.scrollTo({top:0});},'back');
  }
  return {...route,setTab:(tab:NavTab)=>navigate(tab),openDetail:(id:DetailPage)=>navigate(detailPages[id].parent,id),openDriver,closeDriver};
 }
