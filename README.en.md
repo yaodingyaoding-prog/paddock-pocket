@@ -34,7 +34,7 @@ Paddock Pocket covers product design, interaction, engineering and delivery:
 | Live viewing | Five Star Sports links, Tencent Video web and app options, and device-specific script installation guidance |
 | Race replays | Bilibili and Tencent Video search links by season, Grand Prix and session, including races, qualifying, sprints and practice |
 | Discover and settings | Curated news, classic races, an F1 encyclopedia, rules, color themes and time-zone preferences |
-| Accounts (pending activation) | Email/password login, signup verification, password recovery, persistent sign-in and server-side access checks; production activation requires service configuration and real email validation |
+| Accounts | Email/password login, signup verification, password recovery, persistent sign-in and server-side access checks; the production site requires sign-in |
 
 Replay entries search third-party platforms using race keywords; the project does not host race videos. News consists of curated Chinese-language briefs. Race, telemetry and technical coverage depends on data published by upstream services. The English README documents the project; it does not imply that the application interface is fully translated.
 
@@ -104,7 +104,7 @@ The public address is displayed as `F1.xiaodinglab.com`. Domain names are case-i
 
 ### Free account services
 
-Account features use Supabase Auth Free and Resend Free through the application's own interface and same-origin routes. See the [setup and acceptance guide (Chinese)](docs/authentication-setup.md). `AUTH_MODE` defaults to `off`; set it to `required` only after email verification, password recovery and access-control acceptance checks pass. Quota exhaustion or service failures never trigger an automatic paid upgrade. The setup guide records free-tier limits and inactivity rules.
+Account features use Supabase Auth Free and Resend Free through the application's own interface and same-origin routes. See the [setup and acceptance guide (Chinese)](docs/authentication-setup.md). New deployments default to `AUTH_MODE=off`; set it to `required` only after email verification, password recovery and access-control acceptance checks pass. The production site now uses `required`. Quota exhaustion or service failures never trigger an automatic paid upgrade. The setup guide records free-tier limits and inactivity rules.
 
 ## Platform and data notes
 
