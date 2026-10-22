@@ -1,0 +1,29 @@
+/* Navigation snapshots animate outgoing and incoming pages, without delaying data requests. */
+#main{view-transition-name:paddock-stage}
+::view-transition{pointer-events:none}
+::view-transition-old(root){animation:none;opacity:0}
+::view-transition-new(root){animation:none}
+::view-transition-group(paddock-stage){animation-duration:.52s;animation-timing-function:cubic-bezier(.2,.72,.2,1)}
+::view-transition-old(paddock-stage){animation:stage-depart .28s ease-in both;mix-blend-mode:normal;transform-origin:50% 20%}
+::view-transition-new(paddock-stage){animation:stage-reveal .52s cubic-bezier(.16,.8,.2,1) both;mix-blend-mode:normal;transform-origin:50% 20%}
+html[data-page-transition=active] .route-content{animation:none}
+@keyframes stage-depart{to{opacity:0;transform:translateX(calc(var(--route-travel,46px)*-.48)) scale(.965);filter:blur(3px)}}
+@keyframes stage-reveal{from{opacity:0;transform:translateX(var(--route-travel,46px)) scale(.98);filter:blur(4px)}65%{opacity:1;filter:blur(0)}to{opacity:1;transform:none;filter:blur(0)}}
+.app-shell .route-content{animation-duration:.42s;animation-timing-function:cubic-bezier(.16,.8,.2,1)}
+.rank-list .rank-row,.explore-card-grid .explore-card{animation:item-rise .38s cubic-bezier(.18,.8,.2,1) both}
+.rank-list .rank-row:nth-child(2),.explore-card-grid .explore-card:nth-child(2){animation-delay:35ms}.rank-list .rank-row:nth-child(3),.explore-card-grid .explore-card:nth-child(3){animation-delay:65ms}.rank-list .rank-row:nth-child(4),.explore-card-grid .explore-card:nth-child(4){animation-delay:90ms}.rank-list .rank-row:nth-child(5),.explore-card-grid .explore-card:nth-child(5){animation-delay:115ms}.explore-card-grid .explore-card:nth-child(6){animation-delay:140ms}
+@keyframes item-rise{from{opacity:0;transform:translateY(15px) scale(.985)}to{opacity:1;transform:none}}
+.driver-tab-panel{animation:panel-turn .42s cubic-bezier(.16,.8,.2,1) both}
+@keyframes panel-turn{from{opacity:0;transform:translateY(18px);filter:blur(2px)}to{opacity:1;transform:none;filter:blur(0)}}
+.app-shell .rank-open-arrow{border:1px solid var(--line);border-radius:50%;box-sizing:content-box;padding:5px;color:var(--muted);background:color-mix(in srgb,var(--panel) 65%,transparent)}
+.app-shell .rank-person:hover .rank-open-arrow{transform:scale(1.1);color:var(--accent);border-color:var(--accent)}
+.podium-driver>svg{padding:4px;border:1px solid var(--line);border-radius:50%;box-sizing:content-box;background:var(--panel)}
+.app-shell .driver-profile-page .driver-overview-grid{grid-template-columns:minmax(0,1fr)}
+.app-shell .driver-profile-page .driver-overview-main{max-width:100%;min-width:0}
+.app-shell .liquid-nav{transition:box-shadow .25s,border-color .25s}
+.liquid-nav:has(button:active){box-shadow:0 15px 38px #0004,inset 0 1px 0 #ffffff60;border-color:color-mix(in srgb,var(--text) 35%,transparent)}
+.liquid-nav .glass-lens{transition:transform .58s cubic-bezier(.16,.82,.22,1.16)}
+.liquid-nav .glass-liquid{animation:glass-liquid-travel .62s cubic-bezier(.18,.7,.22,1) both}
+@keyframes glass-liquid-travel{0%{transform:scale(.92,1.07);filter:brightness(1.08)}34%{transform:scale(1.25,.86);filter:brightness(1.17)}62%{transform:scale(.95,1.07)}82%{transform:scale(1.025,.975)}100%{transform:scale(1);filter:brightness(1)}}
+@media(max-width:700px){.app-shell .rank-open-arrow{padding:4px;width:12px;height:12px;flex:none}.app-shell .rank-person{gap:6px}.podium-driver>svg{top:35px;right:0}}
+@media(prefers-reduced-motion:reduce){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}.app-shell .route-content,.rank-list .rank-row,.explore-card-grid .explore-card,.driver-tab-panel,.liquid-nav .glass-liquid{animation:none}.liquid-nav .glass-lens{transition:none}.app-shell .rank-person:hover .rank-open-arrow{transform:none}}

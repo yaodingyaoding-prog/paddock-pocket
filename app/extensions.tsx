@@ -1,12 +1,12 @@
 'use client';
-import { CloudSun, Sun, CloudRain, CloudFog, Snowflake, CloudLightning, Wind, Droplets, Flag, RefreshCw, ExternalLink, Watch, Play, Trophy, Download } from 'lucide-react';
+import { CloudSun, Sun, CloudRain, CloudFog, Snowflake, CloudLightning, Wind, Droplets, Flag, RefreshCw, Link2, Watch, Play, Trophy, Download } from 'lucide-react';
 
 type Row = Record<string, any>;
 export {WeatherCard} from './weather';
 export {ViewingRoom} from './viewing-room';
 
 export function WatchGuide() {
- return <section className="card watch-guide"><div className="panel-title"><div><p className="eyebrow">APPS & WIDGETS</p><h2>设备支持</h2></div><Watch size={24}/></div><div className="android-download"><h3>Android</h3><p>赛程、积分与天气桌面组件</p><a className="text-button" download href="/downloads/Paddock-Pocket-0.5.0.apk"><Download size={16}/>下载 Android 预览版 · 0.5.0</a></div><details className="source-details"><summary>安装与兼容性</summary><p>Android 8.0 及以上；预览版通过 APK 安装。iPhone 与 iPad 可从 Safari 添加到主屏幕。Apple Watch 原生组件暂未提供。</p><a className="text-button" target="_blank" rel="noopener noreferrer" href="/downloads/android-build.json">版本与文件校验 <ExternalLink size={13}/></a></details></section>;
+ return <section className="card watch-guide"><div className="panel-title"><div><p className="eyebrow">APPS & WIDGETS</p><h2>设备支持</h2></div><Watch size={24}/></div><div className="android-download"><h3>Android</h3><p>赛程、积分与天气桌面组件</p><a className="text-button" download href="/downloads/Paddock-Pocket-0.5.0.apk"><Download size={16}/>下载 Android 预览版 · 0.5.0</a></div><details className="source-details"><summary>安装与兼容性</summary><p>Android 8.0 及以上；预览版通过 APK 安装。iPhone 与 iPad 可从 Safari 添加到主屏幕。Apple Watch 原生组件暂未提供。</p><a className="text-button" target="_blank" rel="noopener noreferrer" href="/downloads/android-build.json">版本与文件校验 <Link2 size={13}/></a></details></section>;
 }
 
 const classics = [
@@ -17,5 +17,5 @@ const classics = [
   {year:2020,name:'萨基尔大奖赛',source:'https://www.formula1.com/en/latest/article/sergio-perez-takes-sensational-maiden-win-in-sakhir-gp-as-tyre-issues-ruin.2TBf7rg5wpgELNALXJLRHV',tag:'布局 · 策略',copy:'高速外圈布局与复杂进站局势，组成独特的比赛。'},
 ];
 export function ClassicRaces() {
-  return <section className="classics-section"><div className="panel-title"><div><p className="eyebrow">THE REWATCH LIST</p><h2>值得再看一遍</h2></div><Trophy size={22}/></div><p className="intro-copy">编辑精选 · 雨战、逆转与经典攻防</p><div className="classic-list">{classics.map((r,i)=>{const q=`F1 ${r.year} ${r.name} 回放`;return <article className="card classic-race" key={r.year+r.name}><span className="classic-number">{String(i+1).padStart(2,'0')}</span><div><p className="eyebrow">{r.tag}</p><h3>{r.year} {r.name}</h3><p>{r.copy}</p><a className="classic-source" href={r.source} target="_blank" rel="noopener noreferrer">比赛回顾 <ExternalLink size={12}/></a><div className="classic-links"><a target="_blank" rel="noopener noreferrer" href={'https://search.bilibili.com/all?keyword='+encodeURIComponent(q)}>在 B 站搜索 <ExternalLink size={12}/></a><a target="_blank" rel="noopener noreferrer" href={'https://v.qq.com/x/search/?q='+encodeURIComponent(q)}>在腾讯搜索 <ExternalLink size={12}/></a></div></div></article>})}</div><p className="section-note">回放入口按比赛名称检索。</p></section>;
+  return <section className="classics-section"><div className="panel-title"><div><p className="eyebrow">THE REWATCH LIST</p><h2>值得再看一遍</h2></div><Trophy size={22}/></div><p className="intro-copy">编辑精选 · 雨战、逆转与经典攻防</p><div className="classic-list">{classics.map((r,i)=>{const q=`F1 ${r.year} ${r.name} 回放`;return <article className="card classic-race" key={r.year+r.name}><span className="classic-number">{String(i+1).padStart(2,'0')}</span><div><p className="eyebrow">{r.tag}</p><h3>{r.year} {r.name}</h3><p>{r.copy}</p><a className="classic-source" href={r.source} target="_blank" rel="noopener noreferrer">比赛回顾 <Link2 size={12}/></a><div className="classic-links"><a target="_blank" rel="noopener noreferrer" href={'https://search.bilibili.com/all?keyword='+encodeURIComponent(q)}>在 B 站搜索 <Link2 size={12}/></a><a target="_blank" rel="noopener noreferrer" href={'https://v.qq.com/x/search/?q='+encodeURIComponent(q)}>在腾讯搜索 <Link2 size={12}/></a></div></div></article>})}</div><p className="section-note">回放入口按比赛名称检索。</p></section>;
 }

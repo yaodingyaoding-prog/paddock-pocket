@@ -4,6 +4,24 @@ import { readFollowing, toggleFollowing } from '../lib/following';
 import { providerError } from '../lib/auth/SupabaseAccountRepository';
 import { AuthApiError } from '@supabase/supabase-js';
 import { AccountError } from '../lib/auth/contracts';
+import { createPageMotion } from '../lib/page-motion';
+
+let plainCommits=0;
+const plainMotion=createPageMotion({enabled:()=>false,start:()=>{throw Error('must not start');},signal:()=>{}});
+plainMotion(()=>plainCommits++);assert.equal(plainCommits,1,'Reduced-motion/unsupported browsers still navigate');
+const fallbackMotion=createPageMotion({enabled:()=>true,start:()=>{throw Error('capture unavailable');},signal:()=>{}});
+fallbackMotion(()=>plainCommits++);assert.equal(plainCommits,2,'A capture failure cannot block navigation');
+const callbacks:Array<()=>void>=[],finished:Array<()=>void>=[],commits:string[]=[];
+let skips=0;
+const rapidMotion=createPageMotion({enabled:()=>true,signal:()=>{},start:update=>{callbacks.push(update);return {ready:Promise.resolve(),finished:new Promise<void>(resolve=>finished.push(resolve)),skipTransition:()=>{skips++;}};}});
+rapidMotion(()=>commits.push('old'));rapidMotion(()=>commits.push('latest'));
+callbacks[0]();callbacks[1]();callbacks[1]();finished.forEach(resolve=>resolve());
+assert.deepEqual(commits,['latest'],'Rapid navigation commits only the most recent destination, once');assert.equal(skips,1);
+let recovered=0;
+const rejectedMotion=createPageMotion({enabled:()=>true,signal:()=>{},start:()=>({ready:Promise.reject(Error('snapshot rejected')),finished:Promise.reject(Error('transition interrupted')),skipTransition:()=>{}})});
+rejectedMotion(()=>recovered++);
+await new Promise<void>(resolve=>queueMicrotask(()=>queueMicrotask(resolve)));
+assert.equal(recovered,1,'An asynchronously interrupted capture still commits navigation');
 
 const old = readFollowing(null, 'driver-a');
 assert.deepEqual(old, { driverIds: ['driver-a'], teamIds: [] });

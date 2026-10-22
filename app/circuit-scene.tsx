@@ -1,6 +1,6 @@
 'use client';
 import {useEffect,useRef,useState} from 'react';
-import {Maximize2,RotateCcw,X,Move3D} from 'lucide-react';
+import {Maximize,RotateCcw,X,Move3D} from 'lucide-react';
 import models from '../lib/circuit-models.json';
 import images from '../lib/circuit-images.json';
 type Row=Record<string,any>;
@@ -37,5 +37,5 @@ export function CircuitPreview({circuit,interactive=false}:{circuit:Row;interact
  useEffect(()=>setOpen(false),[circuit?.id]);
  if(!entry)return <div className="track-pending"><Move3D/><small>赛道模型待补充</small></div>;
  const flat=images.circuits.find(c=>c.id===circuit.id);
- return <><div className={"circuit-preview"+(interactive?" inline-interactive":"")}><Scene file={entry.file} interactive={interactive}/><button className="scene-maximize" aria-label={"放大"+circuit.name+"3D赛道"} onClick={()=>setOpen(true)}><Maximize2 size={13}/>放大</button></div>{open&&<dialog ref={dialog} className="sheet circuit-viewer" onCancel={()=>setOpen(false)}><div className="sheet-head"><div><p className="eyebrow">CIRCUIT IN THREE DIMENSIONS</p><h2>{circuit.name}</h2></div><button className="icon-button" aria-label="关闭" onClick={()=>setOpen(false)}><X size={21}/></button></div><div className="sheet-body"><Scene file={entry.file} large/><p className="section-note">拖动旋转 · 双指缩放 · 依据赛道坐标重建立体轮廓，模型不包含实际海拔起伏。</p>{flat&&<details className="flat-track"><summary>查看详细平面布局</summary><img src={flat.file} alt={circuit.name+'详细布局'}/><small>现用布局 · © Formula 1</small></details>}</div></dialog>}</>;
+ return <><div className={"circuit-preview"+(interactive?" inline-interactive":"")}><Scene file={entry.file} interactive={interactive}/><button className="scene-maximize" aria-label={"放大"+circuit.name+"3D赛道"} onClick={()=>setOpen(true)}><Maximize size={13}/>放大</button></div>{open&&<dialog ref={dialog} className="sheet circuit-viewer" onCancel={()=>setOpen(false)}><div className="sheet-head"><div><p className="eyebrow">CIRCUIT IN THREE DIMENSIONS</p><h2>{circuit.name}</h2></div><button className="icon-button" aria-label="关闭" onClick={()=>setOpen(false)}><X size={21}/></button></div><div className="sheet-body"><Scene file={entry.file} large/><p className="section-note">拖动旋转 · 双指缩放 · 依据赛道坐标重建立体轮廓，模型不包含实际海拔起伏。</p>{flat&&<details className="flat-track"><summary>查看详细平面布局</summary><img src={flat.file} alt={circuit.name+'详细布局'}/><small>现用布局 · © Formula 1</small></details>}</div></dialog>}</>;
 }

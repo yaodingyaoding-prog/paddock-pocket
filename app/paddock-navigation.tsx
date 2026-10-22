@@ -1,6 +1,7 @@
 'use client';
-import {useEffect,useState} from 'react';
-import {Activity,ArrowUpRight,BookOpen,ChevronRight,Clapperboard,Flag,Map,Newspaper,Play,Settings2,Trophy} from 'lucide-react';
+import {useEffect,useRef,useState} from 'react';
+import { Activity, CircleEllipsis, BookOpen, Clapperboard, Flag, Map, Newspaper, Play, Settings2, Trophy } from 'lucide-react';
+import { transitionPage } from './page-motion';
 import { driverRouteHash, parseDriverRoute, type DriverReturnTab } from '../lib/driver-route';
 
 export type NavTab='schedule'|'rankings'|'widgets'|'discover'|'profile';
@@ -28,30 +29,32 @@ function readRoute(){
 }
 export function usePaddockNavigation(){
  const [route,setRoute]=useState<{tab:NavTab;detail:DetailPage|'';driverId:string;driverSeason:string;driverFrom:DriverReturnTab}>({tab:'schedule',detail:'',driverId:'',driverSeason:'',driverFrom:'rankings'});
- useEffect(()=>{const sync=()=>{setRoute(readRoute());window.scrollTo({top:0});};sync();window.addEventListener('hashchange',sync);window.addEventListener('popstate',sync);return()=>{window.removeEventListener('hashchange',sync);window.removeEventListener('popstate',sync);};},[]);
+ const currentHash=useRef('');
+ useEffect(()=>{currentHash.current=window.location.hash;setRoute(readRoute());const sync=()=>{if(currentHash.current===window.location.hash)return;currentHash.current=window.location.hash;transitionPage(()=>{setRoute(readRoute());window.scrollTo({top:0});},'back');};window.addEventListener('hashchange',sync);window.addEventListener('popstate',sync);return()=>{window.removeEventListener('hashchange',sync);window.removeEventListener('popstate',sync);};},[]);
  function navigate(tab:NavTab,detail:DetailPage|''=''){
   const hash='#'+tab+(detail?'/'+detail:'');
-  if(window.location.hash!==hash)window.history.pushState(null,'',hash);
-  setRoute({tab,detail,driverId:'',driverSeason:'',driverFrom:'rankings'});window.scrollTo({top:0});
+  if(window.location.hash===hash){window.scrollTo({top:0});return;}
+  const direction=(route.detail&&!detail&&route.tab===tab)||tabs.indexOf(tab)<tabs.indexOf(route.tab)?'back':'forward';
+  transitionPage(()=>{window.history.pushState(null,'',hash);currentHash.current=hash;setRoute({tab,detail,driverId:'',driverSeason:'',driverFrom:'rankings'});window.scrollTo({top:0});},direction);
  }
  function openDriver(id:string,season:string,from:NavTab){
   const hash=driverRouteHash(id,season,from);
-  if(window.location.hash!==hash)window.history.pushState({paddockDriverEntry:true},'',hash);
-  setRoute(readRoute());window.scrollTo({top:0});
+  if(window.location.hash===hash)return;
+  transitionPage(()=>{window.history.pushState({paddockDriverEntry:true},'',hash);currentHash.current=hash;setRoute(readRoute());window.scrollTo({top:0});});
  }
  function closeDriver(){
   if(window.history.state?.paddockDriverEntry)window.history.back();
-  else {window.history.replaceState(null,'','#'+route.driverFrom);setRoute(readRoute());window.scrollTo({top:0});}
+  else transitionPage(()=>{window.history.replaceState(null,'','#'+route.driverFrom);currentHash.current=window.location.hash;setRoute(readRoute());window.scrollTo({top:0});},'back');
  }
  return {...route,setTab:(tab:NavTab)=>navigate(tab),openDetail:(id:DetailPage)=>navigate(detailPages[id].parent,id),openDriver,closeDriver};
 }
 export function SectionLink({id,onOpen,compact=false}:{id:DetailPage;onOpen:(id:DetailPage)=>void;compact?:boolean}){
  const p=detailPages[id],Icon=p.Icon;
- return <button className={'section-link tone-'+p.tone+(compact?' compact-link':'')} onClick={()=>onOpen(id)}><span className="section-icon"><Icon size={21}/></span><span className="section-link-copy"><strong>{p.title}</strong><small>{compact?p.tag:p.copy}</small></span><ChevronRight size={17}/></button>;
+ return <button className={'section-link tone-'+p.tone+(compact?' compact-link':'')} onClick={()=>onOpen(id)}><span className="section-icon"><Icon size={21}/></span><span className="section-link-copy"><strong>{p.title}</strong><small>{compact?p.tag:p.copy}</small></span><CircleEllipsis size={17}/></button>;
 }
 export function DiscoverOverview({onOpen}:{onOpen:(id:DetailPage)=>void}){
  const entries:DetailPage[]=['replays','telemetry','technical','classics','encyclopedia','rules'];
- return <div className="discovery-overview"><div className="discovery-feature-grid"><button className="discovery-feature tone-orange" onClick={()=>onOpen('viewing')}><span className="feature-kicker"><Play size={16}/> RACE DAY ESSENTIALS</span><h2>观赛中心</h2><p>直播平台与播放设置</p><span className="feature-action">进入观赛中心 <ArrowUpRight size={18}/></span><Play className="feature-watermark" aria-hidden="true"/></button><button className="discovery-feature journal-feature tone-rose" onClick={()=>onOpen('news')}><span className="feature-kicker"><Newspaper size={16}/> PADDOCK JOURNAL</span><h2>围场新闻</h2><p>车手、赛车与车队动态</p><span className="feature-action">浏览围场新闻 <ArrowUpRight size={18}/></span><Flag className="feature-watermark" aria-hidden="true"/></button></div><div className="hub-section-heading"><div><p className="eyebrow">EXPLORE THE DETAILS</p><h2>赛事工具</h2></div><span>数据 · 技术 · 历史</span></div><div className="explore-card-grid">{entries.map((id,i)=>{const p=detailPages[id],Icon=p.Icon;return <button key={id} className={'explore-card tone-'+p.tone} onClick={()=>onOpen(id)}><div className="explore-card-top"><span className="section-icon"><Icon size={24}/></span><span className="explore-number">0{i+1}</span></div><p className="eyebrow">{p.en}</p><h3>{p.title}</h3><p>{p.copy}</p><span className="explore-card-bottom">{p.tag}<ArrowUpRight size={17}/></span></button>;})}</div></div>;
+ return <div className="discovery-overview"><div className="discovery-feature-grid"><button className="discovery-feature tone-orange" onClick={()=>onOpen('viewing')}><span className="feature-kicker"><Play size={16}/> RACE DAY ESSENTIALS</span><h2>观赛中心</h2><p>直播平台与播放设置</p><span className="feature-action">进入观赛中心 <CircleEllipsis size={18}/></span><Play className="feature-watermark" aria-hidden="true"/></button><button className="discovery-feature journal-feature tone-rose" onClick={()=>onOpen('news')}><span className="feature-kicker"><Newspaper size={16}/> PADDOCK JOURNAL</span><h2>围场新闻</h2><p>车手、赛车与车队动态</p><span className="feature-action">浏览围场新闻 <CircleEllipsis size={18}/></span><Flag className="feature-watermark" aria-hidden="true"/></button></div><div className="hub-section-heading"><div><p className="eyebrow">EXPLORE THE DETAILS</p><h2>赛事工具</h2></div><span>数据 · 技术 · 历史</span></div><div className="explore-card-grid">{entries.map((id,i)=>{const p=detailPages[id],Icon=p.Icon;return <button key={id} className={'explore-card tone-'+p.tone} onClick={()=>onOpen(id)}><div className="explore-card-top"><span className="section-icon"><Icon size={24}/></span><span className="explore-number">0{i+1}</span></div><p className="eyebrow">{p.en}</p><h3>{p.title}</h3><p>{p.copy}</p><span className="explore-card-bottom">{p.tag}<CircleEllipsis size={17}/></span></button>;})}</div></div>;
 }
 export const appearanceThemes=[['dark','月夜黑','#12151e'],['light','云雾白','#eef1f6'],['navy','深海蓝','#162a45'],['forest','松林绿','#193b32'],['plum','暮光紫','#35233f']];
 export const accentColors=[['mint','薄荷绿','#52e1bd'],['red','跃动红','#ff7c85'],['orange','木瓜橙','#ffb167'],['blue','竞速蓝','#8fbbff'],['purple','暮光紫','#c2a5ff'],['gold','香槟金','#ead082']];

@@ -1,6 +1,6 @@
 'use client';
 import {useEffect,useRef,useState} from 'react';
-import {Clapperboard,ExternalLink,Search} from 'lucide-react';
+import { Clapperboard, Link2, Search } from 'lucide-react';
 import {replayLinks,replayRaceMatches,replaySessions,type ReplaySession} from '../lib/race-replays';
 
 export function ReplayLibrary({races,year,focusedRaceId,loading=false}:{races:Record<string,any>[];year:number;focusedRaceId?:string;loading?:boolean}) {
@@ -17,7 +17,7 @@ export function ReplayLibrary({races,year,focusedRaceId,loading=false}:{races:Re
       return <article key={race.id} data-race-id={race.id} className={'card replay-race-card'+(race.id===focusedRaceId?' replay-focused':'')}>
         <div className="replay-card-meta"><span className="eyebrow">ROUND {String(race.round).padStart(2,'0')}</span><span className={'status-pill '+(finished?'muted':'')}>{finished?'已完赛':'待开赛'}</span></div>
         <Clapperboard className="replay-card-icon" size={24}/><h2>{race.name}</h2><p>{race.circuit?.name||race.circuit?.place}</p>
-        <div className="replay-platforms"><a href={links.bilibili} target="_blank" rel="noopener noreferrer"><span>B</span>B 站回放 <ExternalLink size={13}/></a><a href={links.tencent} target="_blank" rel="noopener noreferrer"><span className="tencent-play">▶</span>腾讯视频 <ExternalLink size={13}/></a></div>
+        <div className="replay-platforms"><a href={links.bilibili} target="_blank" rel="noopener noreferrer"><span>B</span>B 站回放 <Link2 size={13}/></a><a href={links.tencent} target="_blank" rel="noopener noreferrer"><span className="tencent-play">▶</span>腾讯视频 <Link2 size={13}/></a></div>
       </article>;
     })}</div>
     {!filtered.length&&<p className="empty" role="status">{loading?'正在载入赛历…':'没有匹配的比赛'}</p>}
