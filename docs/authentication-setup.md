@@ -25,7 +25,7 @@
 | `AUTH_SESSION_SECRET` | Secret | 本地生成至少 32 个随机字符，用于短期密码重置授权；不与其他项目共用 |
 | `AUTH_IP_LIMITER` / `AUTH_EMAIL_LIMITER` | Rate Limit 绑定 | 由 `wrangler.jsonc` 声明，不是文本环境变量 |
 
-项目配置只在服务端读取。生产环境的 `AUTH_MODE=required` 一旦启用，即使账号配置缺失或服务故障，业务接口也会拒绝匿名请求，不自动退回公开模式。
+`wrangler.jsonc` 设置 `keep_vars=true`，后续代码部署保留控制台中的运行时变量；不要把正式环境密钥写进 Wrangler 配置。项目配置只在服务端读取。生产环境的 `AUTH_MODE=required` 一旦启用，即使账号配置缺失或服务故障，业务接口也会拒绝匿名请求，不自动退回公开模式。
 
 ## 本机开发
 
