@@ -1,12 +1,26 @@
 # 围场口袋 · Paddock Pocket
 
-**面向 F1 车迷的赛事信息与观赛工具。**
+[简体中文](README.md) · [English](README.en.md)
 
-围场口袋将赛程、积分、赛道天气、遥测分析与观赛入口集中在同一界面，支持手机、平板与桌面浏览器。本仓库维护网页版源码、公开资源及 Cloudflare Workers 部署配置。
+**为 F1 车迷打造的赛事信息与观赛平台。**
+
+围场口袋围绕比赛周末组织信息，将赛程、积分、赛道天气、数据分析与观赛入口连接为完整的使用流程。项目持续开发自己的产品界面、业务逻辑、设备适配和部署体系，支持手机、平板与桌面浏览器。
+
+本仓库维护网页版源码、服务端接口、公开资源与 Cloudflare Workers 部署配置。
 
 **在线访问：[F1.xiaodinglab.com](https://F1.xiaodinglab.com/)** · **[赛事回放](https://F1.xiaodinglab.com/#discover/replays)**
 
 ![围场口袋赛事回放界面](docs/images/race-replays.jpg)
+
+## 我们的工作
+
+围场口袋的建设覆盖产品、交互、工程与交付，而不止于整理赛事链接：
+
+- **产品与界面**：重新组织赛程、积分、观赛和探索模块，设计二级页面、响应式布局、多套主题及设备偏好设置。
+- **赛事体验**：整合比赛日程、成绩、车手档案与数据工具，补充历史车手头像、立体赛道展示和争冠积分情景分析。
+- **天气与观赛**：按赛道位置和比赛时间展示天气，依据赛程调整更新频率；建立可按赛季、分站与场次检索的回放中心，并提供不同设备的直播使用引导。
+- **数据与性能**：实现同源数据接口、参数校验、缓存、带时间标记的快照回退、精简头像索引、本地字体及启动异常提示。
+- **部署与维护**：完成独立域名和 Cloudflare Workers 部署，维护自动检查、生产构建及资源来源记录。
 
 ## 功能概览
 
@@ -22,43 +36,6 @@
 | 探索与设置 | 精选新闻、经典比赛、F1 百科、规则资料、多套配色与时区偏好 |
 
 回放入口使用比赛关键词检索第三方平台，不托管比赛视频。新闻为精选中文简报；赛事、遥测和技术资料的可用范围取决于上游已发布的数据。
-
-## 项目来源与致谢
-
-### F1Push（发车格）
-
-本项目在赛事信息架构、比赛周末呈现、积分榜、赛道档案及数据工具的功能组织与交互设计上，**借鉴了 [F1Push（发车格）](https://f1push.com/)**。
-
-当前版本的部分赛事、积分、遥测与技术资料也通过 F1Push 的数据服务获取，由本项目的服务端路由进行请求、参数校验与缓存。具体接入见 [`app/api/data/route.ts`](app/api/data/route.ts) 和 [`lib/tool-data.ts`](lib/tool-data.ts)。
-
-感谢 F1Push 团队在 F1 赛事信息展示与数据工具方面的工作。围场口袋独立维护，不是 F1Push 的官方客户端；对功能和设计的借鉴不意味着取得其代码、数据或素材的统一开源授权。
-
-### SMG 网页直播观看增强脚本
-
-五星体育观看辅助功能采用了 **[Popukok/smg_live](https://github.com/Popukok/smg_live)** 项目的脚本，并结合本项目的使用需求提供设备适配版本与安装引导。
-
-本仓库随附的版本包括：
-
-| 设备 | 脚本版本 | 使用方式 |
-| --- | --- | --- |
-| 电脑浏览器 | 普通版 `0.24` | 通过脚本管理器加载 |
-| iPhone / iPad | 主脚本与请求助手 `0.24.1` | Safari 配合 Userscripts 加载两个文件 |
-| Android | 兼容版 `0.25.0` | 通过支持用户脚本的浏览器加载；Android 预览包另有独立观赛窗口 |
-
-这些文件基于上游脚本并包含项目维护者提供的优化与适配，不保证与上游最新版本完全一致。脚本涉及播放请求、节目字段及播放器来源处理，其作用不限于界面样式调整。普通网页不会自动安装浏览器扩展，也不会自动向第三方内嵌页面注入脚本。
-
-上游项目采用 **MIT License**。本仓库保留原作者信息及版权声明，包括 `Copyright (c) 2025 _xFox`。详见 [SMG 脚本许可证](public/user-scripts/LICENSE)、[Android 脚本许可证](public/user-scripts/ANDROID-LICENSE) 和 [版本来源与文件校验](public/user-scripts/SOURCE.md)。
-
-### 其他数据与资源
-
-| 来源 | 用途 | 署名与许可记录 |
-| --- | --- | --- |
-| [Open-Meteo](https://open-meteo.com/) | 赛道周边当前天气与预报 | 页面保留数据来源、CC BY 4.0 标注及获取时间 |
-| Formula 1 官方网站及历史图片来源 | 车手头像 | [当前车手](public/drivers/credits.json) · [历史车手](public/drivers/history/credits.json) |
-| [bacinger/f1-circuits](https://github.com/bacinger/f1-circuits) | 赛道坐标与立体模型基础数据 | [模型来源、修改与 MIT 许可](public/circuits/models/credits.json) |
-| Barlow Project / Google Fonts | Barlow Condensed 字体 | [SIL Open Font License 1.1](public/fonts/OFL-Barlow-Condensed.txt) · [字体来源](public/fonts/sources.json) |
-
-第三方项目、数据、图片与字体分别适用其原有许可。上述致谢不表示本项目获得相关组织的官方背书，也不将第三方内容重新声明为本项目原创。
 
 ## 技术架构
 
@@ -133,8 +110,24 @@ npm run deploy
 - 天气在页面处于前台且联网时按赛程调整更新频率：比赛场次前后更频繁，其他时段降低频率。
 - 偏好设置保存在当前设备浏览器中。网站部署后，访问者使用网站不需要维护者的电脑持续开机。
 
+## 致谢与资源来源
+
+感谢以下项目与资源为围场口袋提供参考和支持：
+
+- **[F1Push（发车格）](https://f1push.com/)**：为赛事信息组织及部分交互提供参考。当前版本的部分赛事、积分、遥测和技术资料使用其数据服务；本项目维护接口接入、校验、缓存和页面呈现。接入代码见 [`app/api/data/route.ts`](app/api/data/route.ts) 与 [`lib/tool-data.ts`](lib/tool-data.ts)。
+- **[Popukok/smg_live](https://github.com/Popukok/smg_live)**：五星体育观看辅助脚本的上游项目。围场口袋随附维护者提供的优化适配版本，并提供电脑、iPhone / iPad 和 Android 安装引导。脚本采用 MIT 许可，保留 `Copyright (c) 2025 _xFox`；见 [许可证](public/user-scripts/LICENSE)、[Android 许可证](public/user-scripts/ANDROID-LICENSE) 与 [版本及校验记录](public/user-scripts/SOURCE.md)。
+
+随附 SMG 版本为电脑 `0.24`、iOS / iPadOS 主脚本及请求助手 `0.24.1`、Android `0.25.0`，可能与上游最新版本不同。脚本涉及播放请求、节目字段及播放器来源处理，需要用户安装并授权脚本管理器；网页不会自动安装扩展或向第三方内嵌页面注入脚本。
+
+| 来源 | 用途 | 署名与许可记录 |
+| --- | --- | --- |
+| [Open-Meteo](https://open-meteo.com/) | 赛道周边当前天气与预报 | 页面保留数据来源、CC BY 4.0 标注及获取时间 |
+| Formula 1 官方网站及历史图片来源 | 车手头像 | [当前车手](public/drivers/credits.json) · [历史车手](public/drivers/history/credits.json) |
+| [bacinger/f1-circuits](https://github.com/bacinger/f1-circuits) | 赛道坐标与立体模型基础数据 | [模型来源、修改与 MIT 许可](public/circuits/models/credits.json) |
+| Barlow Project / Google Fonts | Barlow Condensed 字体 | [SIL Open Font License 1.1](public/fonts/OFL-Barlow-Condensed.txt) · [字体来源](public/fonts/sources.json) |
+
 ## 许可证
 
 本仓库尚未为项目自有代码设置统一的开源许可证。第三方脚本、图片、字体、赛道数据及其他资源的授权范围，以各自的许可证和来源记录为准。
 
-感谢 F1Push（发车格）、SMG 脚本项目及所有上游数据与资源维护者。
+围场口袋由本项目维护者独立开发与维护，与 Formula 1、F1Push 及观赛平台不存在官方隶属或背书关系。参考其产品或接入其服务不代表取得其代码、数据与素材的统一开源授权。
