@@ -3,6 +3,7 @@ import { AccountError, type AuthAction } from './contracts';
 import { AccountService } from './accountService';
 import type { AuthConfig, AuthEnvironment } from './config';
 import { AccountCookies } from './cookies';
+import { actionSchemas } from './validation';
 
 const actionSchema = z.enum(['login', 'register', 'resend', 'forgot', 'verify', 'reset', 'logout']);
 const emailActions = new Set(['register', 'resend', 'forgot']);
@@ -15,9 +16,9 @@ export class BaseAccountController {
   }
   protected failure(error: unknown, operation: string) {
     const failure = error instanceof AccountError ? error : new AccountError('AUTH_UNAVAILABLE', '账号服务暂时不可用，请稍后重试。', 503);
-    if (failure.status >= 500) console.error(JSON.stringify({ scope: 'account', operation, code: failure.code, status: failure.status }));
+    if (failure.status >= 500 || failure.status === 429) console.error(JSON.stringify({ scope: 'account', operation, code: failure.code, status: failure.status }));
     const response = this.success({ error: failure.message, code: failure.code }, failure.status);
-    if (failure.status === 429) response.headers.set('Retry-After', '60');
+    if (failure.retryAfter) response.headers.set('Retry-After', String(failure.retryAfter));
     return response;
   }
 }
@@ -65,12 +66,15 @@ export class AccountController extends BaseAccountController {
     const emailLimiter = this.env.AUTH_EMAIL_LIMITER as Limiter | undefined;
     if (!local && (!ipLimiter || !emailLimiter)) throw new AccountError('RATE_LIMIT_NOT_READY', '账号服务正在准备中，请稍后再试。', 503);
     const ip = request.headers.get('cf-connecting-ip') || 'local';
-    if (ipLimiter && !(await ipLimiter.limit({ key: 'account:' + ip })).success) throw new AccountError('RATE_LIMITED', '操作过于频繁，请稍后再试。', 429);
+    if (ipLimiter && !(await ipLimiter.limit({ key: 'account:' + ip })).success) throw new AccountError('ACCOUNT_IP_LIMITED', '当前网络的账号请求较多，请稍等一分钟再提交。', 429, 60);
+    // Invalid form corrections still count towards abuse protection, but never spend an email slot.
+    const validated = actionSchemas[action].safeParse(body);
+    if (!validated.success) throw new AccountError('INVALID_INPUT', validated.error.issues[0]?.message || '请检查填写的信息。');
     const email = typeof body === 'object' && body !== null && 'email' in body ? String(body.email).trim().toLowerCase().slice(0, 254) : '';
     if (emailLimiter && email && emailActions.has(action)) {
       const hash = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(email));
       const key = 'mail:' + [...new Uint8Array(hash)].map(b => b.toString(16).padStart(2, '0')).join('');
-      if (!(await emailLimiter.limit({ key })).success) throw new AccountError('RATE_LIMITED', '邮件刚刚发送过，请 60 秒后再试。', 429);
+      if (!(await emailLimiter.limit({ key })).success) throw new AccountError('EMAIL_COOLDOWN', '该邮箱刚提交过邮件请求，请 60 秒后再试，并检查收件箱。', 429, 60);
     }
   }
 }

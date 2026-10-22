@@ -1,59 +1,35 @@
 'use client';
+import type { CSSProperties } from 'react';
 
-import { useState, type CSSProperties } from 'react';
-import { ArrowUpRight, Check, ChevronRight, Clapperboard, Clock3, Download, Flag, Heart, LogOut, Palette, Play, ShieldCheck, Smartphone, Sparkles, UserRound, Watch } from 'lucide-react';
+import { ArrowUpRight, Check, ChevronRight, Clock3, Download, Flag, LogOut, Palette, ShieldCheck, Smartphone, Sparkles, UserRound } from 'lucide-react';
 import { appearanceThemes, accentColors } from './paddock-navigation';
-import { Dialog } from './dialog';
 import { AvatarEditor } from './avatar-editor';
 import { TimezonePicker } from './timezone-picker';
-import { portraitFor } from '../lib/portrait';
 import type { useAccountControls } from './account-controls';
 import './profile.css';
+import { FollowPodium } from './following';
+import type { Following } from '../lib/following';
 
 type Driver = Record<string, any>;
 type ProfileProps = {
   account: ReturnType<typeof useAccountControls>;
+  drivers: Driver[]; teams: Driver[]; following: Following; loadingDrivers: boolean;
+  onPickDriver:(driver:Driver)=>void;onPickTeam:(team:Driver)=>void;onOpenDriver:(driver:Driver)=>void;
   theme: string; accent: string; timezone: string; localTimezone: string;
-  drivers: Driver[]; favoriteDriver?: Driver; loadingDrivers: boolean;
   onTheme: (value: string) => void; onAccent: (value: string) => void; onTimezone: (value: string) => void;
-  onPickDriver: (driver: Driver) => void; onOpenDriver: (driver: Driver) => void;
-  onReplay: () => void; onViewing: () => void; onWidgets: () => void; onInstall: () => void;
+  onInstall: () => void;
 };
 
-function Portrait({ driver }: { driver: Driver }) {
-  const portrait = portraitFor(driver);
-  const [failed, setFailed] = useState(false);
-  return portrait && !failed ? <img key={portrait.file} src={portrait.file} alt={driver.driverName + '的头像'} loading="lazy" onError={() => setFailed(true)}/> : <UserRound aria-label="头像暂缺"/>;
-}
-
 export function ProfilePage(props: ProfileProps) {
-  const { account, theme, accent, timezone, localTimezone, favoriteDriver, drivers } = props;
-  const [choosingDriver, setChoosingDriver] = useState(false);
+  const { account, theme, accent, timezone, localTimezone } = props;
   const user = account.status?.user;
   const accentName = accentColors.find(item => item[0] === accent)?.[1] || '薄荷绿';
-  const driverColor = favoriteDriver && /^[a-f0-9]{6}$/i.test(favoriteDriver.teamColor || '') ? '#' + favoriteDriver.teamColor : 'var(--accent)';
   const showName = user?.name || (account.status ? '围场车迷' : '正在读取账号');
 
   return <div className="personal-center">
-    <div className="personal-top-grid">
-      <section className="paddock-pass" aria-label="我的账号">
-        <div className="pass-top"><span><Flag size={15}/> PADDOCK PASS</span><span className={'pass-status' + (user ? ' is-verified' : '')}>{user ? <><ShieldCheck size={13}/>邮箱已验证</> : 'MY PADDOCK'}</span></div>
-        <div className="pass-identity"><AvatarEditor user={user} onSaved={account.updateUser}/><div><p>欢迎回到围场</p><h2>{showName}</h2><span>{user?.email || (account.status ? '每个比赛周末，都有你的主场' : '正在连接账号服务…')}</span></div></div>
-        <div className="pass-bottom"><span>YOUR WEEKEND. YOUR PADDOCK.</span><span className="pass-bars" aria-hidden="true"/></div>
-        <svg className="pass-circuit" viewBox="0 0 360 200" fill="none" aria-hidden="true"><path d="m34 142 31-48 46 9 29-53 52 8 23-24 58 21 25 43-20 26 24 26-34 26-45-15-24 12-31-35-26 33-34-10-24 21-35-10Z"/></svg>
-      </section>
-      <section className={'personal-driver' + (favoriteDriver ? ' has-driver' : '')} style={{ '--driver-color': driverColor } as CSSProperties} aria-label="我的车手">
-        <div className="personal-driver-top"><span><Heart size={15}/>我的车手</span><button onClick={() => setChoosingDriver(true)}>{favoriteDriver ? '更换' : '选择车手'}<ChevronRight size={14}/></button></div>
-        {favoriteDriver ? <button className="personal-driver-body" onClick={() => props.onOpenDriver(favoriteDriver)} aria-label={'查看' + favoriteDriver.driverName}><div><span className="personal-driver-team">{favoriteDriver.teamShortName || favoriteDriver.teamName}</span><h2>{favoriteDriver.driverName}</h2><span className="personal-driver-result">P{favoriteDriver.position || '—'}<i/>{favoriteDriver.points ?? '—'} 积分</span></div><span className="personal-driver-portrait"><Portrait key={favoriteDriver.driverId} driver={favoriteDriver}/></span><ArrowUpRight className="personal-driver-arrow" size={18}/></button> : <button className="personal-driver-empty" onClick={() => setChoosingDriver(true)}><span className="personal-driver-heart"><Heart size={26}/></span><strong>为你的车手，留一个位置</strong><span>选择关注，随时查看赛季表现</span></button>}
-      </section>
-    </div>
+    <div className="profile-identity-grid"><section className="super-licence" aria-label="我的超级执照式车迷通行证"><div className="licence-top"><span><Flag size={19}/>围场口袋 <small>PADDOCK POCKET</small></span><span className="licence-class">FAN / 01</span></div><div className="licence-body"><div className="licence-photo"><AvatarEditor user={user} onSaved={account.updateUser}/><span>点击设置头像</span></div><div className="licence-identity"><p className="licence-type">FAN SUPER LICENCE</p><h2>{showName}</h2><span className="licence-email">{user?.email || '正在连接账号服务…'}</span><div className="licence-data"><div><small>MEMBER ID</small><strong>{user ? user.id.replace(/-/g,'').slice(0,10).toUpperCase() : '••••••••••'}</strong></div><div><small>STATUS</small><strong>{user ? 'VERIFIED' : 'PADDOCK FAN'}</strong></div></div></div><span className="licence-monogram" aria-hidden="true">SL<span>SUPER<br/>LICENCE</span></span></div><div className="licence-bottom"><span>每个比赛周末，都是你的主场。<small>围场口袋 · 车迷通行证</small></span><span className="licence-bars" aria-hidden="true"/><ShieldCheck size={22}/></div></section>
 
-    <div className="personal-shortcuts" aria-label="常用入口">
-      <button className="personal-shortcut shortcut-orange" onClick={props.onReplay}><span className="shortcut-symbol"><Clapperboard size={21}/></span><span><strong>赛事回放</strong><small>重温每一个精彩时刻</small></span><ArrowUpRight size={17}/></button>
-      <button className="personal-shortcut shortcut-purple" onClick={props.onViewing}><span className="shortcut-symbol"><Play size={21}/></span><span><strong>观赛中心</strong><small>准备好，下一个比赛周末</small></span><ArrowUpRight size={17}/></button>
-      <button className="personal-shortcut shortcut-blue" onClick={props.onWidgets}><span className="shortcut-symbol"><Watch size={21}/></span><span><strong>赛事速览</strong><small>赛程、天气与手表指南</small></span><ArrowUpRight size={17}/></button>
-    </div>
-
+    <FollowPodium drivers={props.drivers} teams={props.teams} following={props.following} onDriver={props.onPickDriver} onTeam={props.onPickTeam} onOpen={props.onOpenDriver} loading={props.loadingDrivers}/></div>
     <div className="personal-settings-grid">
       <section className="personal-panel appearance-panel" aria-labelledby="personal-appearance-title">
         <div className="personal-panel-heading"><span className="personal-heading-icon"><Palette size={19}/></span><div><h2 id="personal-appearance-title">让围场，更像你</h2><p>选择你的外观与主题色</p></div><Sparkles size={18}/></div>
@@ -74,6 +50,6 @@ export function ProfilePage(props: ProfileProps) {
 
     <footer className="personal-about"><div className="personal-about-brand"><img src="/favicon.svg" alt=""/><div><strong>围场口袋</strong><span>每个比赛周末，与你同在。</span></div></div><details className="personal-sources"><summary>数据来源与许可<ChevronRight size={14}/></summary><div><p>赛事与遥测来自公开赛事服务。无法更新时显示最近保存的数据及其时间。</p><a href="/drivers/credits.json" target="_blank" rel="noopener noreferrer">当前车手图片<ArrowUpRight size={12}/></a><a href="/drivers/history/credits.json" target="_blank" rel="noopener noreferrer">历史车手图片<ArrowUpRight size={12}/></a><a href="/circuits/models/credits.json" target="_blank" rel="noopener noreferrer">赛道坐标与模型<ArrowUpRight size={12}/></a></div></details></footer>
 
-    {choosingDriver && <Dialog title="选择关注的车手" close={() => setChoosingDriver(false)}><div className="personal-driver-picker">{drivers.map(driver => <button key={driver.driverId} aria-pressed={driver.driverId === favoriteDriver?.driverId} onClick={() => { if (driver.driverId !== favoriteDriver?.driverId) props.onPickDriver(driver); setChoosingDriver(false); }}><span className="picker-portrait"><Portrait driver={driver}/></span><span><strong>{driver.driverName}</strong><small>{driver.teamShortName || driver.teamName}</small></span>{driver.driverId === favoriteDriver?.driverId ? <Check size={18}/> : <Heart size={16}/>}</button>)}</div>{!drivers.length && <p className="personal-picker-empty" role="status">{props.loadingDrivers ? '正在读取车手名单…' : '暂时无法读取车手名单，请关闭后点击页面顶部刷新重试。'}</p>}{favoriteDriver && <button className="personal-unfollow" onClick={() => { props.onPickDriver(favoriteDriver); setChoosingDriver(false); }}>取消关注{favoriteDriver.driverName}</button>}</Dialog>}
+
   </div>;
 }

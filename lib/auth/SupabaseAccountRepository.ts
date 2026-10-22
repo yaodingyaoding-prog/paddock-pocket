@@ -9,8 +9,9 @@ function identity(user: User): AccountIdentity {
   const avatarUrl = /^[a-f0-9-]{36}$/i.test(revision) ? '/api/auth/avatar?v=' + revision : undefined;
   return { id: user.id, email: user.email || '', name: String(user.user_metadata?.name || '围场车迷').slice(0, 30), verified: Boolean(user.email_confirmed_at), ...(avatarUrl ? { avatarUrl } : {}) };
 }
-function providerError(error: AuthError): never {
-  if (error.status === 429 || /rate_limit|over_email/.test(error.code || '')) throw new AccountError('RATE_LIMITED', '操作过于频繁，请稍后再试。', 429);
+export function providerError(error: AuthError): never {
+  if (error.code === 'over_email_send_rate_limit') throw new AccountError('PROVIDER_EMAIL_LIMITED', '验证邮件服务暂时达到发送上限，请稍后再试。这与密码输入次数无关。', 429);
+  if (error.status === 429 || /rate_limit/.test(error.code || '')) throw new AccountError('PROVIDER_REQUEST_LIMITED', '账号服务暂时限制请求，请稍后重新提交。', 429);
   if (error.code === 'email_not_confirmed') throw new AccountError('EMAIL_UNVERIFIED', '请先验证邮箱，再登录。', 403);
   if (error.code === 'invalid_credentials') throw new AccountError('INVALID_CREDENTIALS', '邮箱或密码不正确。', 401);
   if (['otp_expired', 'otp_disabled'].includes(error.code || '')) throw new AccountError('LINK_EXPIRED', '验证链接已失效，请重新发送。', 400);

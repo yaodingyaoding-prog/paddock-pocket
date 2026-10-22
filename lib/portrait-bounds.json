@@ -1,0 +1,117 @@
+{
+  "/drivers/alb.webp": {
+    "height": 103.35,
+    "bottom": -1.96,
+    "center": -58.64
+  },
+  "/drivers/alo.webp": {
+    "height": 105.5,
+    "bottom": -5.17,
+    "center": -48.98
+  },
+  "/drivers/ant.webp": {
+    "height": 107.57,
+    "bottom": -6.63,
+    "center": -56.48
+  },
+  "/drivers/bea.webp": {
+    "height": 102.02,
+    "bottom": -1.37,
+    "center": -50.11
+  },
+  "/drivers/bor.webp": {
+    "height": 103.52,
+    "bottom": -3.03,
+    "center": -48.64
+  },
+  "/drivers/bot.webp": {
+    "height": 103.69,
+    "bottom": -3.11,
+    "center": -50
+  },
+  "/drivers/col.webp": {
+    "height": 106.48,
+    "bottom": -5.39,
+    "center": -49.43
+  },
+  "/drivers/gas.webp": {
+    "height": 103.43,
+    "bottom": -2.94,
+    "center": -50
+  },
+  "/drivers/had.webp": {
+    "height": 103.77,
+    "bottom": -3.36,
+    "center": -51.25
+  },
+  "/drivers/ham.webp": {
+    "height": 103.01,
+    "bottom": -2.2,
+    "center": -49.89
+  },
+  "/drivers/hul.webp": {
+    "height": 101.61,
+    "bottom": -1.12,
+    "center": -51.82
+  },
+  "/drivers/law.webp": {
+    "height": 104.72,
+    "bottom": -3.73,
+    "center": -55.34
+  },
+  "/drivers/lec.webp": {
+    "height": 101.85,
+    "bottom": -1.61,
+    "center": -56.59
+  },
+  "/drivers/lin.webp": {
+    "height": 103.43,
+    "bottom": -2.53,
+    "center": -53.07
+  },
+  "/drivers/nor.webp": {
+    "height": 103.6,
+    "bottom": -2.87,
+    "center": -48.07
+  },
+  "/drivers/oco.webp": {
+    "height": 101.69,
+    "bottom": -0.8,
+    "center": -53.75
+  },
+  "/drivers/per.webp": {
+    "height": 104.46,
+    "bottom": -3.88,
+    "center": -50
+  },
+  "/drivers/pia.webp": {
+    "height": 103.77,
+    "bottom": -2.46,
+    "center": -52.61
+  },
+  "/drivers/rus.webp": {
+    "height": 102.68,
+    "bottom": -1.46,
+    "center": -53.52
+  },
+  "/drivers/sai.webp": {
+    "height": 104.63,
+    "bottom": -3.06,
+    "center": -50.23
+  },
+  "/drivers/str.webp": {
+    "height": 103.01,
+    "bottom": -2.69,
+    "center": -50.8
+  },
+  "/drivers/tsu.webp": {
+    "height": 108.68,
+    "bottom": -7.99,
+    "center": -48.86
+  },
+  "/drivers/ver.webp": {
+    "height": 102.02,
+    "bottom": -1.37,
+    "center": -50.68
+  }
+}

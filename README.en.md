@@ -41,6 +41,8 @@ Replay entries search third-party platforms using race keywords; the project doe
 
 Race-weekend imagery depends on official releases. Missing or unmatched images are reported as unavailable; a teammate's car is not presented as an identified driver's car. See [profile feature notes](docs/profile-features.md) for avatar setup and data boundaries. Appearance, followed drivers and time-zone preferences remain device-local.
 
+The refreshed interface uses four primary destinations, expandable top-five standings, an interactive homepage circuit and a fan licence profile card with three personal driver podium seats. Teams can be followed separately. Floating mobile navigation approximates Liquid Glass using CSS, with accessible fallbacks. Weather uses a validated same-origin cache with explicitly labelled stale forecasts. See [release design and recovery notes](docs/race-refresh-20261022.md).
+
 ## Architecture
 
 - **Interface:** React 19, TypeScript and responsive CSS.

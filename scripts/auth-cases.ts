@@ -136,6 +136,11 @@ check(response.status === 200 && (await response.json() as { next: string }).nex
 const limited = setup('', { ...env, AUTH_EMAIL_LIMITER: { limit: async () => ({ success: false }) } });
 response = await limited.controller.post(post('forgot', { email: 'fan@example.test' }), 'forgot');
 check(response.status === 429 && response.headers.get('Retry-After') === '60' && !limited.repository.calls.length, 'Mail throttling prevents provider calls');
+let mailAttempts = 0;
+const corrected = setup('', { ...env, AUTH_EMAIL_LIMITER: { limit: async () => ({ success: ++mailAttempts === 1 }) } });
+await corrected.controller.post(post('register', { name: 'Fan', email: 'fan@example.test', password: 'short' }), 'register');
+response = await corrected.controller.post(post('register', { name: 'Fan', email: 'fan@example.test', password: '123456' }), 'register');
+check(response.status === 200 && mailAttempts === 1, 'Correcting invalid input must not consume the email cooldown before any email was requested');
 const noLimiter = setup('', { ...env, AUTH_IP_LIMITER: undefined });
 response = await noLimiter.controller.post(post('register', { name: 'Fan', email: 'fan@example.test', password: '123456789012' }), 'register');
 check(response.status === 503, 'Production auth refuses requests without rate limit bindings');
