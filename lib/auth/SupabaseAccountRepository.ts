@@ -5,7 +5,9 @@ import type { AuthConfig } from './config';
 import { AccountCookies } from './cookies';
 
 function identity(user: User): AccountIdentity {
-  return { id: user.id, email: user.email || '', name: String(user.user_metadata?.name || '围场车迷').slice(0, 30), verified: Boolean(user.email_confirmed_at) };
+  const revision = String(user.user_metadata?.paddock_avatar_revision || '');
+  const avatarUrl = /^[a-f0-9-]{36}$/i.test(revision) ? '/api/auth/avatar?v=' + revision : undefined;
+  return { id: user.id, email: user.email || '', name: String(user.user_metadata?.name || '围场车迷').slice(0, 30), verified: Boolean(user.email_confirmed_at), ...(avatarUrl ? { avatarUrl } : {}) };
 }
 function providerError(error: AuthError): never {
   if (error.status === 429 || /rate_limit|over_email/.test(error.code || '')) throw new AccountError('RATE_LIMITED', '操作过于频繁，请稍后再试。', 429);
@@ -68,6 +70,32 @@ export class SupabaseAccountRepository implements AccountRepository {
   async updatePassword(password: string) {
     const { error } = await this.client.auth.updateUser({ password });
     if (error) providerError(error);
+  }
+  private avatarStorageError(error: { message: string; statusCode?: string | number }): never {
+    if (String(error.statusCode) === '404' || /bucket.*not found|row.level security|policy/i.test(error.message)) throw new AccountError('AVATAR_NOT_READY', '头像存储暂未就绪，请稍后再试。', 503);
+    throw new AccountError('AVATAR_UNAVAILABLE', '头像暂时无法保存，请稍后重试。', 503);
+  }
+  async uploadAvatar(userId: string, bytes: Uint8Array) {
+    const { error } = await this.client.storage.from('paddock-avatars').upload(userId + '/avatar.webp', bytes, { upsert: true, contentType: 'image/webp', cacheControl: '0' });
+    if (error) this.avatarStorageError(error);
+    const { data, error: updateError } = await this.client.auth.updateUser({ data: { paddock_avatar_revision: crypto.randomUUID() } });
+    if (updateError) providerError(updateError);
+    return identity(data.user);
+  }
+  async removeAvatar(userId: string) {
+    const { error } = await this.client.storage.from('paddock-avatars').remove([userId + '/avatar.webp']);
+    if (error) this.avatarStorageError(error);
+    const { data, error: updateError } = await this.client.auth.updateUser({ data: { paddock_avatar_revision: null } });
+    if (updateError) providerError(updateError);
+    return identity(data.user);
+  }
+  async downloadAvatar(userId: string) {
+    const { data, error } = await this.client.storage.from('paddock-avatars').download(userId + '/avatar.webp');
+    if (error) {
+      if (['404','400'].includes(String(error.statusCode)) && /not found|does not exist|object/i.test(error.message)) return null;
+      this.avatarStorageError(error);
+    }
+    return data;
   }
   async logout(all = false) {
     try {

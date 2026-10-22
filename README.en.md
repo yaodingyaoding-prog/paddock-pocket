@@ -27,16 +27,19 @@ Paddock Pocket covers product design, interaction, engineering and delivery:
 | Area | Capabilities |
 | --- | --- |
 | Schedule and results | Season selection, Grand Prix weekends, session schedules, countdowns, results and calendar reminders |
-| Standings | Driver and constructor standings, driver portraits, followed drivers and related news |
+| Standings and driver profiles | Season-specific car numbers, career achievements, title years, team history, selected verified nicknames and related news |
+| Race-weekend looks | Official special-livery and race-suit announcements matched to the upcoming race, season and team; individually verified driver photos are labelled |
 | Circuit profiles | Circuit information, 3D layouts and historical details |
 | Circuit weather | Current conditions, session-time forecasts and hourly weather |
 | Analysis | Two-driver telemetry comparisons, tyre strategy, technical information and championship points scenarios |
 | Live viewing | Five Star Sports links, Tencent Video web and app options, and device-specific script installation guidance |
 | Race replays | Bilibili and Tencent Video search links by season, Grand Prix and session, including races, qualifying, sprints and practice |
-| Discover and settings | Curated news, classic races, an F1 encyclopedia, rules, color themes and time-zone preferences |
-| Accounts | Email/password login, signup verification, password recovery, persistent sign-in and server-side access checks; the production site requires sign-in |
+| Discover and settings | Curated news, classic races, an F1 encyclopedia, rules, color themes, searchable IANA time zones and daylight-saving handling |
+| Accounts | Email/password login, signup verification, password recovery, persistent sign-in and private, cropped avatars synced to the account; production requires sign-in |
 
 Replay entries search third-party platforms using race keywords; the project does not host race videos. News consists of curated Chinese-language briefs. Race, telemetry and technical coverage depends on data published by upstream services. The English README documents the project; it does not imply that the application interface is fully translated.
+
+Race-weekend imagery depends on official releases. Missing or unmatched images are reported as unavailable; a teammate's car is not presented as an identified driver's car. See [profile feature notes](docs/profile-features.md) for avatar setup and data boundaries. Appearance, followed drivers and time-zone preferences remain device-local.
 
 ## Architecture
 

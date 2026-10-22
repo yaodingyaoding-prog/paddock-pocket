@@ -41,6 +41,8 @@ npm run preview -- --port 5177
 
 ## 免费额度与维护
 
+自定义头像还需要一次性配置已有项目的私有 Storage 桶与本人路径 RLS，见 [个人资料功能说明](profile-features.md) 和 [SQL](avatar-storage.sql)。无需新服务或管理密钥；不要将头像桶设置为 public。
+
 - Supabase Free：目前每月 50,000 活跃用户、500MB 数据库、5GB 出站流量，分别受额度约束；连续一周不活跃后可能暂停，需要后台恢复。
 - Resend Free：目前每天 100 封、每月 3,000 封。注册验证、重发与密码找回共用额度，达到额度可能暂停发送，不能承诺无限注册。
 - Cloudflare 的请求限制在各节点近似执行，不是全球严格邮件计数；邮件额度仍以 Resend / Supabase 服务端限制为准。

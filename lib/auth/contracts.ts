@@ -1,4 +1,4 @@
-export type AccountUser = { id: string; email: string; name: string };
+export type AccountUser = { id: string; email: string; name: string; avatarUrl?: string };
 export type AccountStatus = { enabled: boolean; configured: boolean; user: AccountUser | null };
 export type AuthAction = 'login' | 'register' | 'resend' | 'forgot' | 'verify' | 'reset' | 'logout';
 export class AccountError extends Error {
@@ -13,6 +13,9 @@ export interface AccountRepository {
   recover(email: string, redirectTo: string): Promise<void>;
   verify(hash: string, type: 'signup' | 'recovery'): Promise<AccountIdentity>;
   updatePassword(password: string): Promise<void>;
+  uploadAvatar(userId: string, bytes: Uint8Array): Promise<AccountIdentity>;
+  removeAvatar(userId: string): Promise<AccountIdentity>;
+  downloadAvatar(userId: string): Promise<Blob | null>;
   logout(all?: boolean): Promise<void>;
   clearSession(): void;
 }

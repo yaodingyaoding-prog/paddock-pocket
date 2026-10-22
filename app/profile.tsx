@@ -4,6 +4,8 @@ import { useState, type CSSProperties } from 'react';
 import { ArrowUpRight, Check, ChevronRight, Clapperboard, Clock3, Download, Flag, Heart, LogOut, Palette, Play, ShieldCheck, Smartphone, Sparkles, UserRound, Watch } from 'lucide-react';
 import { appearanceThemes, accentColors } from './paddock-navigation';
 import { Dialog } from './dialog';
+import { AvatarEditor } from './avatar-editor';
+import { TimezonePicker } from './timezone-picker';
 import { portraitFor } from '../lib/portrait';
 import type { useAccountControls } from './account-controls';
 import './profile.css';
@@ -36,7 +38,7 @@ export function ProfilePage(props: ProfileProps) {
     <div className="personal-top-grid">
       <section className="paddock-pass" aria-label="我的账号">
         <div className="pass-top"><span><Flag size={15}/> PADDOCK PASS</span><span className={'pass-status' + (user ? ' is-verified' : '')}>{user ? <><ShieldCheck size={13}/>邮箱已验证</> : 'MY PADDOCK'}</span></div>
-        <div className="pass-identity"><div className="pass-avatar" aria-hidden="true">{user ? Array.from(user.name || '围')[0].toUpperCase() : <UserRound size={29}/>}</div><div><p>欢迎回到围场</p><h2>{showName}</h2><span>{user?.email || (account.status ? '每个比赛周末，都有你的主场' : '正在连接账号服务…')}</span></div></div>
+        <div className="pass-identity"><AvatarEditor user={user} onSaved={account.updateUser}/><div><p>欢迎回到围场</p><h2>{showName}</h2><span>{user?.email || (account.status ? '每个比赛周末，都有你的主场' : '正在连接账号服务…')}</span></div></div>
         <div className="pass-bottom"><span>YOUR WEEKEND. YOUR PADDOCK.</span><span className="pass-bars" aria-hidden="true"/></div>
         <svg className="pass-circuit" viewBox="0 0 360 200" fill="none" aria-hidden="true"><path d="m34 142 31-48 46 9 29-53 52 8 23-24 58 21 25 43-20 26 24 26-34 26-45-15-24 12-31-35-26 33-34-10-24 21-35-10Z"/></svg>
       </section>
@@ -63,7 +65,7 @@ export function ProfilePage(props: ProfileProps) {
 
       <div className="personal-settings-stack">
         <section className="personal-panel personal-utilities" aria-labelledby="personal-settings-title"><div className="personal-panel-heading"><h2 id="personal-settings-title">使用偏好</h2></div>
-          <div className="personal-settings-row"><span className="personal-row-icon"><Clock3 size={19}/></span><label htmlFor="personal-timezone">时间显示<small>赛程与日历时区</small></label><select id="personal-timezone" aria-label="偏好时区" value={timezone} onChange={event => props.onTimezone(event.target.value)}><option value="Asia/Shanghai">北京时间</option>{!['Asia/Shanghai','UTC'].includes(localTimezone) && <option value={localTimezone}>设备时间</option>}<option value="UTC">UTC</option></select></div>
+          <div className="personal-settings-row"><span className="personal-row-icon"><Clock3 size={19}/></span><span>时间显示<small>赛程与日历时区</small></span><TimezonePicker value={timezone} localTimezone={localTimezone} onChange={props.onTimezone}/></div>
           <button className="personal-settings-row" onClick={props.onInstall}><span className="personal-row-icon blue"><Download size={19}/></span><span>添加到主屏幕<small>让围场触手可及</small></span><ChevronRight size={17}/></button>
         </section>
         <section className="personal-panel personal-account-panel" aria-labelledby="personal-account-title"><div className="personal-panel-heading"><h2 id="personal-account-title">账号与安全</h2><ShieldCheck size={17}/></div><a className="personal-settings-row" href="/forgot-password"><span className="personal-row-icon purple"><ShieldCheck size={19}/></span><span>重置密码<small>通过邮箱验证身份</small></span><ChevronRight size={17}/></a><a className="personal-settings-row" href="/privacy"><span className="personal-row-icon"><UserRound size={19}/></span><span>隐私说明</span><ChevronRight size={17}/></a>{account.error && <p className="personal-account-error" role="alert">{account.error}</p>}{user ? <button className="personal-logout" disabled={account.busy} onClick={() => void account.logout()}><LogOut size={16}/>{account.busy ? '正在退出…' : '退出登录'}</button> : account.status?.configured ? <a className="personal-logout" href="/login">登录账号<ChevronRight size={16}/></a> : null}</section>

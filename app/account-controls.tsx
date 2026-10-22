@@ -1,6 +1,6 @@
 'use client';
 import { useEffect, useState } from 'react';
-import type { AccountStatus } from '../lib/auth/contracts';
+import type { AccountStatus, AccountUser } from '../lib/auth/contracts';
 import { accountRequest } from './auth-screen';
 
 export function useAccountControls() {
@@ -34,5 +34,6 @@ export function useAccountControls() {
     } catch (failure) { setError(failure instanceof Error ? failure.message : '暂时无法退出，请重试。'); }
     finally { setBusy(false); }
   }
-  return { status, error, busy, logout };
+  function updateUser(user: AccountUser) { setStatus(value => value ? { ...value, user } : value); }
+  return { status, error, busy, logout, updateUser };
 }

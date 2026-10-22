@@ -28,6 +28,9 @@ class FakeRepository implements AccountRepository {
   async recover() { this.calls.push('recover'); }
   async verify() { this.calls.push('verify'); this.user = user; return user; }
   async updatePassword() { this.calls.push('update-password'); }
+  async uploadAvatar() { this.calls.push('upload-avatar'); return { ...user, avatarUrl: '/api/auth/avatar?v=test' }; }
+  async removeAvatar() { this.calls.push('remove-avatar'); return user; }
+  async downloadAvatar() { this.calls.push('download-avatar'); return null; }
   async logout(all = false) { this.calls.push(all ? 'logout-all' : 'logout'); this.user = null; }
   clearSession() { this.user = null; }
 }

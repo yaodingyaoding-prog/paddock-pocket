@@ -12,7 +12,7 @@ export class AccountService {
   async status(): Promise<AccountStatus> {
     if (!this.config.configured) return { enabled: this.config.required, configured: false, user: null };
     const user = await this.ready().current();
-    return { enabled: this.config.required, configured: true, user: user?.verified ? { id: user.id, email: user.email, name: user.name } : null };
+    return { enabled: this.config.required, configured: true, user: user?.verified ? { id: user.id, email: user.email, name: user.name, ...(user.avatarUrl ? { avatarUrl: user.avatarUrl } : {}) } : null };
   }
   async execute(action: AuthAction, input: unknown) {
     const parsed = actionSchemas[action].safeParse(input);
@@ -25,7 +25,7 @@ export class AccountService {
         this.recovery.clear();
         const user = await repo.login(body.email, body.password);
         if (!user.verified) { await repo.logout(); throw new AccountError('EMAIL_UNVERIFIED', '请先验证邮箱，再登录。', 403); }
-        return { user: { id: user.id, email: user.email, name: user.name }, next: safeReturnPath(body.next) };
+        return { user: { id: user.id, email: user.email, name: user.name, ...(user.avatarUrl ? { avatarUrl: user.avatarUrl } : {}) }, next: safeReturnPath(body.next) };
       }
       case 'register': {
         const body = actionSchemas.register.parse(input);
