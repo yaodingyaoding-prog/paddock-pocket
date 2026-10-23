@@ -1,6 +1,8 @@
 // Runs in the HTML before the application bundle, so a failed bundle can report
 // its own loading state. Keep this independent of React and third-party scripts.
 export const bootStatusScript = `(() => {
+  // Server-rendered information pages use ordinary links and need no app-ready signal.
+  if (['/about', '/privacy'].includes(location.pathname)) return;
   const notice = document.getElementById('paddock-boot-status');
   const retry = document.getElementById('paddock-boot-retry');
   if (!notice || !retry) return;
