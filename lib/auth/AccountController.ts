@@ -23,7 +23,7 @@ export class BaseAccountController {
   }
 }
 
-async function readBody(request: Request) {
+export async function readAccountBody(request: Request) {
   if (!request.headers.get('content-type')?.startsWith('application/json')) throw new AccountError('CONTENT_TYPE', '请使用有效的表单请求。', 415);
   const reader = request.body?.getReader();
   if (!reader) throw new AccountError('INVALID_INPUT', '请填写表单。');
@@ -55,7 +55,7 @@ export class AccountController extends BaseAccountController {
       if (!parsed.success) throw new AccountError('NOT_FOUND', '没有这个账号操作。', 404);
       const origin = request.headers.get('origin');
       if (!origin || origin !== new URL(request.url).origin || origin !== this.config.baseUrl) throw new AccountError('INVALID_ORIGIN', '请求来源无效，请从本站重新操作。', 403);
-      const body = await readBody(request);
+      const body = await readAccountBody(request);
       await this.rateLimit(request, parsed.data, body);
       return this.success(await this.service.execute(parsed.data, body));
     } catch (error) { return this.failure(error, actionValue); }

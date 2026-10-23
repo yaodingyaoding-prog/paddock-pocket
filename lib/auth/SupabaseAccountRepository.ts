@@ -3,6 +3,7 @@ import type { AuthError, User } from '@supabase/supabase-js';
 import { AccountError, type AccountIdentity, type AccountRepository } from './contracts';
 import type { AuthConfig } from './config';
 import { AccountCookies } from './cookies';
+import { preferencesFromRow, type PreferencesPatch } from '../preferences';
 
 function identity(user: User): AccountIdentity {
   const revision = String(user.user_metadata?.paddock_avatar_revision || '');
@@ -103,6 +104,21 @@ export class SupabaseAccountRepository implements AccountRepository {
       const { error } = await this.client.auth.signOut({ scope: all ? 'global' : 'local' });
       if (error && ![401, 403, 404].includes(error.status || 0)) providerError(error);
     } finally { this.clearSession(); }
+  }
+  private preferencesError(error: { code?: string }): never {
+    if (['PGRST205','PGRST202','42P01','42883'].includes(error.code || '')) throw new AccountError('SYNC_NOT_READY', '账号同步尚未就绪，请稍后再试。', 503);
+    throw new AccountError('SYNC_UNAVAILABLE', '云端设置暂时无法保存，请重试。', 503);
+  }
+  async readPreferences(userId: string) {
+    const { data, error } = await this.client.from('paddock_preferences').select('driver_ids,team_ids,theme,accent,time_zone,revision,updated_at').eq('user_id', userId).maybeSingle();
+    if (error) this.preferencesError(error);
+    return data ? preferencesFromRow(data) : null;
+  }
+  async writePreferences(patch: PreferencesPatch, initialize: boolean) {
+    const { data, error } = await this.client.rpc('paddock_save_preferences', { p_patch: patch, p_initialize: initialize });
+    if (error) this.preferencesError(error);
+    if (!data?.[0]) throw new AccountError('SYNC_UNAVAILABLE', '云端设置暂时无法保存，请重试。', 503);
+    return preferencesFromRow(data[0]);
   }
   clearSession() { this.cookies.clearAuth(); }
 }

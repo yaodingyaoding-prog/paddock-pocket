@@ -47,7 +47,7 @@
 
 赛程页的“分享周末”和领奖台的分享按钮可生成带二维码的 PNG 海报，支持系统分享、保存图片和复制链接。比赛卡注明时区与数据时间；阵容分享不含邮箱、会员编号或账号头像，也不会修改接收者的关注。
 
-头像随账号同步。关注列表按账号分开保存在当前设备，退出后游客领奖台清空，同一账号再次登录可恢复；关注、主题和时区尚未跨设备同步。完整操作、各设备直播配置和数据工具说明见[使用指南](docs/user-guide.md)。
+昵称、头像、关注车手与车队、主题、配色和时区均随账号跨设备同步。修改后自动保存，在“我的”查看同步状态；退出后游客领奖台清空，重新登录恢复云端设置。完整操作、各设备直播配置和数据工具说明见[使用指南](docs/user-guide.md)。
 
 ### Android 安装与更新
 
@@ -95,7 +95,7 @@ npm run dev
 1. Fork 仓库，并修改 `wrangler.jsonc` 的 Worker 名称；删除本站的 `routes`，或替换成自己拥有的域名。
 2. 创建自己的 Supabase 项目与 SMTP 发信配置。当前站使用 Supabase 与 Resend，免费套餐的额度以服务商当前说明为准。
 3. 复制 `.env.example` 为 `.dev.vars` 配置本地账号服务；正式环境将变量与 Secrets 填入 Cloudflare 控制台。
-4. 配置 Supabase Site URL 和 `/auth/confirm` 回跳地址，头像存储按文档执行一次私有桶 SQL。
+4. 配置 Supabase Site URL 和 `/auth/confirm` 回跳地址，头像存储按文档执行一次私有桶 SQL；账号设置执行一次 [account-preferences.sql](docs/account-preferences.sql)，启用本人行级访问和原子保存函数。
 5. 通过注册、登录、密码恢复、头像与匿名接口保护验收后再开放访问。`AUTH_MODE=off` 不强制登录，不能用于验证正式站的访问保护。
 
 | 变量 | 用途 |
@@ -112,7 +112,7 @@ Cloudflare Git 构建配置：Node.js `24`，仓库根目录 `/`，构建命令 
 
 ## 技术与目录
 
-React 19 / TypeScript 构建界面，Vite / Vinext 配合 Cloudflare Workers 运行，Three.js 绘制赛道。Supabase Auth / Storage 提供账号与私有头像，Resend 通过 SMTP 发送密码恢复邮件。Android 原生层使用 Java、WebView 与 AppWidget。
+React 19 / TypeScript 构建界面，Vite / Vinext 配合 Cloudflare Workers 运行，Three.js 绘制赛道。Supabase Auth / Storage / PostgreSQL 提供账号、私有头像与个人设置同步，Resend 通过 SMTP 发送密码恢复邮件。Android 原生层使用 Java、WebView 与 AppWidget。
 
 ```text
 app/                   页面、交互组件与 API 路由

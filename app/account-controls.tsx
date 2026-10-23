@@ -5,7 +5,7 @@ import { accountRequest } from './auth-screen';
 import { accountLogoutKey } from '../lib/following';
 import { logoutClientAccount, withoutAccountUser } from '../lib/account-ui';
 
-export function useAccountControls() {
+export function useAccountControls(options?: { beforeLogout?: () => Promise<void> }) {
   const [status, setStatus] = useState<AccountStatus | null>(null);
   const [error, setError] = useState('');
   const [busy, setBusy] = useState(false);
@@ -36,6 +36,7 @@ export function useAccountControls() {
     signingOut.current = true; generation.current++;
     setBusy(true); setError('');
     try {
+      await options?.beforeLogout?.();
       await logoutClientAccount({ request: () => accountRequest('logout', {}), storage: () => localStorage,
         clearUser: () => setStatus(withoutAccountUser), notify: () => window.dispatchEvent(new Event('paddock:signed-out')),
         navigate: path => window.location.assign(path) });

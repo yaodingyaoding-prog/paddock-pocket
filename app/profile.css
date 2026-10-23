@@ -208,3 +208,6 @@
 }
 @media(prefers-reduced-motion:reduce){.personal-center button,.personal-center a{transition:none}
 }
+.personal-sync-note{display:flex;align-items:center;gap:8px;margin-top:20px;color:var(--muted);font-size:12px;min-height:24px;flex-wrap:wrap}
+.personal-sync-note[data-status=error]{color:var(--danger,#e88a84)}
+.personal-sync-note button{margin-left:auto;border:1px solid currentColor;border-radius:20px;padding:5px 10px;background:transparent;color:inherit;font-size:12px}

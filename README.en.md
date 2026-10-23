@@ -45,7 +45,7 @@ Schedule, Standings, Discover and Profile form the primary navigation. Analysis 
 3. Use Discover (探索) for live coverage, replays, news and analysis.
 4. Use Profile (我的) for avatars, followed drivers, themes, accents and time zones.
 
-Avatars sync through the account. Follow lists are stored separately for each account on the current device. Signing out clears the guest podium; signing in to the same account restores its saved selection. Follows, appearance and time zones do not sync across devices. The [user guide](docs/user-guide.en.md) explains each workflow, viewing setup by device and analysis limitations.
+Nicknames, avatars, driver and team follows, theme, accent and time zone sync across devices through the account. Changes save automatically; Profile shows their sync status. Signing out clears the guest podium, and signing in restores cloud settings. The [user guide](docs/user-guide.en.md) explains each workflow, viewing setup by device and analysis limitations.
 
 ### Android installation and updates
 
@@ -95,7 +95,7 @@ Account, weather and race-data endpoints require a full Cloudflare Worker deploy
 1. Fork the repository and change the Worker name in `wrangler.jsonc`. Remove this project's `routes` or replace them with domains you own.
 2. Create your own Supabase project and SMTP configuration. Production currently uses Supabase and Resend; check the providers for current free-plan quotas.
 3. Copy `.env.example` to `.dev.vars` for local account configuration. Set production runtime variables and Secrets in Cloudflare.
-4. Configure the Supabase Site URL and `/auth/confirm` redirect. For avatars, review and run the private-bucket SQL once in your project.
+4. Configure the Supabase Site URL and `/auth/confirm` redirect. For avatars, review and run the private-bucket SQL once in your project. Run [account-preferences.sql](docs/account-preferences.sql) once to enable owner-only row security and atomic preference saves.
 5. Verify signup, login, recovery, avatars and anonymous endpoint protection before opening access. `AUTH_MODE=off` does not enforce login and cannot validate production access protection.
 
 | Variable | Purpose |
@@ -116,7 +116,7 @@ With `AUTH_MODE=required`, private routes stay closed during account-service out
 
 ## Technology and layout
 
-React 19 / TypeScript provides the interface, Vite / Vinext and Cloudflare Workers run the application, and Three.js renders circuits. Supabase Auth / Storage provides accounts and private avatars, with recovery email through SMTP. Android uses Java, WebView and AppWidget.
+React 19 / TypeScript provides the interface, Vite / Vinext and Cloudflare Workers run the application, and Three.js renders circuits. Supabase Auth / Storage / PostgreSQL provides accounts, private avatars and preference sync, with recovery email through SMTP. Android uses Java, WebView and AppWidget.
 
 ```text
 app/                   Pages, interactions and API routes
