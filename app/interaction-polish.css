@@ -1,7 +1,7 @@
 /* Animate the live content pane; fixed navigation stays outside the animation. */
 #main{view-transition-name:none}
 html[data-motion-engine=live] :is(.route-content,.rank-list,.rank-row,.explore-card,.weather-layout,.weather-range-message,.detail-workspace){animation:none}
-html[data-page-transition=active] .route-content{will-change:transform,opacity}
+/* Only bounded visible blocks receive compositor animations. */
 .app-shell .route-content{animation-duration:.235s;animation-timing-function:cubic-bezier(.16,.8,.2,1)}
 .rank-list .rank-row,.explore-card-grid .explore-card{animation:item-rise .38s cubic-bezier(.18,.8,.2,1) both}
 .rank-list .rank-row:nth-child(2),.explore-card-grid .explore-card:nth-child(2){animation-delay:35ms}.rank-list .rank-row:nth-child(3),.explore-card-grid .explore-card:nth-child(3){animation-delay:65ms}.rank-list .rank-row:nth-child(4),.explore-card-grid .explore-card:nth-child(4){animation-delay:90ms}.rank-list .rank-row:nth-child(5),.explore-card-grid .explore-card:nth-child(5){animation-delay:115ms}.explore-card-grid .explore-card:nth-child(6){animation-delay:140ms}
@@ -15,7 +15,7 @@ html[data-page-transition=active] .route-content{will-change:transform,opacity}
 .app-shell .driver-profile-page .driver-overview-main{max-width:100%;min-width:0}
 .app-shell .liquid-nav{transition:box-shadow .25s,border-color .25s}
 .liquid-nav:has(button:active){box-shadow:0 15px 38px #0004,inset 0 1px 0 #ffffff60;border-color:color-mix(in srgb,var(--text) 35%,transparent)}
-.liquid-nav .glass-lens{transition:transform .38s cubic-bezier(.22,1,.36,1);will-change:transform}
+.liquid-nav .glass-lens{transition:transform .42s cubic-bezier(.22,1,.36,1)}
 @media(max-width:700px){.app-shell .rank-open-arrow{padding:4px;width:12px;height:12px;flex:none}.app-shell .rank-person{gap:6px}.podium-driver>svg{top:35px;right:0}}
 @media(prefers-reduced-motion:reduce){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}.app-shell .route-content,.rank-list .rank-row,.explore-card-grid .explore-card,.driver-tab-panel,.liquid-nav .glass-liquid{animation:none}.liquid-nav .glass-lens{transition:none}.app-shell .rank-person:hover .rank-open-arrow{transform:none}}
 
@@ -33,3 +33,27 @@ html[data-page-transition=active] .route-content{will-change:transform,opacity}
 [data-accent=cyan]{--accent:#65d9ed;--accent-ink:#092c33}[data-accent=lime]{--accent:#c9e979;--accent-ink:#24310b}[data-accent=pink]{--accent:#efa4d3;--accent-ink:#3b102c}[data-accent=silver]{--accent:#b6c6d5;--accent-ink:#182a38}[data-accent=coral]{--accent:#ff9c82;--accent-ink:#3c160c}[data-accent=violet]{--accent:#a99bff;--accent-ink:#1e1444}
 :root:is([data-theme=light],[data-theme=sand],[data-theme=ice])[data-accent=cyan]{--accent:#08768c}:root:is([data-theme=light],[data-theme=sand],[data-theme=ice])[data-accent=lime]{--accent:#547014}:root:is([data-theme=light],[data-theme=sand],[data-theme=ice])[data-accent=pink]{--accent:#a33378}:root:is([data-theme=light],[data-theme=sand],[data-theme=ice])[data-accent=silver]{--accent:#4d6378}:root:is([data-theme=light],[data-theme=sand],[data-theme=ice])[data-accent=coral]{--accent:#a94729}:root:is([data-theme=light],[data-theme=sand],[data-theme=ice])[data-accent=violet]{--accent:#6550b7}
 :root:is([data-theme=sand],[data-theme=ice])[data-accent=mint]{--accent:#087a65}:root:is([data-theme=sand],[data-theme=ice])[data-accent=red]{--accent:#bc283c}:root:is([data-theme=sand],[data-theme=ice])[data-accent=orange]{--accent:#a34e00}:root:is([data-theme=sand],[data-theme=ice])[data-accent=blue]{--accent:#265dc1}:root:is([data-theme=sand],[data-theme=ice])[data-accent=purple]{--accent:#7647b8}:root:is([data-theme=sand],[data-theme=ice])[data-accent=gold]{--accent:#806314}
+
+/* Main navigation glides, detail panels slide, dialogs settle, choices spring. */
+.app-shell .liquid-nav{overflow:hidden;-webkit-backdrop-filter:blur(12px) saturate(1.35);backdrop-filter:blur(12px) saturate(1.35)}
+.liquid-nav .glass-liquid{background:linear-gradient(155deg,#ffffff36,#ffffff0b 44%,color-mix(in srgb,var(--accent) 15%,transparent));border-color:color-mix(in srgb,var(--text) 20%,transparent);transition:transform .28s cubic-bezier(.22,1,.36,1),border-color .28s}
+.glass-reflection{position:absolute;inset:1px 12%;border-radius:inherit;pointer-events:none;background:linear-gradient(115deg,transparent 8%,#ffffff30 10%,#ffffff08 22%,transparent 50%);opacity:.8}
+.app-shell .liquid-nav>button{transition:color .24s,transform .24s cubic-bezier(.22,1,.36,1)}
+.liquid-nav .glass-nav-icon{transition:transform .4s cubic-bezier(.22,1,.36,1)}
+.liquid-nav>button[data-nav=discover].active .glass-nav-icon{transform:rotate(12deg) translateY(-1px)}
+.liquid-nav>button[data-nav=rankings].active .glass-nav-icon{transform:translateY(-2px) scale(1.08)}
+.liquid-nav>button[data-nav=profile].active .glass-nav-icon{transform:translateY(-1px) scale(1.06)}
+.app-shell .liquid-nav>button:active{transform:scale(.95)}
+html[data-page-transition=active] .page-heading:after{animation:heading-rail .4s cubic-bezier(.22,1,.36,1) both}
+@keyframes heading-rail{from{transform:skewX(-28deg) scaleX(.45);transform-origin:left}to{transform:skewX(-28deg) scaleX(1);transform-origin:left}}
+.app-shell .rank-list[data-expanded=true] .rank-row:nth-child(n+6){animation:ranking-reveal .3s cubic-bezier(.22,1,.36,1) both}
+.app-shell .rank-list[data-expanded=true] .rank-row:nth-child(7){animation-delay:18ms}.app-shell .rank-list[data-expanded=true] .rank-row:nth-child(8){animation-delay:36ms}
+@keyframes ranking-reveal{from{opacity:.5;transform:translateY(9px)}to{opacity:1;transform:none}}
+.driver-tab-panel{animation:dossier-reveal .32s cubic-bezier(.22,1,.36,1) both}
+@keyframes dossier-reveal{from{opacity:.5;transform:translateX(12px)}to{opacity:1;transform:none}}
+@keyframes race-dialog{from{opacity:0;transform:translateY(14px) scale(.97)}to{opacity:1;transform:none}}
+.sheet[open]{animation:race-dialog .32s cubic-bezier(.22,1,.36,1) both}
+.app-shell .discovery-feature .feature-watermark{transition:transform .5s cubic-bezier(.22,1,.36,1),opacity .4s}
+@media(hover:hover){.app-shell .discovery-feature:hover .feature-watermark{transform:rotate(-6deg) scale(1.05)}.app-shell .section-link:hover .section-icon{transform:rotate(-4deg) scale(1.05)}}
+.section-icon{transition:transform .3s cubic-bezier(.22,1,.36,1)}
+@media(prefers-reduced-motion:reduce){html[data-page-transition=active] .page-heading:after,.app-shell .rank-list[data-expanded=true] .rank-row,.driver-tab-panel,.sheet[open]{animation:none!important}.app-shell .liquid-nav>button,.liquid-nav .glass-lens,.liquid-nav .glass-nav-icon,.section-icon,.app-shell .discovery-feature .feature-watermark{transition:none!important}.liquid-nav>button.active .glass-nav-icon{transform:none!important}}

@@ -10,6 +10,13 @@
 
 ![围场口袋探索页面](docs/images/discover.jpg)
 
+<details>
+<summary>查看登录页面</summary>
+
+![Paddock Pocket login](docs/images/login.jpg)
+
+</details>
+
 ## 项目特色
 
 围场口袋围绕实际观赛流程设计。赛程、积分、探索和我的构成四个主要入口，遥测、技术资料与回放等工具放在二级页面，手机、平板和电脑使用同一套应用。

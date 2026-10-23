@@ -13,6 +13,7 @@ const scripts = [
   ['scripts/verify-auth.mjs'],
   ['scripts/verify-personal-features.mjs'],
   ['scripts/verify-race-refresh.mjs'],
+  ['scripts/verify-motion.mjs'],
 ];
 for (const args of scripts) {
   const result = spawnSync(process.execPath, args, { stdio: 'inherit' });

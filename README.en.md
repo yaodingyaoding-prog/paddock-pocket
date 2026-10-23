@@ -10,6 +10,13 @@ A race and viewing companion for Formula 1 fans. Plan a weekend, check standings
 
 ![Paddock Pocket Discover page](docs/images/discover.jpg)
 
+<details>
+<summary>View the login screen</summary>
+
+![Paddock Pocket login](docs/images/login.jpg)
+
+</details>
+
 ## What makes it useful
 
 Paddock Pocket organizes the experience around four main destinations: Schedule, Standings, Discover and Profile. Telemetry, technical information and replays have their own detail pages. Phones, tablets and desktops use the same application.
