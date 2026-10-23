@@ -26,7 +26,7 @@ Open Standings (积分), then use the button beneath the table to expand it. Sel
 
 In Profile, choose up to three drivers for your personal podium and follow teams separately. Select the licence-card avatar to upload an image, drag and zoom the crop, and save it. Saved avatars follow your account across devices.
 
-Themes, accents, time zones and followed drivers or teams remain local to the current device. These preferences do not currently sync through the account; avatars do.
+Themes, accents, time zones and followed drivers or teams remain local to the current device. These preferences do not currently sync through the account; avatars do. Follow lists are separate for each account. Signing out opens the login page and clears the guest podium; signing in to the same account restores its saved local selection. Clearing browser site data removes local preferences.
 
 ### 4. Watch live coverage and find replays
 

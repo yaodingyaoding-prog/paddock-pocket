@@ -45,7 +45,7 @@ Schedule, Standings, Discover and Profile form the primary navigation. Analysis 
 3. Use Discover (探索) for live coverage, replays, news and analysis.
 4. Use Profile (我的) for avatars, followed drivers, themes, accents and time zones.
 
-Avatars sync through the account. Follows, appearance and time zones currently remain device-local. The [user guide](docs/user-guide.en.md) explains each workflow, viewing setup by device and analysis limitations.
+Avatars sync through the account. Follow lists are stored separately for each account on the current device. Signing out clears the guest podium; signing in to the same account restores its saved selection. Follows, appearance and time zones do not sync across devices. The [user guide](docs/user-guide.en.md) explains each workflow, viewing setup by device and analysis limitations.
 
 ### Android installation and updates
 

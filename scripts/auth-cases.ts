@@ -5,7 +5,7 @@ import { AccountCookies, RecoveryGrant } from '../lib/auth/cookies';
 import { AccountService } from '../lib/auth/accountService';
 import { AccountController } from '../lib/auth/AccountController';
 import { SupabaseAccountRepository } from '../lib/auth/SupabaseAccountRepository';
-import { accountProtection, protectedAccountPath } from '../lib/auth/protection';
+import { accountProtection, protectedAccountPath, canonicalDocumentLocation } from '../lib/auth/protection';
 import { safeReturnPath } from '../lib/auth/paths';
 
 const origin = 'https://f1.xiaodinglab.com';
@@ -66,6 +66,17 @@ for (const path of ['/login', '/auth/confirm', '/privacy', '/api/auth/session', 
 for (const path of ['/', '/about', '/api/data', '/api/tools', '/api/weather', '/api/race-media', '/api/drivers/11111111-1111-4111-8111-111111111111']) check(!protectedAccountPath(path), 'Explicit race read routes are public');
 for (const path of ['/api/private', '/api/data.json', '/account', '/api/drivers/invalid']) check(protectedAccountPath(path), 'Unknown routes remain closed');
 for (const method of ['POST', 'PUT', 'DELETE']) check(protectedAccountPath('/api/data', method), 'Read permission never opens mutations');
+for (const path of ['/', '/login?next=%2F%23schedule', '/register', '/forgot-password', '/about', '/privacy', '/auth/confirm?type=recovery']) {
+  check(canonicalDocumentLocation(new Request('https://xiaodinglab.com' + path), config) === origin + path, 'Legacy documents move to the configured account origin before rendering');
+}
+check(canonicalDocumentLocation(new Request('https://xiaodinglab.com/login', { method: 'HEAD' }), config) === origin + '/login', 'HEAD document requests use the same canonical host');
+check(canonicalDocumentLocation(new Request(origin + '/login'), config) === null, 'Canonical account pages never redirect themselves');
+for (const path of ['/api/auth/login', '/api/auth/session', '/api/auth/avatar', '/api/data', '/_next/static/app.js', '/favicon.svg']) {
+  check(canonicalDocumentLocation(new Request('https://xiaodinglab.com' + path), config) === null, 'API and static requests are not redirected across origins');
+}
+for (const method of ['POST', 'PUT', 'DELETE']) check(canonicalDocumentLocation(new Request('https://xiaodinglab.com/login', { method }), config) === null, 'Never replay a credential-bearing mutation to another origin');
+check(canonicalDocumentLocation(new Request('http://localhost:5174/'), unifiedAuthConfig({ ...env, AUTH_MODE: 'off' })) === null, 'Development does not redirect to production');
+check(canonicalDocumentLocation(new Request('https://xiaodinglab.com/'), unifiedAuthConfig({ AUTH_MODE: 'required' })) === null, 'Incomplete account setup cannot redirect guests to an assumed host');
 
 const anonymous = setup();
 check(await accountProtection(new Request(origin + '/'), anonymous) === null, 'Guest home works without provider verification');
@@ -100,6 +111,11 @@ response = await account.controller.post(post('login', { email: 'fan@example.tes
 check(response.status === 401, 'Invalid credentials remain an authentication error');
 response = await account.controller.post(post('login', { email: 'fan@example.test', password: '123456789012' }, { origin: 'https://evil.test' }), 'login');
 check(response.status === 403, 'Cross-origin sign-in is rejected');
+for (const action of ['login', 'register']) {
+  const beforeCalls = account.repository.calls.length;
+  response = await account.controller.post(post(action, { email: 'fan@example.test', password: '123456789012', ...(action === 'register' ? { name: 'Fan' } : {}) }, { origin: 'https://xiaodinglab.com' }), action);
+  check(response.status === 403 && account.repository.calls.length === beforeCalls, 'Legacy origins cannot bypass account validation after document redirects are added');
+}
 response = await account.controller.post(post('register', { name: 'Fan', email: 'fan@example.test', password: 'short' }), 'register');
 check(response.status === 400, 'Five-character registration password is rejected before provider call');
 response = await account.controller.post(post('register', { name: 'Fan', email: 'fan@example.test', password: '123456' }), 'register');

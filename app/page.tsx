@@ -14,7 +14,7 @@ import { GlassNavigation } from './glass-navigation';
 import './ui-refinement.css';
 import './race-design.css';
 import './interaction-polish.css';
-import { readFollowing, toggleFollowing, type Following } from '../lib/following';
+import { loadAccountFollowing, saveAccountFollowing, followingStorageKey, accountLogoutKey, toggleFollowing, type Following } from '../lib/following';
 import { followTeamKey } from './following';
 import { canonicalTeam } from '../lib/race-media';
 import { TimezonePicker } from './timezone-picker';
@@ -88,6 +88,7 @@ export default function App() {
   const [timezone, setTimezone] = useState('Asia/Shanghai');
   const [localTimezone, setLocalTimezone] = useState('Asia/Shanghai');
   const [following, setFollowing] = useState<Following>({driverIds:[],teamIds:[]});
+  const followingOwner = useRef<string | null | undefined>(undefined);
   const [rankExpanded, setRankExpanded] = useState(false);
   const [rankHelp, setRankHelp] = useState(false);
   const [theme, setTheme] = useState('dark');
@@ -142,7 +143,6 @@ export default function App() {
     setLocalTimezone(Intl.DateTimeFormat().resolvedOptions().timeZone);
     const savedTimezone = safeGet('paddock-timezone', 'Asia/Shanghai');
     setTimezone(validTimezone(savedTimezone) ? savedTimezone : 'Asia/Shanghai');
-    setFollowing(readFollowing(safeGet('paddock-following-v1', null), safeGet('paddock-favorite', '')));
     setTheme(safeGet('paddock-theme', 'dark'));
     setAccent(safeGet('paddock-accent','mint'));
     try { pruneClientCache(localStorage); } catch {}
@@ -152,6 +152,19 @@ export default function App() {
     const syncClock=()=>{if(!document.hidden)setNow(Date.now());};document.addEventListener('visibilitychange',syncClock);
     return () => {clearInterval(id);document.removeEventListener('visibilitychange',syncClock);};
   }, []);
+  useEffect(() => {
+    if (!account.status) { followingOwner.current = undefined; setFollowing({ driverIds: [], teamIds: [] }); return; }
+    const userId = account.status.user?.id || null;
+    followingOwner.current = userId;
+    try { setFollowing(loadAccountFollowing(localStorage, userId)); } catch { setFollowing({ driverIds: [], teamIds: [] }); }
+    const signedOut = () => { followingOwner.current = null; setFollowing({ driverIds: [], teamIds: [] }); };
+    const changed = (event: StorageEvent) => {
+      if (event.key === accountLogoutKey) { signedOut(); return; }
+      if (event.key === followingStorageKey(userId)) { try { setFollowing(loadAccountFollowing(localStorage, userId)); } catch {} }
+    };
+    window.addEventListener('paddock:signed-out', signedOut); window.addEventListener('storage', changed);
+    return () => { window.removeEventListener('paddock:signed-out', signedOut); window.removeEventListener('storage', changed); };
+  }, [Boolean(account.status), account.status?.user?.id]);
   useEffect(()=>{
     const time=Date.now(),boundary=sessions.flatMap(s=>[+new Date(s.startDate),+new Date(s.endDate)]).filter(at=>Number.isFinite(at)&&at>time).sort((a,b)=>a-b)[0];
     if(!boundary||boundary-time>60000)return;
@@ -186,7 +199,7 @@ export default function App() {
   }
   function changeSeason(value: string) { setRankExpanded(false); setSeason(value); setSelected(null); setData({ seasons: data.seasons }); setError(''); }
   function savePreference(key: string, value: string) { try { localStorage.setItem('paddock-' + key, JSON.stringify(value)); } catch {} }
-  function updateFollow(row:Row, team=false) { const id=team?followTeamKey(row):row.driverId; if(!id)return; if(!team&&!following.driverIds.includes(id)&&following.driverIds.length>=3){setToast('领奖台已满，先在我的阵容中更换一位车手');return;} setFollowing(previous=>{const next=toggleFollowing(previous,team?'teamIds':'driverIds',id);try{localStorage.setItem('paddock-following-v1',JSON.stringify(next));}catch{}return next;}); }
+  function updateFollow(row:Row, team=false) { const id=team?followTeamKey(row):row.driverId; if(!id)return; const owner=followingOwner.current;if(owner===undefined||owner!==(account.status?.user?.id||null)){setToast('正在读取账号状态，请稍后再选择');return;} if(!team&&!following.driverIds.includes(id)&&following.driverIds.length>=3){setToast('领奖台已满，先在我的阵容中更换一位车手');return;} setFollowing(previous=>{const next=toggleFollowing(previous,team?'teamIds':'driverIds',id);try{saveAccountFollowing(localStorage,owner,next);}catch{}return next;}); }
   function pickFavorite(row:Row) { updateFollow(row); }
   async function viewResults(s: Row, r = race) {
     if (!r) return;

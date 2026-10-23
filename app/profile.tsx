@@ -36,7 +36,7 @@ export function ProfilePage(props: ProfileProps) {
         <div className="personal-option-heading"><h3>界面外观</h3><span>{appearanceThemes.find(item => item[0] === theme)?.[1]}</span></div>
         <div className="personal-themes" role="group" aria-label="界面外观">{appearanceThemes.map(([id, label, tint]) => <button key={id} className={'personal-theme' + (theme === id ? ' is-selected' : '')} aria-pressed={theme === id} onClick={() => props.onTheme(id)} style={{ '--preview-bg': tint, '--preview-ink': id === 'light' ? '#566779' : '#d9e4e7', '--preview-panel': id === 'light' ? '#fff' : '#ffffff0d' } as CSSProperties}><span className="theme-preview" aria-hidden="true"><span className="theme-preview-bar"><i/><i/><i/></span><span className="theme-preview-layout"><i/><span><b/><b/><em/><b/></span></span></span><span className="theme-label">{label}<span className="theme-check">{theme === id && <Check size={12}/>}</span></span></button>)}</div>
         <div className="personal-accent-section"><div className="personal-option-heading"><h3>点缀色</h3><span>{accentName}</span></div><div className="personal-accents" role="group" aria-label="点缀色">{accentColors.map(([id,label,tint]) => <button key={id} aria-label={label} title={label} aria-pressed={accent === id} onClick={() => props.onAccent(id)} style={{ '--choice-color': tint } as CSSProperties}><span>{accent === id && <Check size={17}/>}</span><small>{label.slice(0,2)}</small></button>)}</div></div>
-        <div className="personal-local-note"><Smartphone size={13}/>外观与关注偏好保存在当前设备</div>
+        <div className="personal-local-note"><Smartphone size={13}/>关注按账号区分，偏好保存在当前设备</div>
       </section>
 
       <div className="personal-settings-stack">

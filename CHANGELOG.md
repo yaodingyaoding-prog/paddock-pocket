@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Fixed login and registration from the legacy domain by canonicalizing document requests before forms render, preserving return links while keeping strict API origin checks.
+- Fixed logout retaining stale account UI after hash navigation. Successful logout now clears account state, notifies other tabs and opens the login page.
+- Separated on-device driver and team follows by account. Logout clears the guest podium and Android widget snapshot while retaining each account's own saved selection for its next login.
 - Added guest access to race schedules, standings, weather, driver archives and replay tools while retaining private account and avatar authorization.
 - Added local weekend and podium PNG share posters, QR codes and safe read-only lineup links.
 - Added a public product introduction, Open Graph / Twitter cover, robots and sitemap metadata.

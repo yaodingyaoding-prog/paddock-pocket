@@ -6,6 +6,13 @@ import type { AccountCookies } from './cookies';
 
 const publicPages = new Set(['/', '/about', '/login', '/register', '/forgot-password', '/reset-password', '/auth/confirm', '/privacy']);
 const publicRaceApis = new Set(['/api/data', '/api/weather', '/api/tools', '/api/race-media']);
+export function canonicalDocumentLocation(request: Request, config: AuthConfig): string | null {
+  // Move documents before rendering a form; never forward a credential-bearing POST.
+  if (!config.required || !config.configured || !['GET', 'HEAD'].includes(request.method)) return null;
+  const url = new URL(request.url);
+  if (url.origin === config.baseUrl || url.pathname.startsWith('/api/') || url.pathname.startsWith('/_next/') || /\.[a-z0-9]+$/i.test(url.pathname)) return null;
+  return config.baseUrl + url.pathname + url.search + url.hash;
+}
 export function protectedAccountPath(pathname: string, method = 'GET') {
   const readOnly = method === 'GET' || method === 'HEAD';
   if (readOnly && (publicRaceApis.has(pathname) || /^\/api\/drivers\/[a-f0-9-]{36}$/i.test(pathname))) return false;
