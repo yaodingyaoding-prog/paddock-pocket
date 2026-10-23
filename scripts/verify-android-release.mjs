@@ -1,0 +1,12 @@
+import assert from 'node:assert/strict';import fs from 'node:fs';import path from 'node:path';import {createHash} from 'node:crypto';
+const release=JSON.parse(fs.readFileSync('public/downloads/android-build.json','utf8'));
+const manifest=fs.readFileSync('native/android/AndroidManifest.xml','utf8'),pkg=JSON.parse(fs.readFileSync('package.json','utf8'));
+assert.equal(release.version,pkg.version,'Website package and APK release versions must agree');
+assert.equal(release.version,manifest.match(/android:versionName="([^"]+)"/)[1]);
+assert.equal(release.versionCode,Number(manifest.match(/android:versionCode="(\d+)"/)[1]));
+assert.equal(release.package,manifest.match(/package="([^"]+)"/)[1]);
+assert.equal(release.download,'/downloads/Paddock-Pocket-'+release.version+'.apk');
+assert(/^[a-f0-9]{64}$/i.test(release.certificateSha256),'Publish a signing certificate digest');
+const apk=fs.readFileSync(path.join('public',release.download));
+assert.equal(apk.readUInt32LE(0),0x04034b50);assert.equal(apk.length,release.bytes);assert.equal(createHash('sha256').update(apk).digest('hex'),release.sha256.toLowerCase(),'Published APK must match its update manifest');
+console.log('Android release: manifest, package version, APK path, byte count, checksum and certificate metadata verified.');

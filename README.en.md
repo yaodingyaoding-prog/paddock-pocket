@@ -2,118 +2,70 @@
 
 ### Every race weekend starts here.
 
-A race and viewing companion for Formula 1 fans. Plan a weekend, check standings and circuit weather, compare telemetry, find live coverage and replays, and give your favorite drivers a place on your personal podium.
+A race and viewing companion for Formula 1 fans. Schedules, standings, weather, telemetry and replays share one paddock, available on phones, tablets and desktops.
 
-[Live application](https://F1.xiaodinglab.com/) · [Android 0.6.0 preview](https://f1.xiaodinglab.com/downloads/Paddock-Pocket-0.6.0.apk) · [简体中文](README.md) · [Report an issue](https://github.com/yaodingyaoding-prog/paddock-pocket/issues)
+[Live application](https://F1.xiaodinglab.com/) · [Download Android 0.7.0](https://f1.xiaodinglab.com/downloads/Paddock-Pocket-0.7.0.apk) · [User guide](docs/user-guide.en.md) · [简体中文](README.md)
 
-![Project checks](https://github.com/yaodingyaoding-prog/paddock-pocket/actions/workflows/check.yml/badge.svg)
+[![Project checks](https://github.com/yaodingyaoding-prog/paddock-pocket/actions/workflows/check.yml/badge.svg)](https://github.com/yaodingyaoding-prog/paddock-pocket/actions/workflows/check.yml) [![MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-![Paddock Pocket Discover page](docs/images/discover.jpg)
+![Paddock Pocket login screen](docs/images/login.jpg)
 
 <details>
-<summary>View the login screen</summary>
+<summary>View the application</summary>
 
-![Paddock Pocket login](docs/images/login.jpg)
+![Paddock Pocket Discover screen](docs/images/discover.jpg)
 
 </details>
 
-## What makes it useful
+## Why Paddock Pocket
 
-Paddock Pocket organizes the experience around four main destinations: Schedule, Standings, Discover and Profile. Telemetry, technical information and replays have their own detail pages. Phones, tablets and desktops use the same application.
+Race-weekend information is scattered across calendars, standings, weather apps and video platforms. Paddock Pocket organizes it around watching a race: start with the next weekend, check points and driver profiles, explore data or find coverage, and keep your favorite drivers on a personal podium.
 
-- Rotate the 3D circuit directly on the home page, alongside the next-session countdown and weekend schedule.
-- Scan the top five drivers or expand the full standings. Open a driver to see the selected season's number, career results, title years, team history and news.
-- Read weather matched to circuit coordinates and session times, with more frequent checks around racing sessions.
-- Customize a fan licence card with a cropped account avatar, a three-driver podium and separate team follows.
-- Combine 10 interface themes with 12 accent colors, and choose a searchable IANA time zone with daylight-saving handling.
-- Use floating glass navigation, page transitions and a continuously animated circuit login screen, with reduced-motion support.
-- Receive web interface updates in the Android online app through the same production website.
-
-The project develops and maintains its interface, navigation, weather and account services, data integration and validation, cache fallbacks, device adaptations and deployment workflow. Upstream dependencies are documented under [Acknowledgments and sources](#acknowledgments-and-sources).
+The project maintains its own interface, navigation and motion, account and avatar integration, validation, cache fallbacks, Android adaptations and deployment workflow. Upstream services, references and assets are identified below.
 
 ## Features
 
-| Area | Available capabilities |
+| Feature | Experience |
 | --- | --- |
-| Race weekends | Seasons, Grand Prix schedules, session countdowns, results and calendar exports |
-| Standings and drivers | Driver and constructor standings, expandable tables, current and historical portraits, profiles and career records |
-| Circuits | Interactive 3D home-page outlines, circuit profiles, layouts and historical information |
-| Weather | Current conditions, hourly forecasts, session-time forecasts and retrieval timestamps |
-| Analysis | Two-driver telemetry, tyres and pit stops, race-control messages, technical information and championship clinching conditions |
-| Viewing | Five Star Sports, Tencent Video web and app options, and device-specific setup instructions |
-| Replays | Bilibili and Tencent searches by season, Grand Prix and race / qualifying / sprint / practice |
-| Discover | Curated paddock news briefs, classic races, an F1 encyclopedia and rules |
-| Profile | Account avatars, fan licence card, up to three followed drivers, team follows, themes and time zones |
-| Accounts | Email/password registration and login, persistent sessions, email password recovery, logout and private avatar storage |
-| Android | Online WebView application, a home-screen widget and APK update checks |
+| Weekend home | Next-session countdown, seasons and sessions, results, calendar exports and a directly rotatable 3D circuit |
+| Standings and profiles | Top five by default, expandable full tables, season-specific car numbers, career results, title years, teams and news |
+| Circuit weather | Conditions and forecasts matched to circuit coordinates and session times, with more frequent checks around sessions |
+| Personal podium | Fan licence card, cropped account avatar, up to three followed drivers and separate team follows |
+| Analysis | Two-driver telemetry, tyres and pit stops, race-control messages, technical material and next-round clinching conditions |
+| Viewing and replays | Five Star Sports, Tencent Video web / app links, and Bilibili / Tencent searches by season, race and session |
+| Discover | Paddock briefs, classic races, an F1 encyclopedia and rules |
+| Appearance and motion | 10 themes, 12 accent colors, searchable time zones, glass navigation, varied page motion and a continuously animated login scene |
 
-## User guide
+Schedule, Standings, Discover and Profile form the primary navigation. Analysis tools have secondary pages. Motion handles rapid navigation and respects system reduced-motion preferences.
 
-The application interface is primarily Chinese. The labels below include their on-screen names to help you navigate.
+## Start using it
 
-### 1. Create an account
+1. Visit [F1.xiaodinglab.com](https://F1.xiaodinglab.com/) and register or sign in. Production registration signs users in directly, with a minimum six-character password. Password recovery still requires email verification.
+2. Choose a season or Grand Prix in Schedule (赛程), and open a driver from Standings (积分).
+3. Use Discover (探索) for live coverage, replays, news and analysis.
+4. Use Profile (我的) for avatars, followed drivers, themes, accents and time zones.
 
-Visit [F1.xiaodinglab.com](https://F1.xiaodinglab.com/), select Create account (创建账号), and enter a nickname, your own email address and a password of at least six characters. The current production site signs new users in without a signup confirmation email.
+Avatars sync through the account. Follows, appearance and time zones currently remain device-local. The [user guide](docs/user-guide.en.md) explains each workflow, viewing setup by device and analysis limitations.
 
-You can enable Keep me signed in (保持登录). To recover a password, select Forgot password (忘记密码), enter your registered email, open the email link, confirm the recovery action and set a new password. Then sign in again. Use an address whose inbox you can access.
+### Android installation and updates
 
-Self-hosted deployments can enable Supabase signup email confirmation. The application supports both confirmation-required and immediate signup flows.
+**[Download the 0.7.0 preview APK](https://f1.xiaodinglab.com/downloads/Paddock-Pocket-0.7.0.apk)** · [Checksum and certificate metadata](public/downloads/android-build.json) · [Changelog](CHANGELOG.md)
 
-### 2. Plan a race weekend
+- Supports Android 8.0 and later. Confirm installation through Android's system prompts; existing installations can be updated in place.
+- The app loads the same production website as a browser, including current accounts, interface and race features. It requires internet access. Reloading receives deployed web updates.
+- Native features include a home-screen widget, system image picking, calendar saving, platform app launch and version checks.
+- The widget shows the next-session countdown, weather and up to three followed drivers. Android schedules background work; the maintainer's computer does not need to stay on.
+- Native updates require a new APK and user-confirmed installation. Version 0.6.0 supports in-app update checks; 0.5.0 users need a manual upgrade.
 
-Open Schedule (赛程) and choose a season and Grand Prix to see practice, qualifying, sprint and race sessions. Drag the home-page circuit to rotate it, use the view control to reset it, or open the circuit profile for more details. Published sessions can have results, and schedules can be exported to a calendar.
+Version 0.7.0 uses package `dev.paddock.pocket`, `versionCode=7` and the same certificate as 0.6.0. This is a preview signing channel. Compilation, signing, ZIP alignment, metadata and file hashes have been checked; Android device acceptance remains pending. See the [Android release notes](docs/android-release.md).
 
-Set your time zone in Profile (我的). Schedule times use that preference. Weather uses the circuit location and each session's time. Sessions outside the forecast range are labelled; historical races are not presented as future forecasts.
+### iPhone, iPad and Apple Watch
 
-### 3. Explore standings and follow drivers
+On iPhone and iPad, use Safari → Share → Add to Home Screen for a web shortcut. Native iOS / watchOS packages are not available. The shortcut does not include native widgets, watch-face complications or Smart Stack widgets.
 
-Open Standings (积分), then use the button beneath the table to expand it. Select a driver row for profile, career and news sections. The car number follows the selected season.
+## Local development
 
-In Profile, choose up to three drivers for your personal podium and follow teams separately. Select the licence-card avatar to upload an image, drag and zoom the crop, and save it. Saved avatars follow your account across devices.
-
-Themes, accents, time zones and followed drivers or teams remain local to the current device. These preferences do not currently sync through the account; avatars do.
-
-### 4. Watch live coverage and find replays
-
-Open Discover → Viewing center (探索 → 观赛中心). Choose Five Star Sports or Tencent Video. Tencent has separate web and app buttons. App links require the corresponding app and depend on browser support.
-
-The Five Star Sports setup panel detects your device and also allows manual selection:
-
-| Device | Setup |
-| --- | --- |
-| Desktop | Install a script manager in a supported browser, import the desktop script and open Kankanews in that browser |
-| iPhone / iPad | Enable Userscripts in Safari, place both the iOS main script and request helper in its chosen directory, and grant website access as instructed |
-| Android browser | Use a browser that supports a script manager and import the Android script; the ZIP is a script distribution archive, not an APK |
-| Paddock Pocket Android app | Use the viewing entry to open the separate viewing window; playback still depends on the program, network and upstream platform |
-
-The website cannot automatically install extensions or inject scripts into a third-party cross-origin player. Follow the in-app instructions and [script provenance notes](public/user-scripts/SOURCE.md).
-
-Open Discover → Race replays (探索 → 赛事回放), select a season and session type, search for a Grand Prix, then choose Bilibili or Tencent Video. These buttons generate keyword searches rather than individually verified video links. A complete replay may be unavailable. Videos are hosted by the respective platforms and may require an account, subscription or regional access.
-
-### 5. Use the analysis tools
-
-In Discover → Telemetry (探索 → 遥测分析), select a session with published data and two drivers. Compare recorded speed, throttle and related channels, and inspect tyres, pit stops and race-control messages. Coverage depends on upstream publication; missing records are not replaced with simulated readings.
-
-In Standings → Championship conditions (积分 → 夺冠条件), choose a driver and assumed race and sprint positions to calculate the rival conditions needed to clinch at the next round. The calculator currently uses the 2026 full-points configuration. It evaluates points scenarios, not title probabilities. Started sessions, incomplete inputs and unresolved countback cases retain explicit warnings. Cancellations, shortened races and penalties require recalculation and review.
-
-## Platforms and updates
-
-| Platform | Access | Updates and limitations |
-| --- | --- | --- |
-| Mobile, tablet and desktop browsers | Visit the live website | Reload to receive the latest deployed pages; internet access is required |
-| iPhone / iPad home screen | Safari → Share → Add to Home Screen | A web shortcut, without native iOS or Apple Watch widgets |
-| Android 8.0 or later | Install the 0.6.0 preview APK | Main pages follow production; native updates require a downloaded APK and user-confirmed installation |
-| Android home-screen widget | Add it through the launcher's widget picker after installing the app | Next-session countdown, weather and up to three followed drivers; scheduling depends on power and network conditions |
-
-Android 0.6.0 uses package `dev.paddock.pocket` and `versionCode=6`. It checks native versions while open and supports manual checks. It does not silently install updates or deliver background push updates. Users of 0.5.0 need one manual upgrade to 0.6.0. In-place updates require the same signing certificate.
-
-The APK uses a preview certificate. Java compilation, signing and ZIP alignment have been checked. Login, image picking, playback, update prompts and launcher-specific widgets still require Android device acceptance. See the [download metadata and SHA-256](public/downloads/android-build.json) and [native sources and build requirements](native/android).
-
-A native Apple Watch app, watch-face complications and Smart Stack widgets are not currently available.
-
-## Run locally
-
-Use **Node.js 24**, matching `.node-version` and CI, and install the locked dependencies with npm.
+Use **Node.js 24** and npm:
 
 ```bash
 git clone https://github.com/yaodingyaoding-prog/paddock-pocket.git
@@ -122,138 +74,78 @@ npm ci
 npm run dev
 ```
 
-Open `http://127.0.0.1:5174`. Without account configuration, `AUTH_MODE` defaults to `off`, allowing development of the main race interface. Registration, avatars and other account features require the setup below. Race and weather requests still need access to upstream services.
+Open `http://127.0.0.1:5174`. When unconfigured, `AUTH_MODE` defaults to `off` so the main race interface can be developed. Accounts and avatars require your own Supabase setup. Race and weather requests still depend on upstream network access.
 
 | Command | Purpose |
 | --- | --- |
 | `npm run dev` | Start development on port 5174 |
-| `npm run check` | Type checks and validation for accounts, weather, replays, telemetry, championship conditions and other features |
-| `npm run build` | Create a production build |
+| `npm run check` | Type and feature checks, including accounts, weather, telemetry, replays, championship conditions, motion and APK integrity |
+| `npm run build` | Create the production build |
 | `npm run preview` | Preview an existing build on port 5174 |
-| `npm run deploy` | Deploy the build to Cloudflare Workers |
+| `npm run deploy` | Deploy to Cloudflare Workers |
 
-Build before running `preview`. A `127.0.0.1` address is accessible only on the computer running the server.
+After changing portrait provenance, run `node scripts/build-portrait-index.mjs` and retain source records. A `127.0.0.1` address is accessible only on the computer running the server.
 
-### Configure accounts, email and avatars
+## Self-hosting
 
-Copy `.env.example` to `.dev.vars` and enter your own settings. Use your own Supabase project and sending domain.
+Account, weather and race-data endpoints require a full Cloudflare Worker deployment alongside static assets.
 
-```dotenv
-AUTH_MODE=required
-AUTH_BASE_URL=http://127.0.0.1:5174
-SUPABASE_URL=https://YOUR_PROJECT.supabase.co
-SUPABASE_PUBLISHABLE_KEY=YOUR_PUBLISHABLE_KEY
-AUTH_SESSION_SECRET=YOUR_RANDOM_SECRET_AT_LEAST_32_CHARACTERS
-```
+1. Fork the repository and change the Worker name in `wrangler.jsonc`. Remove this project's `routes` or replace them with domains you own.
+2. Create your own Supabase project and SMTP configuration. Production currently uses Supabase and Resend; check the providers for current free-plan quotas.
+3. Copy `.env.example` to `.dev.vars` for local account configuration. Set production runtime variables and Secrets in Cloudflare.
+4. Configure the Supabase Site URL and `/auth/confirm` redirect. For avatars, review and run the private-bucket SQL once in your project.
+5. Verify signup, login, recovery, avatars and anonymous endpoint protection before opening access. `AUTH_MODE=off` does not enforce login and cannot validate production access protection.
 
-These are placeholders:
-
-| Variable | Requirement |
+| Variable | Purpose |
 | --- | --- |
-| `AUTH_MODE` | `off` disables mandatory login; `required` protects the app and business endpoints |
-| `AUTH_BASE_URL` | Application origin without a trailing slash; use your own HTTPS domain in production |
+| `AUTH_MODE` | `off` for development; `required` enforces login and protects business endpoints |
+| `AUTH_BASE_URL` | Your application origin without a trailing slash; use HTTPS in production |
 | `SUPABASE_URL` | Your Supabase Project URL |
-| `SUPABASE_PUBLISHABLE_KEY` | A Publishable key starting with `sb_publishable_`; no administrative key is needed |
-| `AUTH_SESSION_SECRET` | An independently generated secret of at least 32 random characters for temporary password-recovery grants |
+| `SUPABASE_PUBLISHABLE_KEY` | A Publishable key starting with `sb_publishable_`; administrative keys are not required |
+| `AUTH_SESSION_SECRET` | An independently generated secret of at least 32 random characters for temporary recovery grants |
 
-Create a Supabase project, enable Email login and signup, and configure the Site URL and `/auth/confirm` redirect. To match the current live site, disable signup Confirm email and set the password minimum to six characters. Password recovery still requires email verification. If you enable Confirm email instead, configure the signup confirmation template too.
+Enable Email signup in Supabase. To match production, disable signup Confirm email and set the password minimum to six; recovery still uses email verification. Confirmation-required signup is also supported when configured. Set the production callback URL and your local development callback separately.
 
-Configure password-recovery email through Resend or another SMTP provider supported by Supabase. A Resend API key belongs in Supabase's SMTP Password field, not in frontend code or Git. For avatars, review and run [`docs/avatar-storage.sql`](docs/avatar-storage.sql) once in your own project. It creates a private bucket and owner-path access policies.
+Use Resend or another supported SMTP provider for recovery email. Resend keys belong in Supabase's SMTP password field, never frontend code or Git. For avatars, execute [`docs/avatar-storage.sql`](docs/avatar-storage.sql) once after review; it creates private storage and owner-path policies. Detailed [account](docs/authentication-setup.md) and [avatar](docs/profile-features.md) notes are in Chinese.
 
-The [account setup guide](docs/authentication-setup.md) and [avatar guide](docs/profile-features.md) contain further details in Chinese. Restart local development after changing configuration. Store production secrets in Cloudflare runtime Secrets. Do not commit or publicly distribute `.dev.vars`, real `.env` files or local build output.
+Cloudflare Git settings: Node.js `24`, repository root `/`, build `npm run check && npm run build`, deploy `npm run deploy`. For local deployment, authenticate with `npx wrangler login`, then check, build and deploy.
 
-## Deploy to Cloudflare Workers
+When `AUTH_MODE=required`, an account-service failure does not restore public access. Keep real environment files, keystores and local build output out of Git. See the [Android build guide](native/android/README.md) for native builds.
 
-The application needs server routes alongside its static assets. A static-only deployment cannot serve accounts, weather or data endpoints.
+## Technology and layout
 
-1. Fork the repository or copy it to a repository you own.
-2. Change the Worker `name` in `wrangler.jsonc`. Remove the existing site domains from `routes`, or replace them with domains you own. Keep `workers_dev=true` if you want a Workers test address initially.
-3. Connect your repository through Cloudflare Workers' Git integration using the settings below.
-4. Configure production runtime variables and Secrets, and add the production callback URL to Supabase.
-5. Verify signup, login, password recovery, avatars, anonymous endpoint protection and main pages before opening access to users.
-
-| Setting | Value |
-| --- | --- |
-| Node.js | `24` |
-| Repository root | `/` |
-| Production branch | `main` |
-| Build command | `npm run check && npm run build` |
-| Deploy command | `npm run deploy` |
-
-You can also authenticate with your own Cloudflare account and deploy locally:
-
-```bash
-npx wrangler login
-npm run check
-npm run build
-npm run deploy
-```
-
-`wrangler.jsonc` declares authentication rate-limit bindings and uses `keep_vars=true` to retain dashboard variables. With `AUTH_MODE=required`, missing configuration or an account-service failure does not restore anonymous access.
-
-You can start with the providers' free plans. Check Cloudflare, Supabase and Resend for current quotas, availability and inactivity policies. Domain registration is separate. Once deployed, requests run in the cloud; the maintainer's computer does not need to remain on.
-
-### Build your own Android version
-
-Sources are under [`native/android`](native/android). The current PowerShell build script requires a JDK, Android platform SDK, AAPT2, D8/R8, zipalign and apksigner. The directory README specifies the expected tool layout.
-
-For a fork, update the native website and download URLs. Before distributing your own application, also configure its package identity, versions and signing setup. The current script uses preview signing, and the repository does not contain the maintainer's private signing files. Store publishing needs a separate release configuration.
-
-## Architecture and repository layout
-
-React 19, TypeScript and responsive CSS provide the interface. Vite / Vinext and Cloudflare Workers run server routes. Three.js renders circuit views, Supabase Auth / Storage provides accounts and avatars, and Resend delivers email through Supabase SMTP.
+React 19 / TypeScript provides the interface, Vite / Vinext and Cloudflare Workers run the application, and Three.js renders circuits. Supabase Auth / Storage provides accounts and private avatars, with recovery email through SMTP. Android uses Java, WebView and AppWidget.
 
 ```text
 app/                   Pages, interactions and API routes
-lib/                   Race, weather, telemetry, account, replay and points logic
-components/            Shared interface components
-public/                Images, models, fonts, scripts and APK downloads
-native/android/        Android application, widget and build script
-scripts/               Type and feature validation, portrait index generation
-docs/                  Setup, feature notes, SQL and screenshots
-.github/workflows/     GitHub Actions checks and builds
-worker.ts              Worker entry point
-wrangler.jsonc         Deployment, domains, assets and rate-limit bindings
+lib/                   Race, weather, telemetry, accounts and points logic
+native/android/        Android app, widget and build script
+public/                Images, fonts, models, scripts and APKs
+scripts/               Validation, indexing and APK publication
+docs/                  User, configuration and release guides
 ```
 
-After editing portrait provenance, run `node scripts/build-portrait-index.mjs` to update the browser index and retain attribution records. CI runs `npm ci`, `npm run check` and `npm run build`.
+## Data and current limits
 
-## Data behavior and current limits
+- Some race, standings, driver, telemetry and technical data depends on F1Push. Fetch timestamps are not a live-timing latency guarantee. Available fallbacks retain their snapshot times; missing records are not simulated.
+- Open-Meteo supplies weather. While the page is visible and online, checks run roughly every five minutes within 30 minutes of sessions, hourly when a session is within 48 hours, and every three hours otherwise. Server caching and bounded stale fallbacks also apply. A closed webpage does not keep polling.
+- Replay buttons generate platform searches. The project does not host videos or guarantee full replays. Accounts, subscriptions or regional access may be required by providers.
+- News is attributed Chinese editorial material; classic races are editorial selections. Historical portraits, profiles and special imagery may be incomplete.
+- Championship tools currently evaluate 2026 full-points scenarios, not probabilities. Apple Sports accounts or data are not integrated.
+- The interface is primarily Chinese. English documentation does not imply a fully translated application.
 
-- Race, standings, driver, telemetry and some technical information depends on F1Push services. Retrieval timestamps indicate when this application fetched data, without guaranteeing live-timing latency. Snapshot fallbacks apply only where a matching snapshot exists and retain their timestamps.
-- Open-Meteo supplies weather. With the page visible and online, checks run about every five minutes from 30 minutes before a session until 30 minutes after it ends, hourly when a session is within the next 48 hours, and every three hours otherwise. Server caching also applies. Failures may show explicitly labelled stale data up to six hours old. A closed webpage does not keep polling.
-- News consists of attributed Chinese editorial briefs, rather than continuous full-article ingestion from every platform. Classic races are editorial selections, not a user-voted ranking.
-- Some historical portraits and profiles may be missing. Special liveries and race suits depend on matching official announcements and are not guaranteed for every team or race.
-- The application interface is primarily Chinese. This English README does not imply complete interface localization.
-- Apple Sports data, championship probability models, a native iOS application and watchOS widgets are not currently integrated.
+## Participate
 
-## Contributing and feedback
+[Report an issue](https://github.com/yaodingyaoding-prog/paddock-pocket/issues) or submit a pull request. Include reproduction steps and browser / OS versions. For data issues, specify the season, Grand Prix, session and driver. Run checks and the build before submitting.
 
-Use [Issues](https://github.com/yaodingyaoding-prog/paddock-pocket/issues) for bugs and suggestions. Include the page, reproduction steps, browser / OS version and screenshots with personal information removed. For data issues, specify the season, Grand Prix, session or driver.
+[Contributing](CONTRIBUTING.md) · [Security](SECURITY.md) · [Changelog](CHANGELOG.md)
 
-Run `npm run check` and `npm run build` before submitting changes. Include provenance and licensing records when changing images, models, scripts or data sources. Keep passwords, cookies, verification links, keys and private account information out of issues, commits and screenshots.
+If Paddock Pocket helps you enjoy a weekend, consider giving it a Star.
 
-If the project helps you enjoy a race weekend, consider giving it a [Star on GitHub](https://github.com/yaodingyaoding-prog/paddock-pocket).
+## Acknowledgments and license
 
-## Acknowledgments and sources
+Thank you to [F1Push（发车格）](https://f1push.com/) for references in information organization and selected interactions, and for some upstream data services; and to [Popukok/smg_live](https://github.com/Popukok/smg_live) for the upstream Five Star Sports viewing-assistance scripts. This project maintains device adaptations, installation guidance and integration while retaining upstream attribution and licenses.
 
-Thank you to the developers and maintainers behind these references, services and resources:
+Weather, driver and team images, circuit data, fonts, scripts and dependencies retain their individual sources and rights. See [third-party notices](THIRD_PARTY_NOTICES.md). Third-party photographs, data, trademarks and videos are excluded from the original-code MIT grant.
 
-| Project or resource | Use in Paddock Pocket | Records |
-| --- | --- | --- |
-| [F1Push · 发车格](https://f1push.com/) | Reference for race information organization and selected interactions; upstream for some race, standings, driver, telemetry and technical data | [Race integration](app/api/data/route.ts), [tools](lib/tool-data.ts), [drivers](lib/drivers/DriverRepository.ts) |
-| [Popukok/smg_live](https://github.com/Popukok/smg_live) | Upstream Five Star Sports viewing-assistance scripts, distributed here with maintainer-supplied device adaptations and setup guidance | [Sources and SHA-256](public/user-scripts/SOURCE.md), [MIT license](public/user-scripts/LICENSE), [Android license](public/user-scripts/ANDROID-LICENSE) |
-| [Open-Meteo](https://open-meteo.com/) | Current conditions and forecasts near circuits | Source, CC BY 4.0 attribution and retrieval times are retained in the interface |
-| Formula 1 website and historical image sources | Driver portraits and selected race imagery | [Current portraits](public/drivers/credits.json), [historical portraits](public/drivers/history/credits.json), [imagery notes](docs/profile-features.md) |
-| [bacinger/f1-circuits](https://github.com/bacinger/f1-circuits) | Circuit coordinates and base data for 3D models | [Sources and modifications](public/circuits/models/credits.json), [MIT license](public/circuits/models/LICENSE.txt) |
-| Barlow Project / Google Fonts | Locally hosted Barlow Condensed fonts | [Sources](public/fonts/sources.json), [SIL OFL 1.1](public/fonts/OFL-Barlow-Condensed.txt) |
-
-Bundled SMG versions are desktop `0.24`, iOS / iPadOS main script and request helper `0.24.1`, and Android `0.25.0`. They retain `Copyright (c) 2025 _xFox` and may differ from the latest upstream versions. The scripts handle playback requests, program fields and player-source changes; their provenance document describes behavior and verification records.
-
-## Licensing and project identity
-
-The repository is being prepared for public release. The project's own code does not yet have a repository-wide open-source license. Publishing source and granting an open-source license are separate steps; the root `LICENSE` file will define that scope once selected.
-
-Third-party scripts, fonts, models, data, images and trademarks retain their respective licenses or rights notices. Publishing this repository does not make them original project work or grant blanket rights to reuse them. Image attribution records do not constitute an open license for those images.
-
-Paddock Pocket is an independent fan project. It is not officially affiliated with or endorsed by Formula 1, F1Push, Five Star Sports or the viewing platforms.
+Original project code and documentation use the [MIT License](LICENSE), `Copyright (c) 2026 yaodingyaoding-prog`. Paddock Pocket is an independent fan project, without official affiliation or endorsement from Formula 1, F1Push, Five Star Sports or the viewing platforms.

@@ -1,7 +1,7 @@
 'use client';
 import {useEffect,useState} from 'react';
 import { Play, Link2, Smartphone, Monitor, Clapperboard, CircleEllipsis } from 'lucide-react';
-import {ScriptGuide} from './script-guide';
+import {ScriptGuide} from './script-install-guide';
 import {detectViewingPlatform,nativeAndroidAvailable,tencentAppLink} from '../lib/viewing';
 export function ViewingRoom({onReplay}:{onReplay?:()=>void}){
  const [embed,setEmbed]=useState(false),[native,setNative]=useState(false),[mobile,setMobile]=useState(false),[appHint,setAppHint]=useState(false);

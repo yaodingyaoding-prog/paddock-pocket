@@ -9,3 +9,9 @@ dist/
 *.tsbuildinfo
 *.log
 .DS_Store
+
+.local-artifacts/
+*.keystore
+*.jks
+*.p12
+*.pfx

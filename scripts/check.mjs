@@ -14,6 +14,7 @@ const scripts = [
   ['scripts/verify-personal-features.mjs'],
   ['scripts/verify-race-refresh.mjs'],
   ['scripts/verify-motion.mjs'],
+  ['scripts/verify-android-release.mjs'],
 ];
 for (const args of scripts) {
   const result = spawnSync(process.execPath, args, { stdio: 'inherit' });
