@@ -4,10 +4,13 @@ import type { AuthConfig } from './config';
 import type { AccountService } from './accountService';
 import type { AccountCookies } from './cookies';
 
-const publicPages = new Set(['/login', '/register', '/forgot-password', '/reset-password', '/auth/confirm', '/privacy']);
-export function protectedAccountPath(pathname: string) {
+const publicPages = new Set(['/', '/about', '/login', '/register', '/forgot-password', '/reset-password', '/auth/confirm', '/privacy']);
+const publicRaceApis = new Set(['/api/data', '/api/weather', '/api/tools', '/api/race-media']);
+export function protectedAccountPath(pathname: string, method = 'GET') {
+  const readOnly = method === 'GET' || method === 'HEAD';
+  if (readOnly && (publicRaceApis.has(pathname) || /^\/api\/drivers\/[a-f0-9-]{36}$/i.test(pathname))) return false;
   if (publicPages.has(pathname) || pathname === '/api/auth/session' || pathname.startsWith('/api/auth/')) return false;
-  // Build assets and attribution records remain public; business APIs never do.
+  // Only explicit race reads are public. Account controllers enforce ownership themselves.
   if (pathname.startsWith('/api/')) return true;
   if (pathname.startsWith('/_next/') || /\.[a-z0-9]+$/i.test(pathname)) return false;
   return true;
@@ -15,7 +18,7 @@ export function protectedAccountPath(pathname: string) {
 export async function accountProtection(request: Request, context: { config: AuthConfig; cookies: AccountCookies; service: Pick<AccountService, 'status'> }) {
   const { config, cookies, service } = context;
   const url = new URL(request.url);
-  if (!config.required || !protectedAccountPath(url.pathname)) return null;
+  if (!config.required || !protectedAccountPath(url.pathname, request.method)) return null;
   const api = url.pathname.startsWith('/api/');
   try {
     if (!config.configured) throw new AccountError('NOT_CONFIGURED', '账号服务正在准备中，请稍后再试。', 503);

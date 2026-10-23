@@ -17,8 +17,7 @@ export function useAccountControls() {
         const value = await response.json() as AccountStatus;
         if (!live) return;
         setStatus(value);
-        if (value.enabled && !value.user) window.location.assign('/login?next=' + encodeURIComponent('/' + window.location.hash));
-      } catch { /* Network failure is not evidence that the session ended. Business APIs still enforce auth. */ }
+      } catch { /* Account outages must not interrupt public race browsing. */ }
     }
     void refresh();
     const timer = setInterval(() => void refresh(), 60000);
@@ -30,7 +29,7 @@ export function useAccountControls() {
     try {
       await accountRequest('logout', {});
       try { localStorage.removeItem('paddock-cache'); } catch { /* Storage may be disabled. */ }
-      window.location.assign('/login');
+      window.location.assign('/#schedule');
     } catch (failure) { setError(failure instanceof Error ? failure.message : '暂时无法退出，请重试。'); }
     finally { setBusy(false); }
   }

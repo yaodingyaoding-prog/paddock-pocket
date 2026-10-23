@@ -35,7 +35,7 @@ class FakeRepository implements AccountRepository {
   clearSession() { this.user = null; }
 }
 function setup(cookie = '', environment = env) {
-  const request = new Request(origin + '/', { headers: { cookie } });
+  const request = new Request(origin + '/account', { headers: { cookie } });
   const resolved = unifiedAuthConfig(environment);
   const cookies = new AccountCookies(request, resolved);
   const repository = new FakeRepository();
@@ -63,25 +63,30 @@ const driverReturn = '/#rankings/driver/11111111-1111-4111-8111-111111111111?sea
 check(safeReturnPath(driverReturn) === driverReturn, 'Driver archive and season survive the existing login return flow');
 check(safeReturnPath('/#rankings/driver/invalid?season=bad&from=https://evil.test') === '/#schedule', 'Malformed driver return paths are rejected');
 for (const path of ['/login', '/auth/confirm', '/privacy', '/api/auth/session', '/favicon.svg']) check(!protectedAccountPath(path), 'Authentication and necessary public assets are reachable');
-for (const path of ['/', '/api/data', '/api/tools', '/api/data.json']) check(protectedAccountPath(path), 'Business pages and APIs are protected');
+for (const path of ['/', '/about', '/api/data', '/api/tools', '/api/weather', '/api/race-media', '/api/drivers/11111111-1111-4111-8111-111111111111']) check(!protectedAccountPath(path), 'Explicit race read routes are public');
+for (const path of ['/api/private', '/api/data.json', '/account', '/api/drivers/invalid']) check(protectedAccountPath(path), 'Unknown routes remain closed');
+for (const method of ['POST', 'PUT', 'DELETE']) check(protectedAccountPath('/api/data', method), 'Read permission never opens mutations');
 
 const anonymous = setup();
-let response = await accountProtection(new Request(origin + '/api/data'), anonymous);
-check(response?.status === 401, 'Anonymous data access is denied');
+check(await accountProtection(new Request(origin + '/'), anonymous) === null, 'Guest home works without provider verification');
+check(await accountProtection(new Request(origin + '/api/data'), anonymous) === null, 'Guest race reads do not require a provider session');
+check(!anonymous.repository.calls.length, 'Public reads do not contact the account repository');
+let response = await accountProtection(new Request(origin + '/api/private'), anonymous);
+check(response?.status === 401, 'Anonymous private access is denied');
 check(response?.headers.get('Cache-Control')?.includes('no-store'), 'Auth denial is never publicly cached');
-response = await accountProtection(new Request(origin + '/'), anonymous);
-check(response?.status === 307 && response.headers.get('Location')?.startsWith('/login'), 'Anonymous document redirects to login');
+response = await accountProtection(new Request(origin + '/account'), anonymous);
+check(response?.status === 307 && response.headers.get('Location')?.startsWith('/login'), 'Private documents redirect to login');
 anonymous.repository.user = user;
-check(await accountProtection(new Request(origin + '/api/data'), anonymous) === null, 'Verified authenticated request proceeds');
+check(await accountProtection(new Request(origin + '/api/private'), anonymous) === null, 'Verified authenticated private request proceeds');
 anonymous.repository.user = { ...user, verified: false };
-check((await accountProtection(new Request(origin + '/api/data'), anonymous))?.status === 401, 'Unverified account cannot access data');
+check((await accountProtection(new Request(origin + '/api/private'), anonymous))?.status === 401, 'Unverified account cannot access private routes');
 const disabled = setup('', { ...env, AUTH_MODE: 'off' });
-check(await accountProtection(new Request(origin + '/api/data'), disabled) === null, 'Explicit staged mode preserves existing access');
+check(await accountProtection(new Request(origin + '/api/private'), disabled) === null, 'Explicit staged mode preserves existing private-route behavior');
 const missing = setup('', { AUTH_MODE: 'required' });
-check((await accountProtection(new Request(origin + '/api/data'), missing))?.status === 503, 'Missing required configuration fails closed');
+check((await accountProtection(new Request(origin + '/api/private'), missing))?.status === 503, 'Missing required configuration fails closed');
 const failure = setup();
 failure.repository.current = async () => { throw new AccountError('AUTH_UNAVAILABLE', 'unavailable', 503); };
-check((await accountProtection(new Request(origin + '/api/data'), failure))?.status === 503, 'Provider outage never opens anonymous access');
+check((await accountProtection(new Request(origin + '/api/private'), failure))?.status === 503, 'Provider outage never opens anonymous access');
 
 const account = setup();
 response = await account.controller.post(post('login', { email: 'FAN@example.test', password: '123456789012', remember: false, next: 'https://evil.test' }), 'login');
@@ -151,7 +156,7 @@ response = await noLimiter.controller.post(post('register', { name: 'Fan', email
 check(response.status === 503, 'Production auth refuses requests without rate limit bindings');
 
 // Exercise the real official SDK + cookie adapter against an isolated HTTP fixture.
-const sdkCookies = new AccountCookies(new Request(origin + '/'), config);
+const sdkCookies = new AccountCookies(new Request(origin + '/account'), config);
 const sdkUser = { id: '11111111-1111-4111-8111-111111111111', email: 'fan@example.test', aud: 'authenticated', role: 'authenticated', email_confirmed_at: new Date().toISOString(), created_at: new Date().toISOString(), app_metadata: { provider: 'email', providers: ['email'] }, user_metadata: { name: 'Race Fan' } };
 const base64 = (value: unknown) => Buffer.from(JSON.stringify(value)).toString('base64url');
 const access = base64({ alg: 'HS256', typ: 'JWT' }) + '.' + base64({ sub: sdkUser.id, aud: 'authenticated', role: 'authenticated', exp: Math.floor(Date.now() / 1000) + 3600 }) + '.test-signature';
@@ -164,7 +169,7 @@ const fixtureFetch: typeof fetch = async input => {
   throw new Error('Unexpected fixture endpoint');
 };
 const sdk = new SupabaseAccountRepository(config, sdkCookies, fixtureFetch);
-const signupCookies = new AccountCookies(new Request(origin + '/'), config);
+const signupCookies = new AccountCookies(new Request(origin + '/account'), config);
 const signupSdk = new SupabaseAccountRepository(config,signupCookies,async () => Response.json({access_token:access,refresh_token:'signup-fixture-refresh',token_type:'bearer',expires_in:3600,user:sdkUser}));
 check((await signupSdk.register('fan@example.test','123456','Fan',origin+'/auth/confirm'))?.id===sdkUser.id,'Provider auto-confirm returns the new signed-in account');
 check(signupCookies.all().some(item=>item.name.startsWith('sb-')),'Instant registration retains its HttpOnly cookie session');
@@ -180,7 +185,7 @@ check(Boolean(stored), 'SDK persisted a session cookie');
 const expiredAccess = base64({ alg: 'HS256', typ: 'JWT' }) + '.' + base64({ sub: sdkUser.id, aud: 'authenticated', role: 'authenticated', exp: Math.floor(Date.now() / 1000) - 120 }) + '.test-signature';
 const expiredSession = { access_token: expiredAccess, refresh_token: 'fixture-old-refresh', token_type: 'bearer', expires_in: 3600, expires_at: Math.floor(Date.now() / 1000) - 120, user: sdkUser };
 const refreshCookie = `${stored!.name}=${encodeURIComponent('base64-' + Buffer.from(JSON.stringify(expiredSession)).toString('base64url'))}; paddock-remember=0`;
-const refreshedCookies = new AccountCookies(new Request(origin + '/', { headers: { cookie: refreshCookie } }), config);
+const refreshedCookies = new AccountCookies(new Request(origin + '/account', { headers: { cookie: refreshCookie } }), config);
 const refreshCalls: string[] = [];
 const refreshingFetch: typeof fetch = async input => {
   refreshCalls.push(String(input));
@@ -191,7 +196,7 @@ check((await refreshSdk.current())?.id === sdkUser.id && refreshCalls.some(url =
 const refreshedResponse = refreshedCookies.apply(Response.json({ ok: true }));
 check(refreshedResponse.headers.getSetCookie().some(item => item.startsWith('sb-') && !/Max-Age=/i.test(item)), 'Refresh preserves non-persistent sign-in');
 
-const logoutCookies = new AccountCookies(new Request(origin + '/', { headers: { cookie: requestCookies(sdkResponse) } }), config);
+const logoutCookies = new AccountCookies(new Request(origin + '/account', { headers: { cookie: requestCookies(sdkResponse) } }), config);
 const failingLogoutFetch: typeof fetch = async input => String(input).includes('/logout') ? Response.json({ code: 'unexpected_failure', msg: 'fixture provider failure' }, { status: 500 }) : fixtureFetch(input);
 const logoutSdk = new SupabaseAccountRepository(config, logoutCookies, failingLogoutFetch);
 await assert.rejects(() => logoutSdk.logout(), AccountError);

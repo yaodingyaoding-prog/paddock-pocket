@@ -2,13 +2,13 @@
 
 ### Every race weekend starts here.
 
-A race and viewing companion for Formula 1 fans. Schedules, standings, weather, telemetry and replays share one paddock, available on phones, tablets and desktops.
+A race and viewing companion for Formula 1 fans. **Check schedules, circuit weather and replay links without signing in.** Available on phones, tablets and desktops; accounts provide private avatars and a fan pass.
 
-[Live application](https://F1.xiaodinglab.com/) · [Download Android 0.7.0](https://f1.xiaodinglab.com/downloads/Paddock-Pocket-0.7.0.apk) · [User guide](docs/user-guide.en.md) · [简体中文](README.md)
+[Live application](https://F1.xiaodinglab.com/) · [Project introduction](https://f1.xiaodinglab.com/about) · [Download Android 0.7.0](https://f1.xiaodinglab.com/downloads/Paddock-Pocket-0.7.0.apk) · [User guide](docs/user-guide.en.md) · [简体中文](README.md)
 
 [![Project checks](https://github.com/yaodingyaoding-prog/paddock-pocket/actions/workflows/check.yml/badge.svg)](https://github.com/yaodingyaoding-prog/paddock-pocket/actions/workflows/check.yml) [![MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-![Paddock Pocket login screen](docs/images/login.jpg)
+![Paddock Pocket: schedules, weather and replays](public/social-cover.png)
 
 <details>
 <summary>View the application</summary>
@@ -40,7 +40,7 @@ Schedule, Standings, Discover and Profile form the primary navigation. Analysis 
 
 ## Start using it
 
-1. Visit [F1.xiaodinglab.com](https://F1.xiaodinglab.com/) and register or sign in. Production registration signs users in directly, with a minimum six-character password. Password recovery still requires email verification.
+1. Visit [F1.xiaodinglab.com](https://F1.xiaodinglab.com/) and browse races as a guest. Sign in or register when setting your account avatar. Passwords need at least six characters; recovery still requires email verification.
 2. Choose a season or Grand Prix in Schedule (赛程), and open a driver from Standings (积分).
 3. Use Discover (探索) for live coverage, replays, news and analysis.
 4. Use Profile (我的) for avatars, followed drivers, themes, accents and time zones.
@@ -62,6 +62,8 @@ Version 0.7.0 uses package `dev.paddock.pocket`, `versionCode=7` and the same ce
 ### iPhone, iPad and Apple Watch
 
 On iPhone and iPad, use Safari → Share → Add to Home Screen for a web shortcut. Native iOS / watchOS packages are not available. The shortcut does not include native widgets, watch-face complications or Smart Stack widgets.
+
+Guest browsing requires no account. The schedule and personal podium have share buttons for locally generated PNG posters, system sharing and links. Posters exclude account email, member ID and private avatars. Shared lineups never overwrite the recipient’s follows.
 
 ## Local development
 
@@ -98,7 +100,7 @@ Account, weather and race-data endpoints require a full Cloudflare Worker deploy
 
 | Variable | Purpose |
 | --- | --- |
-| `AUTH_MODE` | `off` for development; `required` enforces login and protects business endpoints |
+| `AUTH_MODE` | `off` for development; `required` protects private routes; explicit read-only race endpoints remain public |
 | `AUTH_BASE_URL` | Your application origin without a trailing slash; use HTTPS in production |
 | `SUPABASE_URL` | Your Supabase Project URL |
 | `SUPABASE_PUBLISHABLE_KEY` | A Publishable key starting with `sb_publishable_`; administrative keys are not required |
@@ -110,7 +112,7 @@ Use Resend or another supported SMTP provider for recovery email. Resend keys be
 
 Cloudflare Git settings: Node.js `24`, repository root `/`, build `npm run check && npm run build`, deploy `npm run deploy`. For local deployment, authenticate with `npx wrangler login`, then check, build and deploy.
 
-When `AUTH_MODE=required`, an account-service failure does not restore public access. Keep real environment files, keystores and local build output out of Git. See the [Android build guide](native/android/README.md) for native builds.
+With `AUTH_MODE=required`, private routes stay closed during account-service outages. Public race browsing remains available by design. Keep real environment files, keystores and local build output out of Git. See the [Android build guide](native/android/README.md) for native builds.
 
 ## Technology and layout
 

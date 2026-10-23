@@ -17,7 +17,7 @@ type ProfileProps = {
   onPickDriver:(driver:Driver)=>void;onPickTeam:(team:Driver)=>void;onOpenDriver:(driver:Driver)=>void;
   theme: string; accent: string; timezone: string; localTimezone: string;
   onTheme: (value: string) => void; onAccent: (value: string) => void; onTimezone: (value: string) => void;
-  onInstall: () => void;
+  onInstall: () => void; onSharePodium: () => void;
 };
 
 export function ProfilePage(props: ProfileProps) {
@@ -27,9 +27,9 @@ export function ProfilePage(props: ProfileProps) {
   const showName = user?.name || (account.status ? '围场车迷' : '正在读取账号');
 
   return <div className="personal-center">
-    <div className="profile-identity-grid"><section className="super-licence" aria-label="我的超级执照式车迷通行证"><div className="licence-top"><span><Flag size={19}/>围场口袋 <small>PADDOCK POCKET</small></span><span className="licence-class">FAN PASS</span></div><div className="licence-body"><div className="licence-photo"><AvatarEditor user={user} onSaved={account.updateUser}/><span>点击设置头像</span></div><div className="licence-identity"><p className="licence-type">FAN SUPER LICENCE</p><h2>{showName}</h2><span className="licence-email">{user?.email || '正在连接账号服务…'}</span><div className="licence-data"><div><small>MEMBER ID</small><strong>{user ? user.id.replace(/-/g,'').slice(0,10).toUpperCase() : '••••••••••'}</strong></div><div><small>STATUS</small><strong>{user ? 'ACTIVE' : 'PADDOCK FAN'}</strong></div></div></div><span className="licence-monogram" aria-hidden="true">SL<span>SUPER<br/>LICENCE</span></span></div><div className="licence-bottom"><span>每个比赛周末，都是你的主场。<small>围场口袋 · 车迷通行证</small></span><span className="licence-bars" aria-hidden="true"/><ShieldCheck size={22}/></div></section>
+    <div className="profile-identity-grid">{!user ? <section className="guest-pass" aria-label="游客账号入口"><p className="eyebrow">YOUR PADDOCK, YOUR WAY</p><h2>先逛围场，随时加入。</h2><p>赛程、天气和回放无需登录。登录后设置专属头像，领取你的车迷通行证。</p><div className="guest-pass-actions"><a href="/login?next=%2F%23profile">登录账号</a><a href="/register?next=%2F%23profile">创建账号</a></div></section> : <section className="super-licence" aria-label="我的超级执照式车迷通行证"><div className="licence-top"><span><Flag size={19}/>围场口袋 <small>PADDOCK POCKET</small></span><span className="licence-class">FAN PASS</span></div><div className="licence-body"><div className="licence-photo"><AvatarEditor user={user} onSaved={account.updateUser}/><span>点击设置头像</span></div><div className="licence-identity"><p className="licence-type">FAN SUPER LICENCE</p><h2>{showName}</h2><span className="licence-email">{user?.email || '正在连接账号服务…'}</span><div className="licence-data"><div><small>MEMBER ID</small><strong>{user ? user.id.replace(/-/g,'').slice(0,10).toUpperCase() : '••••••••••'}</strong></div><div><small>STATUS</small><strong>{user ? 'ACTIVE' : 'PADDOCK FAN'}</strong></div></div></div><span className="licence-monogram" aria-hidden="true">SL<span>SUPER<br/>LICENCE</span></span></div><div className="licence-bottom"><span>每个比赛周末，都是你的主场。<small>围场口袋 · 车迷通行证</small></span><span className="licence-bars" aria-hidden="true"/><ShieldCheck size={22}/></div></section>}
 
-    <FollowPodium drivers={props.drivers} teams={props.teams} following={props.following} onDriver={props.onPickDriver} onTeam={props.onPickTeam} onOpen={props.onOpenDriver} loading={props.loadingDrivers}/></div>
+    <FollowPodium onShare={props.onSharePodium} drivers={props.drivers} teams={props.teams} following={props.following} onDriver={props.onPickDriver} onTeam={props.onPickTeam} onOpen={props.onOpenDriver} loading={props.loadingDrivers}/></div>
     <div className="personal-settings-grid">
       <section className="personal-panel appearance-panel" aria-labelledby="personal-appearance-title">
         <div className="personal-panel-heading"><span className="personal-heading-icon"><Palette size={19}/></span><div><h2 id="personal-appearance-title">让围场，更像你</h2><p>选择你的外观与主题色</p></div><Sparkles size={18}/></div>
@@ -48,7 +48,7 @@ export function ProfilePage(props: ProfileProps) {
       </div>
     </div>
 
-    <footer className="personal-about"><div className="personal-about-brand"><img src="/favicon.svg" alt=""/><div><strong>围场口袋</strong><span>每个比赛周末，与你同在。</span></div></div><a className="github-star" href="https://github.com/yaodingyaoding-prog/paddock-pocket" target="_blank" rel="noopener noreferrer" aria-label="在 GitHub 查看项目并点 Star"><CodeXml size={17}/><span>GitHub</span><Star size={14}/></a><details className="personal-sources"><summary>数据来源与许可<CircleEllipsis size={14}/></summary><div><p>赛事与遥测来自公开赛事服务。无法更新时显示最近保存的数据及其时间。</p><a href="/drivers/credits.json" target="_blank" rel="noopener noreferrer">当前车手图片<CircleEllipsis size={12}/></a><a href="/drivers/history/credits.json" target="_blank" rel="noopener noreferrer">历史车手图片<CircleEllipsis size={12}/></a><a href="/circuits/models/credits.json" target="_blank" rel="noopener noreferrer">赛道坐标与模型<CircleEllipsis size={12}/></a></div></details></footer>
+    <footer className="personal-about"><div className="personal-about-brand"><img src="/favicon.svg" alt=""/><div><strong>围场口袋</strong><span>每个比赛周末，与你同在。</span></div></div><a className="github-star" href="https://github.com/yaodingyaoding-prog/paddock-pocket" target="_blank" rel="noopener noreferrer" aria-label="在 GitHub 查看项目并点 Star"><CodeXml size={17}/><span>GitHub</span><Star size={14}/></a><a className="profile-about-link" href="/about">关于围场口袋</a><details className="personal-sources"><summary>数据来源与许可<CircleEllipsis size={14}/></summary><div><p>赛事与遥测来自公开赛事服务。无法更新时显示最近保存的数据及其时间。</p><a href="/drivers/credits.json" target="_blank" rel="noopener noreferrer">当前车手图片<CircleEllipsis size={12}/></a><a href="/drivers/history/credits.json" target="_blank" rel="noopener noreferrer">历史车手图片<CircleEllipsis size={12}/></a><a href="/circuits/models/credits.json" target="_blank" rel="noopener noreferrer">赛道坐标与模型<CircleEllipsis size={12}/></a></div></details></footer>
 
 
   </div>;

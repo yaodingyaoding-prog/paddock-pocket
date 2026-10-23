@@ -4,7 +4,7 @@ import { accountEnvironment } from './lib/auth/runtime';
 import { accountProtection, protectedAccountPath } from './lib/auth/protection';
 
 export async function proxy(request: NextRequest) {
-  if (!protectedAccountPath(request.nextUrl.pathname)) {
+  if (!protectedAccountPath(request.nextUrl.pathname, request.method)) {
     const response = NextResponse.next();
     if (['/login', '/register', '/forgot-password', '/reset-password', '/auth/confirm', '/privacy'].includes(request.nextUrl.pathname) || request.nextUrl.pathname.startsWith('/api/auth/')) {
       response.headers.set('Cache-Control', 'private, no-store, max-age=0');

@@ -6,9 +6,9 @@
 
 The application interface is primarily Chinese. The labels below include their on-screen names to help you navigate.
 
-### 1. Create an account
+### 1. Guest browsing and accounts
 
-Visit [F1.xiaodinglab.com](https://F1.xiaodinglab.com/), select Create account (创建账号), and enter a nickname, your own email address and a password of at least six characters. The current production site signs new users in without a signup confirmation email.
+Visit [F1.xiaodinglab.com](https://F1.xiaodinglab.com/) to browse race content without an account. To personalize your account avatar, select Create account (创建账号), and enter a nickname, your own email address and a password of at least six characters. The current production site signs new users in without a signup confirmation email.
 
 You can enable Keep me signed in (保持登录). To recover a password, select Forgot password (忘记密码), enter your registered email, open the email link, confirm the recovery action and set a new password. Then sign in again. Use an address whose inbox you can access.
 
@@ -65,3 +65,7 @@ Android 0.7.0 uses package `dev.paddock.pocket` and `versionCode=7`. It checks n
 The APK uses a preview certificate. Java compilation, signing and ZIP alignment have been checked. Login, image picking, playback, update prompts and launcher-specific widgets still require Android device acceptance. See the [download metadata and SHA-256](../public/downloads/android-build.json) and [native sources and build requirements](../native/android).
 
 A native Apple Watch app, watch-face complications and Smart Stack widgets are not currently available.
+
+## Guest access and sharing
+
+Race content is available without signing in. Use **Share weekend** on Schedule or the share icon on your podium to generate a PNG poster with a QR code. Race posters include the selected timezone and retrieval time; a matching race forecast is shown only when available in a valid weather cache. Use system sharing, save the image or copy the link. Shared lineups open as previews and do not overwrite the recipient’s follows. Account email, member ID and private avatars are excluded.

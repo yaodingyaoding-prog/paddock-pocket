@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+- Added guest access to race schedules, standings, weather, driver archives and replay tools while retaining private account and avatar authorization.
+- Added local weekend and podium PNG share posters, QR codes and safe read-only lineup links.
+- Added a public product introduction, Open Graph / Twitter cover, robots and sitemap metadata.
+
 ## 0.7.0 · 2026-10-23
 
 - Rebuilt login, registration and recovery pages around an animated circuit, start lights, sector strips and a steady account form.

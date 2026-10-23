@@ -2,13 +2,13 @@
 
 ### 每个比赛周末，从这里开始。
 
-一个为 F1 车迷打造的赛事与观赛应用。赛程、积分、天气、遥测和回放集中在同一个围场，手机、平板和电脑都能使用。
+一个为 F1 车迷打造的赛事与观赛应用。**看赛程、查天气、找回放，游客即可浏览。** 手机、平板和电脑都能使用，账号用于个人头像与车迷通行证。
 
-[在线体验](https://F1.xiaodinglab.com/) · [下载 Android 0.7.0](https://f1.xiaodinglab.com/downloads/Paddock-Pocket-0.7.0.apk) · [使用指南](docs/user-guide.md) · [English](README.en.md)
+[在线体验](https://F1.xiaodinglab.com/) · [项目介绍](https://f1.xiaodinglab.com/about) · [下载 Android 0.7.0](https://f1.xiaodinglab.com/downloads/Paddock-Pocket-0.7.0.apk) · [使用指南](docs/user-guide.md) · [English](README.en.md)
 
 [![项目检查](https://github.com/yaodingyaoding-prog/paddock-pocket/actions/workflows/check.yml/badge.svg)](https://github.com/yaodingyaoding-prog/paddock-pocket/actions/workflows/check.yml) [![MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-![围场口袋登录界面](docs/images/login.jpg)
+![围场口袋：看赛程、查天气、找回放](public/social-cover.png)
 
 <details>
 <summary>查看应用界面</summary>
@@ -40,10 +40,12 @@
 
 ## 开始使用
 
-1. 打开 [F1.xiaodinglab.com](https://F1.xiaodinglab.com/)，创建账号或登录。正式站注册可直接进入，密码至少 6 个字符；找回密码仍需要邮件验证。
+1. 打开 [F1.xiaodinglab.com](https://F1.xiaodinglab.com/)，直接浏览赛程、积分、天气和回放。设置账号头像时再注册或登录，密码至少 6 个字符；找回密码需要邮件验证。
 2. 在“赛程”选择赛季或分站，在“积分”点击车手进入档案。
 3. 在“探索”进入观赛中心、赛事回放、新闻或数据工具。
 4. 在“我的”设置头像、关注车手、主题、点缀色与时区。
+
+赛程页的“分享周末”和领奖台的分享按钮可生成带二维码的 PNG 海报，支持系统分享、保存图片和复制链接。比赛卡注明时区与数据时间；阵容分享不含邮箱、会员编号或账号头像，也不会修改接收者的关注。
 
 头像随账号同步。关注、主题和时区目前保存在当前设备，尚未跨设备同步。完整操作、各设备直播配置和数据工具说明见[使用指南](docs/user-guide.md)。
 
@@ -98,7 +100,7 @@ npm run dev
 
 | 变量 | 用途 |
 | --- | --- |
-| `AUTH_MODE` | `off` 用于开发；`required` 强制登录并保护业务接口 |
+| `AUTH_MODE` | `off` 用于开发；`required` 启用私有路由与账号保护；明确列出的赛事只读接口允许游客访问 |
 | `AUTH_BASE_URL` | 自己的应用来源地址，不带末尾斜线；正式环境使用 HTTPS |
 | `SUPABASE_URL` | 自己的 Supabase Project URL |
 | `SUPABASE_PUBLISHABLE_KEY` | `sb_publishable_` 开头的 Publishable key，无需管理密钥 |
@@ -106,7 +108,7 @@ npm run dev
 
 Cloudflare Git 构建配置：Node.js `24`，仓库根目录 `/`，构建命令 `npm run check && npm run build`，部署命令 `npm run deploy`。本地部署可先运行 `npx wrangler login`，再检查、构建与部署。
 
-账号服务故障不会将已启用 `required` 的站点自动改成公开访问。不要提交真实环境文件、签名文件或本机构建输出。详见[账号配置](docs/authentication-setup.md)、[头像与资料配置](docs/profile-features.md)和[Android 构建指南](native/android/README.md)。
+游客赛事浏览不依赖账号服务；账号服务故障时私有路由仍拒绝匿名访问，头像继续由服务端校验本人身份。不要提交真实环境文件、签名文件或本机构建输出。详见[账号配置](docs/authentication-setup.md)、[头像与资料配置](docs/profile-features.md)和[Android 构建指南](native/android/README.md)。
 
 ## 技术与目录
 
@@ -134,7 +136,7 @@ docs/                 使用、配置与发布文档
 
 欢迎 [提交问题](https://github.com/yaodingyaoding-prog/paddock-pocket/issues) 或 Pull Request。请注明复现步骤、浏览器和系统版本，数据问题附上赛季、分站、场次与车手。提交前运行检查与构建。
 
-[贡献说明](CONTRIBUTING.md) · [安全问题](SECURITY.md) · [更新记录](CHANGELOG.md)
+[贡献说明](CONTRIBUTING.md) · [安全问题](SECURITY.md) · [更新记录](CHANGELOG.md) · [分享与宣传材料](docs/guest-sharing-launch.md)
 
 如果围场口袋对你有帮助，欢迎给项目点亮 Star。
 

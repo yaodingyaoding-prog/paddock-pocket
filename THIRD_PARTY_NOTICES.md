@@ -14,6 +14,7 @@
 | [bacinger/f1-circuits](https://github.com/bacinger/f1-circuits) | Circuit data and model basis: [sources and modifications](public/circuits/models/credits.json), [MIT license](public/circuits/models/LICENSE.txt). Other circuit images retain their [source records](public/circuits/credits.json). |
 | Barlow Project / Google Fonts | [Font sources](public/fonts/sources.json) and [SIL Open Font License 1.1](public/fonts/OFL-Barlow-Condensed.txt). |
 | Vendored stylesheet | [shadcn stylesheet notice](vendor/shadcn-tailwind-4.13.0.LICENSE.md). |
+| [soldair/node-qrcode](https://github.com/soldair/node-qrcode) | QR encoder for locally generated sharing posters, MIT. Distributed package notices remain in the dependency. |
 | npm dependencies | Packages retain their own licenses distributed with each dependency. The lockfile records the dependency graph; the project MIT license does not override package notices. |
 | Video platforms and linked articles | Content remains hosted and controlled by its provider. Replay search links do not redistribute video files or guarantee viewing rights, availability or subscriptions. |
 

@@ -27,6 +27,10 @@ import { NewsRoom } from './news';
 import {ToolsHub} from './tools-hub';
 import {Dialog} from './dialog';
 import {portraitFor} from '../lib/portrait';
+import { SharePosterDialog } from './share-poster-dialog';
+import { weekendShareCard, podiumShareCard, readSharedSelection, shareWeather, type ShareCard } from '../lib/share-card';
+import { circuitLocations } from '../lib/circuit-locations';
+import circuitExtra from '../lib/circuit-extra.json';
 import {ReplayLibrary} from './race-replays';
 import {usePaddockNavigation,detailPages,DiscoverOverview,SectionLink} from './paddock-navigation';
 
@@ -72,7 +76,7 @@ export default function App() {
   const [season, setSeason] = useState(snapshotSeason);
   const [data, setData] = useState<Record<string, any>>({});
   const [meta, setMeta] = useState<Envelope>({ data: null, source: 'snapshot', updatedAt: snapshotDate });
-  const [busy, setBusy] = useState(false);
+  const [busy, setBusy] = useState(true);
   const [error, setError] = useState('');
   const [selected, setSelected] = useState<Row | null>(null);
   const [raceList, setRaceList] = useState(false);
@@ -92,6 +96,8 @@ export default function App() {
   const [results, setResults] = useState<{ session: Row; race: Row; loading: boolean; rows?: Row[]; error?: string } | null>(null);
   const [toast, setToast] = useState('');
   const [install, setInstall] = useState(false);
+  const [shareCard, setShareCard] = useState<ShareCard | null>(null);
+  const [sharedSelection, setSharedSelection] = useState<ReturnType<typeof readSharedSelection> | null>(null);
   const raceRef = useRef(0);
   const resultRef = useRef(0);
   const activeSeason = data.seasons?.items?.find((s: Row) => s.id === season);
@@ -106,6 +112,21 @@ export default function App() {
   const pageDriver = driverId ? drivers.find(d => d.driverId === driverId) : null;
   function showDriver(row:Row) { if(row.isTeam)setDriver(row);else openDriver(row.driverId,season,tab); }
   async function shareDriver() { try { await navigator.clipboard.writeText(window.location.href);setToast('车手档案链接已复制'); } catch {setToast('请复制浏览器地址栏中的档案链接');} }
+  function shareWeekend() {
+    if (!race) return;
+    const card = weekendShareCard(race, season, timezone, meta.updatedAt, meta.source);
+    const exact = (circuitExtra as Record<string, Row>)[race.circuit?.id];
+    const coordinates = exact && Number.isFinite(exact.latitude) && Number.isFinite(exact.longitude) ? [exact.latitude, exact.longitude] : circuitLocations[race.circuit?.nameKey];
+    try { card.weather = shareWeather(JSON.parse(localStorage.getItem('paddock-weather-v2-' + coordinates?.join(',')) || 'null'), race); } catch {}
+    setShareCard(card);
+  }
+  function sharePodium(ids = following.driverIds) {
+    const chosen = ids.map(id => drivers.find(d => d.driverId === id)).filter(Boolean) as Row[];
+    if (!chosen.length) { setToast('先选出你的领奖台阵容'); return; }
+    const card = podiumShareCard(chosen, season);
+    card.rows.forEach((row, index) => { row.image = portraitFor(chosen[index])?.file; });
+    setShareCard(card);
+  }
 
 
   useEffect(() => {
@@ -116,6 +137,8 @@ export default function App() {
     window.addEventListener('paddock:open-smg',smg);window.addEventListener('paddock:open-tencent',tencent);
     if(native)window.addEventListener('pagehide',()=>{window.removeEventListener('paddock:open-smg',smg);window.removeEventListener('paddock:open-tencent',tencent);},{once:true});
     setNow(Date.now());
+    const shared = readSharedSelection(window.location.search); setSharedSelection(shared);
+    if (shared.season) setSeason(shared.season);
     setLocalTimezone(Intl.DateTimeFormat().resolvedOptions().timeZone);
     const savedTimezone = safeGet('paddock-timezone', 'Asia/Shanghai');
     setTimezone(validTimezone(savedTimezone) ? savedTimezone : 'Asia/Shanghai');
@@ -141,6 +164,7 @@ export default function App() {
 
   useEffect(()=>{if(tab==='widgets'&&!driverId)setTab('profile');},[tab,driverId]);
   useEffect(()=>{if(driverId && driverSeason && driverSeason!==season)changeSeason(driverSeason);},[driverId,driverSeason,season]);
+  useEffect(()=>{if(sharedSelection?.race && races.length){const sharedRace=races.find(row=>row.id===sharedSelection.race);if(sharedRace)setSelected(sharedRace);}},[sharedSelection?.race,data.races]);
 
   async function load(seasonId: string) {
     const version = ++raceRef.current;
@@ -192,7 +216,7 @@ export default function App() {
 
       {detail&&<div className={'detail-workspace tone-'+detailInfo?.tone} key={detail}>{detail==='viewing'?<ViewingRoom onReplay={()=>openDetail('replays')}/>:detail==='replays'?<ReplayLibrary races={races} year={year} focusedRaceId={replayRaceId} loading={busy&&!races.length}/>:detail==='news'?<NewsRoom/>:detail==='classics'?<ClassicRaces/>:detail==='circuit'?(race?<><div className="archive-preview"><CircuitImage circuit={race.circuit}/><div><p className="eyebrow">ROUND {race.round} / {year}</p><h2>{race.name}</h2><p>{race.circuit?.place}</p></div></div><CircuitArchive race={race}/></>:<p className="empty">请先选择一场比赛。</p>):detail==='championship'?<Championship drivers={drivers} races={races} updatedAt={meta.updatedAt} source={meta.source} year={year}/>:<ToolsHub seasons={data.seasons?.items||[]} page={detail}/>}</div>}
       {tab === 'schedule' && !detail && <>
-        <div className="schedule-toolbar"><div className="segmented"><button className={!raceList ? 'selected' : ''} onClick={() => setRaceList(false)}>比赛周末</button><button className={raceList ? 'selected' : ''} onClick={() => setRaceList(true)}>完整赛历 <span>{races.length || '—'}</span></button></div>{selected && <button className="text-button" onClick={() => {setSelected(null);setRaceList(false);}}>返回下一站 <CircleEllipsis size={15}/></button>}</div>
+        <div className="schedule-toolbar"><div className="segmented"><button className={!raceList ? 'selected' : ''} onClick={() => setRaceList(false)}>比赛周末</button><button className={raceList ? 'selected' : ''} onClick={() => setRaceList(true)}>完整赛历 <span>{races.length || '—'}</span></button></div>{race && <button className="weekend-share-button" onClick={shareWeekend}><Share2 size={15}/>分享周末</button>}{selected && <button className="text-button" onClick={() => {setSelected(null);setRaceList(false);}}>返回下一站 <CircleEllipsis size={15}/></button>}</div>
         {raceList ? <section className="calendar-grid" aria-label="完整赛历">{races.length ? races.map(r => <button key={r.id} className={'race-tile ' + (r.id === race?.id ? 'chosen' : '')} onClick={() => {setSelected(r);setRaceList(false);}}><span className="round">ROUND {String(r.round).padStart(2,'0')}</span><span className={'status-pill ' + (r.status === 'Finished' ? 'muted' : '')}>{r.status === 'Finished' ? '已完赛' : '待发车'}</span><h3>{r.name}</h3><p>{r.circuit?.place || r.circuit?.name}</p><div><span>{dateParts(r.startDate, timezone, {month:'2-digit',day:'2-digit'})} — {dateParts(r.endDate, timezone, {month:'2-digit',day:'2-digit'})}</span><CircleEllipsis size={19}/></div></button>) : <div className="empty">{busy ? '正在载入赛历…' : '这个赛季暂时没有赛历数据。'}</div>}</section> : race ? <div className="weekend-dashboard">
           <RaceHero race={race} year={year} selected={!!selected} dateLabel={dateParts(race.startDate, timezone, {month:'long',day:'numeric'})+' — '+dateParts(race.endDate, timezone, {month:'long',day:'numeric'})} sessionLabel={nextSession?sessionName(nextSession):''} countdown={nextSession?<Countdown date={nextSession.startDate}/>:null}/>
           <div className="weather-slot"><WeatherCard race={race} timezone={timezone}/></div><div className="weekend-detail-grid"><section className="schedule-section"><PanelTitle title="赛事时间安排" eyebrow="THE WEEKEND"><label className="zone-select"><Clock3 size={13}/><TimezonePicker label="时间显示方式" value={timezone} localTimezone={localTimezone} onChange={value=>{setTimezone(value);savePreference('timezone',value);}}/></label></PanelTitle>{Object.entries(dateGroups).map(([day, items]) => <div className="day-group" key={day}><h3>{day}</h3>{items.map(s => <div className={'session-row ' + (s.id === nextSession?.id ? 'up-next' : '')} key={s.id}><button className="session-main" onClick={() => viewResults(s)}><span className={'session-mark ' + (/Race/.test(s.type) ? 'race' : /Qualifying/.test(s.type) ? 'quali' : '')}>{s.sessionShortName}</span><div><strong>{sessionName(s)}</strong><span>{+new Date(s.startDate) > now ? '即将开始' : +new Date(s.endDate) > now ? '场次进行中' : '查看比赛成绩'}</span></div><time>{dateParts(s.startDate, timezone, {hour:'2-digit',minute:'2-digit',hour12:false})}</time></button><button className="calendar-button" aria-label={'添加' + sessionName(s) + '到日历'} onClick={() => calendar(s)}><Bell size={17}/></button></div>)}</div>)}</section>
@@ -203,10 +227,11 @@ export default function App() {
       {tab === 'rankings' && !detail && !driverId && <section className="standings-section"><div className="rank-toolbar"><div className="segmented"><button className={rankType === 'drivers' ? 'selected' : ''} onClick={() => {setRankType('drivers');setRankExpanded(false);}}>车手积分榜</button><button className={rankType === 'teams' ? 'selected' : ''} onClick={() => {setRankType('teams');setRankExpanded(false);}}>车队积分榜</button></div><button className="rank-help-button" aria-expanded={rankHelp} aria-controls="rank-help" onClick={()=>setRankHelp(!rankHelp)}><Info size={15}/><span>查看档案</span></button></div>{rankHelp&&<p className="rank-help" id="rank-help" role="status">点击车手姓名或右侧箭头，查看生涯成就、资料和新闻。爱心可分别关注多位车手或整支车队。</p>}<div className="standings-labels"><span>排名 / {rankType==='drivers'?'车手':'车队'}</span><span>积分</span></div><div className="rank-list" data-expanded={rankExpanded} key={rankType+season}>{(rankExpanded?(rankType==='drivers'?drivers:teams):(rankType==='drivers'?drivers:teams).slice(0,5)).map((r,i)=><div key={r.driverId||r.teamId} className={'rank-row position-'+r.position} style={{'--team-color':color(r)} as React.CSSProperties}><span className="position">{String(r.position).padStart(2,'0')}</span>{rankType==='drivers'?<button className="rank-person" onClick={()=>showDriver(r)} aria-label={'查看'+r.driverName+'档案'}><DriverPortrait driver={r}/><span><strong>{r.driverName}</strong><small><i style={{background:color(r)}}/>{r.teamName||r.teamShortName}<em>#{r.number}</em></small></span><ContactRound className="rank-open-arrow" size={15}/></button>:<button className="rank-person" onClick={()=>setDriver({...r,isTeam:true})} aria-label={'查看'+r.teamName+'资料'}>{year===2026&&teamFile(r)?<img className="rank-car" src={'/cars/'+teamFile(r)+'.png'} alt="车队赛季展示图"/>:<Flag size={30}/>}<span><strong>{r.teamName||r.teamShortName}</strong><small>{r.teamShortName}</small></span><ContactRound className="rank-open-arrow" size={15}/></button>}<div className="rank-points"><strong>{r.points}</strong><span>{i?'−'+((rankType==='drivers'?drivers:teams)[0].points-r.points):'LEADER'}</span></div><button className={'favorite-button '+((rankType==='drivers'?following.driverIds.includes(r.driverId):following.teamIds.includes(followTeamKey(r)))?'picked':'')} aria-pressed={rankType==='drivers'?following.driverIds.includes(r.driverId):following.teamIds.includes(followTeamKey(r))} aria-label={((rankType==='drivers'?following.driverIds.includes(r.driverId):following.teamIds.includes(followTeamKey(r)))?'取消关注':'关注')+(r.driverName||r.teamName)} onClick={()=>updateFollow(r,rankType==='teams')}><Heart size={17} fill={(rankType==='drivers'?following.driverIds.includes(r.driverId):following.teamIds.includes(followTeamKey(r)))?'currentColor':'none'}/></button></div>)}</div>{(rankType==='drivers'?drivers:teams).length>5&&<button className="rank-expand" aria-expanded={rankExpanded} onClick={()=>setRankExpanded(!rankExpanded)}>{rankExpanded?'收起榜单':'展开完整榜单'}<span>{(rankType==='drivers'?drivers:teams).length}</span><ChevronDown size={17} className={rankExpanded?'is-expanded':''}/></button>}{!(rankType==='drivers'?drivers:teams).length&&<div className="empty">{busy?'正在加载积分榜…':'该赛季暂无积分数据。'}</div>}<div className="championship-utility"><Trophy size={17}/><div><strong>争冠计算器</strong><span>推演夺冠所需的积分与名次</span></div><button className="icon-button" aria-label="打开争冠分析" onClick={()=>openDetail('championship')}><CircleEllipsis size={18}/></button></div></section>}
       {driverId && <section className="driver-profile-page" aria-label="车手完整档案"><div className="driver-page-toolbar"><button className="driver-back-button" onClick={closeDriver}><ArrowLeft size={17}/>返回{labels[driverFrom]}</button><span className="eyebrow">DRIVER PROFILE</span><button className="driver-share-button" onClick={()=>void shareDriver()} aria-label="复制车手档案链接"><Share2 size={17}/><span>分享档案</span></button></div>{pageDriver && (!driverSeason || driverSeason===season) ? <DriverDetails key={pageDriver.driverId+'-'+season} driver={pageDriver} year={year} race={season===snapshotSeason?data.next:undefined} favorite={following.driverIds.includes(pageDriver.driverId)} onFavorite={()=>pickFavorite(pageDriver)}/> : <div className="driver-page-empty" role="status"><UserRound size={36}/><h1>{busy||driverSeason!==season?'正在准备车手档案':'该赛季暂无这位车手的积分资料'}</h1><p>{busy?'正在连接赛事数据…':'可以返回积分榜选择其他赛季或车手。'}</p>{!busy&&<button className="small-button" onClick={()=>load(season)}>重新加载</button>}</div>}</section>}
       {tab === 'discover' && !detail && <DiscoverOverview onOpen={openDetail}/>}
-      {tab === 'profile' && <><ProfilePage drivers={drivers} teams={teams} following={following} onPickDriver={pickFavorite} onPickTeam={row=>updateFollow(row,true)} onOpenDriver={showDriver} loadingDrivers={busy&&!drivers.length} account={account} theme={theme} accent={accent} timezone={timezone} localTimezone={localTimezone} onTheme={value=>{setTheme(value);savePreference('theme',value);}} onAccent={value=>{setAccent(value);savePreference('accent',value);}} onTimezone={value=>{setTimezone(value);savePreference('timezone',value);}} onInstall={()=>setInstall(true)}/><WatchGuide/></>}
-      </div><footer className="data-footer"><span><i className={meta.source === 'live' ? 'online' : ''}/>{busy ? '正在更新…' : meta.source === 'live' ? '在线数据' : '最近保存'} · {stamp(meta.updatedAt)}</span><span>PADDOCK POCKET</span></footer>
+      {tab === 'profile' && <>{!!sharedSelection?.podium.length&&<div className="shared-podium-notice"><span>朋友分享了他的领奖台阵容，不会更改你的关注。</span><button className="small-button" disabled={busy||!drivers.length} onClick={()=>sharePodium(sharedSelection.podium)}>查看阵容</button><button className="icon-button" aria-label="关闭分享提示" onClick={()=>setSharedSelection(null)}>×</button></div>}<ProfilePage onSharePodium={()=>sharePodium()} drivers={drivers} teams={teams} following={following} onPickDriver={pickFavorite} onPickTeam={row=>updateFollow(row,true)} onOpenDriver={showDriver} loadingDrivers={busy&&!drivers.length} account={account} theme={theme} accent={accent} timezone={timezone} localTimezone={localTimezone} onTheme={value=>{setTheme(value);savePreference('theme',value);}} onAccent={value=>{setAccent(value);savePreference('accent',value);}} onTimezone={value=>{setTimezone(value);savePreference('timezone',value);}} onInstall={()=>setInstall(true)}/><WatchGuide/></>}
+      </div><footer className="data-footer"><span><i className={meta.source === 'live' ? 'online' : ''}/>{busy ? '正在更新…' : meta.source === 'live' ? '在线数据' : '最近保存'} · {stamp(meta.updatedAt)}</span><a className="about-mini-link" href="/about">关于围场口袋</a></footer>
       </main></div>
     <GlassNavigation tab={tab} onChange={navigateTab}/>
+    {shareCard && <SharePosterDialog card={shareCard} close={()=>setShareCard(null)}/>}
     {toast && <div className="toast" role="status"><Check size={17}/>{toast}</div>}
     {driver?.isTeam && <Dialog title={driver.teamName} close={() => setDriver(null)}><TeamCarStage team={driver} year={year}/><div className="driver-detail" style={{'--team-color':color(driver)} as React.CSSProperties}><p>{year} 赛季 · {driver.teamName}</p><div className="detail-stats"><div><span>赛季排名</span><strong>P{driver.position}</strong></div><div><span>积分</span><strong>{driver.points}</strong></div></div></div><WeekendLook driver={driver} year={year} race={season===snapshotSeason?data.next:undefined}/><NewsRoom compact team={driver.teamShortName}/></Dialog>}
     {results && <Dialog title={sessionName(results.session)} close={() => {resultRef.current++;setResults(null);}}><p className="result-subtitle">{results.race.name} · {dateParts(results.session.startDate,timezone,{month:'long',day:'numeric',hour:'2-digit',minute:'2-digit'})}</p>{results.loading ? <div className="empty">正在读取比赛成绩…</div> : results.error ? <div className="empty"><WifiOff size={30}/><p>{results.error}</p><button className="small-button" onClick={() => viewResults(results.session,results.race)}>重试</button></div> : !results.rows?.length ? <div className="empty">{+new Date(results.session.startDate) > now ? '比赛尚未开始，成绩将在结束后公布。' : '暂时没有这场比赛的成绩。'}</div> : <div className="results-table"><div className="results-heading"><span>名次 / 车手</span><span>成绩</span></div>{[...results.rows].sort((a,b) => (a.result?.position || a.position || 999)-(b.result?.position || b.position || 999)).map((p,i) => <div className="result-row" key={p.driverId || i}><b>{p.result?.position || p.position || '—'}</b><span><strong>{p.driverName || p.driverTla}</strong><small>{p.teamName || p.driverTla}</small></span><time>{resultLabel(p)}</time></div>)}</div>}</Dialog>}
