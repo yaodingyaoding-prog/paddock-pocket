@@ -1,6 +1,11 @@
 // Runs in the HTML before the application bundle, so a failed bundle can report
 // its own loading state. Keep this independent of React and third-party scripts.
 export const bootStatusScript = `(() => {
+  if (location.pathname === '/download' && document.addEventListener) document.addEventListener('click', (event) => {
+    const link = event.target && event.target.closest && event.target.closest('a[data-apk-download]');
+    const feedback = document.getElementById('apk-download-feedback');
+    if (link && feedback) feedback.textContent = '已请求下载，请查看浏览器下载列表或系统通知。没有下载任务时，请点下方“备用下载”。';
+  });
   // Server-rendered information pages use ordinary links and need no app-ready signal.
   const splash = document.getElementById('paddock-startup');
   const hideSplash = () => { if (splash) { splash.style.opacity='0'; splash.style.pointerEvents='none'; splash.hidden=true; } };
