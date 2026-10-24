@@ -4,9 +4,9 @@
 
 Paddock Pocket brings race schedules, standings, circuit weather, driver profiles, viewing links and analysis into one application. Browse races immediately, then sign in for a personal fan pass, a three-driver podium and settings that follow your account across devices.
 
-[Live application](https://F1.xiaodinglab.com/) · [Download Android 0.7.0](https://f1.xiaodinglab.com/downloads/Paddock-Pocket-0.7.0.apk) · [User guide](docs/user-guide.en.md) · [简体中文](README.md)
+[Live application](https://F1.xiaodinglab.com/) · [Download Android 0.7.1](https://f1.xiaodinglab.com/downloads/Paddock-Pocket-0.7.1.apk) · [User guide](docs/user-guide.en.md) · [简体中文](README.md)
 
-[![Project checks](https://github.com/yaodingyaoding-prog/paddock-pocket/actions/workflows/check.yml/badge.svg)](https://github.com/yaodingyaoding-prog/paddock-pocket/actions/workflows/check.yml) [![Android](https://img.shields.io/badge/Android-8.0%2B-3DDC84?logo=android&logoColor=white)](https://f1.xiaodinglab.com/downloads/Paddock-Pocket-0.7.0.apk) [![MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Project checks](https://github.com/yaodingyaoding-prog/paddock-pocket/actions/workflows/check.yml/badge.svg)](https://github.com/yaodingyaoding-prog/paddock-pocket/actions/workflows/check.yml) [![Android](https://img.shields.io/badge/Android-8.0%2B-3DDC84?logo=android&logoColor=white)](https://f1.xiaodinglab.com/downloads/Paddock-Pocket-0.7.1.apk) [![MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 ![Paddock Pocket: schedules, weather and replays](public/social-cover.png)
 
@@ -72,13 +72,13 @@ For password recovery, choose Forgot password on the login page and follow the e
 | --- | --- | --- |
 | Phone, tablet and desktop browsers | [Open the website](https://F1.xiaodinglab.com/) | Responsive interface and account settings across devices |
 | iPhone / iPad | Safari → Share → Add to Home Screen | Quick access from your home screen |
-| Android 8.0 or later | [Download the 0.7.0 APK](https://f1.xiaodinglab.com/downloads/Paddock-Pocket-0.7.0.apk) | The production interface, Android system integration and a home-screen widget |
+| Android 8.0 or later | [Download the 0.7.1 APK](https://f1.xiaodinglab.com/downloads/Paddock-Pocket-0.7.1.apk) | The production interface, Android system integration and a home-screen widget |
 
 **The maintainer has completed real-device validation of Android 0.7.0 and confirmed that it works.**
 
 Download the APK and follow Android's installation prompts. The application provides system image picking, calendar saving, a viewing window, platform app launch and version checks. After installation, add Paddock Pocket from your launcher's widget picker to see the next-session countdown, weather and followed drivers on the home screen.
 
-Reloading the app receives deployed web-interface updates. Native updates arrive through a new APK. Version 0.7.0 retains package `dev.paddock.pocket` and the same signing certificate as 0.6.0 for in-place upgrades.
+Reloading the app receives deployed web-interface updates. Native updates arrive through a new APK. Version 0.7.1 retains package `dev.paddock.pocket` and the same signing certificate as 0.6.0 for in-place upgrades.
 
 [Android release notes](docs/android-release.md) · [Checksums and version metadata](public/downloads/android-build.json) · [Changelog](CHANGELOG.md)
 

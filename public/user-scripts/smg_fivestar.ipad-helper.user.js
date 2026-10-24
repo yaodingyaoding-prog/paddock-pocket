@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name             SMG iPad 请求助手
 // @namespace        http://tampermonkey.net/
-// @version          0.24.1
+// @version          0.26.0
 // @description      收看SMGTV，并解除页面部分限制
 // @author           https://github.com/Popukok
 // @match            *://*.kankanews.com/huikan*

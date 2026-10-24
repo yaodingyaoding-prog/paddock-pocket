@@ -26,6 +26,11 @@ $assetRoot=Join-Path $buildRoot 'assets'
 New-Item -ItemType Directory -Force -Path $buildRoot,$releaseRoot,(Join-Path $buildRoot 'gen'),(Join-Path $buildRoot 'classes'),(Join-Path $buildRoot 'dex'),(Join-Path $assetRoot 'web\user-scripts') | Out-Null
 Get-ChildItem (Join-Path $projectRoot 'assets') -File | Copy-Item -Destination $assetRoot
 Copy-Item (Join-Path $projectRoot 'assets\web\user-scripts\smg_fivestar.android.user.js') (Join-Path $assetRoot 'web\user-scripts')
+Copy-Item (Join-Path $projectRoot 'assets\web\user-scripts\LICENSE') (Join-Path $assetRoot 'web\user-scripts')
+$viewingRelease=Get-Content -LiteralPath (Join-Path $repositoryRoot 'public\user-scripts\release.json') -Raw | ConvertFrom-Json
+$viewingFile=$viewingRelease.files | Where-Object {$_.path -eq 'smg_fivestar.android.user.js'}
+$viewingHash=(Get-FileHash -LiteralPath (Join-Path $assetRoot 'web\user-scripts\smg_fivestar.android.user.js') -Algorithm SHA256).Hash.ToLowerInvariant()
+if(!$viewingFile -or $viewingHash -ne $viewingFile.sha256){throw 'Bundled SMG helper does not match the published release'}
 function Invoke-Checked([string]$Executable,[string[]]$CommandArguments){& $Executable @CommandArguments;if($LASTEXITCODE -ne 0){throw "Build step failed: $([IO.Path]::GetFileName($Executable)) ($LASTEXITCODE)"}}
 $aapt=Join-Path $ToolRoot 'aapt2.exe'
 $androidJar=Join-Path $ToolRoot 'android.jar'
@@ -56,6 +61,7 @@ try{
  }
  foreach($dex in Get-ChildItem (Join-Path $buildRoot 'dex') -Filter '*.dex' -File){[IO.Compression.ZipFileExtensions]::CreateEntryFromFile($archive,$dex.FullName,$dex.Name,[IO.Compression.CompressionLevel]::Optimal)|Out-Null}
  if(!$archive.GetEntry('assets/web/user-scripts/smg_fivestar.android.user.js')){throw 'Viewing helper missing'}
+ if(!$archive.GetEntry('assets/web/user-scripts/LICENSE')){throw 'Viewing helper license missing'}
  if(@($archive.Entries | Where-Object {$_.FullName.Contains('\')}).Count){throw 'Invalid APK asset path'}
 }finally{$archive.Dispose()}
 $aligned=Join-Path $buildRoot 'aligned.apk'
@@ -84,6 +90,6 @@ Invoke-Checked $zipalign @('-c','4',$apk)
 $badging=& $aapt dump badging $apk
 if($LASTEXITCODE -ne 0){throw 'APK metadata verification failed'}
 $badging | Set-Content -LiteralPath (Join-Path $releaseRoot 'APK_BADGING.txt') -Encoding utf8
-$report=[ordered]@{apk=$apk;sha256=(Get-FileHash -LiteralPath $apk -Algorithm SHA256).Hash;size=(Get-Item -LiteralPath $apk).Length;builtAtUtc=[DateTime]::UtcNow.ToString('o');package=$packageName;version=$versionName;versionCode=$versionCode;minSdk=$minSdk;targetSdk=$targetSdk;certificateSha256=$certificateSha256;signingChannel=$(if($customSigning){'custom'}else{'preview'});debuggable=[bool]$RuntimeDebug;validation='Java compilation, APK signature and ZIP alignment verified; Android device acceptance pending';webOrigin='https://f1.xiaodinglab.com';download=('/downloads/Paddock-Pocket-'+$versionName+'.apk')}
+$report=[ordered]@{apk=$apk;sha256=(Get-FileHash -LiteralPath $apk -Algorithm SHA256).Hash;size=(Get-Item -LiteralPath $apk).Length;builtAtUtc=[DateTime]::UtcNow.ToString('o');package=$packageName;version=$versionName;versionCode=$versionCode;minSdk=$minSdk;targetSdk=$targetSdk;certificateSha256=$certificateSha256;signingChannel=$(if($customSigning){'custom'}else{'preview'});debuggable=[bool]$RuntimeDebug;viewingScriptVersion=[string]$viewingRelease.version;viewingScriptSha256=$viewingHash;validation='Java compilation, APK signature and ZIP alignment verified';webOrigin='https://f1.xiaodinglab.com';download=('/downloads/Paddock-Pocket-'+$versionName+'.apk')}
 $report | ConvertTo-Json -Depth 5 | Set-Content -LiteralPath (Join-Path $releaseRoot $(if($RuntimeDebug){'APK_WEB_DEBUG_BUILD_REPORT.json'}else{'APK_WEB_BUILD_REPORT.json'})) -Encoding utf8
 Write-Output "APK ready: $apk"

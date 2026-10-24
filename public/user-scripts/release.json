@@ -1,0 +1,53 @@
+{
+  "version": "0.26.0",
+  "releasedAt": "2026-10-24",
+  "upstream": "https://github.com/Popukok/smg_live",
+  "sourceBundle": "SMG-All-Platforms-0.26.0",
+  "files": [
+    {
+      "path": "smg_fivestar.user.js",
+      "bytes": 87905,
+      "sha256": "d2b93f0c4ca7a593ef60f2c6b8f68da6092ec60aed18139efc6e38243ebc6987"
+    },
+    {
+      "path": "smg_fivestar.android.user.js",
+      "bytes": 95251,
+      "sha256": "a9d456ab2dddd3ed2dbec4f936745dbf0e3df35486c36bbd151513b5e692cb6c"
+    },
+    {
+      "path": "smg_fivestar.ipad.user.js",
+      "bytes": 91785,
+      "sha256": "56b23434f5116b4d6b55a570e43bbbaef234793c77b2c05c3339a570e72a3eab"
+    },
+    {
+      "path": "smg_fivestar.ipad-helper.user.js",
+      "bytes": 5113,
+      "sha256": "90539b52ddc48d7d4dc2a2ece15e223a27f1b14f94b614823e9d59b8473237a6"
+    },
+    {
+      "path": "android-install.txt",
+      "bytes": 4826,
+      "sha256": "601b8f9479ffabd238c621260bd7a726324d7b07848e2a32aa651b5afd024641"
+    },
+    {
+      "path": "ios-install.md",
+      "bytes": 3639,
+      "sha256": "5602d7df84fb2ff0f3ef7a3a55508a730afb05b3d9f8706ddc24df93686473c8"
+    },
+    {
+      "path": "SMG-All-Platforms-0.26.0.zip",
+      "bytes": 75797,
+      "sha256": "a22d2824b3cd3c481ebc1149fefaafb9729a1269ed86de0436b5577f87335fbb"
+    },
+    {
+      "path": "SMG-Android-0.26.0.zip",
+      "bytes": 25340,
+      "sha256": "8a17d330ece60e5631bf5d381e4d64ab8a95d78a216a3e7b5ececd7306bcf1aa"
+    },
+    {
+      "path": "LICENSE",
+      "bytes": 1083,
+      "sha256": "a5ec72acf7aed997728f20085880312875ed1df3ba2d9d586157546ceab913fc"
+    }
+  ]
+}

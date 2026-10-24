@@ -1,22 +1,18 @@
 {
-  "version": "0.7.0",
-  "versionCode": 7,
+  "version": "0.7.1",
+  "versionCode": 8,
   "package": "dev.paddock.pocket",
   "channel": "preview",
-  "download": "/downloads/Paddock-Pocket-0.7.0.apk",
-  "bytes": 82969,
-  "sha256": "636daec71902bdf92cf732e0cb0efc5a56792971a79501a494b9237f2349d6f8",
+  "download": "/downloads/Paddock-Pocket-0.7.1.apk",
+  "bytes": 87142,
+  "sha256": "32480e86d5191bac1fc2a5069127efe2e85596525f2a1a6431c421c4b088d207",
   "certificateSha256": "6116cdaa2de6ae30737976e789fb582c602bc944e0aacd7da6f0755e87340c9d",
   "minSdk": 26,
   "targetSdk": 36,
   "webOrigin": "https://f1.xiaodinglab.com",
-  "builtAtUtc": "2026-10-23T05:26:43.9404038Z",
+  "builtAtUtc": "2026-10-24T14:33:20.1610301Z",
   "updateMode": "Web content follows production; native updates require user-confirmed APK installation",
-  "validation": "Java compilation, APK signature and ZIP alignment passed; real-device validation confirmed by maintainer",
-  "deviceValidation": {
-    "status": "passed",
-    "reportedBy": "maintainer",
-    "reportedAt": "2026-10-24",
-    "artifactSha256": "636daec71902bdf92cf732e0cb0efc5a56792971a79501a494b9237f2349d6f8"
-  }
+  "validation": "Java compilation, APK signature and ZIP alignment passed",
+  "viewingScriptVersion": "0.26.0",
+  "viewingScriptSha256": "a9d456ab2dddd3ed2dbec4f936745dbf0e3df35486c36bbd151513b5e692cb6c"
 }

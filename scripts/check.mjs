@@ -15,6 +15,7 @@ const scripts = [
   ['scripts/verify-race-refresh.mjs'],
   ['scripts/verify-motion.mjs'],
   ['scripts/verify-android-release.mjs'],
+  ['scripts/verify-viewing-release.mjs'],
   ['scripts/verify-share.mjs'],
   ['scripts/verify-account-ui.mjs'],
   ['scripts/verify-preferences.mjs'],

@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name             收看SMGTV电视节目（iPad Userscripts）
 // @namespace        http://tampermonkey.net/
-// @version          0.24.1
+// @version          0.26.0
 // @description      收看SMGTV，并解除页面部分限制
 // @author           https://github.com/Popukok
 // @match            *://*.kankanews.com/huikan*
@@ -56,6 +56,7 @@
 (function() {
     'use strict';
     const UW = (typeof unsafeWindow !== 'undefined') ? unsafeWindow : window;
+    const nativePageFetch = typeof UW.fetch === 'function' ? UW.fetch.bind(UW) : null;
     // Storage may be blocked at property access or become unavailable later.
     const LS = {
         getItem(key) {
@@ -102,7 +103,7 @@
     const RESUME_POSITION_TTL_MS = 90000;
     const AUTO_ACQUIRE_CHANNELS = ['10'];
     const SMG_API_SECRET = '28c8edde3d61a0411511d3b1866f0636';
-    const SMG_API_VERSION = '2.42.23';
+    const SMG_API_VERSION = '2.45.2';
     const SMG_PUBKEY = '-----BEGIN PUBLIC KEY-----\n' +
           'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDP5hzPUW5RFeE2xBT1ERB3hHZI\n' +
           'Votn/qatWhgc1eZof09qKjElFN6Nma461ZAwGpX4aezKP8Adh4WJj4u2O54xCXDt\n' +
@@ -147,7 +148,7 @@
                 const k = key.toLowerCase();
                 if (STREAM_EXP_KEYS.indexOf(k) === -1 && !/(expire|expiry|deadline)/.test(k)) return;
                 const t = toEpochMs(value);
-                if (t == null || t < now - 86400000 || t > now + 60 * 86400000) return;
+                if (t == null || t > now + 60 * 86400000) return;
                 if (min == null || t < min) min = t;
             });
         } catch (e) {}
@@ -160,7 +161,7 @@
             new URL(url).searchParams.forEach(value => {
                 if (value.split('.').length !== 3) return;
                 const t = parseJwtValueExp(value);
-                if (t == null || t < now - 86400000 || t > now + 60 * 86400000) return;
+                if (t == null || t > now + 60 * 86400000) return;
                 if (min == null || t < min) min = t;
             });
         } catch (e) {}
@@ -276,9 +277,16 @@
         return binl2hex([a, b, c, d]);
     }
     function smgSignParams(params) {
+        let version = SMG_API_VERSION;
+        try {
+            for (const script of Array.from(document.scripts || [])) {
+                const match = String(script.src || '').match(/\/_knews_nuxt\/js\/(?:app|runtime)\.v(\d+(?:\.\d+){1,3})\.js(?:[?#]|$)/);
+                if (match) { version = match[1]; break; }
+            }
+        } catch (e) {}
         const n = {
-            platform: 'pc',
-            version: SMG_API_VERSION,
+            platform: isMobileSite() ? 'mobile' : 'pc',
+            version: version,
             nonce: Math.random().toString(36).slice(-8),
             timestamp: Math.floor(Date.now() / 1000),
             'Api-Version': 'v1'
@@ -370,7 +378,8 @@
                     controller = new UW.AbortController();
                     opts.signal = controller.signal;
                 }
-                return UW.fetch(url, opts);
+                if (!nativePageFetch) throw new Error('Page fetch unavailable');
+                return nativePageFetch(url, opts);
             })
             .then(res => {
                 if (!res || !res.ok) {
@@ -463,9 +472,14 @@
         }
         const key = String(channelId);
         const prev = streamAddressCache[key] || { live_address: '', shift_address: '' };
+        const live = liveAddress || prev.live_address || '';
+        const shift = shiftAddress || prev.shift_address || '';
+        if (prev.live_address === live && prev.shift_address === shift) return;
         streamAddressCache[key] = {
-            live_address: liveAddress || prev.live_address || '',
-            shift_address: shiftAddress || prev.shift_address || '',
+            live_address: live,
+            shift_address: shift,
+            live_at: live !== prev.live_address ? Date.now() : (prev.live_at || prev.at),
+            shift_at: shift !== prev.shift_address ? Date.now() : (prev.shift_at || prev.at),
             at: Date.now()
         };
     }
@@ -477,12 +491,14 @@
         if (!cached) {
             return false;
         }
-        if (Date.now() - (cached.at || 0) > STREAM_ADDRESS_TTL_MS) {
+        const live = Date.now() - (cached.live_at || cached.at || 0) <= STREAM_ADDRESS_TTL_MS ? cached.live_address : '';
+        const shift = Date.now() - (cached.shift_at || cached.at || 0) <= STREAM_ADDRESS_TTL_MS ? cached.shift_address : '';
+        if (!live && !shift) {
             delete streamAddressCache[String(channelId)];
             return false;
         }
-        const channelLiveAddress = cached.live_address || cached.shift_address;
-        const channelShiftAddress = cached.shift_address || cached.live_address;
+        const channelLiveAddress = live || shift;
+        const channelShiftAddress = shift || live;
         if (channelLiveAddress && !target.live_address) {
             target.live_address = channelLiveAddress;
         }
@@ -542,10 +558,10 @@
         const channelInfo = detail.channel_info || (detail.channel_info = {});
         const channelId = getResultChannelId(detail) || channelDetail?.id;
         if (channelDetail) {
-            if (channelDetail.live_address) {
+            if (channelDetail.live_address && !channelInfo.live_address) {
                 channelInfo.live_address = channelDetail.live_address;
             }
-            if (channelDetail.shift_address) {
+            if (channelDetail.shift_address && !channelInfo.shift_address) {
                 channelInfo.shift_address = channelDetail.shift_address;
             }
         }
@@ -652,9 +668,9 @@
                         const entry = { url: base, at: Date.now(), exp: parseStreamExpiry(url),
                                         key: fromShift ? '' : playbackKey(component), src: 'page' };
                         const prev = store[channelId];
-                        const canStore = !prev || prev.key !== entry.key ||
-                              (entry.exp != null && (prev.exp == null || entry.exp >= prev.exp)) ||
-                              (entry.exp == null && prev.exp == null);
+                        const canStore = (entry.exp == null || entry.exp - BASE_SAFETY_MS > Date.now()) &&
+                              (!prev || baseExpiryOf(prev) - BASE_SAFETY_MS <= Date.now() || prev.key !== entry.key ||
+                               betterBase(prev, entry) === entry);
                         if (canStore) {
                             store[channelId] = entry;
                             console.log(fromShift ? '[SMGTV] 已抓取回看源' : '[SMGTV] 已抓取直播源');
@@ -676,11 +692,11 @@
                      'preferBase=', preferBase, 'staleTrigger=', staleTrigger, 'hasWindow=', hasWindow,
                      'play=' + (program ? program.play : '-'),
                      'prog=' + (program && program.name ? String(program.name).slice(0, 12) : '-'));
-                if (isReplay && hasWindow) {
+                if (isReplay && hasWindow && !preferBase) {
                     dlog('[dev] 页面自带 start/end，不改写');
                     return new target(...args);
                 }
-                if (isReplay && hasStream && !hasWindow && program?.start_time && program?.end_time) {
+                if (isReplay && hasStream && (!hasWindow || preferBase) && program?.start_time && program?.end_time) {
                     if (!preferBase && staleTrigger) {
                         component.__smgNeedShiftBase = true;
                     }
@@ -693,7 +709,7 @@
                 } else if (isReplay && !hasStream && program?.start_time && program?.end_time) {
                     if (baseOk) {
                         component.__smgPreferFreshBaseUntil = 0;
-                        config.url = baseOk + '&start=' + program.start_time + '&end=' + program.end_time;
+                        config.url = baseOk + (baseOk.includes('?') ? '&' : '?') + 'start=' + program.start_time + '&end=' + program.end_time;
                         console.log('[SMGTV] 已注入回放 频道' + channelId);
                     } else {
                         component.__smgNeedShiftBase = true;
@@ -727,7 +743,9 @@
                 const currentExp = parseStreamExpiry(current);
                 const currentStale = !!current && currentExp != null && currentExp - BASE_SAFETY_MS <= Date.now();
                 const canInject = !!baseEntry && (!isReplay || (program?.start_time && program?.end_time));
-                if ((!current || currentStale) && canInject) {
+                const preferFresh = Date.now() < (this.__smgPreferFreshBaseUntil || 0) && baseEntry &&
+                      stripTimeWindow(current) !== baseEntry.url;
+                if ((!current || currentStale || preferFresh) && canInject) {
                     const base = baseEntry.url;
                     if (isReplay) {
                         opts.url = base + (base.includes('?') ? '&' : '?') +
@@ -785,42 +803,60 @@
                 dlog('[dev] donor detail 无 shift_address, donorId=' + donorId);
                 return null;
             }
-            return new Promise(resolve => {
-                decryptRsaChunks(enc, url => {
-                    if (!url) return resolve(null);
-                    try {
-                        const u = new URL(url);
-                        u.searchParams.delete('start');
-                        u.searchParams.delete('end');
-                        const base = u.toString();
-                        channelShiftBaseCache[channelId] = {
-                            url: base,
-                            at: Date.now(),
-                            exp: parseStreamExpiry(url),
-                            key: '',
-                            src: 'script'
-                        };
-                        donorMemo[channelId] = { id: donorId, at: Date.now() };
-                        dlog('[dev] 解密成功 路径=' + u.pathname,
-                             '剩余=' + Math.round(((parseStreamExpiry(url) || 0) - Date.now()) / 1000) + 's');
-                        console.log('[SMGTV] 已获取回看源');
-                        resolve(base);
-                    } catch (e) {
-                        resolve(null);
-                    }
-                });
+            return decodeStreamAddress(enc).then(url => {
+                const entry = usableStreamEntry(url, '');
+                if (!entry) return null;
+                channelShiftBaseCache[channelId] = entry;
+                donorMemo[channelId] = { id: donorId, at: Date.now() };
+                console.log('[SMGTV] 已获取回看源');
+                return entry.url;
+            });
+        });
+    }
+    function decodeStreamAddress(address) {
+        if (typeof address !== 'string' || !address) return Promise.resolve('');
+        if (/^https?:\/\//i.test(address)) return Promise.resolve(address);
+        return new Promise(resolve => decryptRsaChunks(address, resolve));
+    }
+    function usableStreamEntry(url, key) {
+        try {
+            const parsed = new URL(url);
+            if (!/^https?:$/.test(parsed.protocol) || !/\.m3u8$/i.test(parsed.pathname)) return null;
+            const exp = parseStreamExpiry(url);
+            if (exp != null && exp - BASE_SAFETY_MS <= Date.now()) return null;
+            return { url: stripTimeWindow(url), at: Date.now(), exp: exp, key: key || '', src: 'script' };
+        } catch (e) { return null; }
+    }
+    function fetchCurrentLiveBase(channelId, component) {
+        const programId = component?.programObj?.id;
+        if (!programId) return Promise.resolve(null);
+        const key = playbackKey(component);
+        return smgApiGet('/content/pc/tv/program/detail', { channel_program_id: programId }).then(res => {
+            const detail = res && res.result;
+            if (!detail || (detail.channel_id != null && String(detail.channel_id) !== String(channelId))) return null;
+            return decodeStreamAddress(detail.channel_info?.live_address).then(url => {
+                const entry = usableStreamEntry(url, key);
+                if (!entry) return null;
+                channelLiveBaseCache[channelId] = entry;
+                console.log('[SMGTV] 已刷新当前节目直播源');
+                return entry.url;
             });
         });
     }
     function probeDonorDay(channelId, daysAgo) {
         return smgApiGet('/content/pc/tv/programs', { channel_id: channelId, date: dateStrOffset(daysAgo) })
             .then(res => {
-                const id = findDonorIdFromList(res && res.result && res.result.programs);
-                if (!id) {
-                    return null;
-                }
-                return fetchShiftByDonor(channelId, id);
+                return tryDonorCandidates(channelId, res && res.result && res.result.programs);
             });
+    }
+    function tryDonorCandidates(channelId, list) {
+        if (!Array.isArray(list)) return Promise.resolve(null);
+        const allowed = list.filter(program => program && program.id && program.is_review === 1);
+        const preferred = findDonorIdFromList(allowed);
+        const ids = Array.from(new Set([preferred].concat(allowed.map(program => program.id)).filter(Boolean))).slice(0, 2);
+        const next = index => index >= ids.length ? Promise.resolve(null) :
+            fetchShiftByDonor(channelId, ids[index]).then(url => url || next(index + 1));
+        return next(0);
     }
     function scanPastDays(channelId) {
         const start = shiftScanCursor[channelId] || 1;
@@ -849,26 +885,18 @@
         return step(start);
     }
     function acquireFromToday(channelId, component) {
-        let candidate;
-        if (component) {
-            const todayId = findTodayDonorId(component);
-            if (todayId) {
-                candidate = todayId;
-            }
-        }
-        if (!candidate) {
-            return smgApiGet('/content/pc/tv/programs', { channel_id: channelId, date: dateStrOffset(0) })
-                .then(res => {
-                    const id = findDonorIdFromList(res && res.result && res.result.programs);
-                    if (id) {
-                        return fetchShiftByDonor(channelId, id).then(url => url || scanPastDays(channelId));
-                    }
-                    return scanPastDays(channelId);
-                });
-        }
-        return fetchShiftByDonor(channelId, candidate).then(url => url || scanPastDays(channelId));
+        // Component lists have been adapted for UI display; discover donors from raw API data.
+        return smgApiGet('/content/pc/tv/programs', { channel_id: channelId, date: dateStrOffset(0) })
+            .then(res => tryDonorCandidates(channelId, res && res.result && res.result.programs))
+            .then(url => url || scanPastDays(channelId));
     }
     function acquireShiftBase(channelId, component) {
+        if (component?.programObj?.play === 1) {
+            return fetchCurrentLiveBase(channelId, component).then(url => url || acquireReplayBase(channelId, component));
+        }
+        return acquireReplayBase(channelId, component);
+    }
+    function acquireReplayBase(channelId, component) {
         const key = playbackKey(component);
         dlog('[dev] acquire开始 ch=' + channelId, 'key=' + (key || '-'));
         const memo = donorMemo[channelId];
@@ -1015,15 +1043,15 @@
         if (!video) {
             return null;
         }
-        if (video.paused || video.ended || video.seeking) {
-            component.__smgStallWatch = null;
-            clearStuckStart(component);
-            return null;
-        }
         const err = video.error;
         if (err && err.code !== 1) {
             component.__smgStallWatch = null;
             return '媒体错误 code=' + err.code;
+        }
+        if (video.paused || video.ended || video.seeking) {
+            component.__smgStallWatch = null;
+            clearStuckStart(component);
+            return null;
         }
         const now = Date.now();
         if (video.currentTime < 1) {
@@ -1162,6 +1190,10 @@
     function resetChannelScopedState(component) {
         const chId = getCompChannelId(component);
         if (chId == null || chId === component.__smgLastChannelId) {
+            return;
+        }
+        if (component.__smgLastChannelId == null) {
+            component.__smgLastChannelId = chId;
             return;
         }
         component.__smgLastChannelId = chId;

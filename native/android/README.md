@@ -1,4 +1,4 @@
-# Android 0.7.0
+# Android 0.7.1
 
 [简体中文发布说明](../../docs/android-release.md) · [Download metadata](../../public/downloads/android-build.json)
 
@@ -26,7 +26,7 @@ From the repository root:
 
 The manifest defines the package, version and SDK levels. Outputs default to ignored `.local-artifacts/android/`; intermediate files stay in ignored `native/android/build/`. Use `-OutputDir` to choose another output folder. `-RuntimeDebug` creates a separate debuggable artifact, which the publication script refuses.
 
-The default mode reuses or creates a local **preview** keystore in the tool directory, with Android's conventional preview password. Each builder must retain their own keystore for future updates; the maintainer's file is not shipped in this repository. The downloadable preview retains the existing maintainer certificate so 0.6.0 can upgrade to 0.7.0.
+The default mode reuses or creates a local **preview** keystore in the tool directory, with Android's conventional preview password. Each builder must retain their own keystore for future updates; the maintainer's file is not shipped in this repository. The downloadable preview retains the existing maintainer certificate so 0.6.0 and 0.7.0 can upgrade to 0.7.1.
 
 For custom signing, create and manage your own keystore outside the repository, supply `-KeyStorePath` and `-KeyAlias`, and set `PADDOCK_KEYSTORE_PASSWORD` / `PADDOCK_KEY_PASSWORD` privately in your process environment. `-StorePasswordEnv` and `-KeyPasswordEnv` can select different variable names. A missing key password uses the store password variable. Password values are passed to apksigner by environment-variable name, not embedded in source or build reports.
 
@@ -48,4 +48,4 @@ Forks must also update the website / host and update URLs, package identity and 
 
 ## Runtime acceptance
 
-The current release has passed compilation, signature v2/v3, ZIP alignment and metadata verification. On 2026-10-24, the maintainer confirmed completion of real-device validation for Android 0.7.0 and reported that the app works. Download metadata records this confirmation against the published APK's SHA-256.
+The current release has passed compilation, signature v2/v3, ZIP alignment and metadata verification. Android 0.7.1 bundles SMG 0.26.0 and retains the existing upgrade certificate. The maintainer previously confirmed real-device validation of 0.7.0.

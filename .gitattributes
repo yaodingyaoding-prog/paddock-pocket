@@ -1,2 +1,4 @@
 public/user-scripts/*.js -text
+public/user-scripts/* -text -whitespace
+native/android/assets/web/user-scripts/* -text -whitespace
 public/downloads/*.apk binary

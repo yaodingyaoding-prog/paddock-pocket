@@ -1,6 +1,11 @@
 # Changelog
 
-## Unreleased
+## 0.7.1 · 2026-10-24
+
+- Updated desktop, Android and iPhone/iPad viewing scripts to the maintainer-provided SMG 0.26.0 release, preserving original bytes, attribution and licenses.
+- Updated device-specific installation guidance and added a complete three-platform download bundle with checksums.
+- Bundled the exact Android 0.26.0 helper and MIT license in the APK. Mobile `/huikan/10` viewing links remain inside the isolated official-page player.
+- Increased Android versionCode to 8 while retaining the existing package and signing certificate for in-place updates. Publication verifies the helper version and hash against the web release.
 
 - Rewrote the Chinese and English READMEs around product features, viewing workflows, account sync and Android use. Updated Android 0.7.0 device-validation status following the maintainer's confirmation on 2026-10-24.
 - Added account-based cross-device sync for driver/team follows, theme, accent and time zone, using owner-only Supabase RLS and atomic partial updates. Includes safe legacy migration, save status and retries, foreground refresh and pending-save handling before logout.
