@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+- Login, registration and recovery forms now receive non-sensitive availability flags with their server-rendered page, avoiding a blocking lookup of old or expired sessions. Added a lightweight availability endpoint for reconnection checks.
+- Separated account requests from the animated login screen module and added controlled messages for network timeouts and non-JSON gateway responses, preserving single-submit authentication behaviour.
+
 ## 0.7.1 · 2026-10-24
 
 - Updated desktop, Android and iPhone/iPad viewing scripts to the maintainer-provided SMG 0.26.0 release, preserving original bytes, attribution and licenses.

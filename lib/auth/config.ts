@@ -1,4 +1,8 @@
 export type AuthEnvironment = Record<string, unknown>;
+export function publicAuthAvailability(env: AuthEnvironment) {
+  const config = unifiedAuthConfig(env);
+  return { enabled: config.required, configured: config.configured };
+}
 export type AuthConfig = {
   required: boolean;
   configured: boolean;

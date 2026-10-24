@@ -1,5 +1,6 @@
 export type AccountUser = { id: string; email: string; name: string; avatarUrl?: string };
 export type AccountStatus = { enabled: boolean; configured: boolean; user: AccountUser | null };
+export type AccountAvailability = Pick<AccountStatus, 'enabled' | 'configured'>;
 export type AuthAction = 'login' | 'register' | 'resend' | 'forgot' | 'verify' | 'reset' | 'logout';
 export class AccountError extends Error {
   constructor(public code: string, message: string, public status = 400, public retryAfter?: number) { super(message); }

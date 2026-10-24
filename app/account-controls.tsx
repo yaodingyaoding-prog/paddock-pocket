@@ -1,7 +1,7 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
 import type { AccountStatus, AccountUser } from '../lib/auth/contracts';
-import { accountRequest } from './auth-screen';
+import { accountRequest } from '../lib/account-client';
 import { accountLogoutKey } from '../lib/following';
 import { logoutClientAccount, withoutAccountUser } from '../lib/account-ui';
 

@@ -49,6 +49,7 @@ export class AccountController extends BaseAccountController {
     try { return this.success(await this.service.status()); }
     catch (error) { return this.failure(error, 'session'); }
   }
+  availability() { return this.success(this.service.availability()); }
   async post(request: Request, actionValue: string) {
     try {
       const parsed = actionSchema.safeParse(actionValue);

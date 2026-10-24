@@ -7,6 +7,11 @@ async function request(path, init = {}) {
 const session = await request('/api/auth/session');
 assert.equal(session.status, 200);
 const state = await session.json();
+const availability = await request('/api/auth/availability');
+assert.equal(availability.status,200);
+const flags = await availability.json();
+assert.deepEqual(flags,{enabled:state.enabled,configured:state.configured});
+assert.match(availability.headers.get('cache-control'),/no-store/);
 assert.equal(state.enabled, true, 'Local preview must use AUTH_MODE=required');
 assert.equal(state.user, null, 'Tests run without a real user session');
 assert.match(session.headers.get('cache-control'), /no-store/);

@@ -18,6 +18,7 @@ const scripts = [
   ['scripts/verify-viewing-release.mjs'],
   ['scripts/verify-share.mjs'],
   ['scripts/verify-account-ui.mjs'],
+  ['scripts/verify-account-client.mjs'],
   ['scripts/verify-preferences.mjs'],
 ];
 for (const args of scripts) {

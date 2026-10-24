@@ -9,6 +9,7 @@ export class AccountService {
     if (!this.config.configured || !this.repository) throw new AccountError('NOT_CONFIGURED', '账号服务正在准备中，请稍后再来。', 503);
     return this.repository;
   }
+  availability() { return { enabled: this.config.required, configured: this.config.configured }; }
   async status(): Promise<AccountStatus> {
     if (!this.config.configured) return { enabled: this.config.required, configured: false, user: null };
     const user = await this.ready().current();
