@@ -1,4 +1,4 @@
-# Android 1.0.0
+# Android 1.0.1
 
 [简体中文发布说明](../../docs/android-release.md) · [Download metadata](../../public/downloads/android-build.json)
 
@@ -48,4 +48,4 @@ Forks must also update the website / host and update URLs, package identity and 
 
 ## Runtime acceptance
 
-The current release has passed compilation, signature v2/v3, ZIP alignment and metadata verification. Android 1.0.0 bundles SMG 0.26.0 and retains the existing upgrade certificate. The maintainer previously confirmed real-device validation of 0.7.0.
+The current release has passed compilation, signature v2/v3, ZIP alignment and metadata verification. Android 1.0.1 bundles SMG 0.26.0 and retains the existing upgrade certificate. The maintainer previously confirmed real-device validation of 0.7.0.

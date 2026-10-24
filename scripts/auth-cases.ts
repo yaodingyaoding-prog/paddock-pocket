@@ -63,7 +63,7 @@ const driverReturn = '/#rankings/driver/11111111-1111-4111-8111-111111111111?sea
 check(safeReturnPath(driverReturn) === driverReturn, 'Driver archive and season survive the existing login return flow');
 check(safeReturnPath('/#rankings/driver/invalid?season=bad&from=https://evil.test') === '/#schedule', 'Malformed driver return paths are rejected');
 for (const path of ['/login', '/auth/confirm', '/privacy', '/api/auth/session', '/favicon.svg']) check(!protectedAccountPath(path), 'Authentication and necessary public assets are reachable');
-for (const path of ['/', '/about', '/api/data', '/api/tools', '/api/weather', '/api/race-media', '/api/drivers/11111111-1111-4111-8111-111111111111']) check(!protectedAccountPath(path), 'Explicit race read routes are public');
+for (const path of ['/', '/about', '/download', '/download/android', '/api/data', '/api/tools', '/api/weather', '/api/race-media', '/api/drivers/11111111-1111-4111-8111-111111111111']) check(!protectedAccountPath(path), 'Explicit race read routes and public APK downloads are public');
 for (const path of ['/api/private', '/api/data.json', '/account', '/api/drivers/invalid']) check(protectedAccountPath(path), 'Unknown routes remain closed');
 for (const method of ['POST', 'PUT', 'DELETE']) check(protectedAccountPath('/api/data', method), 'Read permission never opens mutations');
 for (const path of ['/', '/login?next=%2F%23schedule', '/register', '/forgot-password', '/about', '/privacy', '/auth/confirm?type=recovery']) {

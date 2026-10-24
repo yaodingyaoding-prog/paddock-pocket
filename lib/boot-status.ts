@@ -2,14 +2,19 @@
 // its own loading state. Keep this independent of React and third-party scripts.
 export const bootStatusScript = `(() => {
   // Server-rendered information pages use ordinary links and need no app-ready signal.
-  if (['/about', '/privacy'].includes(location.pathname)) return;
+  const splash = document.getElementById('paddock-startup');
+  const hideSplash = () => { if (splash) { splash.style.opacity='0'; splash.style.pointerEvents='none'; splash.hidden=true; } };
+  if (!['/', '/login', '/register', '/forgot-password', '/reset-password', '/auth/confirm'].includes(location.pathname)) { hideSplash(); return; }
   const notice = document.getElementById('paddock-boot-status');
   const retry = document.getElementById('paddock-boot-retry');
   if (!notice || !retry) return;
   let ready = false;
   let timer;
+  // A slow connection must still reveal the readable server-rendered schedule.
+  const revealTimer = setTimeout(hideSplash, 8000);
   const show = (reason) => {
     if (ready) return;
+    hideSplash();
     notice.hidden = false;
     notice.dataset.reason = reason;
   };
@@ -22,6 +27,8 @@ export const bootStatusScript = `(() => {
   window.addEventListener('paddock:ready', () => {
     ready = true;
     clearTimeout(timer);
+    clearTimeout(revealTimer);
+    hideSplash();
     notice.hidden = true;
     delete notice.dataset.reason;
     window.removeEventListener('error', failed, true);

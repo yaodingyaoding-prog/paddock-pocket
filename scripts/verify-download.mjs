@@ -1,0 +1,16 @@
+import assert from 'node:assert/strict';
+import {build} from 'esbuild';
+import {pathToFileURL} from 'node:url';
+const file='.wrangler/checks/android-download.mjs';
+await build({entryPoints:['lib/android-download.ts'],outfile:file,bundle:true,platform:'node',format:'esm',logLevel:'silent'});
+const {androidDownload}=await import(pathToFileURL(process.cwd()+'/'+file).href);
+let captured;
+const assets={fetch:async request=>{captured=request;return new Response(request.method==='HEAD'?null:new Uint8Array([80,75,3,4]),{status:request.headers.has('range')?206:200,headers:{'Content-Type':'application/octet-stream','Content-Range':'bytes 0-3/100'}});}};
+const r=await androidDownload(new Request('https://f1.xiaodinglab.com/download/android?x=1',{headers:{Cookie:'session=private',Authorization:'secret',Range:'bytes=0-3'}}),assets);
+assert.equal(r.status,206);assert.equal(r.headers.get('Content-Type'),'application/vnd.android.package-archive');
+assert.match(r.headers.get('Content-Disposition'),/^attachment; filename="Paddock-Pocket-\d+\.\d+\.\d+\.apk"$/);
+assert.equal(r.headers.get('Cache-Control'),'no-store');assert.equal(captured.headers.has('cookie'),false);assert.equal(captured.headers.has('authorization'),false);assert.equal(new URL(captured.url).search,'');
+assert.equal(captured.headers.get('range'),'bytes=0-3');assert.equal((await r.arrayBuffer()).byteLength,4);
+const head=await androidDownload(new Request('https://f1.xiaodinglab.com/download/android',{method:'HEAD'}),assets);assert.equal(head.body,null);assert.equal(captured.method,'HEAD');
+const missing=await androidDownload(new Request('https://f1.xiaodinglab.com/download/android'),{fetch:async()=>new Response('missing',{status:404})});assert.equal(missing.status,503);
+console.log('Android download: attachment MIME/filename, streamed body, HEAD, range/resume, isolated asset request and missing-file feedback passed.');

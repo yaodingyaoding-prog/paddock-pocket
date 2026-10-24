@@ -15,6 +15,7 @@ export function canonicalDocumentLocation(request: Request, config: AuthConfig):
 }
 export function protectedAccountPath(pathname: string, method = 'GET') {
   const readOnly = method === 'GET' || method === 'HEAD';
+  if (readOnly && ['/download','/download/android'].includes(pathname)) return false;
   if (readOnly && (publicRaceApis.has(pathname) || /^\/api\/drivers\/[a-f0-9-]{36}$/i.test(pathname))) return false;
   if (publicPages.has(pathname) || pathname === '/api/auth/session' || pathname.startsWith('/api/auth/')) return false;
   // Only explicit race reads are public. Account controllers enforce ownership themselves.

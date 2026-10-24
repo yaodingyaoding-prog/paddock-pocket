@@ -5,7 +5,7 @@ import './about.css';
 export const metadata: Metadata = { title: '关于围场口袋 · 你的 F1 比赛周末', alternates: { canonical: '/about' }, openGraph: { url: '/about', title: '围场口袋｜你的 F1 比赛周末', description: '看赛程、查天气、找回放。打开即看，免费开源。', images: ['/social-cover.png'] } };
 export default function AboutPage() {
   return <main className="paddock-about"><header className="about-nav"><a href="/#schedule" className="about-brand"><img src="/favicon.svg" alt=""/>围场口袋<span>PADDOCK POCKET</span></a><a href="/#schedule" className="about-open">打开围场</a></header>
-    <section className="about-hero"><p className="about-kicker">YOUR RACE WEEKEND STARTS HERE</p><h1>这个周末，<br/><span>围场见。</span></h1><p className="about-intro">下一场几点开始，比赛时会不会下雨，错过了去哪里找回放。<br/>把比赛周末关心的事，放在一起。</p><div className="about-actions"><a className="about-primary" href="/#schedule">游客直接浏览</a><a href={androidRelease.download}>下载 Android {androidRelease.version}</a></div><p className="about-access">无需先注册 · 手机、平板与电脑可用</p><div className="about-checker" aria-hidden="true"/></section>
+    <section className="about-hero"><p className="about-kicker">YOUR RACE WEEKEND STARTS HERE</p><h1>这个周末，<br/><span>围场见。</span></h1><p className="about-intro">下一场几点开始，比赛时会不会下雨，错过了去哪里找回放。<br/>把比赛周末关心的事，放在一起。</p><div className="about-actions"><a className="about-primary" href="/#schedule">游客直接浏览</a><a href="/download">下载 Android {androidRelease.version}</a></div><p className="about-access">无需先注册 · 手机、平板与电脑可用</p><div className="about-checker" aria-hidden="true"/></section>
     <section className="about-essentials" aria-label="三个观赛用途">{[
       ['01', '比赛几点开始？', '完整比赛周末，按你的时区显示。', '自由练习、排位、冲刺和正赛，选择分站即可查看。', '/#schedule', '查看赛程'],
       ['02', '比赛天气怎样？', '赛道位置与比赛时段相匹配。', '区分当地此刻与场次预报，数据获取时间清楚标注。', '/#schedule', '查看比赛周末'],

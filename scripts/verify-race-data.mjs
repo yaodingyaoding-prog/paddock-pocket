@@ -1,0 +1,17 @@
+import assert from 'node:assert/strict';import {build} from 'esbuild';import {pathToFileURL} from 'node:url';
+await build({entryPoints:['lib/race-data-service.ts'],outfile:'.wrangler/checks/race-service.mjs',bundle:true,platform:'node',format:'esm',logLevel:'silent'});
+await build({entryPoints:['lib/data-freshness.ts'],outfile:'.wrangler/checks/data-freshness.mjs',bundle:true,platform:'node',format:'esm',logLevel:'silent'});
+const {RaceDataService}=await import(pathToFileURL(process.cwd()+'/.wrangler/checks/race-service.mjs').href);
+const {conservativeDataStamp}=await import(pathToFileURL(process.cwd()+'/.wrangler/checks/data-freshness.mjs').href);
+let at=Date.parse('2026-10-25T00:00:00Z'),calls=0,fail=false,release;
+const saved=new Map(),cache={get:async key=>saved.get(key),put:async(key,value)=>{saved.set(key,value);}};
+const request=async()=>{calls++;if(fail)throw Error('offline');await new Promise(resolve=>{release=resolve;});return Response.json({code:200,data:{points:42}});};
+const service=new RaceDataService(cache,request,()=>at),fallback={data:{points:20},source:'snapshot',updatedAt:'2026-10-24T00:00:00Z'};
+const a=service.get('/drivers',fallback),b=service.get('/drivers',fallback);await new Promise(r=>setImmediate(r));assert.equal(calls,1,'Concurrent users share one upstream request');release();assert.equal((await a).data.points,42);await b;
+const hit=await service.get('/drivers',fallback);assert.equal(calls,1);assert.equal(hit.updatedAt,new Date(at).toISOString());
+at+=61000;fail=true;const stale=await service.get('/drivers',fallback);assert.equal(stale.source,'cache');assert.equal(stale.updatedAt,hit.updatedAt,'An outage never changes the saved data timestamp');
+await service.get('/drivers',fallback);assert.equal(calls,2,'Failure backoff prevents repeated upstream calls');
+assert.equal((await service.get('/teams',fallback)).source,'snapshot');await assert.rejects(service.get('/historical-results'),/UNAVAILABLE/);
+at+=21600000;assert.equal((await service.get('/drivers',fallback)).source,'snapshot','Expired results cannot masquerade as recent data');
+const stamp=conservativeDataStamp([{source:'live',updatedAt:'2026-10-25T00:00:00Z'},{source:'snapshot',updatedAt:'2026-10-24T00:00:00Z'}],fallback);assert.equal(stamp.source,'snapshot');assert.equal(stamp.updatedAt,'2026-10-24T00:00:00Z');
+console.log('Race data: request coalescing, fresh/stale cache, backoff, exact preserved timestamps, historical failure and conservative partial-update metadata passed.');

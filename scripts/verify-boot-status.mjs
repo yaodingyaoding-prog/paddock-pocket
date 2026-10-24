@@ -11,20 +11,24 @@ new Function('exports', compiled)(exports);
 function boot(pathname = '/') {
   const events = new Map(), timers = new Map(), clicks = [];
   const notice = { hidden: true, dataset: {} };
+  const splash = { hidden: false, style: {} };
   let reloads = 0;
   const window = {
     addEventListener: (name, fn) => events.set(name, fn),
     removeEventListener: name => events.delete(name),
   };
-  const document = { getElementById: id => id === 'paddock-boot-status' ? notice : { addEventListener: (_, fn) => clicks.push(fn) } };
+  const document = { getElementById: id => id === 'paddock-startup' ? splash : id === 'paddock-boot-status' ? notice : { addEventListener: (_, fn) => clicks.push(fn) } };
   vm.runInNewContext(exports.bootStatusScript, {
     window, document, location: { pathname, origin: 'https://xiaodinglab.com', reload: () => reloads++ },
     setTimeout: (fn, ms) => { timers.set(ms, fn); return ms; }, clearTimeout: id => timers.delete(id),
   });
-  return { events, timers, notice, clicks, reloads: () => reloads };
+  return { events, timers, notice, splash, clicks, reloads: () => reloads };
 }
 const slow = boot();
 assert.equal(slow.notice.hidden, true);
+assert.equal(slow.splash.hidden,false);
+slow.timers.get(8000)();
+assert.equal(slow.splash.hidden,true,'Slow startup must reveal the readable schedule rather than permanently cover it');
 slow.timers.get(12000)();
 assert.equal(slow.notice.hidden, false, 'Slow startup must not silently leave inert buttons');
 slow.clicks[0]();
@@ -37,11 +41,13 @@ normal.events.get('paddock:ready')();
 assert.equal(normal.timers.size, 0, 'Healthy startup cancels the watchdog');
 assert.equal(normal.events.has('error'), false);
 assert.equal(normal.notice.hidden, true);
-for (const path of ['/about', '/privacy']) {
+assert.equal(normal.splash.hidden,true,'Healthy startup removes the loading screen');
+for (const path of ['/about', '/privacy', '/download']) {
   const info = boot(path);
   assert.equal(info.timers.size, 0, 'Static information pages need no business-bundle watchdog');
   assert.equal(info.notice.hidden, true);
   assert.equal(info.events.size, 0);
+  assert.equal(info.splash.hidden,true,'Download and static pages must never depend on hydration');
 }
 
 const failed = boot();

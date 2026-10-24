@@ -4,6 +4,7 @@
 import { lazy, Suspense, useEffect, useRef, useState } from 'react';
 import { CalendarDays, Trophy, Heart, ChevronDown, Info, Compass, UserRound, CircleEllipsis, ContactRound, Dot, RefreshCw, Flag, MapPin, Clock3, Star, Check, Download, WifiOff, Bell, ArrowLeft, Share2 } from 'lucide-react';
 import { snapshotDate, snapshotSeason } from '../lib/snapshot-meta';
+import {conservativeDataStamp} from '../lib/data-freshness';
 import { useAccountControls } from './account-controls';
 import { useAccountPreferences } from './account-preferences';
 import { RaceHero } from './race-hero';
@@ -12,6 +13,7 @@ import { GlassNavigation } from './glass-navigation';
 import './ui-refinement.css';
 import './race-design.css';
 import './interaction-polish.css';
+import './compatible-controls.css';
 import { toggleFollowing } from '../lib/following';
 import type { PreferencesPatch } from '../lib/preferences';
 import { followTeamKey } from './following';
@@ -90,6 +92,9 @@ export default function App({ seed, seededAt }: { seed: Record<string, any>; see
   const [meta, setMeta] = useState<Envelope>({ data: null, source: 'snapshot', updatedAt: seededAt });
   const [busy, setBusy] = useState(true);
   const [error, setError] = useState('');
+  const [refreshStatus,setRefreshStatus]=useState('');
+  const retryTimer=useRef<ReturnType<typeof setTimeout>|null>(null),retryAttempt=useRef(0),pendingSeason=useRef('');
+  const resourceMeta=useRef<Record<string,Envelope>>(Object.fromEntries(Object.keys(seed).map(key=>[key,{data:null,source:'snapshot',updatedAt:seededAt}])));
   const [selected, setSelected] = useState<Row | null>(null);
   const [raceList, setRaceList] = useState(false);
   const [pageDirection,setPageDirection]=useState(1);
@@ -151,7 +156,7 @@ export default function App({ seed, seededAt }: { seed: Record<string, any>; see
     setLocalTimezone(Intl.DateTimeFormat().resolvedOptions().timeZone);
     try { pruneClientCache(localStorage); } catch {}
     const cached = safeGet('paddock-cache', null);
-    if (cached?.season === snapshotSeason && cached.data?.next && cached.data?.races) { setData(cached.data); setMeta(cached.meta); }
+    if (cached?.season === snapshotSeason && cached.data?.next && cached.data?.races) { setData({...seed,...cached.data}); if(cached.meta?.updatedAt)setMeta(cached.meta); }
     const id = setInterval(() => setNow(Date.now()), 60000);
     const syncClock=()=>{if(!document.hidden)setNow(Date.now());};document.addEventListener('visibilitychange',syncClock);
     return () => {clearInterval(id);document.removeEventListener('visibilitychange',syncClock);};
@@ -164,19 +169,24 @@ export default function App({ seed, seededAt }: { seed: Record<string, any>; see
   useEffect(() => { document.documentElement.dataset.theme = theme; document.documentElement.dataset.native = /PaddockPocket\//.test(navigator.userAgent)?'android':'web'; }, [theme]);
   useEffect(() => { document.documentElement.dataset.accent = accent; }, [accent]);
   useEffect(() => { if (!toast) return; const t = setTimeout(() => setToast(''), 3500); return () => clearTimeout(t); }, [toast]);
-  useEffect(() => { load(season); const id=setInterval(()=>{if(document.visibilityState==='visible')load(season);},300000); return ()=>clearInterval(id); }, [season]);
+  useEffect(() => { retryAttempt.current=0;load(season); const id=setInterval(()=>{if(document.visibilityState==='visible')load(season);},300000); return ()=>{clearInterval(id);if(retryTimer.current)clearTimeout(retryTimer.current);}; }, [season]);
 
   useEffect(()=>{if(tab==='widgets'&&!driverId)setTab('profile');},[tab,driverId]);
   useEffect(()=>{if(driverId && driverSeason && driverSeason!==season)changeSeason(driverSeason);},[driverId,driverSeason,season]);
   useEffect(()=>{if(sharedSelection?.race && races.length){const sharedRace=races.find(row=>row.id===sharedSelection.race);if(sharedRace)setSelected(sharedRace);}},[sharedSelection?.race,data.races]);
 
-  async function load(seasonId: string) {
+  async function load(seasonId: string, manual=false, resources?:string[]) {
+    if(pendingSeason.current===seasonId)return;
+    pendingSeason.current=seasonId;
+    if(retryTimer.current)clearTimeout(retryTimer.current);
+    if(manual)retryAttempt.current=0;
     const version = ++raceRef.current;
     setBusy(true); setError('');
-    const names = ['seasons', 'races', 'drivers', 'teams', ...(seasonId === snapshotSeason ? ['next'] : [])];
+    const required=['seasons','races','drivers','teams',...(seasonId===snapshotSeason?['next']:[])];
+    const names = resources||required;
     const responses = await Promise.allSettled(names.map(async name => {
       const result=await fetchData(name,seasonId);
-      if(version===raceRef.current)setData(current=>({...current,[name]:result.data}));
+      if(version===raceRef.current){setData(current=>({...current,[name]:result.data}));resourceMeta.current[name]=result;}
       return result;
     }));
     if (version !== raceRef.current) return;
@@ -184,15 +194,20 @@ export default function App({ seed, seededAt }: { seed: Record<string, any>; see
     responses.forEach((result, i) => { if (result.status === 'fulfilled') { nextData[names[i]] = result.value.data; successful.push(result.value); } });
     if (successful.length) {
       if (seasonId !== snapshotSeason) nextData.next = nextData.races?.items?.find((r: Row) => r.status === 'Scheduled') || nextData.races?.items?.at(-1);
-      const merged = { ...data, ...nextData };
-      const info = successful.find(r => r.source === 'snapshot') || successful[0];
-      setData(merged); setMeta(info);
-      try { localStorage.setItem('paddock-cache', JSON.stringify({ storedAt: Date.now(), season: seasonId, data: merged, meta: { ...info, data: null } })); } catch { /* Private mode / storage quota: browsing still works. */ }
+      const info={data:null,...conservativeDataStamp(required.map(name=>resourceMeta.current[name]).filter(Boolean),{source:'snapshot',updatedAt:seededAt})};
+      setMeta(info);
+      setData(current=>{const merged={...current,...nextData};try{localStorage.setItem('paddock-cache',JSON.stringify({storedAt:Date.now(),season:seasonId,data:merged,meta:info}));}catch{}return merged;});
     }
-    if (responses.some(r => r.status === 'rejected')) setError('部分数据未能更新，可以稍后重试。');
+    const retryNames=names.filter((name,i)=>responses[i].status==='rejected'||responses[i].status==='fulfilled'&&responses[i].value.source!=='live');
+    const usable=successful.length>0||Object.keys(data).some(name=>name!=='seasons'&&data[name]);
+    setRefreshStatus(retryNames.length?'部分数据使用最近保存的版本，稍后自动更新':'');
+    if(!usable)setError('暂时无法读取这个赛季的数据，正在自动重试。');
+    pendingSeason.current='';
+    if(retryNames.length&&retryAttempt.current<3){const delay=45000*2**retryAttempt.current++;retryTimer.current=setTimeout(()=>{if(version===raceRef.current&&!document.hidden)void load(seasonId,false,retryNames);},delay);}
+    else if(!retryNames.length)retryAttempt.current=0;
     setBusy(false);
   }
-  function changeSeason(value: string) { setRankExpanded(false); setSeason(value); setSelected(null); setData({ seasons: data.seasons }); setError(''); }
+  function changeSeason(value: string) { if(retryTimer.current)clearTimeout(retryTimer.current);resourceMeta.current={};setRankExpanded(false); setSeason(value); setSelected(null); setData({ seasons: data.seasons }); setError('');setRefreshStatus(''); }
   function savePreference(patch: PreferencesPatch) { if (!preferences.change(patch)) setToast('正在读取云端设置，请稍后重试'); }
   function updateFollow(row:Row, team=false) { const id=team?followTeamKey(row):row.driverId; if(!id)return; if(!team&&!following.driverIds.includes(id)&&following.driverIds.length>=3){setToast('领奖台已满，先在我的阵容中更换一位车手');return;} const key=team?'teamIds':'driverIds'; const next=toggleFollowing(following,key,id); savePreference({[key]:next[key]}); }
   function pickFavorite(row:Row) { updateFollow(row); }
@@ -218,9 +233,9 @@ export default function App({ seed, seededAt }: { seed: Record<string, any>; see
 
   return <div className="app-shell" data-section={detailInfo?.tone || (tab==='rankings'?'gold':'mint')}>
     <aside className="desktop-rail"><a className="brand" href="#" onClick={e => { e.preventDefault(); setTab('schedule'); }}><img src="/favicon.svg" alt=""/><span>围场口袋<small>F1 赛事与数据</small></span></a><p className="rail-label">PADDOCK POCKET</p><nav aria-label="主导航">{navs.map(t => { const Icon = icons[t]; return <button className={tab === t ? 'active' : ''} key={t} onClick={() => navigateTab(t)}><Icon size={20}/>{labels[t]}<CircleEllipsis size={15}/></button>; })}</nav><div className="rail-bottom"><Flag size={17}/><span>PADDOCK POCKET<br/><b>F1 赛事与数据</b></span></div></aside>
-    <div className="workspace"><header className="topbar"><div className="mobile-brand"><img src="/favicon.svg" alt=""/><span>围场口袋</span><small>F1</small></div><div className="desktop-breadcrumb">围场口袋 <Dot size={14}/> {labels[tab]}{detailInfo&&<><Dot size={14}/>{detailInfo.title}</>}</div><div className="header-tools"><span className="season-tag">{year} SEASON</span><button aria-label="刷新数据" className={'icon-button ' + (busy ? 'spinning' : '')} onClick={() => load(season)} disabled={busy}><RefreshCw size={18}/></button></div></header>
+    <div className="workspace"><header className="topbar"><div className="mobile-brand"><img src="/favicon.svg" alt=""/><span>围场口袋</span><small>F1</small></div><div className="desktop-breadcrumb">围场口袋 <Dot size={14}/> {labels[tab]}{detailInfo&&<><Dot size={14}/>{detailInfo.title}</>}</div><div className="header-tools"><span className="season-tag">{year} SEASON</span><button aria-label="刷新数据" className={'icon-button ' + (busy ? 'spinning' : '')} onClick={() => load(season,true)} disabled={busy}><RefreshCw size={18}/></button></div></header>
       <main id="main" className={"main-content "+(detail?'detail-page':'')+(tab==='profile'?' profile-main':'')+(driverId?' driver-page':'')+(tab==='schedule'&&!detail?' schedule-main':'')}>{detail&&<button className="text-button tool-back subpage-back" onClick={()=>setTab(tab)}><ArrowLeft size={16}/>返回{labels[tab]}</button>}{!driverId&&<div className="page-heading"><div><p className="eyebrow">{detailInfo?.en || (tab === 'schedule' ? 'RACE WEEKEND' : tab === 'rankings' ? 'THE CHAMPIONSHIP' : tab === 'widgets' ? 'YOUR SIDE OF THE GRID' : tab === 'discover' ? 'BEYOND THE GRID' : 'YOUR OWN PADDOCK')}</p><h1>{detailInfo?.title || (tab === 'schedule' ? '赛程' : tab === 'rankings' ? '积分榜' : tab === 'widgets' ? '我的关注' : tab === 'discover' ? '探索' : '我的围场')}</h1></div>{(['schedule','rankings'].includes(tab)||detail==='replays') && seasonSelect}</div>}
-      <Suspense fallback={<p className="empty" role="status">正在打开页面…</p>}><div className="route-content" key={tab+detail+driverId} style={{'--page-shift':(pageDirection*32)+'px'} as React.CSSProperties}>{error && <div role="status" className="notice"><WifiOff size={16}/>{error}<button onClick={() => load(season)}>重试</button></div>}
+      <Suspense fallback={<p className="empty" role="status">正在打开页面…</p>}><div className="route-content" key={tab+detail+driverId} style={{'--page-shift':(pageDirection*32)+'px'} as React.CSSProperties}>{error && <div role="status" className="notice"><WifiOff size={16}/>{error}<button onClick={() => load(season,true)}>重试</button></div>}
 
       {detail&&<div className={'detail-workspace tone-'+detailInfo?.tone} key={detail}>{detail==='viewing'?<ViewingRoom onReplay={()=>openDetail('replays')}/>:detail==='replays'?<ReplayLibrary races={races} year={year} focusedRaceId={replayRaceId} loading={busy&&!races.length}/>:detail==='news'?<NewsRoom/>:detail==='classics'?<ClassicRaces/>:detail==='circuit'?(race?<><div className="archive-preview"><CircuitImage circuit={race.circuit}/><div><p className="eyebrow">ROUND {race.round} / {year}</p><h2>{race.name}</h2><p>{race.circuit?.place}</p></div></div><CircuitArchive race={race}/></>:<p className="empty">请先选择一场比赛。</p>):detail==='championship'?<Championship drivers={drivers} races={races} updatedAt={meta.updatedAt} source={meta.source} year={year}/>:<ToolsHub seasons={data.seasons?.items||[]} page={detail}/>}</div>}
       {tab === 'schedule' && !detail && <>
@@ -233,10 +248,10 @@ export default function App({ seed, seededAt }: { seed: Record<string, any>; see
 </aside></div></div> : <div className="empty">{busy ? '正在准备比赛周末…' : '这个赛季暂时没有可显示的赛事。'}</div>}
       </>}
       {tab === 'rankings' && !detail && !driverId && <section className="standings-section"><div className="rank-toolbar"><div className="segmented"><button className={rankType === 'drivers' ? 'selected' : ''} onClick={() => {setRankType('drivers');setRankExpanded(false);}}>车手积分榜</button><button className={rankType === 'teams' ? 'selected' : ''} onClick={() => {setRankType('teams');setRankExpanded(false);}}>车队积分榜</button></div><button className="rank-help-button" aria-expanded={rankHelp} aria-controls="rank-help" onClick={()=>setRankHelp(!rankHelp)}><Info size={15}/><span>查看档案</span></button></div>{rankHelp&&<p className="rank-help" id="rank-help" role="status">点击车手姓名或右侧箭头，查看生涯成就、资料和新闻。爱心可分别关注多位车手或整支车队。</p>}<div className="standings-labels"><span>排名 / {rankType==='drivers'?'车手':'车队'}</span><span>积分</span></div><div className="rank-list" data-expanded={rankExpanded} key={rankType+season}>{(rankExpanded?(rankType==='drivers'?drivers:teams):(rankType==='drivers'?drivers:teams).slice(0,5)).map((r,i)=><div key={r.driverId||r.teamId} className={'rank-row position-'+r.position} style={{'--team-color':color(r)} as React.CSSProperties}><span className="position">{String(r.position).padStart(2,'0')}</span>{rankType==='drivers'?<button className="rank-person" onClick={()=>showDriver(r)} aria-label={'查看'+r.driverName+'档案'}><DriverPortrait driver={r}/><span><strong>{r.driverName}</strong><small><i style={{background:color(r)}}/>{r.teamName||r.teamShortName}<em>#{r.number}</em></small></span><ContactRound className="rank-open-arrow" size={15}/></button>:<button className="rank-person" onClick={()=>setDriver({...r,isTeam:true})} aria-label={'查看'+r.teamName+'资料'}>{year===2026&&teamFile(r)?<img className="rank-car" src={'/cars/'+teamFile(r)+'.png'} alt="车队赛季展示图"/>:<Flag size={30}/>}<span><strong>{r.teamName||r.teamShortName}</strong><small>{r.teamShortName}</small></span><ContactRound className="rank-open-arrow" size={15}/></button>}<div className="rank-points"><strong>{r.points}</strong><span>{i?'−'+((rankType==='drivers'?drivers:teams)[0].points-r.points):'LEADER'}</span></div><button className={'favorite-button '+((rankType==='drivers'?following.driverIds.includes(r.driverId):following.teamIds.includes(followTeamKey(r)))?'picked':'')} aria-pressed={rankType==='drivers'?following.driverIds.includes(r.driverId):following.teamIds.includes(followTeamKey(r))} aria-label={((rankType==='drivers'?following.driverIds.includes(r.driverId):following.teamIds.includes(followTeamKey(r)))?'取消关注':'关注')+(r.driverName||r.teamName)} onClick={()=>updateFollow(r,rankType==='teams')}><Heart size={17} fill={(rankType==='drivers'?following.driverIds.includes(r.driverId):following.teamIds.includes(followTeamKey(r)))?'currentColor':'none'}/></button></div>)}</div>{(rankType==='drivers'?drivers:teams).length>5&&<button className="rank-expand" aria-expanded={rankExpanded} onClick={()=>setRankExpanded(!rankExpanded)}>{rankExpanded?'收起榜单':'展开完整榜单'}<span>{(rankType==='drivers'?drivers:teams).length}</span><ChevronDown size={17} className={rankExpanded?'is-expanded':''}/></button>}{!(rankType==='drivers'?drivers:teams).length&&<div className="empty">{busy?'正在加载积分榜…':'该赛季暂无积分数据。'}</div>}<div className="championship-utility"><Trophy size={17}/><div><strong>争冠计算器</strong><span>推演夺冠所需的积分与名次</span></div><button className="icon-button" aria-label="打开争冠分析" onClick={()=>openDetail('championship')}><CircleEllipsis size={18}/></button></div></section>}
-      {driverId && <section className="driver-profile-page" aria-label="车手完整档案"><div className="driver-page-toolbar"><button className="driver-back-button" onClick={closeDriver}><ArrowLeft size={17}/>返回{labels[driverFrom]}</button><span className="eyebrow">DRIVER PROFILE</span><button className="driver-share-button" onClick={()=>void shareDriver()} aria-label="复制车手档案链接"><Share2 size={17}/><span>分享档案</span></button></div>{pageDriver && (!driverSeason || driverSeason===season) ? <DriverDetails key={pageDriver.driverId+'-'+season} driver={pageDriver} year={year} race={season===snapshotSeason?data.next:undefined} favorite={following.driverIds.includes(pageDriver.driverId)} onFavorite={()=>pickFavorite(pageDriver)}/> : <div className="driver-page-empty" role="status"><UserRound size={36}/><h1>{busy||driverSeason!==season?'正在准备车手档案':'该赛季暂无这位车手的积分资料'}</h1><p>{busy?'正在连接赛事数据…':'可以返回积分榜选择其他赛季或车手。'}</p>{!busy&&<button className="small-button" onClick={()=>load(season)}>重新加载</button>}</div>}</section>}
+      {driverId && <section className="driver-profile-page" aria-label="车手完整档案"><div className="driver-page-toolbar"><button className="driver-back-button" onClick={closeDriver}><ArrowLeft size={17}/>返回{labels[driverFrom]}</button><span className="eyebrow">DRIVER PROFILE</span><button className="driver-share-button" onClick={()=>void shareDriver()} aria-label="复制车手档案链接"><Share2 size={17}/><span>分享档案</span></button></div>{pageDriver && (!driverSeason || driverSeason===season) ? <DriverDetails key={pageDriver.driverId+'-'+season} driver={pageDriver} year={year} race={season===snapshotSeason?data.next:undefined} favorite={following.driverIds.includes(pageDriver.driverId)} onFavorite={()=>pickFavorite(pageDriver)}/> : <div className="driver-page-empty" role="status"><UserRound size={36}/><h1>{busy||driverSeason!==season?'正在准备车手档案':'该赛季暂无这位车手的积分资料'}</h1><p>{busy?'正在连接赛事数据…':'可以返回积分榜选择其他赛季或车手。'}</p>{!busy&&<button className="small-button" onClick={()=>load(season,true)}>重新加载</button>}</div>}</section>}
       {tab === 'discover' && !detail && <DiscoverOverview onOpen={openDetail}/>}
       {tab === 'profile' && <>{!!sharedSelection?.podium.length&&<div className="shared-podium-notice"><span>朋友分享了他的领奖台阵容，不会更改你的关注。</span><button className="small-button" disabled={busy||!drivers.length} onClick={()=>sharePodium(sharedSelection.podium)}>查看阵容</button><button className="icon-button" aria-label="关闭分享提示" onClick={()=>setSharedSelection(null)}>×</button></div>}<ProfilePage onSharePodium={()=>sharePodium()} drivers={drivers} teams={teams} following={following} onPickDriver={pickFavorite} onPickTeam={row=>updateFollow(row,true)} onOpenDriver={showDriver} loadingDrivers={busy&&!drivers.length} account={account} sync={preferences} theme={theme} accent={accent} timezone={timezone} localTimezone={localTimezone} onTheme={value=>savePreference({theme:value as PreferencesPatch['theme']})} onAccent={value=>savePreference({accent:value as PreferencesPatch['accent']})} onTimezone={value=>savePreference({timezone:value})} onInstall={()=>setInstall(true)}/><WatchGuide/></>}
-      </div><footer className="data-footer"><span><i className={meta.source === 'live' ? 'online' : ''}/>{busy ? '正在更新…' : meta.source === 'live' ? '在线数据' : '最近保存'} · {stamp(meta.updatedAt)}</span><a className="about-mini-link" href="/about">关于围场口袋</a></footer>
+      </div><footer className="data-footer"><span><i className={meta.source === 'live' ? 'online' : ''}/>{busy ? '正在更新…' : meta.source === 'live' ? '在线数据' : '最近保存'} · {stamp(meta.updatedAt)}</span>{refreshStatus&&<small className="data-refresh-note" role="status">{refreshStatus}</small>}<a className="about-mini-link" href="/about">关于围场口袋</a></footer>
       </Suspense></main></div>
     <GlassNavigation tab={tab} onChange={navigateTab}/>
     {shareCard && <Suspense fallback={null}><SharePosterDialog card={shareCard} close={()=>setShareCard(null)}/></Suspense>}

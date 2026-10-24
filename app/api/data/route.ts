@@ -1,6 +1,6 @@
 import { snapshots, snapshotDate, snapshotSeason } from '../../../lib/snapshots';
-const base = 'https://api.f1push.com/api/v1';
-const memo = new Map<string, { expires: number; value: unknown }>();
+import {RaceDataService,SharedRaceCache} from '../../../lib/race-data-service';
+const service=new RaceDataService(new SharedRaceCache());
 const uuid = /^[a-f0-9]{8}(?:-[a-f0-9]{4}){3}-[a-f0-9]{12}$/i;
 export async function GET(request: Request) {
   const query = new URL(request.url).searchParams;
@@ -18,19 +18,11 @@ export async function GET(request: Request) {
     results: `/grands-prix/${gp}/${kind}/${session}/results?lang=zh`,
   };
   if (!paths[resource] || (resource === 'results' && (!session || !gp || !['races','qualifying','practices'].includes(kind)))) return Response.json({ error: '暂不支持这类数据' }, { status: 400 });
-  const key = paths[resource]; const cached = memo.get(key);
-  if (cached && cached.expires > Date.now()) return Response.json(cached.value);
+  const fallback=snapshots[resource] && (season===snapshotSeason || ['next','seasons'].includes(resource)) ? {data:snapshots[resource],source:'snapshot' as const,updatedAt:snapshotDate} : undefined;
   try {
-    const response = await fetch(base + key, { headers: { Accept: 'application/json' }, signal: AbortSignal.timeout(9000) });
-    if (!response.ok) throw new Error(`HTTP ${response.status}`);
-    const json = await response.json() as { code: number; data: unknown };
-    if (![0,200].includes(json.code) || json.data == null) throw new Error('数据暂不可用');
-    const value = { data: json.data, source: 'live', updatedAt: new Date().toISOString() };
-    if(memo.size > 150) memo.clear();
-    memo.set(key, { expires: Date.now() + 300000, value });
-    return Response.json(value, { headers: { 'Cache-Control': 'private, max-age=60' } });
+    const value=await service.get(paths[resource],fallback);
+    return Response.json(value, { headers: { 'Cache-Control': value.source==='live'?'public, max-age=30, s-maxage=60':'public, max-age=15, s-maxage=15','X-Paddock-Data-Source':value.source } });
   } catch {
-    if (snapshots[resource] && (season === snapshotSeason || ['next','seasons'].includes(resource))) return Response.json({ data: snapshots[resource], source: 'snapshot', updatedAt: snapshotDate });
-    return Response.json({ error: '暂时无法获取数据，请稍后重试' }, { status: 503 });
+    return Response.json({ error: '暂时无法获取数据，请稍后重试' }, { status: 503,headers:{'Cache-Control':'no-store','Retry-After':'45'} });
   }
 }
