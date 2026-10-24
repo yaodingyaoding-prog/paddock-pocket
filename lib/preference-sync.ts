@@ -1,4 +1,4 @@
-import { defaultPreferences, type Preferences, type PreferencesPatch, type PreferencesRecord } from './preferences';
+import { defaultPreferences, type Preferences, type PreferencesPatch, type PreferencesRecord } from './preference-values';
 export type SyncView = { preferences: Preferences; status: 'loading' | 'synced' | 'saving' | 'error'; error: string; ready: boolean };
 export interface PreferencesTransport {
   read(): Promise<PreferencesRecord | null>;

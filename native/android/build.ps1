@@ -27,6 +27,12 @@ New-Item -ItemType Directory -Force -Path $buildRoot,$releaseRoot,(Join-Path $bu
 Get-ChildItem (Join-Path $projectRoot 'assets') -File | Copy-Item -Destination $assetRoot
 Copy-Item (Join-Path $projectRoot 'assets\web\user-scripts\smg_fivestar.android.user.js') (Join-Path $assetRoot 'web\user-scripts')
 Copy-Item (Join-Path $projectRoot 'assets\web\user-scripts\LICENSE') (Join-Path $assetRoot 'web\user-scripts')
+$shellRoot=Join-Path $repositoryRoot ('.local-artifacts\android-web\'+$versionName)
+if(!(Test-Path -LiteralPath (Join-Path $shellRoot 'shell-manifest.json'))){throw 'Prepare the matching Android web shell before building'}
+$shellManifest=Get-Content -LiteralPath (Join-Path $shellRoot 'shell-manifest.json') -Raw | ConvertFrom-Json
+if($shellManifest.version -ne $versionName){throw 'Web shell version mismatch'}
+foreach($file in $shellManifest.files){if((Get-FileHash -LiteralPath (Join-Path $shellRoot $file.path) -Algorithm SHA256).Hash.ToLowerInvariant() -ne $file.sha256){throw 'Web shell asset hash mismatch'}}
+Copy-Item -LiteralPath $shellRoot -Destination (Join-Path $assetRoot 'shell') -Recurse
 $viewingRelease=Get-Content -LiteralPath (Join-Path $repositoryRoot 'public\user-scripts\release.json') -Raw | ConvertFrom-Json
 $viewingFile=$viewingRelease.files | Where-Object {$_.path -eq 'smg_fivestar.android.user.js'}
 $viewingHash=(Get-FileHash -LiteralPath (Join-Path $assetRoot 'web\user-scripts\smg_fivestar.android.user.js') -Algorithm SHA256).Hash.ToLowerInvariant()

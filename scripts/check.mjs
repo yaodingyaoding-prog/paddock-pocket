@@ -20,6 +20,7 @@ const scripts = [
   ['scripts/verify-account-ui.mjs'],
   ['scripts/verify-account-client.mjs'],
   ['scripts/verify-preferences.mjs'],
+  ['scripts/verify-startup-recovery.mjs'],
 ];
 for (const args of scripts) {
   const result = spawnSync(process.execPath, args, { stdio: 'inherit' });

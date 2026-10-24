@@ -2,7 +2,7 @@
 import { useEffect, useRef, useState } from 'react';
 import type { AccountStatus } from '../lib/auth/contracts';
 import { accountLogoutKey } from '../lib/following';
-import { defaultPreferences, type Preferences, type PreferencesPatch, type PreferencesRecord } from '../lib/preferences';
+import { defaultPreferences, type Preferences, type PreferencesPatch, type PreferencesRecord } from '../lib/preference-values';
 import { PreferenceSync, type SyncView } from '../lib/preference-sync';
 import { finishPreferencesMigration, legacyPreferences, mirrorWidgetFollowing } from '../lib/preferences-migration';
 const initialView = (): SyncView => ({ preferences: defaultPreferences(), status: 'loading', error: '', ready: false });

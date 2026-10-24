@@ -1,6 +1,6 @@
 {
   "name": "paddock-pocket",
-  "version": "0.7.1",
+  "version": "1.0.0",
   "private": true,
   "engines": {
     "node": ">=22.13.0"

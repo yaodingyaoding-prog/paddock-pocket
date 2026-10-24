@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { bootStatusScript } from '../lib/boot-status';
+import { browserSupportScript } from '../lib/browser-support';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://f1.xiaodinglab.com'),
@@ -35,7 +36,7 @@ export default function RootLayout({
           <p style={{margin:'6px 0 12px'}}>部分按钮暂不可用，可能是网络较慢或文件下载中断。你可以稍等片刻，或重新加载。</p>
           <button id="paddock-boot-retry" type="button" style={{border:0,borderRadius:8,padding:'8px 16px',background:'#9df1d7',color:'#10221e',font:'inherit',cursor:'pointer'}}>重新加载</button>
         </div>
-        <script dangerouslySetInnerHTML={{__html:bootStatusScript}} />
+        <script dangerouslySetInnerHTML={{__html:browserSupportScript+bootStatusScript}} />
         {children}
       </body>
     </html>

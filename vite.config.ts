@@ -11,6 +11,7 @@ process.env.WRANGLER_REGISTRY_PATH ??= '.wrangler/dev-registry';
 process.env.MINIFLARE_REGISTRY_PATH ??= '.wrangler/registry';
 
 export default defineConfig({
+  build: { target: ['chrome80','safari14'], cssTarget: 'chrome80' },
   plugins: [
     vinext(),
     cloudflare({

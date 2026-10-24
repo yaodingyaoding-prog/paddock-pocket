@@ -1,1 +1,957 @@
-{"code":200,"data":{"items":[{"id":"3589dd46-e3ab-9929-435d-93b14f52cf6e-total","raceId":null,"seasonId":"3589dd46-e3ab-9929-435d-93b14f52cf6e","standings":[{"position":1,"points":340.0,"number":"12","driverId":"6edccd34-a617-6e67-792e-dfff4e0a814b","driverName":"基米·安东内利","numberImageUrl":"number/number_ANT_df3c1b83.png","tla":"ANT","teamId":"e9ea2da7-1b80-eebb-434e-0a008dbfe99d","teamName":"梅赛德斯","teamShortName":"Mercedes","teamColor":"27f4d2","teamLogoUrl":"team/mercedes_logo.png","bannerUrl":null,"carUpUrl":"team/mercedes_Normal_2x_b48401ff.png","carFrontUrl":"team/mercedes_Normal_2x_1_d7e9bac5.png","carLeftUrl":"team/20260630161508_216_242_compressed_more_47b84b85.png","carRightUrl":"team/2026mercedescarright_1_29ff599c.png","countryName":"意大利","countryLogoUrl":"country/italy.png","countryCircleLogoUrl":"country/italy_circle.png","wins":8,"fastestLapRank":1,"avatarUrl":"drivers/ant_avatar_2026.png","helmetUrl":"drivers/ANT_Helmets_2026_6efe2650_9a7c457d.png","constructors":[{"chassisManufacturerId":"663bc471-9d5b-92ab-99ab-dad140d6123f","chassisManufacturerName":"梅赛德斯","chassisName":"W17","engineManufacturerId":"ea2b3166-0d5e-ac18-d830-bf0bd0846bbb","engineManufacturerName":"Mercedes","tyreManufacturerId":"efd96ac7-6f3f-ec9c-b2c9-ff6e50397934","tyreManufacturerName":"Pirelli","standing":{"position":1,"points":340.0}}]},{"position":2,"points":238.0,"number":"63","driverId":"c4892599-323a-5e2d-cfe6-29d0c3566033","driverName":"乔治·拉塞尔","numberImageUrl":"number/number_RUS_c800d005.png","tla":"RUS","teamId":"e9ea2da7-1b80-eebb-434e-0a008dbfe99d","teamName":"梅赛德斯","teamShortName":"Mercedes","teamColor":"27f4d2","teamLogoUrl":"team/mercedes_logo.png","bannerUrl":null,"carUpUrl":"team/mercedes_Normal_2x_b48401ff.png","carFrontUrl":"team/mercedes_Normal_2x_1_d7e9bac5.png","carLeftUrl":"team/20260630161508_216_242_compressed_more_47b84b85.png","carRightUrl":"team/2026mercedescarright_1_29ff599c.png","countryName":"英国","countryLogoUrl":"country/united_kingdom_of_great_britain_and_northern_ireland.png","countryCircleLogoUrl":"country/united_kingdom_of_great_britain_and_northern_ireland_circle.png","wins":3,"fastestLapRank":1,"avatarUrl":"drivers/rus_avatar_2026.png","helmetUrl":"drivers/RUS_Helmets_2026_a1310568_370fa106.png","constructors":[{"chassisManufacturerId":"663bc471-9d5b-92ab-99ab-dad140d6123f","chassisManufacturerName":"梅赛德斯","chassisName":"W17","engineManufacturerId":"ea2b3166-0d5e-ac18-d830-bf0bd0846bbb","engineManufacturerName":"Mercedes","tyreManufacturerId":"efd96ac7-6f3f-ec9c-b2c9-ff6e50397934","tyreManufacturerName":"Pirelli","standing":{"position":2,"points":238.0}}]},{"position":3,"points":229.0,"number":"44","driverId":"2da57a52-c546-d307-280d-254264ea39b2","driverName":"刘易斯·汉密尔顿","numberImageUrl":"number/number_HAM_a8145d60.png","tla":"HAM","teamId":"6a2df337-7644-c00a-a5ed-61a3e1da7e6a","teamName":"法拉利","teamShortName":"Ferrari","teamColor":"e8002d","teamLogoUrl":"team/ferrari_logo.png","bannerUrl":null,"carUpUrl":"team/ferrari_Normal_2x_d427a9c9.png","carFrontUrl":"team/ferrari_Normal_2x_1_80e0b0ae.png","carLeftUrl":"team/20260630161513_220_242_compressed_more_497f1b81.png","carRightUrl":"team/2026ferraricarright_1_76460761.png","countryName":"英国","countryLogoUrl":"country/united_kingdom_of_great_britain_and_northern_ireland.png","countryCircleLogoUrl":"country/united_kingdom_of_great_britain_and_northern_ireland_circle.png","wins":1,"fastestLapRank":1,"avatarUrl":"drivers/ham_avatar_2026.png","helmetUrl":"drivers/HAM_Helmets_2026_c45cebf0_ac4852aa.png","constructors":[{"chassisManufacturerId":"836eb8f1-aec0-6ba7-4577-4ec83904da8f","chassisManufacturerName":"法拉利","chassisName":"SF-26","engineManufacturerId":"cb36354e-b9d2-6cde-43b6-d0a852d8218d","engineManufacturerName":"Ferrari","tyreManufacturerId":"efd96ac7-6f3f-ec9c-b2c9-ff6e50397934","tyreManufacturerName":"Pirelli","standing":{"position":3,"points":229.0}}]},{"position":4,"points":221.0,"number":"3","driverId":"01e19e1a-89fb-4765-53c2-16fb5d2bdf4a","driverName":"马克斯·维斯塔潘","numberImageUrl":"number/number_VER_d0c64014.png","tla":"VER","teamId":"c89d210f-07b6-2631-3d60-f3114e11d1de","teamName":"红牛","teamShortName":"Red Bull Racing","teamColor":"3671c6","teamLogoUrl":"team/red_bull_racing_logo.png","bannerUrl":null,"carUpUrl":"team/redbull_Normal_2x_1_a9f98963.png","carFrontUrl":"team/redbull_Normal_2x_d3a1d8ad.png","carLeftUrl":"team/2026-F1-Red-Bull-Racing-three-quarter_e4c10ef0.png","carRightUrl":"team/2026redbullracingcarright_1_b2a11ad6.png","countryName":"荷兰","countryLogoUrl":"country/netherlands.png","countryCircleLogoUrl":"country/netherlands_circle.png","wins":2,"fastestLapRank":1,"avatarUrl":"drivers/ver_avatar_2026.png","helmetUrl":"drivers/VER_Helmets_2026_33a5930e_4be4bb8f.png","constructors":[{"chassisManufacturerId":"1eb73015-ff42-a8f5-f515-d03f124355cb","chassisManufacturerName":"红牛","chassisName":"RB22","engineManufacturerId":"7bb817b4-61dc-9a21-20ba-1577361b87cc","engineManufacturerName":"Red Bull Ford","tyreManufacturerId":"efd96ac7-6f3f-ec9c-b2c9-ff6e50397934","tyreManufacturerName":"Pirelli","standing":{"position":4,"points":221.0}}]},{"position":5,"points":215.0,"number":"16","driverId":"8a00bce3-d93c-a089-9be1-545b5e3984e1","driverName":"夏尔·勒克莱尔","numberImageUrl":"number/number_LEC_00526aab.png","tla":"LEC","teamId":"6a2df337-7644-c00a-a5ed-61a3e1da7e6a","teamName":"法拉利","teamShortName":"Ferrari","teamColor":"e8002d","teamLogoUrl":"team/ferrari_logo.png","bannerUrl":null,"carUpUrl":"team/ferrari_Normal_2x_d427a9c9.png","carFrontUrl":"team/ferrari_Normal_2x_1_80e0b0ae.png","carLeftUrl":"team/20260630161513_220_242_compressed_more_497f1b81.png","carRightUrl":"team/2026ferraricarright_1_76460761.png","countryName":"摩纳哥","countryLogoUrl":"country/monaco.png","countryCircleLogoUrl":"country/monaco_circle.png","wins":1,"fastestLapRank":1,"avatarUrl":"drivers/lec_avatar_2026.png","helmetUrl":"drivers/LEC_Helmets_2026_f902225d_d7fcf11e.png","constructors":[{"chassisManufacturerId":"836eb8f1-aec0-6ba7-4577-4ec83904da8f","chassisManufacturerName":"法拉利","chassisName":"SF-26","engineManufacturerId":"cb36354e-b9d2-6cde-43b6-d0a852d8218d","engineManufacturerName":"Ferrari","tyreManufacturerId":"efd96ac7-6f3f-ec9c-b2c9-ff6e50397934","tyreManufacturerName":"Pirelli","standing":{"position":5,"points":215.0}}]},{"position":6,"points":201.0,"number":"1","driverId":"f6900633-3512-3a15-d903-f912318b93d4","driverName":"兰多·诺里斯","numberImageUrl":"number/number_NOR_02710585.png","tla":"NOR","teamId":"d6952170-f190-491f-60fd-dc3e4ca51438","teamName":"迈凯伦","teamShortName":"McLaren","teamColor":"ff8000","teamLogoUrl":"team/mclaren_logo.png","bannerUrl":null,"carUpUrl":"team/mclaren_Normal_2x_968f030d.png","carFrontUrl":"team/mclaren_Normal_2x_1_b5bf636b.png","carLeftUrl":"team/20260630161507_215_242_compressed_more_3df463b3.png","carRightUrl":"team/2026mclarencarright_1_3a6b8acf.png","countryName":"英国","countryLogoUrl":"country/united_kingdom_of_great_britain_and_northern_ireland.png","countryCircleLogoUrl":"country/united_kingdom_of_great_britain_and_northern_ireland_circle.png","wins":2,"fastestLapRank":1,"avatarUrl":"drivers/nor_avatar_2026.png","helmetUrl":"drivers/NOR_Helmets_2026_70cd0707_957e9513.png","constructors":[{"chassisManufacturerId":"f0f42a99-cb3a-f7e4-162d-055dddef1d3b","chassisManufacturerName":"迈凯伦","chassisName":"MCL40","engineManufacturerId":"ea2b3166-0d5e-ac18-d830-bf0bd0846bbb","engineManufacturerName":"Mercedes","tyreManufacturerId":"efd96ac7-6f3f-ec9c-b2c9-ff6e50397934","tyreManufacturerName":"Pirelli","standing":{"position":6,"points":201.0}}]},{"position":7,"points":138.0,"number":"81","driverId":"ea8a68ee-9660-47e9-6d56-b2f5963f9dfc","driverName":"奥斯卡·皮亚斯特里","numberImageUrl":"number/number_PIA_cca7cdc9.png","tla":"PIA","teamId":"d6952170-f190-491f-60fd-dc3e4ca51438","teamName":"迈凯伦","teamShortName":"McLaren","teamColor":"ff8000","teamLogoUrl":"team/mclaren_logo.png","bannerUrl":null,"carUpUrl":"team/mclaren_Normal_2x_968f030d.png","carFrontUrl":"team/mclaren_Normal_2x_1_b5bf636b.png","carLeftUrl":"team/20260630161507_215_242_compressed_more_3df463b3.png","carRightUrl":"team/2026mclarencarright_1_3a6b8acf.png","countryName":"澳大利亚","countryLogoUrl":"country/australia.png","countryCircleLogoUrl":"country/australia_circle.png","wins":0,"fastestLapRank":2,"avatarUrl":"drivers/pia_avatar_2026.png","helmetUrl":"drivers/PIA_Helmets_2026_f9eba015_a088ec11.png","constructors":[{"chassisManufacturerId":"f0f42a99-cb3a-f7e4-162d-055dddef1d3b","chassisManufacturerName":"迈凯伦","chassisName":"MCL40","engineManufacturerId":"ea2b3166-0d5e-ac18-d830-bf0bd0846bbb","engineManufacturerName":"Mercedes","tyreManufacturerId":"efd96ac7-6f3f-ec9c-b2c9-ff6e50397934","tyreManufacturerName":"Pirelli","standing":{"position":7,"points":138.0}}]},{"position":8,"points":97.0,"number":"6","driverId":"52e0e312-819f-d9a7-3da7-30932cd5dfdc","driverName":"伊萨克·哈贾尔","numberImageUrl":"number/number_HAD_ad00ede0.png","tla":"HAD","teamId":"c89d210f-07b6-2631-3d60-f3114e11d1de","teamName":"红牛","teamShortName":"Red Bull Racing","teamColor":"3671c6","teamLogoUrl":"team/red_bull_racing_logo.png","bannerUrl":null,"carUpUrl":"team/redbull_Normal_2x_1_a9f98963.png","carFrontUrl":"team/redbull_Normal_2x_d3a1d8ad.png","carLeftUrl":"team/2026-F1-Red-Bull-Racing-three-quarter_e4c10ef0.png","carRightUrl":"team/2026redbullracingcarright_1_b2a11ad6.png","countryName":"法国","countryLogoUrl":"country/france.png","countryCircleLogoUrl":"","wins":0,"fastestLapRank":2,"avatarUrl":"drivers/had_avatar_2026.png","helmetUrl":"drivers/HAD_Helmets_2026_ba559a69_f565ff39.png","constructors":[{"chassisManufacturerId":"1eb73015-ff42-a8f5-f515-d03f124355cb","chassisManufacturerName":"红牛","chassisName":"RB22","engineManufacturerId":"7bb817b4-61dc-9a21-20ba-1577361b87cc","engineManufacturerName":"Red Bull Ford","tyreManufacturerId":"efd96ac7-6f3f-ec9c-b2c9-ff6e50397934","tyreManufacturerName":"Pirelli","standing":{"position":8,"points":97.0}}]},{"position":9,"points":75.0,"number":"30","driverId":"eaa7bec1-d4b9-fa03-e10d-414898e1d614","driverName":"利亚姆·劳森","numberImageUrl":"number/number_LAW_aec9d270.png","tla":"LAW","teamId":"707ad19e-954d-a782-b380-99b0094f523a","teamName":"红牛二队","teamShortName":"Racing Bulls","teamColor":"6692ff","teamLogoUrl":"team/racing_bulls_logo.png","bannerUrl":null,"carUpUrl":"team/racing_bull_Normal_2x_8598f651.png","carFrontUrl":"team/racing_bull_Normal_2x_1_3b745d8b.png","carLeftUrl":"team/20260630161510_217_242_compressed_more_39279ff1.png","carRightUrl":"team/2026racingbullscarright_1_ef99ef97.png","countryName":"新西兰","countryLogoUrl":"country/new_zealand.png","countryCircleLogoUrl":"","wins":0,"fastestLapRank":5,"avatarUrl":"drivers/law_avatar_2026_b9a2286f.png","helmetUrl":"drivers/LAW_Helmets_2026_4db9629c_3c2f0911.png","constructors":[{"chassisManufacturerId":"8361f339-b227-2381-202b-5fe96ad96654","chassisManufacturerName":"小红牛","chassisName":"VCARB 03","engineManufacturerId":"7bb817b4-61dc-9a21-20ba-1577361b87cc","engineManufacturerName":"Red Bull Ford","tyreManufacturerId":"efd96ac7-6f3f-ec9c-b2c9-ff6e50397934","tyreManufacturerName":"Pirelli","standing":{"position":9,"points":75.0}}]},{"position":10,"points":41.0,"number":"10","driverId":"2c943da5-7588-7c37-d812-aec32f2fff61","driverName":"皮埃尔·加斯利","numberImageUrl":"number/number_GAS_c6644975.png","tla":"GAS","teamId":"31149d0e-db92-8201-4a53-89e29bc241e4","teamName":"阿尔派","teamShortName":"Alpine","teamColor":"00A1E8","teamLogoUrl":"team/alpine_logo.png","bannerUrl":null,"carUpUrl":"team/alpine_Normal_2x_75b99f54.png","carFrontUrl":"team/alpine_Normal_2x_1_6dc0db37.png","carLeftUrl":"team/20260630161502_210_242_compressed_more_404d2322.png","carRightUrl":"team/2026alpinecarright_087c08ee.png","countryName":"法国","countryLogoUrl":"country/france.png","countryCircleLogoUrl":"","wins":0,"fastestLapRank":3,"avatarUrl":"drivers/gas_avatar_2026.png","helmetUrl":"drivers/GAS_Helmets_2026_bedada88_2e45d029.png","constructors":[{"chassisManufacturerId":"0ce39bd3-7b21-e7ac-e4ae-8ffe4a103f73","chassisManufacturerName":"Alpine","chassisName":"A526","engineManufacturerId":"ea2b3166-0d5e-ac18-d830-bf0bd0846bbb","engineManufacturerName":"Mercedes","tyreManufacturerId":"efd96ac7-6f3f-ec9c-b2c9-ff6e50397934","tyreManufacturerName":"Pirelli","standing":{"position":10,"points":41.0}}]},{"position":11,"points":38.0,"number":"41","driverId":"1dd44a2e-d5b0-1c39-4a7f-f2c56c2ca899","driverName":"阿尔维德·林德布拉德","numberImageUrl":"number/number_LIN_9a3ac374.png","tla":"LIN","teamId":"707ad19e-954d-a782-b380-99b0094f523a","teamName":"红牛二队","teamShortName":"Racing Bulls","teamColor":"6692ff","teamLogoUrl":"team/racing_bulls_logo.png","bannerUrl":null,"carUpUrl":"team/racing_bull_Normal_2x_8598f651.png","carFrontUrl":"team/racing_bull_Normal_2x_1_3b745d8b.png","carLeftUrl":"team/20260630161510_217_242_compressed_more_39279ff1.png","carRightUrl":"team/2026racingbullscarright_1_ef99ef97.png","countryName":"英国","countryLogoUrl":"country/united_kingdom_of_great_britain_and_northern_ireland.png","countryCircleLogoUrl":"country/united_kingdom_of_great_britain_and_northern_ireland_circle.png","wins":0,"fastestLapRank":6,"avatarUrl":"drivers/lin_avatar_2026_f91ca0c3.png","helmetUrl":"drivers/LIN_Helmets_2026_43831aaa_a3025092.png","constructors":[{"chassisManufacturerId":"8361f339-b227-2381-202b-5fe96ad96654","chassisManufacturerName":"小红牛","chassisName":"VCARB 03","engineManufacturerId":"7bb817b4-61dc-9a21-20ba-1577361b87cc","engineManufacturerName":"Red Bull Ford","tyreManufacturerId":"efd96ac7-6f3f-ec9c-b2c9-ff6e50397934","tyreManufacturerName":"Pirelli","standing":{"position":11,"points":38.0}}]},{"position":12,"points":27.0,"number":"43","driverId":"ad1fb39d-62f8-3ffa-71ed-0966e1eae74e","driverName":"弗朗哥·科拉平托","numberImageUrl":"number/number_COL_036dcfb7.png","tla":"COL","teamId":"31149d0e-db92-8201-4a53-89e29bc241e4","teamName":"阿尔派","teamShortName":"Alpine","teamColor":"00A1E8","teamLogoUrl":"team/alpine_logo.png","bannerUrl":null,"carUpUrl":"team/alpine_Normal_2x_75b99f54.png","carFrontUrl":"team/alpine_Normal_2x_1_6dc0db37.png","carLeftUrl":"team/20260630161502_210_242_compressed_more_404d2322.png","carRightUrl":"team/2026alpinecarright_087c08ee.png","countryName":"阿根廷","countryLogoUrl":"country/argentina.png","countryCircleLogoUrl":"","wins":0,"fastestLapRank":7,"avatarUrl":"drivers/col_avatar_2026_19eb5c06.png","helmetUrl":"drivers/COL_Helmets_2026_fe9a4ba7_d80489e1.png","constructors":[{"chassisManufacturerId":"0ce39bd3-7b21-e7ac-e4ae-8ffe4a103f73","chassisManufacturerName":"Alpine","chassisName":"A526","engineManufacturerId":"ea2b3166-0d5e-ac18-d830-bf0bd0846bbb","engineManufacturerName":"Mercedes","tyreManufacturerId":"efd96ac7-6f3f-ec9c-b2c9-ff6e50397934","tyreManufacturerName":"Pirelli","standing":{"position":12,"points":27.0}}]},{"position":13,"points":23.0,"number":"87","driverId":"a68dd303-a3ac-0a2f-b5e7-8bf994ed5764","driverName":"奥利弗·贝尔曼","numberImageUrl":"number/number_BEA_a976cee1.png","tla":"BEA","teamId":"bb9bcfb7-1b82-393f-b990-614f38468993","teamName":"哈斯","teamShortName":"Haas","teamColor":"dee1e2","teamLogoUrl":"team/haas_logo.png","bannerUrl":null,"carUpUrl":"team/Haas_Normal_2x_8b968239.png","carFrontUrl":"team/haas_Normal_2x_1_a8f97aa0.png","carLeftUrl":"team/20260630161506_214_242_compressed_more_330dc7af.png","carRightUrl":"team/2026haasf1teamcarright_1_8ca6508f.png","countryName":"英国","countryLogoUrl":"country/united_kingdom_of_great_britain_and_northern_ireland.png","countryCircleLogoUrl":"country/united_kingdom_of_great_britain_and_northern_ireland_circle.png","wins":0,"fastestLapRank":8,"avatarUrl":"drivers/bea_avatar_2026.png","helmetUrl":"drivers/BEA_Helmets_2026_7b3f10d8_903f7820.png","constructors":[{"chassisManufacturerId":"18f7f512-13d9-8224-144c-b337acac2452","chassisManufacturerName":"哈斯","chassisName":"VF-26","engineManufacturerId":"cb36354e-b9d2-6cde-43b6-d0a852d8218d","engineManufacturerName":"Ferrari","tyreManufacturerId":"efd96ac7-6f3f-ec9c-b2c9-ff6e50397934","tyreManufacturerName":"Pirelli","standing":{"position":13,"points":23.0}}]},{"position":14,"points":13.0,"number":"27","driverId":"ad3273d4-69c6-1255-0867-7911972849e5","driverName":"尼科·霍肯伯格","numberImageUrl":"number/number_HUL_4b27c507.png","tla":"HUL","teamId":"2ebdcb0e-dcfe-fe88-8532-4fdb734b9a02","teamName":"奥迪","teamShortName":"Audi","teamColor":"FF2D00","teamLogoUrl":"team/audi_logo.png","bannerUrl":null,"carUpUrl":"team/audi_Normal_2x_665a0798.png","carFrontUrl":"team/Audi_Normal_2x_1_e03ea5ab.png","carLeftUrl":"team/f1-2026-three-quarter-audi_Normal_00b36d25.png","carRightUrl":"team/2026audicarright_f56b09a9.png","countryName":"德国","countryLogoUrl":"country/germany.png","countryCircleLogoUrl":"","wins":0,"fastestLapRank":3,"avatarUrl":"drivers/hul_avatar_2026.png","helmetUrl":"drivers/HUL_Helmets_2026_84cfa582_d4e881ac.png","constructors":[{"chassisManufacturerId":"d2a2c747-09d2-2c68-5799-891e979f7d4a","chassisManufacturerName":"奥迪","chassisName":"R26","engineManufacturerId":"df98237f-8ec3-874c-c0d8-4ea33469308a","engineManufacturerName":"Audi","tyreManufacturerId":"efd96ac7-6f3f-ec9c-b2c9-ff6e50397934","tyreManufacturerName":"Pirelli","standing":{"position":14,"points":13.0}}]},{"position":15,"points":10.0,"number":"5","driverId":"40f68eee-8f93-aa4c-44b1-52cf95ba5663","driverName":"加布里埃尔·博托莱托","numberImageUrl":"number/number_BOR_97fa1728.png","tla":"BOR","teamId":"2ebdcb0e-dcfe-fe88-8532-4fdb734b9a02","teamName":"奥迪","teamShortName":"Audi","teamColor":"FF2D00","teamLogoUrl":"team/audi_logo.png","bannerUrl":null,"carUpUrl":"team/audi_Normal_2x_665a0798.png","carFrontUrl":"team/Audi_Normal_2x_1_e03ea5ab.png","carLeftUrl":"team/f1-2026-three-quarter-audi_Normal_00b36d25.png","carRightUrl":"team/2026audicarright_f56b09a9.png","countryName":"巴西","countryLogoUrl":"country/brazil.png","countryCircleLogoUrl":"country/brazil_circle.png","wins":0,"fastestLapRank":7,"avatarUrl":"drivers/bor_avatar_2026.png","helmetUrl":"drivers/BOR_Helmets_2026_34e69c88_0792b93c.png","constructors":[{"chassisManufacturerId":"d2a2c747-09d2-2c68-5799-891e979f7d4a","chassisManufacturerName":"奥迪","chassisName":"R26","engineManufacturerId":"df98237f-8ec3-874c-c0d8-4ea33469308a","engineManufacturerName":"Audi","tyreManufacturerId":"efd96ac7-6f3f-ec9c-b2c9-ff6e50397934","tyreManufacturerName":"Pirelli","standing":{"position":15,"points":10.0}}]},{"position":16,"points":7.0,"number":"31","driverId":"3d456329-ad6c-ed02-d22a-372245b4d33f","driverName":"埃斯特班·奥康","numberImageUrl":"number/number_OCO_39e00346.png","tla":"OCO","teamId":"bb9bcfb7-1b82-393f-b990-614f38468993","teamName":"哈斯","teamShortName":"Haas","teamColor":"dee1e2","teamLogoUrl":"team/haas_logo.png","bannerUrl":null,"carUpUrl":"team/Haas_Normal_2x_8b968239.png","carFrontUrl":"team/haas_Normal_2x_1_a8f97aa0.png","carLeftUrl":"team/20260630161506_214_242_compressed_more_330dc7af.png","carRightUrl":"team/2026haasf1teamcarright_1_8ca6508f.png","countryName":"法国","countryLogoUrl":"country/france.png","countryCircleLogoUrl":"","wins":0,"fastestLapRank":3,"avatarUrl":"drivers/oco_avatar_2026.png","helmetUrl":"drivers/OCO_Helmets_2026_a21bac69_8ad6daed.png","constructors":[{"chassisManufacturerId":"18f7f512-13d9-8224-144c-b337acac2452","chassisManufacturerName":"哈斯","chassisName":"VF-26","engineManufacturerId":"cb36354e-b9d2-6cde-43b6-d0a852d8218d","engineManufacturerName":"Ferrari","tyreManufacturerId":"efd96ac7-6f3f-ec9c-b2c9-ff6e50397934","tyreManufacturerName":"Pirelli","standing":{"position":16,"points":7.0}}]},{"position":17,"points":7.0,"number":"14","driverId":"730bf7a5-44f2-b679-7606-f3fcbd9a484b","driverName":"费尔南多·阿隆索","numberImageUrl":"number/number_ALO_6c67f395.png","tla":"ALO","teamId":"e6d5e05e-048e-66a7-a05d-6b03696c1a84","teamName":"阿斯顿·马丁","teamShortName":"Aston Martin","teamColor":"229971","teamLogoUrl":"team/aston_martin_logo.png","bannerUrl":null,"carUpUrl":"team/aston_martin_Normal_2x_1_975d6048.png","carFrontUrl":"team/aston_martin_Normal_2x_df0f72a9.png","carLeftUrl":"team/20260630161503_211_242_compressed_more_f043b9cc.png","carRightUrl":"team/2026astonmartincarright_1_71b8f2dd.png","countryName":"西班牙","countryLogoUrl":"country/spain.png","countryCircleLogoUrl":"country/spain_circle.png","wins":0,"fastestLapRank":9,"avatarUrl":"drivers/alo_avatar_2026.png","helmetUrl":"drivers/ALO_Helmets_2026_984318d4_b1645a4a.png","constructors":[{"chassisManufacturerId":"5051dac4-681a-84d3-bb9e-cd4662ef9162","chassisManufacturerName":"阿斯顿马丁","chassisName":"AMR26","engineManufacturerId":"72d75dc4-ed53-e50c-8120-31a571c75126","engineManufacturerName":"Honda","tyreManufacturerId":"efd96ac7-6f3f-ec9c-b2c9-ff6e50397934","tyreManufacturerName":"Pirelli","standing":{"position":17,"points":7.0}}]},{"position":18,"points":7.0,"number":"55","driverId":"4d3c4639-bc5f-45e1-162b-6849a239bd6a","driverName":"卡洛斯·塞恩斯","numberImageUrl":"number/number_SAI_f0196cea.png","tla":"SAI","teamId":"f4f33810-0f5f-c44b-be40-af2630a28b56","teamName":"威廉姆斯","teamShortName":"Williams","teamColor":"1868DB","teamLogoUrl":"team/williams_logo.png","bannerUrl":null,"carUpUrl":"team/williams_Normal_2x_1_458c0251.png","carFrontUrl":"team/williams_Normal_2x_03bc0589.png","carLeftUrl":"team/20260630161512_219_242_compressed_more_68ae386f.png","carRightUrl":"team/2026williamscarright_1_3e6cf506.png","countryName":"西班牙","countryLogoUrl":"country/spain.png","countryCircleLogoUrl":"country/spain_circle.png","wins":0,"fastestLapRank":7,"avatarUrl":"drivers/sai_avatar_2026_2dd81790.png","helmetUrl":"drivers/SAI_Helmets_2026_f3ecf198_991a6f85.png","constructors":[{"chassisManufacturerId":"53fe4920-ddd0-fc9c-43f4-ec97594c523e","chassisManufacturerName":"威廉姆斯","chassisName":"FW48","engineManufacturerId":"ea2b3166-0d5e-ac18-d830-bf0bd0846bbb","engineManufacturerName":"Mercedes","tyreManufacturerId":"efd96ac7-6f3f-ec9c-b2c9-ff6e50397934","tyreManufacturerName":"Pirelli","standing":{"position":18,"points":7.0}}]},{"position":19,"points":5.0,"number":"23","driverId":"90c1fc1d-51fa-a1ce-954b-c9b45c90c05a","driverName":"亚历山大·阿尔本","numberImageUrl":"number/number_ALB_41b4ec79.png","tla":"ALB","teamId":"f4f33810-0f5f-c44b-be40-af2630a28b56","teamName":"威廉姆斯","teamShortName":"Williams","teamColor":"1868DB","teamLogoUrl":"team/williams_logo.png","bannerUrl":null,"carUpUrl":"team/williams_Normal_2x_1_458c0251.png","carFrontUrl":"team/williams_Normal_2x_03bc0589.png","carLeftUrl":"team/20260630161512_219_242_compressed_more_68ae386f.png","carRightUrl":"team/2026williamscarright_1_3e6cf506.png","countryName":"泰国","countryLogoUrl":"country/thailand.png","countryCircleLogoUrl":"","wins":0,"fastestLapRank":7,"avatarUrl":"drivers/alb_avatar_2026_c3c52626.png","helmetUrl":"drivers/ALB_Helmets_2026_618f7061_3146a59d.png","constructors":[{"chassisManufacturerId":"53fe4920-ddd0-fc9c-43f4-ec97594c523e","chassisManufacturerName":"威廉姆斯","chassisName":"FW48","engineManufacturerId":"ea2b3166-0d5e-ac18-d830-bf0bd0846bbb","engineManufacturerName":"Mercedes","tyreManufacturerId":"efd96ac7-6f3f-ec9c-b2c9-ff6e50397934","tyreManufacturerName":"Pirelli","standing":{"position":19,"points":5.0}}]},{"position":20,"points":1.0,"number":"22","driverId":"7399d11f-1588-8739-029c-57d9bdd0f7ee","driverName":"角田裕毅","numberImageUrl":"number/2026racingbullsyuktsu01numberwhitefrless-_-webp_eefa43fa.png","tla":"TSU","teamId":"707ad19e-954d-a782-b380-99b0094f523a","teamName":"红牛二队","teamShortName":"Racing Bulls","teamColor":"6692ff","teamLogoUrl":"team/racing_bulls_logo.png","bannerUrl":null,"carUpUrl":"team/racing_bull_Normal_2x_8598f651.png","carFrontUrl":"team/racing_bull_Normal_2x_1_3b745d8b.png","carLeftUrl":"team/20260630161510_217_242_compressed_more_39279ff1.png","carRightUrl":"team/2026racingbullscarright_1_ef99ef97.png","countryName":"日本","countryLogoUrl":"country/japan.png","countryCircleLogoUrl":"country/japan_circle.png","wins":0,"fastestLapRank":12,"avatarUrl":"drivers/2026racingbullsyuktsu01right-2_cropped_380_bddd1ecd.png","helmetUrl":"drivers/TSU_Helmets_2026_6a129060.png","constructors":[{"chassisManufacturerId":"8361f339-b227-2381-202b-5fe96ad96654","chassisManufacturerName":"小红牛","chassisName":"VCARB 03","engineManufacturerId":"7bb817b4-61dc-9a21-20ba-1577361b87cc","engineManufacturerName":"Red Bull Ford","tyreManufacturerId":"efd96ac7-6f3f-ec9c-b2c9-ff6e50397934","tyreManufacturerName":"Pirelli","standing":{"position":20,"points":1.0}}]},{"position":21,"points":0.0,"number":"18","driverId":"c4f3266c-9383-f1b2-58b4-8422d88479fc","driverName":"兰斯·斯特罗尔","numberImageUrl":"number/number_STR_399b81fc.png","tla":"STR","teamId":"e6d5e05e-048e-66a7-a05d-6b03696c1a84","teamName":"阿斯顿·马丁","teamShortName":"Aston Martin","teamColor":"229971","teamLogoUrl":"team/aston_martin_logo.png","bannerUrl":null,"carUpUrl":"team/aston_martin_Normal_2x_1_975d6048.png","carFrontUrl":"team/aston_martin_Normal_2x_df0f72a9.png","carLeftUrl":"team/20260630161503_211_242_compressed_more_f043b9cc.png","carRightUrl":"team/2026astonmartincarright_1_71b8f2dd.png","countryName":"加拿大","countryLogoUrl":"country/canada.png","countryCircleLogoUrl":"country/canada_circle.png","wins":0,"fastestLapRank":14,"avatarUrl":"drivers/str_avatar_2026.png","helmetUrl":"drivers/STR_Helmets_2026_a7a02443_5043d0ca.png","constructors":[{"chassisManufacturerId":"5051dac4-681a-84d3-bb9e-cd4662ef9162","chassisManufacturerName":"阿斯顿马丁","chassisName":"AMR26","engineManufacturerId":"72d75dc4-ed53-e50c-8120-31a571c75126","engineManufacturerName":"Honda","tyreManufacturerId":"efd96ac7-6f3f-ec9c-b2c9-ff6e50397934","tyreManufacturerName":"Pirelli","standing":{"position":21,"points":0.0}}]},{"position":22,"points":0.0,"number":"77","driverId":"5e0b2810-8728-0c2e-f3b7-d6fdd74f4ccf","driverName":"瓦尔特里·博塔斯","numberImageUrl":"number/number_BOT_a4d349cc.png","tla":"BOT","teamId":"e6a04b2e-06ea-7395-f64f-c0a81afc4ed2","teamName":"凯迪拉克","teamShortName":"Cadillac","teamColor":"aaaaad","teamLogoUrl":"team/cadillac_logo.png","bannerUrl":null,"carUpUrl":"team/cadillac_Normal_2x_23eb073b.png","carFrontUrl":"team/Cadillac_Normal_2x_1_45c466f2.png","carLeftUrl":"team/f1-2026-three-quarter-cadillac_Normal_549c7797.png","carRightUrl":"team/2026cadillaccarright_1_6e5c725b.png","countryName":"芬兰","countryLogoUrl":"country/finland.png","countryCircleLogoUrl":"","wins":0,"fastestLapRank":15,"avatarUrl":"drivers/bot_avatar_2026.png","helmetUrl":"drivers/BOT_Helmets_2026_8b9117ba_6ea8f348.png","constructors":[{"chassisManufacturerId":"5e895bfd-995b-2759-6824-5ca4f02d3ddb","chassisManufacturerName":"凯迪拉克","chassisName":"MAC-26","engineManufacturerId":"cb36354e-b9d2-6cde-43b6-d0a852d8218d","engineManufacturerName":"Ferrari","tyreManufacturerId":"efd96ac7-6f3f-ec9c-b2c9-ff6e50397934","tyreManufacturerName":"Pirelli","standing":{"position":22,"points":0.0}}]},{"position":23,"points":0.0,"number":"11","driverId":"955724d0-47bc-ba28-b112-01e362a4a1b2","driverName":"塞尔吉奥·佩雷兹","numberImageUrl":"drivers/number_PER_ebb21008.png","tla":"PER","teamId":"e6a04b2e-06ea-7395-f64f-c0a81afc4ed2","teamName":"凯迪拉克","teamShortName":"Cadillac","teamColor":"aaaaad","teamLogoUrl":"team/cadillac_logo.png","bannerUrl":null,"carUpUrl":"team/cadillac_Normal_2x_23eb073b.png","carFrontUrl":"team/Cadillac_Normal_2x_1_45c466f2.png","carLeftUrl":"team/f1-2026-three-quarter-cadillac_Normal_549c7797.png","carRightUrl":"team/2026cadillaccarright_1_6e5c725b.png","countryName":"墨西哥","countryLogoUrl":"country/mexico.png","countryCircleLogoUrl":"country/mexico_circle.png","wins":0,"fastestLapRank":14,"avatarUrl":"drivers/per_avatar_2026.png","helmetUrl":"drivers/PER_Helmets_2026_9aca73ae_b4133dfb.png","constructors":[{"chassisManufacturerId":"5e895bfd-995b-2759-6824-5ca4f02d3ddb","chassisManufacturerName":"凯迪拉克","chassisName":"MAC-26","engineManufacturerId":"cb36354e-b9d2-6cde-43b6-d0a852d8218d","engineManufacturerName":"Ferrari","tyreManufacturerId":"efd96ac7-6f3f-ec9c-b2c9-ff6e50397934","tyreManufacturerName":"Pirelli","standing":{"position":23,"points":0.0}}]}]}]},"msg":"success"}
+{
+  "code": 200,
+  "data": {
+    "items": [
+      {
+        "id": "3589dd46-e3ab-9929-435d-93b14f52cf6e-total",
+        "raceId": null,
+        "seasonId": "3589dd46-e3ab-9929-435d-93b14f52cf6e",
+        "standings": [
+          {
+            "position": 1,
+            "points": 340,
+            "number": "12",
+            "driverId": "6edccd34-a617-6e67-792e-dfff4e0a814b",
+            "driverName": "基米·安东内利",
+            "numberImageUrl": "number/number_ANT_df3c1b83.png",
+            "tla": "ANT",
+            "teamId": "e9ea2da7-1b80-eebb-434e-0a008dbfe99d",
+            "teamName": "梅赛德斯",
+            "teamShortName": "Mercedes",
+            "teamColor": "27f4d2",
+            "teamLogoUrl": "team/mercedes_logo.png",
+            "bannerUrl": null,
+            "carUpUrl": "team/mercedes_Normal_2x_b48401ff.png",
+            "carFrontUrl": "team/mercedes_Normal_2x_1_d7e9bac5.png",
+            "carLeftUrl": "team/20260630161508_216_242_compressed_more_47b84b85.png",
+            "carRightUrl": "team/2026mercedescarright_1_29ff599c.png",
+            "countryName": "意大利",
+            "countryLogoUrl": "country/italy.png",
+            "countryCircleLogoUrl": "country/italy_circle.png",
+            "wins": 8,
+            "fastestLapRank": 1,
+            "avatarUrl": "drivers/ant_avatar_2026.png",
+            "helmetUrl": "drivers/ANT_Helmets_2026_6efe2650_9a7c457d.png",
+            "constructors": [
+              {
+                "chassisManufacturerId": "663bc471-9d5b-92ab-99ab-dad140d6123f",
+                "chassisManufacturerName": "梅赛德斯",
+                "chassisName": "W17",
+                "engineManufacturerId": "ea2b3166-0d5e-ac18-d830-bf0bd0846bbb",
+                "engineManufacturerName": "Mercedes",
+                "tyreManufacturerId": "efd96ac7-6f3f-ec9c-b2c9-ff6e50397934",
+                "tyreManufacturerName": "Pirelli",
+                "standing": {
+                  "position": 1,
+                  "points": 340
+                }
+              }
+            ]
+          },
+          {
+            "position": 2,
+            "points": 238,
+            "number": "63",
+            "driverId": "c4892599-323a-5e2d-cfe6-29d0c3566033",
+            "driverName": "乔治·拉塞尔",
+            "numberImageUrl": "number/number_RUS_c800d005.png",
+            "tla": "RUS",
+            "teamId": "e9ea2da7-1b80-eebb-434e-0a008dbfe99d",
+            "teamName": "梅赛德斯",
+            "teamShortName": "Mercedes",
+            "teamColor": "27f4d2",
+            "teamLogoUrl": "team/mercedes_logo.png",
+            "bannerUrl": null,
+            "carUpUrl": "team/mercedes_Normal_2x_b48401ff.png",
+            "carFrontUrl": "team/mercedes_Normal_2x_1_d7e9bac5.png",
+            "carLeftUrl": "team/20260630161508_216_242_compressed_more_47b84b85.png",
+            "carRightUrl": "team/2026mercedescarright_1_29ff599c.png",
+            "countryName": "英国",
+            "countryLogoUrl": "country/united_kingdom_of_great_britain_and_northern_ireland.png",
+            "countryCircleLogoUrl": "country/united_kingdom_of_great_britain_and_northern_ireland_circle.png",
+            "wins": 3,
+            "fastestLapRank": 1,
+            "avatarUrl": "drivers/rus_avatar_2026.png",
+            "helmetUrl": "drivers/RUS_Helmets_2026_a1310568_370fa106.png",
+            "constructors": [
+              {
+                "chassisManufacturerId": "663bc471-9d5b-92ab-99ab-dad140d6123f",
+                "chassisManufacturerName": "梅赛德斯",
+                "chassisName": "W17",
+                "engineManufacturerId": "ea2b3166-0d5e-ac18-d830-bf0bd0846bbb",
+                "engineManufacturerName": "Mercedes",
+                "tyreManufacturerId": "efd96ac7-6f3f-ec9c-b2c9-ff6e50397934",
+                "tyreManufacturerName": "Pirelli",
+                "standing": {
+                  "position": 2,
+                  "points": 238
+                }
+              }
+            ]
+          },
+          {
+            "position": 3,
+            "points": 229,
+            "number": "44",
+            "driverId": "2da57a52-c546-d307-280d-254264ea39b2",
+            "driverName": "刘易斯·汉密尔顿",
+            "numberImageUrl": "number/number_HAM_a8145d60.png",
+            "tla": "HAM",
+            "teamId": "6a2df337-7644-c00a-a5ed-61a3e1da7e6a",
+            "teamName": "法拉利",
+            "teamShortName": "Ferrari",
+            "teamColor": "e8002d",
+            "teamLogoUrl": "team/ferrari_logo.png",
+            "bannerUrl": null,
+            "carUpUrl": "team/ferrari_Normal_2x_d427a9c9.png",
+            "carFrontUrl": "team/ferrari_Normal_2x_1_80e0b0ae.png",
+            "carLeftUrl": "team/20260630161513_220_242_compressed_more_497f1b81.png",
+            "carRightUrl": "team/2026ferraricarright_1_76460761.png",
+            "countryName": "英国",
+            "countryLogoUrl": "country/united_kingdom_of_great_britain_and_northern_ireland.png",
+            "countryCircleLogoUrl": "country/united_kingdom_of_great_britain_and_northern_ireland_circle.png",
+            "wins": 1,
+            "fastestLapRank": 1,
+            "avatarUrl": "drivers/ham_avatar_2026.png",
+            "helmetUrl": "drivers/HAM_Helmets_2026_c45cebf0_ac4852aa.png",
+            "constructors": [
+              {
+                "chassisManufacturerId": "836eb8f1-aec0-6ba7-4577-4ec83904da8f",
+                "chassisManufacturerName": "法拉利",
+                "chassisName": "SF-26",
+                "engineManufacturerId": "cb36354e-b9d2-6cde-43b6-d0a852d8218d",
+                "engineManufacturerName": "Ferrari",
+                "tyreManufacturerId": "efd96ac7-6f3f-ec9c-b2c9-ff6e50397934",
+                "tyreManufacturerName": "Pirelli",
+                "standing": {
+                  "position": 3,
+                  "points": 229
+                }
+              }
+            ]
+          },
+          {
+            "position": 4,
+            "points": 221,
+            "number": "3",
+            "driverId": "01e19e1a-89fb-4765-53c2-16fb5d2bdf4a",
+            "driverName": "马克斯·维斯塔潘",
+            "numberImageUrl": "number/number_VER_d0c64014.png",
+            "tla": "VER",
+            "teamId": "c89d210f-07b6-2631-3d60-f3114e11d1de",
+            "teamName": "红牛",
+            "teamShortName": "Red Bull Racing",
+            "teamColor": "3671c6",
+            "teamLogoUrl": "team/red_bull_racing_logo.png",
+            "bannerUrl": null,
+            "carUpUrl": "team/redbull_Normal_2x_1_a9f98963.png",
+            "carFrontUrl": "team/redbull_Normal_2x_d3a1d8ad.png",
+            "carLeftUrl": "team/2026-F1-Red-Bull-Racing-three-quarter_e4c10ef0.png",
+            "carRightUrl": "team/2026redbullracingcarright_1_b2a11ad6.png",
+            "countryName": "荷兰",
+            "countryLogoUrl": "country/netherlands.png",
+            "countryCircleLogoUrl": "country/netherlands_circle.png",
+            "wins": 2,
+            "fastestLapRank": 1,
+            "avatarUrl": "drivers/ver_avatar_2026.png",
+            "helmetUrl": "drivers/VER_Helmets_2026_33a5930e_4be4bb8f.png",
+            "constructors": [
+              {
+                "chassisManufacturerId": "1eb73015-ff42-a8f5-f515-d03f124355cb",
+                "chassisManufacturerName": "红牛",
+                "chassisName": "RB22",
+                "engineManufacturerId": "7bb817b4-61dc-9a21-20ba-1577361b87cc",
+                "engineManufacturerName": "Red Bull Ford",
+                "tyreManufacturerId": "efd96ac7-6f3f-ec9c-b2c9-ff6e50397934",
+                "tyreManufacturerName": "Pirelli",
+                "standing": {
+                  "position": 4,
+                  "points": 221
+                }
+              }
+            ]
+          },
+          {
+            "position": 5,
+            "points": 215,
+            "number": "16",
+            "driverId": "8a00bce3-d93c-a089-9be1-545b5e3984e1",
+            "driverName": "夏尔·勒克莱尔",
+            "numberImageUrl": "number/number_LEC_00526aab.png",
+            "tla": "LEC",
+            "teamId": "6a2df337-7644-c00a-a5ed-61a3e1da7e6a",
+            "teamName": "法拉利",
+            "teamShortName": "Ferrari",
+            "teamColor": "e8002d",
+            "teamLogoUrl": "team/ferrari_logo.png",
+            "bannerUrl": null,
+            "carUpUrl": "team/ferrari_Normal_2x_d427a9c9.png",
+            "carFrontUrl": "team/ferrari_Normal_2x_1_80e0b0ae.png",
+            "carLeftUrl": "team/20260630161513_220_242_compressed_more_497f1b81.png",
+            "carRightUrl": "team/2026ferraricarright_1_76460761.png",
+            "countryName": "摩纳哥",
+            "countryLogoUrl": "country/monaco.png",
+            "countryCircleLogoUrl": "country/monaco_circle.png",
+            "wins": 1,
+            "fastestLapRank": 1,
+            "avatarUrl": "drivers/lec_avatar_2026.png",
+            "helmetUrl": "drivers/LEC_Helmets_2026_f902225d_d7fcf11e.png",
+            "constructors": [
+              {
+                "chassisManufacturerId": "836eb8f1-aec0-6ba7-4577-4ec83904da8f",
+                "chassisManufacturerName": "法拉利",
+                "chassisName": "SF-26",
+                "engineManufacturerId": "cb36354e-b9d2-6cde-43b6-d0a852d8218d",
+                "engineManufacturerName": "Ferrari",
+                "tyreManufacturerId": "efd96ac7-6f3f-ec9c-b2c9-ff6e50397934",
+                "tyreManufacturerName": "Pirelli",
+                "standing": {
+                  "position": 5,
+                  "points": 215
+                }
+              }
+            ]
+          },
+          {
+            "position": 6,
+            "points": 201,
+            "number": "1",
+            "driverId": "f6900633-3512-3a15-d903-f912318b93d4",
+            "driverName": "兰多·诺里斯",
+            "numberImageUrl": "number/number_NOR_02710585.png",
+            "tla": "NOR",
+            "teamId": "d6952170-f190-491f-60fd-dc3e4ca51438",
+            "teamName": "迈凯伦",
+            "teamShortName": "McLaren",
+            "teamColor": "ff8000",
+            "teamLogoUrl": "team/mclaren_logo.png",
+            "bannerUrl": null,
+            "carUpUrl": "team/mclaren_Normal_2x_968f030d.png",
+            "carFrontUrl": "team/mclaren_Normal_2x_1_b5bf636b.png",
+            "carLeftUrl": "team/20260630161507_215_242_compressed_more_3df463b3.png",
+            "carRightUrl": "team/2026mclarencarright_1_3a6b8acf.png",
+            "countryName": "英国",
+            "countryLogoUrl": "country/united_kingdom_of_great_britain_and_northern_ireland.png",
+            "countryCircleLogoUrl": "country/united_kingdom_of_great_britain_and_northern_ireland_circle.png",
+            "wins": 2,
+            "fastestLapRank": 1,
+            "avatarUrl": "drivers/nor_avatar_2026.png",
+            "helmetUrl": "drivers/NOR_Helmets_2026_70cd0707_957e9513.png",
+            "constructors": [
+              {
+                "chassisManufacturerId": "f0f42a99-cb3a-f7e4-162d-055dddef1d3b",
+                "chassisManufacturerName": "迈凯伦",
+                "chassisName": "MCL40",
+                "engineManufacturerId": "ea2b3166-0d5e-ac18-d830-bf0bd0846bbb",
+                "engineManufacturerName": "Mercedes",
+                "tyreManufacturerId": "efd96ac7-6f3f-ec9c-b2c9-ff6e50397934",
+                "tyreManufacturerName": "Pirelli",
+                "standing": {
+                  "position": 6,
+                  "points": 201
+                }
+              }
+            ]
+          },
+          {
+            "position": 7,
+            "points": 138,
+            "number": "81",
+            "driverId": "ea8a68ee-9660-47e9-6d56-b2f5963f9dfc",
+            "driverName": "奥斯卡·皮亚斯特里",
+            "numberImageUrl": "number/number_PIA_cca7cdc9.png",
+            "tla": "PIA",
+            "teamId": "d6952170-f190-491f-60fd-dc3e4ca51438",
+            "teamName": "迈凯伦",
+            "teamShortName": "McLaren",
+            "teamColor": "ff8000",
+            "teamLogoUrl": "team/mclaren_logo.png",
+            "bannerUrl": null,
+            "carUpUrl": "team/mclaren_Normal_2x_968f030d.png",
+            "carFrontUrl": "team/mclaren_Normal_2x_1_b5bf636b.png",
+            "carLeftUrl": "team/20260630161507_215_242_compressed_more_3df463b3.png",
+            "carRightUrl": "team/2026mclarencarright_1_3a6b8acf.png",
+            "countryName": "澳大利亚",
+            "countryLogoUrl": "country/australia.png",
+            "countryCircleLogoUrl": "country/australia_circle.png",
+            "wins": 0,
+            "fastestLapRank": 2,
+            "avatarUrl": "drivers/pia_avatar_2026.png",
+            "helmetUrl": "drivers/PIA_Helmets_2026_f9eba015_a088ec11.png",
+            "constructors": [
+              {
+                "chassisManufacturerId": "f0f42a99-cb3a-f7e4-162d-055dddef1d3b",
+                "chassisManufacturerName": "迈凯伦",
+                "chassisName": "MCL40",
+                "engineManufacturerId": "ea2b3166-0d5e-ac18-d830-bf0bd0846bbb",
+                "engineManufacturerName": "Mercedes",
+                "tyreManufacturerId": "efd96ac7-6f3f-ec9c-b2c9-ff6e50397934",
+                "tyreManufacturerName": "Pirelli",
+                "standing": {
+                  "position": 7,
+                  "points": 138
+                }
+              }
+            ]
+          },
+          {
+            "position": 8,
+            "points": 97,
+            "number": "6",
+            "driverId": "52e0e312-819f-d9a7-3da7-30932cd5dfdc",
+            "driverName": "伊萨克·哈贾尔",
+            "numberImageUrl": "number/number_HAD_ad00ede0.png",
+            "tla": "HAD",
+            "teamId": "c89d210f-07b6-2631-3d60-f3114e11d1de",
+            "teamName": "红牛",
+            "teamShortName": "Red Bull Racing",
+            "teamColor": "3671c6",
+            "teamLogoUrl": "team/red_bull_racing_logo.png",
+            "bannerUrl": null,
+            "carUpUrl": "team/redbull_Normal_2x_1_a9f98963.png",
+            "carFrontUrl": "team/redbull_Normal_2x_d3a1d8ad.png",
+            "carLeftUrl": "team/2026-F1-Red-Bull-Racing-three-quarter_e4c10ef0.png",
+            "carRightUrl": "team/2026redbullracingcarright_1_b2a11ad6.png",
+            "countryName": "法国",
+            "countryLogoUrl": "country/france.png",
+            "countryCircleLogoUrl": "",
+            "wins": 0,
+            "fastestLapRank": 2,
+            "avatarUrl": "drivers/had_avatar_2026.png",
+            "helmetUrl": "drivers/HAD_Helmets_2026_ba559a69_f565ff39.png",
+            "constructors": [
+              {
+                "chassisManufacturerId": "1eb73015-ff42-a8f5-f515-d03f124355cb",
+                "chassisManufacturerName": "红牛",
+                "chassisName": "RB22",
+                "engineManufacturerId": "7bb817b4-61dc-9a21-20ba-1577361b87cc",
+                "engineManufacturerName": "Red Bull Ford",
+                "tyreManufacturerId": "efd96ac7-6f3f-ec9c-b2c9-ff6e50397934",
+                "tyreManufacturerName": "Pirelli",
+                "standing": {
+                  "position": 8,
+                  "points": 97
+                }
+              }
+            ]
+          },
+          {
+            "position": 9,
+            "points": 75,
+            "number": "30",
+            "driverId": "eaa7bec1-d4b9-fa03-e10d-414898e1d614",
+            "driverName": "利亚姆·劳森",
+            "numberImageUrl": "number/number_LAW_aec9d270.png",
+            "tla": "LAW",
+            "teamId": "707ad19e-954d-a782-b380-99b0094f523a",
+            "teamName": "红牛二队",
+            "teamShortName": "Racing Bulls",
+            "teamColor": "6692ff",
+            "teamLogoUrl": "team/racing_bulls_logo.png",
+            "bannerUrl": null,
+            "carUpUrl": "team/racing_bull_Normal_2x_8598f651.png",
+            "carFrontUrl": "team/racing_bull_Normal_2x_1_3b745d8b.png",
+            "carLeftUrl": "team/20260630161510_217_242_compressed_more_39279ff1.png",
+            "carRightUrl": "team/2026racingbullscarright_1_ef99ef97.png",
+            "countryName": "新西兰",
+            "countryLogoUrl": "country/new_zealand.png",
+            "countryCircleLogoUrl": "",
+            "wins": 0,
+            "fastestLapRank": 5,
+            "avatarUrl": "drivers/law_avatar_2026_b9a2286f.png",
+            "helmetUrl": "drivers/LAW_Helmets_2026_4db9629c_3c2f0911.png",
+            "constructors": [
+              {
+                "chassisManufacturerId": "8361f339-b227-2381-202b-5fe96ad96654",
+                "chassisManufacturerName": "小红牛",
+                "chassisName": "VCARB 03",
+                "engineManufacturerId": "7bb817b4-61dc-9a21-20ba-1577361b87cc",
+                "engineManufacturerName": "Red Bull Ford",
+                "tyreManufacturerId": "efd96ac7-6f3f-ec9c-b2c9-ff6e50397934",
+                "tyreManufacturerName": "Pirelli",
+                "standing": {
+                  "position": 9,
+                  "points": 75
+                }
+              }
+            ]
+          },
+          {
+            "position": 10,
+            "points": 41,
+            "number": "10",
+            "driverId": "2c943da5-7588-7c37-d812-aec32f2fff61",
+            "driverName": "皮埃尔·加斯利",
+            "numberImageUrl": "number/number_GAS_c6644975.png",
+            "tla": "GAS",
+            "teamId": "31149d0e-db92-8201-4a53-89e29bc241e4",
+            "teamName": "阿尔派",
+            "teamShortName": "Alpine",
+            "teamColor": "00A1E8",
+            "teamLogoUrl": "team/alpine_logo.png",
+            "bannerUrl": null,
+            "carUpUrl": "team/alpine_Normal_2x_75b99f54.png",
+            "carFrontUrl": "team/alpine_Normal_2x_1_6dc0db37.png",
+            "carLeftUrl": "team/20260630161502_210_242_compressed_more_404d2322.png",
+            "carRightUrl": "team/2026alpinecarright_087c08ee.png",
+            "countryName": "法国",
+            "countryLogoUrl": "country/france.png",
+            "countryCircleLogoUrl": "",
+            "wins": 0,
+            "fastestLapRank": 3,
+            "avatarUrl": "drivers/gas_avatar_2026.png",
+            "helmetUrl": "drivers/GAS_Helmets_2026_bedada88_2e45d029.png",
+            "constructors": [
+              {
+                "chassisManufacturerId": "0ce39bd3-7b21-e7ac-e4ae-8ffe4a103f73",
+                "chassisManufacturerName": "Alpine",
+                "chassisName": "A526",
+                "engineManufacturerId": "ea2b3166-0d5e-ac18-d830-bf0bd0846bbb",
+                "engineManufacturerName": "Mercedes",
+                "tyreManufacturerId": "efd96ac7-6f3f-ec9c-b2c9-ff6e50397934",
+                "tyreManufacturerName": "Pirelli",
+                "standing": {
+                  "position": 10,
+                  "points": 41
+                }
+              }
+            ]
+          },
+          {
+            "position": 11,
+            "points": 38,
+            "number": "41",
+            "driverId": "1dd44a2e-d5b0-1c39-4a7f-f2c56c2ca899",
+            "driverName": "阿尔维德·林德布拉德",
+            "numberImageUrl": "number/number_LIN_9a3ac374.png",
+            "tla": "LIN",
+            "teamId": "707ad19e-954d-a782-b380-99b0094f523a",
+            "teamName": "红牛二队",
+            "teamShortName": "Racing Bulls",
+            "teamColor": "6692ff",
+            "teamLogoUrl": "team/racing_bulls_logo.png",
+            "bannerUrl": null,
+            "carUpUrl": "team/racing_bull_Normal_2x_8598f651.png",
+            "carFrontUrl": "team/racing_bull_Normal_2x_1_3b745d8b.png",
+            "carLeftUrl": "team/20260630161510_217_242_compressed_more_39279ff1.png",
+            "carRightUrl": "team/2026racingbullscarright_1_ef99ef97.png",
+            "countryName": "英国",
+            "countryLogoUrl": "country/united_kingdom_of_great_britain_and_northern_ireland.png",
+            "countryCircleLogoUrl": "country/united_kingdom_of_great_britain_and_northern_ireland_circle.png",
+            "wins": 0,
+            "fastestLapRank": 6,
+            "avatarUrl": "drivers/lin_avatar_2026_f91ca0c3.png",
+            "helmetUrl": "drivers/LIN_Helmets_2026_43831aaa_a3025092.png",
+            "constructors": [
+              {
+                "chassisManufacturerId": "8361f339-b227-2381-202b-5fe96ad96654",
+                "chassisManufacturerName": "小红牛",
+                "chassisName": "VCARB 03",
+                "engineManufacturerId": "7bb817b4-61dc-9a21-20ba-1577361b87cc",
+                "engineManufacturerName": "Red Bull Ford",
+                "tyreManufacturerId": "efd96ac7-6f3f-ec9c-b2c9-ff6e50397934",
+                "tyreManufacturerName": "Pirelli",
+                "standing": {
+                  "position": 11,
+                  "points": 38
+                }
+              }
+            ]
+          },
+          {
+            "position": 12,
+            "points": 27,
+            "number": "43",
+            "driverId": "ad1fb39d-62f8-3ffa-71ed-0966e1eae74e",
+            "driverName": "弗朗哥·科拉平托",
+            "numberImageUrl": "number/number_COL_036dcfb7.png",
+            "tla": "COL",
+            "teamId": "31149d0e-db92-8201-4a53-89e29bc241e4",
+            "teamName": "阿尔派",
+            "teamShortName": "Alpine",
+            "teamColor": "00A1E8",
+            "teamLogoUrl": "team/alpine_logo.png",
+            "bannerUrl": null,
+            "carUpUrl": "team/alpine_Normal_2x_75b99f54.png",
+            "carFrontUrl": "team/alpine_Normal_2x_1_6dc0db37.png",
+            "carLeftUrl": "team/20260630161502_210_242_compressed_more_404d2322.png",
+            "carRightUrl": "team/2026alpinecarright_087c08ee.png",
+            "countryName": "阿根廷",
+            "countryLogoUrl": "country/argentina.png",
+            "countryCircleLogoUrl": "",
+            "wins": 0,
+            "fastestLapRank": 7,
+            "avatarUrl": "drivers/col_avatar_2026_19eb5c06.png",
+            "helmetUrl": "drivers/COL_Helmets_2026_fe9a4ba7_d80489e1.png",
+            "constructors": [
+              {
+                "chassisManufacturerId": "0ce39bd3-7b21-e7ac-e4ae-8ffe4a103f73",
+                "chassisManufacturerName": "Alpine",
+                "chassisName": "A526",
+                "engineManufacturerId": "ea2b3166-0d5e-ac18-d830-bf0bd0846bbb",
+                "engineManufacturerName": "Mercedes",
+                "tyreManufacturerId": "efd96ac7-6f3f-ec9c-b2c9-ff6e50397934",
+                "tyreManufacturerName": "Pirelli",
+                "standing": {
+                  "position": 12,
+                  "points": 27
+                }
+              }
+            ]
+          },
+          {
+            "position": 13,
+            "points": 23,
+            "number": "87",
+            "driverId": "a68dd303-a3ac-0a2f-b5e7-8bf994ed5764",
+            "driverName": "奥利弗·贝尔曼",
+            "numberImageUrl": "number/number_BEA_a976cee1.png",
+            "tla": "BEA",
+            "teamId": "bb9bcfb7-1b82-393f-b990-614f38468993",
+            "teamName": "哈斯",
+            "teamShortName": "Haas",
+            "teamColor": "dee1e2",
+            "teamLogoUrl": "team/haas_logo.png",
+            "bannerUrl": null,
+            "carUpUrl": "team/Haas_Normal_2x_8b968239.png",
+            "carFrontUrl": "team/haas_Normal_2x_1_a8f97aa0.png",
+            "carLeftUrl": "team/20260630161506_214_242_compressed_more_330dc7af.png",
+            "carRightUrl": "team/2026haasf1teamcarright_1_8ca6508f.png",
+            "countryName": "英国",
+            "countryLogoUrl": "country/united_kingdom_of_great_britain_and_northern_ireland.png",
+            "countryCircleLogoUrl": "country/united_kingdom_of_great_britain_and_northern_ireland_circle.png",
+            "wins": 0,
+            "fastestLapRank": 8,
+            "avatarUrl": "drivers/bea_avatar_2026.png",
+            "helmetUrl": "drivers/BEA_Helmets_2026_7b3f10d8_903f7820.png",
+            "constructors": [
+              {
+                "chassisManufacturerId": "18f7f512-13d9-8224-144c-b337acac2452",
+                "chassisManufacturerName": "哈斯",
+                "chassisName": "VF-26",
+                "engineManufacturerId": "cb36354e-b9d2-6cde-43b6-d0a852d8218d",
+                "engineManufacturerName": "Ferrari",
+                "tyreManufacturerId": "efd96ac7-6f3f-ec9c-b2c9-ff6e50397934",
+                "tyreManufacturerName": "Pirelli",
+                "standing": {
+                  "position": 13,
+                  "points": 23
+                }
+              }
+            ]
+          },
+          {
+            "position": 14,
+            "points": 13,
+            "number": "27",
+            "driverId": "ad3273d4-69c6-1255-0867-7911972849e5",
+            "driverName": "尼科·霍肯伯格",
+            "numberImageUrl": "number/number_HUL_4b27c507.png",
+            "tla": "HUL",
+            "teamId": "2ebdcb0e-dcfe-fe88-8532-4fdb734b9a02",
+            "teamName": "奥迪",
+            "teamShortName": "Audi",
+            "teamColor": "FF2D00",
+            "teamLogoUrl": "team/audi_logo.png",
+            "bannerUrl": null,
+            "carUpUrl": "team/audi_Normal_2x_665a0798.png",
+            "carFrontUrl": "team/Audi_Normal_2x_1_e03ea5ab.png",
+            "carLeftUrl": "team/f1-2026-three-quarter-audi_Normal_00b36d25.png",
+            "carRightUrl": "team/2026audicarright_f56b09a9.png",
+            "countryName": "德国",
+            "countryLogoUrl": "country/germany.png",
+            "countryCircleLogoUrl": "",
+            "wins": 0,
+            "fastestLapRank": 3,
+            "avatarUrl": "drivers/hul_avatar_2026.png",
+            "helmetUrl": "drivers/HUL_Helmets_2026_84cfa582_d4e881ac.png",
+            "constructors": [
+              {
+                "chassisManufacturerId": "d2a2c747-09d2-2c68-5799-891e979f7d4a",
+                "chassisManufacturerName": "奥迪",
+                "chassisName": "R26",
+                "engineManufacturerId": "df98237f-8ec3-874c-c0d8-4ea33469308a",
+                "engineManufacturerName": "Audi",
+                "tyreManufacturerId": "efd96ac7-6f3f-ec9c-b2c9-ff6e50397934",
+                "tyreManufacturerName": "Pirelli",
+                "standing": {
+                  "position": 14,
+                  "points": 13
+                }
+              }
+            ]
+          },
+          {
+            "position": 15,
+            "points": 10,
+            "number": "5",
+            "driverId": "40f68eee-8f93-aa4c-44b1-52cf95ba5663",
+            "driverName": "加布里埃尔·博托莱托",
+            "numberImageUrl": "number/number_BOR_97fa1728.png",
+            "tla": "BOR",
+            "teamId": "2ebdcb0e-dcfe-fe88-8532-4fdb734b9a02",
+            "teamName": "奥迪",
+            "teamShortName": "Audi",
+            "teamColor": "FF2D00",
+            "teamLogoUrl": "team/audi_logo.png",
+            "bannerUrl": null,
+            "carUpUrl": "team/audi_Normal_2x_665a0798.png",
+            "carFrontUrl": "team/Audi_Normal_2x_1_e03ea5ab.png",
+            "carLeftUrl": "team/f1-2026-three-quarter-audi_Normal_00b36d25.png",
+            "carRightUrl": "team/2026audicarright_f56b09a9.png",
+            "countryName": "巴西",
+            "countryLogoUrl": "country/brazil.png",
+            "countryCircleLogoUrl": "country/brazil_circle.png",
+            "wins": 0,
+            "fastestLapRank": 7,
+            "avatarUrl": "drivers/bor_avatar_2026.png",
+            "helmetUrl": "drivers/BOR_Helmets_2026_34e69c88_0792b93c.png",
+            "constructors": [
+              {
+                "chassisManufacturerId": "d2a2c747-09d2-2c68-5799-891e979f7d4a",
+                "chassisManufacturerName": "奥迪",
+                "chassisName": "R26",
+                "engineManufacturerId": "df98237f-8ec3-874c-c0d8-4ea33469308a",
+                "engineManufacturerName": "Audi",
+                "tyreManufacturerId": "efd96ac7-6f3f-ec9c-b2c9-ff6e50397934",
+                "tyreManufacturerName": "Pirelli",
+                "standing": {
+                  "position": 15,
+                  "points": 10
+                }
+              }
+            ]
+          },
+          {
+            "position": 16,
+            "points": 7,
+            "number": "31",
+            "driverId": "3d456329-ad6c-ed02-d22a-372245b4d33f",
+            "driverName": "埃斯特班·奥康",
+            "numberImageUrl": "number/number_OCO_39e00346.png",
+            "tla": "OCO",
+            "teamId": "bb9bcfb7-1b82-393f-b990-614f38468993",
+            "teamName": "哈斯",
+            "teamShortName": "Haas",
+            "teamColor": "dee1e2",
+            "teamLogoUrl": "team/haas_logo.png",
+            "bannerUrl": null,
+            "carUpUrl": "team/Haas_Normal_2x_8b968239.png",
+            "carFrontUrl": "team/haas_Normal_2x_1_a8f97aa0.png",
+            "carLeftUrl": "team/20260630161506_214_242_compressed_more_330dc7af.png",
+            "carRightUrl": "team/2026haasf1teamcarright_1_8ca6508f.png",
+            "countryName": "法国",
+            "countryLogoUrl": "country/france.png",
+            "countryCircleLogoUrl": "",
+            "wins": 0,
+            "fastestLapRank": 3,
+            "avatarUrl": "drivers/oco_avatar_2026.png",
+            "helmetUrl": "drivers/OCO_Helmets_2026_a21bac69_8ad6daed.png",
+            "constructors": [
+              {
+                "chassisManufacturerId": "18f7f512-13d9-8224-144c-b337acac2452",
+                "chassisManufacturerName": "哈斯",
+                "chassisName": "VF-26",
+                "engineManufacturerId": "cb36354e-b9d2-6cde-43b6-d0a852d8218d",
+                "engineManufacturerName": "Ferrari",
+                "tyreManufacturerId": "efd96ac7-6f3f-ec9c-b2c9-ff6e50397934",
+                "tyreManufacturerName": "Pirelli",
+                "standing": {
+                  "position": 16,
+                  "points": 7
+                }
+              }
+            ]
+          },
+          {
+            "position": 17,
+            "points": 7,
+            "number": "14",
+            "driverId": "730bf7a5-44f2-b679-7606-f3fcbd9a484b",
+            "driverName": "费尔南多·阿隆索",
+            "numberImageUrl": "number/number_ALO_6c67f395.png",
+            "tla": "ALO",
+            "teamId": "e6d5e05e-048e-66a7-a05d-6b03696c1a84",
+            "teamName": "阿斯顿·马丁",
+            "teamShortName": "Aston Martin",
+            "teamColor": "229971",
+            "teamLogoUrl": "team/aston_martin_logo.png",
+            "bannerUrl": null,
+            "carUpUrl": "team/aston_martin_Normal_2x_1_975d6048.png",
+            "carFrontUrl": "team/aston_martin_Normal_2x_df0f72a9.png",
+            "carLeftUrl": "team/20260630161503_211_242_compressed_more_f043b9cc.png",
+            "carRightUrl": "team/2026astonmartincarright_1_71b8f2dd.png",
+            "countryName": "西班牙",
+            "countryLogoUrl": "country/spain.png",
+            "countryCircleLogoUrl": "country/spain_circle.png",
+            "wins": 0,
+            "fastestLapRank": 9,
+            "avatarUrl": "drivers/alo_avatar_2026.png",
+            "helmetUrl": "drivers/ALO_Helmets_2026_984318d4_b1645a4a.png",
+            "constructors": [
+              {
+                "chassisManufacturerId": "5051dac4-681a-84d3-bb9e-cd4662ef9162",
+                "chassisManufacturerName": "阿斯顿马丁",
+                "chassisName": "AMR26",
+                "engineManufacturerId": "72d75dc4-ed53-e50c-8120-31a571c75126",
+                "engineManufacturerName": "Honda",
+                "tyreManufacturerId": "efd96ac7-6f3f-ec9c-b2c9-ff6e50397934",
+                "tyreManufacturerName": "Pirelli",
+                "standing": {
+                  "position": 17,
+                  "points": 7
+                }
+              }
+            ]
+          },
+          {
+            "position": 18,
+            "points": 7,
+            "number": "55",
+            "driverId": "4d3c4639-bc5f-45e1-162b-6849a239bd6a",
+            "driverName": "卡洛斯·塞恩斯",
+            "numberImageUrl": "number/number_SAI_f0196cea.png",
+            "tla": "SAI",
+            "teamId": "f4f33810-0f5f-c44b-be40-af2630a28b56",
+            "teamName": "威廉姆斯",
+            "teamShortName": "Williams",
+            "teamColor": "1868DB",
+            "teamLogoUrl": "team/williams_logo.png",
+            "bannerUrl": null,
+            "carUpUrl": "team/williams_Normal_2x_1_458c0251.png",
+            "carFrontUrl": "team/williams_Normal_2x_03bc0589.png",
+            "carLeftUrl": "team/20260630161512_219_242_compressed_more_68ae386f.png",
+            "carRightUrl": "team/2026williamscarright_1_3e6cf506.png",
+            "countryName": "西班牙",
+            "countryLogoUrl": "country/spain.png",
+            "countryCircleLogoUrl": "country/spain_circle.png",
+            "wins": 0,
+            "fastestLapRank": 7,
+            "avatarUrl": "drivers/sai_avatar_2026_2dd81790.png",
+            "helmetUrl": "drivers/SAI_Helmets_2026_f3ecf198_991a6f85.png",
+            "constructors": [
+              {
+                "chassisManufacturerId": "53fe4920-ddd0-fc9c-43f4-ec97594c523e",
+                "chassisManufacturerName": "威廉姆斯",
+                "chassisName": "FW48",
+                "engineManufacturerId": "ea2b3166-0d5e-ac18-d830-bf0bd0846bbb",
+                "engineManufacturerName": "Mercedes",
+                "tyreManufacturerId": "efd96ac7-6f3f-ec9c-b2c9-ff6e50397934",
+                "tyreManufacturerName": "Pirelli",
+                "standing": {
+                  "position": 18,
+                  "points": 7
+                }
+              }
+            ]
+          },
+          {
+            "position": 19,
+            "points": 5,
+            "number": "23",
+            "driverId": "90c1fc1d-51fa-a1ce-954b-c9b45c90c05a",
+            "driverName": "亚历山大·阿尔本",
+            "numberImageUrl": "number/number_ALB_41b4ec79.png",
+            "tla": "ALB",
+            "teamId": "f4f33810-0f5f-c44b-be40-af2630a28b56",
+            "teamName": "威廉姆斯",
+            "teamShortName": "Williams",
+            "teamColor": "1868DB",
+            "teamLogoUrl": "team/williams_logo.png",
+            "bannerUrl": null,
+            "carUpUrl": "team/williams_Normal_2x_1_458c0251.png",
+            "carFrontUrl": "team/williams_Normal_2x_03bc0589.png",
+            "carLeftUrl": "team/20260630161512_219_242_compressed_more_68ae386f.png",
+            "carRightUrl": "team/2026williamscarright_1_3e6cf506.png",
+            "countryName": "泰国",
+            "countryLogoUrl": "country/thailand.png",
+            "countryCircleLogoUrl": "",
+            "wins": 0,
+            "fastestLapRank": 7,
+            "avatarUrl": "drivers/alb_avatar_2026_c3c52626.png",
+            "helmetUrl": "drivers/ALB_Helmets_2026_618f7061_3146a59d.png",
+            "constructors": [
+              {
+                "chassisManufacturerId": "53fe4920-ddd0-fc9c-43f4-ec97594c523e",
+                "chassisManufacturerName": "威廉姆斯",
+                "chassisName": "FW48",
+                "engineManufacturerId": "ea2b3166-0d5e-ac18-d830-bf0bd0846bbb",
+                "engineManufacturerName": "Mercedes",
+                "tyreManufacturerId": "efd96ac7-6f3f-ec9c-b2c9-ff6e50397934",
+                "tyreManufacturerName": "Pirelli",
+                "standing": {
+                  "position": 19,
+                  "points": 5
+                }
+              }
+            ]
+          },
+          {
+            "position": 20,
+            "points": 1,
+            "number": "22",
+            "driverId": "7399d11f-1588-8739-029c-57d9bdd0f7ee",
+            "driverName": "角田裕毅",
+            "numberImageUrl": "number/2026racingbullsyuktsu01numberwhitefrless-_-webp_eefa43fa.png",
+            "tla": "TSU",
+            "teamId": "707ad19e-954d-a782-b380-99b0094f523a",
+            "teamName": "红牛二队",
+            "teamShortName": "Racing Bulls",
+            "teamColor": "6692ff",
+            "teamLogoUrl": "team/racing_bulls_logo.png",
+            "bannerUrl": null,
+            "carUpUrl": "team/racing_bull_Normal_2x_8598f651.png",
+            "carFrontUrl": "team/racing_bull_Normal_2x_1_3b745d8b.png",
+            "carLeftUrl": "team/20260630161510_217_242_compressed_more_39279ff1.png",
+            "carRightUrl": "team/2026racingbullscarright_1_ef99ef97.png",
+            "countryName": "日本",
+            "countryLogoUrl": "country/japan.png",
+            "countryCircleLogoUrl": "country/japan_circle.png",
+            "wins": 0,
+            "fastestLapRank": 12,
+            "avatarUrl": "drivers/2026racingbullsyuktsu01right-2_cropped_380_bddd1ecd.png",
+            "helmetUrl": "drivers/TSU_Helmets_2026_6a129060.png",
+            "constructors": [
+              {
+                "chassisManufacturerId": "8361f339-b227-2381-202b-5fe96ad96654",
+                "chassisManufacturerName": "小红牛",
+                "chassisName": "VCARB 03",
+                "engineManufacturerId": "7bb817b4-61dc-9a21-20ba-1577361b87cc",
+                "engineManufacturerName": "Red Bull Ford",
+                "tyreManufacturerId": "efd96ac7-6f3f-ec9c-b2c9-ff6e50397934",
+                "tyreManufacturerName": "Pirelli",
+                "standing": {
+                  "position": 20,
+                  "points": 1
+                }
+              }
+            ]
+          },
+          {
+            "position": 21,
+            "points": 0,
+            "number": "18",
+            "driverId": "c4f3266c-9383-f1b2-58b4-8422d88479fc",
+            "driverName": "兰斯·斯特罗尔",
+            "numberImageUrl": "number/number_STR_399b81fc.png",
+            "tla": "STR",
+            "teamId": "e6d5e05e-048e-66a7-a05d-6b03696c1a84",
+            "teamName": "阿斯顿·马丁",
+            "teamShortName": "Aston Martin",
+            "teamColor": "229971",
+            "teamLogoUrl": "team/aston_martin_logo.png",
+            "bannerUrl": null,
+            "carUpUrl": "team/aston_martin_Normal_2x_1_975d6048.png",
+            "carFrontUrl": "team/aston_martin_Normal_2x_df0f72a9.png",
+            "carLeftUrl": "team/20260630161503_211_242_compressed_more_f043b9cc.png",
+            "carRightUrl": "team/2026astonmartincarright_1_71b8f2dd.png",
+            "countryName": "加拿大",
+            "countryLogoUrl": "country/canada.png",
+            "countryCircleLogoUrl": "country/canada_circle.png",
+            "wins": 0,
+            "fastestLapRank": 14,
+            "avatarUrl": "drivers/str_avatar_2026.png",
+            "helmetUrl": "drivers/STR_Helmets_2026_a7a02443_5043d0ca.png",
+            "constructors": [
+              {
+                "chassisManufacturerId": "5051dac4-681a-84d3-bb9e-cd4662ef9162",
+                "chassisManufacturerName": "阿斯顿马丁",
+                "chassisName": "AMR26",
+                "engineManufacturerId": "72d75dc4-ed53-e50c-8120-31a571c75126",
+                "engineManufacturerName": "Honda",
+                "tyreManufacturerId": "efd96ac7-6f3f-ec9c-b2c9-ff6e50397934",
+                "tyreManufacturerName": "Pirelli",
+                "standing": {
+                  "position": 21,
+                  "points": 0
+                }
+              }
+            ]
+          },
+          {
+            "position": 22,
+            "points": 0,
+            "number": "77",
+            "driverId": "5e0b2810-8728-0c2e-f3b7-d6fdd74f4ccf",
+            "driverName": "瓦尔特里·博塔斯",
+            "numberImageUrl": "number/number_BOT_a4d349cc.png",
+            "tla": "BOT",
+            "teamId": "e6a04b2e-06ea-7395-f64f-c0a81afc4ed2",
+            "teamName": "凯迪拉克",
+            "teamShortName": "Cadillac",
+            "teamColor": "aaaaad",
+            "teamLogoUrl": "team/cadillac_logo.png",
+            "bannerUrl": null,
+            "carUpUrl": "team/cadillac_Normal_2x_23eb073b.png",
+            "carFrontUrl": "team/Cadillac_Normal_2x_1_45c466f2.png",
+            "carLeftUrl": "team/f1-2026-three-quarter-cadillac_Normal_549c7797.png",
+            "carRightUrl": "team/2026cadillaccarright_1_6e5c725b.png",
+            "countryName": "芬兰",
+            "countryLogoUrl": "country/finland.png",
+            "countryCircleLogoUrl": "",
+            "wins": 0,
+            "fastestLapRank": 15,
+            "avatarUrl": "drivers/bot_avatar_2026.png",
+            "helmetUrl": "drivers/BOT_Helmets_2026_8b9117ba_6ea8f348.png",
+            "constructors": [
+              {
+                "chassisManufacturerId": "5e895bfd-995b-2759-6824-5ca4f02d3ddb",
+                "chassisManufacturerName": "凯迪拉克",
+                "chassisName": "MAC-26",
+                "engineManufacturerId": "cb36354e-b9d2-6cde-43b6-d0a852d8218d",
+                "engineManufacturerName": "Ferrari",
+                "tyreManufacturerId": "efd96ac7-6f3f-ec9c-b2c9-ff6e50397934",
+                "tyreManufacturerName": "Pirelli",
+                "standing": {
+                  "position": 22,
+                  "points": 0
+                }
+              }
+            ]
+          },
+          {
+            "position": 23,
+            "points": 0,
+            "number": "11",
+            "driverId": "955724d0-47bc-ba28-b112-01e362a4a1b2",
+            "driverName": "塞尔吉奥·佩雷兹",
+            "numberImageUrl": "drivers/number_PER_ebb21008.png",
+            "tla": "PER",
+            "teamId": "e6a04b2e-06ea-7395-f64f-c0a81afc4ed2",
+            "teamName": "凯迪拉克",
+            "teamShortName": "Cadillac",
+            "teamColor": "aaaaad",
+            "teamLogoUrl": "team/cadillac_logo.png",
+            "bannerUrl": null,
+            "carUpUrl": "team/cadillac_Normal_2x_23eb073b.png",
+            "carFrontUrl": "team/Cadillac_Normal_2x_1_45c466f2.png",
+            "carLeftUrl": "team/f1-2026-three-quarter-cadillac_Normal_549c7797.png",
+            "carRightUrl": "team/2026cadillaccarright_1_6e5c725b.png",
+            "countryName": "墨西哥",
+            "countryLogoUrl": "country/mexico.png",
+            "countryCircleLogoUrl": "country/mexico_circle.png",
+            "wins": 0,
+            "fastestLapRank": 14,
+            "avatarUrl": "drivers/per_avatar_2026.png",
+            "helmetUrl": "drivers/PER_Helmets_2026_9aca73ae_b4133dfb.png",
+            "constructors": [
+              {
+                "chassisManufacturerId": "5e895bfd-995b-2759-6824-5ca4f02d3ddb",
+                "chassisManufacturerName": "凯迪拉克",
+                "chassisName": "MAC-26",
+                "engineManufacturerId": "cb36354e-b9d2-6cde-43b6-d0a852d8218d",
+                "engineManufacturerName": "Ferrari",
+                "tyreManufacturerId": "efd96ac7-6f3f-ec9c-b2c9-ff6e50397934",
+                "tyreManufacturerName": "Pirelli",
+                "standing": {
+                  "position": 23,
+                  "points": 0
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
