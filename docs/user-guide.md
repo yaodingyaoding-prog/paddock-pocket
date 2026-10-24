@@ -60,7 +60,7 @@
 
 Android 0.7.0 的包名为 `dev.paddock.pocket`，`versionCode=7`。应用打开时检查原生版本，也提供手动检查；不提供静默安装或后台推送更新。0.5.0 用户需手动安装新版；0.6.0 用户可从 App 检查更新。安装同包名更新需要保留原签名证书。
 
-当前 APK 使用预览证书。Java 编译、签名与 ZIP 对齐已检查，Android 真机上的登录、相册、播放、更新提示和不同启动器的小组件仍需验收。下载校验见 [`android-build.json`](../public/downloads/android-build.json)，原生源码与构建要求见 [`native/android`](../native/android)。
+Android 0.7.0 已由维护者完成真机验证，确认可正常使用。APK 使用项目预览证书，Java 编译、签名与 ZIP 对齐已检查。下载校验见 [`android-build.json`](../public/downloads/android-build.json)，原生源码与构建要求见 [`native/android`](../native/android)。
 
 Apple Watch 原生应用、表盘复杂功能和智能叠放组件尚未提供。
 

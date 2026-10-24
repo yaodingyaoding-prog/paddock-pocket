@@ -12,5 +12,11 @@
   "webOrigin": "https://f1.xiaodinglab.com",
   "builtAtUtc": "2026-10-23T05:26:43.9404038Z",
   "updateMode": "Web content follows production; native updates require user-confirmed APK installation",
-  "validation": "Java compilation, APK signature and ZIP alignment passed; Android device acceptance pending"
+  "validation": "Java compilation, APK signature and ZIP alignment passed; real-device validation confirmed by maintainer",
+  "deviceValidation": {
+    "status": "passed",
+    "reportedBy": "maintainer",
+    "reportedAt": "2026-10-24",
+    "artifactSha256": "636daec71902bdf92cf732e0cb0efc5a56792971a79501a494b9237f2349d6f8"
+  }
 }

@@ -12,6 +12,9 @@ if(sha256!==report.sha256.toLowerCase()||bytes.length!==report.size||bytes.readU
 const download='/downloads/Paddock-Pocket-'+version+'.apk';
 if(report.download!==download)throw Error('Invalid release download path');
 fs.copyFileSync(report.apk,path.join(root,'public',download));
-const metadata={version,versionCode,package:pkg,channel:report.signingChannel==='preview'?'preview':'release',download,bytes:bytes.length,sha256,certificateSha256:report.certificateSha256,minSdk:report.minSdk,targetSdk:report.targetSdk,webOrigin:report.webOrigin,builtAtUtc:report.builtAtUtc,updateMode:'Web content follows production; native updates require user-confirmed APK installation',validation:'Java compilation, APK signature and ZIP alignment passed; Android device acceptance pending'};
+// Retain a maintainer's device result only for the exact same signed APK.
+let previous;try{previous=JSON.parse(fs.readFileSync(path.join(root,'public/downloads/android-build.json'),'utf8'));}catch{}
+const deviceValidation=previous?.version===version&&previous?.sha256===sha256&&previous?.certificateSha256===report.certificateSha256&&previous?.deviceValidation?.status==='passed'&&previous.deviceValidation.artifactSha256===sha256?previous.deviceValidation:undefined;
+const metadata={version,versionCode,package:pkg,channel:report.signingChannel==='preview'?'preview':'release',download,bytes:bytes.length,sha256,certificateSha256:report.certificateSha256,minSdk:report.minSdk,targetSdk:report.targetSdk,webOrigin:report.webOrigin,builtAtUtc:report.builtAtUtc,updateMode:'Web content follows production; native updates require user-confirmed APK installation',validation:'Java compilation, APK signature and ZIP alignment passed'+(deviceValidation?'; real-device validation confirmed by maintainer':''),...(deviceValidation?{deviceValidation}:{})};
 fs.writeFileSync(path.join(root,'public/downloads/android-build.json'),JSON.stringify(metadata,null,2)+'\n');
 console.log(JSON.stringify({download,version,versionCode,bytes:bytes.length,sha256,channel:metadata.channel}));

@@ -48,4 +48,4 @@ Forks must also update the website / host and update URLs, package identity and 
 
 ## Runtime acceptance
 
-The current release has passed compilation, signature v2/v3, ZIP alignment and metadata verification. Login, image picking, calendar saving, platform playback, upgrades and launcher-specific widgets still require Android device acceptance. The source and static checks do not constitute hardware testing.
+The current release has passed compilation, signature v2/v3, ZIP alignment and metadata verification. On 2026-10-24, the maintainer confirmed completion of real-device validation for Android 0.7.0 and reported that the app works. Download metadata records this confirmation against the published APK's SHA-256.

@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Rewrote the Chinese and English READMEs around product features, viewing workflows, account sync and Android use. Updated Android 0.7.0 device-validation status following the maintainer's confirmation on 2026-10-24.
 - Added account-based cross-device sync for driver/team follows, theme, accent and time zone, using owner-only Supabase RLS and atomic partial updates. Includes safe legacy migration, save status and retries, foreground refresh and pending-save handling before logout.
 - Fixed login and registration from the legacy domain by canonicalizing document requests before forms render, preserving return links while keeping strict API origin checks.
 - Fixed logout retaining stale account UI after hash navigation. Successful logout now clears account state, notifies other tabs and opens the login page.
@@ -19,7 +20,7 @@
 - Added MIT licensing for original project code, third-party notices, bilingual documentation and release-integrity checks.
 - Removed unused car artwork, obsolete native adapters and snapshots, superseded design notes, and the 0.5.0 APK. The preceding 0.6.0 APK remains available for recovery.
 
-The published APK is a preview build. Java compilation, signature, ZIP alignment and metadata are verified. Android device acceptance remains pending.
+The published APK uses the project's preview certificate. Java compilation, signature, ZIP alignment and metadata are verified. The maintainer confirmed real-device validation on 2026-10-24.
 
 ## 0.6.0
 

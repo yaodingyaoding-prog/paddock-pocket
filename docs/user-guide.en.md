@@ -62,7 +62,7 @@ In Standings → Championship conditions (积分 → 夺冠条件), choose a dri
 
 Android 0.7.0 uses package `dev.paddock.pocket` and `versionCode=7`. It checks native versions while open and supports manual checks. It does not silently install updates or deliver background push updates. Users of 0.5.0 need a manual installation; 0.6.0 users can check for updates in the app. In-place updates require the same signing certificate.
 
-The APK uses a preview certificate. Java compilation, signing and ZIP alignment have been checked. Login, image picking, playback, update prompts and launcher-specific widgets still require Android device acceptance. See the [download metadata and SHA-256](../public/downloads/android-build.json) and [native sources and build requirements](../native/android).
+The maintainer has completed real-device validation of Android 0.7.0 and confirmed that it works. The APK uses the project's preview certificate, with Java compilation, signing and ZIP alignment checked. See the [download metadata and SHA-256](../public/downloads/android-build.json) and [native sources and build requirements](../native/android).
 
 A native Apple Watch app, watch-face complications and Smart Stack widgets are not currently available.
 
