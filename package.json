@@ -1,13 +1,13 @@
 {
   "name": "paddock-pocket",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "private": true,
   "engines": {
     "node": ">=22.13.0"
   },
   "scripts": {
     "dev": "vite --host 127.0.0.1 --port 5174",
-    "build": "vite build",
+    "build": "node scripts/build-web.mjs",
     "preview": "vite preview --host 127.0.0.1 --port 5174",
     "check": "node scripts/check.mjs",
     "deploy": "wrangler deploy"

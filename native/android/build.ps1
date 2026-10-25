@@ -31,6 +31,8 @@ $shellRoot=Join-Path $repositoryRoot ('.local-artifacts\android-web\'+$versionNa
 if(!(Test-Path -LiteralPath (Join-Path $shellRoot 'shell-manifest.json'))){throw 'Prepare the matching Android web shell before building'}
 $shellManifest=Get-Content -LiteralPath (Join-Path $shellRoot 'shell-manifest.json') -Raw | ConvertFrom-Json
 if($shellManifest.version -ne $versionName){throw 'Web shell version mismatch'}
+Push-Location $repositoryRoot
+try { & node scripts/web-source-fingerprint.mjs (Join-Path $shellRoot 'shell-manifest.json'); if($LASTEXITCODE -ne 0){throw 'Web shell does not match current source'} } finally { Pop-Location }
 foreach($file in $shellManifest.files){if((Get-FileHash -LiteralPath (Join-Path $shellRoot $file.path) -Algorithm SHA256).Hash.ToLowerInvariant() -ne $file.sha256){throw 'Web shell asset hash mismatch'}}
 Copy-Item -LiteralPath $shellRoot -Destination (Join-Path $assetRoot 'shell') -Recurse
 $viewingRelease=Get-Content -LiteralPath (Join-Path $repositoryRoot 'public\user-scripts\release.json') -Raw | ConvertFrom-Json

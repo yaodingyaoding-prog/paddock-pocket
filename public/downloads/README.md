@@ -1,7 +1,7 @@
 # Android downloads
 
-- [Current 0.7.0 preview APK](Paddock-Pocket-0.7.0.apk)
+- [Current 1.0.2 release APK](Paddock-Pocket-1.0.2.apk)
 - [Version, SHA-256 and signing certificate](android-build.json)
-- [Previous 0.6.0 APK](Paddock-Pocket-0.6.0.apk)
+- [Previous 1.0.1 APK](Paddock-Pocket-1.0.1.apk)
 
-Android 8.0 or later. This is an online app using the production website, with a native widget and system actions. Native device acceptance remains pending. See the repository's Android build and release documentation before distributing a fork. Private signing files are never distributed here.
+Android 8.0 or later. The release uses the production website, a matching bundled fallback interface, a native home-screen widget and system actions. Install over an existing copy to upgrade. See [release notes](../../docs/android-release.md) for validation details and build instructions. Private signing files are never distributed here.

@@ -29,7 +29,7 @@ public class RaceWidget extends AppWidgetProvider {
         JSONArray drivers=DataRepository.standings(data.optJSONObject("drivers"));String favorite=DataRepository.favorite(c),driver="在 App 中关注你的车手";
         String favorites=c.getSharedPreferences("paddock",0).getString("favorites",favorite);
         StringBuilder summary=new StringBuilder();
-        for(String followed:favorites.split(",")){for(int i=0;i<drivers.length();i++){JSONObject d=drivers.optJSONObject(i);if(d!=null&&d.optString("driverId").equals(followed)){if(summary.length()>0)summary.append("  /  ");summary.append(d.optString("driverName")).append(" P").append(d.optString("position")).append(" · ").append(d.optString("points")).append("分");break;}}}
+        for(String followed:favorites.split(",")){for(int i=0;i<drivers.length();i++){JSONObject d=drivers.optJSONObject(i);if(d!=null&&d.optString("driverId").equals(followed)){if(summary.length()>0)summary.append("\n");summary.append(d.optString("driverName")).append(" P").append(d.optString("position")).append(" · ").append(d.optString("points")).append("分");break;}}}
         if(summary.length()>0)driver=summary.toString();
         for(int id:ids){RemoteViews v=new RemoteViews(c.getPackageName(),R.layout.race_widget);
             v.setTextViewText(R.id.widget_title,race.optString("name","暂无赛事数据"));v.setTextViewText(R.id.widget_session,DataRepository.sessionName(session));

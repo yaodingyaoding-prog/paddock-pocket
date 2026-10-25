@@ -1,0 +1,15 @@
+import assert from 'node:assert/strict';import {build} from 'esbuild';import {pathToFileURL} from 'node:url';
+await build({entryPoints:['lib/news-service.ts','lib/news-feed.ts'],outdir:'.wrangler/checks/news',bundle:true,platform:'node',format:'esm',logLevel:'silent'});
+const {parseNewsFeed,newsSources}=await import(pathToFileURL(process.cwd()+'/.wrangler/checks/news/news-feed.js').href);
+const {NewsService}=await import(pathToFileURL(process.cwd()+'/.wrangler/checks/news/news-service.js').href);
+let now=Date.parse('2026-10-25T07:00:00Z');
+const item=(title,url='https://www.fia.com/news/fixture')=>`<item><title><![CDATA[${title}]]></title><link>${url}</link><description>&lt;p&gt;F1 Mercedes &amp; Russell upgrade&lt;/p&gt;</description><pubDate>Sun, 25 Oct 2026 01:00:00 GMT</pubDate></item>`;
+const xml='<rss><channel>'+item('F1 Russell &amp; Mercedes upgrade')+item('F1 invalid','javascript:alert(1)')+item('F1 wrong host','https://evil.example/f1')+'</channel></rss>';
+const parsed=parseNewsFeed(xml,newsSources[0],now);assert.equal(parsed.length,1);assert(parsed[0].drivers.includes('RUS'));assert(parsed[0].teams.includes('Mercedes'));assert(!parsed[0].summary.includes('<p>'));assert(parsed[0].title.includes('&'));
+let calls=0,offline=false;
+const service=new NewsService(async()=>{calls++;if(offline)throw Error('offline');return new Response(xml);},()=>now);
+const [a,b]=await Promise.all([service.load(),service.load()]);assert.equal(calls,2,'Concurrent readers share one request per source');assert.equal(a.source,'live');assert.equal(b.items.length,1);
+await service.load();assert.equal(calls,2,'Fresh feed uses the five-minute cache');
+now+=300001;offline=true;const stale=await service.load();assert.equal(stale.source,'cache');assert.equal(stale.checkedAt,a.checkedAt,'An outage must not invent a new update timestamp');
+await service.load();assert.equal(calls,4,'Outage backoff prevents upstream request loops');
+console.log('News: feed parsing, source allowlist, safe excerpts, driver/team tags, deduplication, concurrent cache and outage freshness passed.');

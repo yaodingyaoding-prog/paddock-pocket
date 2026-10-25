@@ -1,4 +1,4 @@
-export type NewsItem={id:string;title:string;summary:string;date:string;datePrecision:'day'|'second';source:string;url:string;drivers:string[];teams:string[];topic:string};
+export type NewsItem={id:string;title:string;summary:string;date:string;datePrecision:'day'|'second';source:string;url:string;drivers:string[];teams:string[];topic:string;kind?:'feed'};
 export const editorialUpdatedAt='2026-10-20';
 export const editorialNews:NewsItem[]=[
   {id:'mercedes-stripe-20261020',title:'梅赛德斯公布 Stripe 多年合作',summary:'车队宣布与 Stripe 建立多年合作；相关品牌标识将从 2027 赛季首站起出现在赛车及车队资产上。',date:'2026-10-20',datePrecision:'day',source:'Mercedes-AMG F1',url:'https://www.mercedesamgf1.com/news/mercedes-amg-petronas-f1-team-partners-with-stripe',drivers:[],teams:['Mercedes'],topic:'车队动态'},

@@ -8,3 +8,10 @@ button,input,select{-webkit-tap-highlight-color:transparent}button,select{-webki
 @supports (color:color-mix(in srgb,black,white)){.app-shell .liquid-nav{background:color-mix(in srgb,var(--panel) 82%,transparent)}.liquid-nav .glass-liquid{background:linear-gradient(155deg,#ffffff30,#ffffff08 44%,color-mix(in srgb,var(--accent) 15%,transparent));border-color:color-mix(in srgb,var(--text) 20%,transparent)}}
 @supports not (color:color-mix(in srgb,black,white)){:root{--soft-accent:var(--panel-2)}.app-shell .viewing-channel,.app-shell .explore-card,.app-shell .weather-card{background:var(--panel);border-color:var(--line)}.app-shell .rank-open-arrow{background:var(--panel);border-color:var(--line)}}
 .data-footer{flex-wrap:wrap;gap:10px 18px}.data-refresh-note{font-size:10px;line-height:1.7;color:var(--muted);max-width:100%}
+.app-shell .schedule-toolbar{flex-wrap:wrap;row-gap:10px}
+.app-shell .schedule-toolbar>.segmented{flex-shrink:0;max-width:100%}
+.app-shell .schedule-toolbar>.text-button,.app-shell .weekend-share-button{flex-shrink:0;white-space:nowrap}
+.native-device-actions{display:none}
+[data-native="android"] .app-shell .native-device-actions{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;margin:18px 0}
+[data-native="android"] .app-shell .native-device-actions .native-widget-pin{display:flex;justify-content:center;align-items:center;gap:8px;min-height:44px;padding:11px 14px;border:1px solid var(--line);border-radius:12px;background:var(--panel-2);white-space:nowrap;line-height:1.4}
+@media(max-width:480px){.app-shell .schedule-toolbar>.segmented{flex-basis:100%;width:100%;display:flex}.app-shell .schedule-toolbar>.segmented>button{flex:1;white-space:nowrap}.app-shell .schedule-toolbar>.text-button{margin-left:auto}}

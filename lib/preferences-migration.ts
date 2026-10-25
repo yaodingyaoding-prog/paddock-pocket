@@ -13,7 +13,8 @@ export function finishPreferencesMigration(storage: FollowingStorage, userId: st
   storage.removeItem(followingStorageKey(userId));
   for (const key of ['paddock-theme','paddock-accent','paddock-timezone','paddock-favorite']) storage.removeItem(key);
 }
-export function mirrorWidgetFollowing(storage: FollowingStorage, userId: string, value: Preferences) {
+export function mirrorWidgetFollowing(storage: FollowingStorage, userId: string | null, value: Preferences) {
   storage.setItem(activeFollowingKey, JSON.stringify({ driverIds: value.driverIds, teamIds: value.teamIds }));
-  storage.setItem(followingOwnerKey, userId);
+  storage.setItem(followingOwnerKey, userId || 'guest');
+  if (typeof window !== 'undefined') window.dispatchEvent(new Event('paddock:following-changed'));
 }

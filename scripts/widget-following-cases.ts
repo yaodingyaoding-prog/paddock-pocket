@@ -1,0 +1,14 @@
+import assert from 'node:assert/strict';
+import {mirrorWidgetFollowing} from '../lib/preferences-migration';
+import {defaultPreferences} from '../lib/preference-values';
+import {activeFollowingKey,followingOwnerKey} from '../lib/following';
+const map=new Map<string,string>(),storage={getItem:(k:string)=>map.get(k)||null,setItem:(k:string,v:string)=>map.set(k,v),removeItem:(k:string)=>map.delete(k)};
+const drivers=['11111111-1111-4111-8111-111111111111','22222222-2222-4222-8222-222222222222','33333333-3333-4333-8333-333333333333'];
+mirrorWidgetFollowing(storage,null,{...defaultPreferences(),driverIds:drivers});
+assert.equal(map.get(followingOwnerKey),'guest');
+assert.deepEqual(JSON.parse(map.get(activeFollowingKey)!).driverIds,drivers,'All three guest selections must reach the native mirror');
+mirrorWidgetFollowing(storage,'account-a',{...defaultPreferences(),driverIds:[drivers[2]]});
+assert.deepEqual(JSON.parse(map.get(activeFollowingKey)!).driverIds,[drivers[2]],'Signing in replaces guest widget selections');
+mirrorWidgetFollowing(storage,null,defaultPreferences());
+assert.deepEqual(JSON.parse(map.get(activeFollowingKey)!).driverIds,[],'Signing out must clear the native mirror');
+console.log('Widget following: three guest drivers, account replacement and logout clearing passed.');

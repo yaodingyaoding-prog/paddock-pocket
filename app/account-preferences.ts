@@ -41,6 +41,7 @@ export function useAccountPreferences(account: AccountStatus | null) {
       void sync.refresh().catch(() => {});
     } else if (account) {
       guest.current = defaultPreferences();
+      try { mirrorWidgetFollowing(localStorage, null, guest.current); } catch {}
       setView({ preferences: guest.current, status: 'synced', error: '', ready: true });
     }
     const timer = setInterval(run, 30000);
@@ -51,7 +52,11 @@ export function useAccountPreferences(account: AccountStatus | null) {
   }, [Boolean(account), account?.user?.id]);
   function change(patch: PreferencesPatch) {
     if (identity.current === undefined || identity.current !== (account?.user?.id || null)) return false;
-    if (identity.current === null) { guest.current = { ...guest.current, ...patch }; setView({ preferences: guest.current, ready: true, status: 'synced', error: '' }); return true; }
+    if (identity.current === null) {
+      guest.current = { ...guest.current, ...patch };
+      try { mirrorWidgetFollowing(localStorage, null, guest.current); } catch {}
+      setView({ preferences: guest.current, ready: true, status: 'synced', error: '' }); return true;
+    }
     if (!engine.current?.change(patch)) return false;
     if (debounce.current) clearTimeout(debounce.current);
     debounce.current = setTimeout(() => void engine.current?.flush().catch(() => {}), 650);

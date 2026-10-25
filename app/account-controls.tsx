@@ -43,6 +43,10 @@ export function useAccountControls(options?: { beforeLogout?: () => Promise<void
     } catch (failure) { setError(failure instanceof Error ? failure.message : '暂时无法退出，请重试。'); }
     finally { signingOut.current = false; setBusy(false); }
   }
-  function updateUser(user: AccountUser) { setStatus(value => value ? { ...value, user } : value); }
+  function updateUser(user: AccountUser) {
+    // An older session read must not overwrite a just-saved avatar.
+    generation.current++;
+    setStatus(value => value ? { ...value, user } : value);
+  }
   return { status, error, busy, logout, updateUser };
 }

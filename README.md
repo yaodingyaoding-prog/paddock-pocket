@@ -4,7 +4,7 @@
 
 围场口袋是一款为 F1 车迷打造的赛事与观赛应用，将赛程、积分、赛道天气、车手档案、观赛入口和数据分析放在一起。打开就能查看比赛，登录后拥有自己的车迷通行证、领奖台阵容和跨设备同步的个人设置。
 
-[在线体验](https://F1.xiaodinglab.com/) · [下载 Android 1.0.1](https://f1.xiaodinglab.com/download) · [使用指南](docs/user-guide.md) · [English](README.en.md)
+[在线体验](https://F1.xiaodinglab.com/) · [下载 Android 1.0.2](https://f1.xiaodinglab.com/download) · [使用指南](docs/user-guide.md) · [English](README.en.md)
 
 [![项目检查](https://github.com/yaodingyaoding-prog/paddock-pocket/actions/workflows/check.yml/badge.svg)](https://github.com/yaodingyaoding-prog/paddock-pocket/actions/workflows/check.yml) [![Android](https://img.shields.io/badge/Android-8.0%2B-3DDC84?logo=android&logoColor=white)](https://f1.xiaodinglab.com/download) [![MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
@@ -72,13 +72,13 @@
 | --- | --- | --- |
 | 手机、平板、电脑浏览器 | [直接打开网站](https://F1.xiaodinglab.com/) | 自适应界面，账号设置跨设备同步 |
 | iPhone / iPad | Safari → 分享 → 添加到主屏幕 | 从主屏幕快速进入围场 |
-| Android 8.0 及以上 | [下载 1.0.1 APK](https://f1.xiaodinglab.com/download) | 与正式站同步的界面、系统功能和桌面小组件 |
+| Android 8.0 及以上 | [下载 1.0.2 APK](https://f1.xiaodinglab.com/download) | 与正式站同步的界面、系统功能和桌面小组件 |
 
 **Android 0.7.0 已由维护者完成真机验证，确认可正常使用。**
 
 下载 APK 后按系统提示安装。应用提供系统图片选择、日历保存、观赛窗口、平台 App 唤起和版本检查。安装后可从系统小组件列表添加围场口袋，在桌面查看下场比赛倒计时、天气和关注车手。
 
-网站更新后，App 重新加载即可使用新的页面与功能；原生功能更新通过新版 APK 安装。1.0.1 延续 `dev.paddock.pocket` 包名及与 0.6.0 相同的签名证书，支持覆盖升级。
+网站更新后，App 重新加载即可使用新的页面与功能；原生功能更新通过新版 APK 安装。1.0.2 延续 `dev.paddock.pocket` 包名及与 0.6.0 相同的签名证书，支持覆盖升级。
 
 [Android 发布说明](docs/android-release.md) · [文件校验与版本信息](public/downloads/android-build.json) · [更新记录](CHANGELOG.md)
 

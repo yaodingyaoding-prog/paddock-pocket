@@ -53,6 +53,7 @@ let assertions = 0;
 function check(value: unknown, message: string) { assertions++; assert.ok(value, message); }
 
 check(config.configured, 'Complete server configuration is ready');
+check(!protectedAccountPath('/api/news','GET') && protectedAccountPath('/api/news','POST'), 'News permits public reads only');
 check(!unifiedAuthConfig({ AUTH_MODE: 'required' }).configured, 'Missing provider configuration is not ready');
 check(!unifiedAuthConfig({ ...env, SUPABASE_URL: 'https://attacker.example' }).configured, 'Provider destinations are validated');
 check(!unifiedAuthConfig({ ...env, SUPABASE_PUBLISHABLE_KEY: 'sb_secret_this_must_not_be_used_as_a_publishable_key' }).configured, 'Administrative keys are not accepted as client keys');

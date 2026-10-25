@@ -21,7 +21,8 @@ export class AvatarService {
   }
   async download() {
     const { repo, user } = await this.owner();
-    const blob = await repo.downloadAvatar(user.id);
+    const revision = user.avatarUrl ? new URL(user.avatarUrl, 'https://avatar.invalid').searchParams.get('v') || undefined : undefined;
+    const blob = await repo.downloadAvatar(user.id, revision);
     if (!blob) throw new AccountError('AVATAR_MISSING', '尚未设置头像。', 404);
     return blob;
   }

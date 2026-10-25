@@ -1,4 +1,5 @@
 type Row=Record<string,any>;
+import {normalizeTechnicalLanguage} from './technical-language';
 const origin='https://api.f1push.com';
 const uuid=/^[a-f0-9]{8}(?:-[a-f0-9]{4}){3}-[a-f0-9]{12}$/i;
 const manifests=new Map<string,{expires:number;data:Row}>();
@@ -22,7 +23,7 @@ export async function toolData(query:URLSearchParams){
  if(kind==='technical'){
   const year=query.get('year')||'2026',gp=query.get('gp')||'';
   if(!/^20\d{2}$/.test(year)||(gp&&!uuid.test(gp)))throw new ToolDataError('无效的技术资料参数。',400);
-  const raw=await json(origin+'/api/v1/fia/dashboard?'+new URLSearchParams({lang:'zh',year,...(gp?{grandPrixId:gp}:{})}));if(!raw.data)throw new ToolDataError('技术报告尚未发布。');return raw.data;
+  const raw=await json(origin+'/api/v1/fia/dashboard?'+new URLSearchParams({lang:'zh',year,...(gp?{grandPrixId:gp}:{})}));if(!raw.data)throw new ToolDataError('技术报告尚未发布。');return normalizeTechnicalLanguage(raw.data);
  }
  const session=query.get('session')||'';if(!uuid.test(session))throw new ToolDataError('无效的场次编号。',400);
  if(!['manifest','part'].includes(kind||''))throw new ToolDataError('无效的数据类型。',400);

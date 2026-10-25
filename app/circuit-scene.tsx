@@ -3,6 +3,7 @@ import {useEffect,useRef,useState} from 'react';
 import {Maximize,RotateCcw,X,Move3D} from 'lucide-react';
 import models from '../lib/circuit-models.json';
 import images from '../lib/circuit-images.json';
+import {circuitCameraDistance} from '../lib/circuit-camera';
 type Row=Record<string,any>;
 function Scene({file,large=false,interactive=false}:{file:string;large?:boolean;interactive?:boolean}){
  const host=useRef<HTMLDivElement>(null),reset=useRef<()=>void>(()=>{});
@@ -20,10 +21,12 @@ function Scene({file,large=false,interactive=false}:{file:string;large?:boolean;
    const geometry=await new STLLoader().loadAsync(file);if(gone){geometry.dispose();renderer.dispose();renderer.domElement.remove();return;}
    geometry.center();geometry.rotateX(-Math.PI/2);geometry.computeVertexNormals();
    const material=new T.MeshStandardMaterial({color:0x55e8ca,roughness:.48,metalness:.12,emissive:0x0e4239,emissiveIntensity:.3});const mesh=new T.Mesh(geometry,material);mesh.rotation.y=-.28;mesh.scale.y=2;scene.add(mesh);
+   const bounds=new T.Box3().setFromObject(mesh),sphere=bounds.getBoundingSphere(new T.Sphere()),initialDirection=new T.Vector3(15,115,130).normalize();
+   const fit=(resetView=false)=>{const direction=resetView?initialDirection:camera.position.clone().sub(controls.target).normalize();const distance=circuitCameraDistance(sphere.radius,camera.aspect);controls.target.copy(sphere.center);camera.position.copy(sphere.center).addScaledVector(direction,distance);controls.maxDistance=Math.max(330,distance*2.5);controls.minDistance=Math.min(60,distance*.35);camera.far=Math.max(1000,distance*5);camera.updateProjectionMatrix();controls.update();dirty=true;};
    scene.add(new T.AmbientLight(0xffffff,1.5));const key=new T.DirectionalLight(0xe8fff9,3.2);key.position.set(-20,100,50);scene.add(key);const fill=new T.DirectionalLight(0x1d8b91,1.4);fill.position.set(30,-20,-80);scene.add(fill);
    const accent=()=>{const color=getComputedStyle(document.documentElement).getPropertyValue('--accent').trim();if(color)material.color.set(color).lerp(new T.Color(0xb6ffe8),.45);dirty=true;};accent();const theme=new MutationObserver(accent);theme.observe(document.documentElement,{attributes:true,attributeFilter:['data-theme','data-accent']});
-   const resize=()=>{const rect=mount.getBoundingClientRect(),width=Math.round(rect.width),height=Math.round(rect.height);if(!width||!height||width===renderWidth&&height===renderHeight)return;renderWidth=width;renderHeight=height;renderer.setSize(width,height,false);camera.aspect=width/height;camera.updateProjectionMatrix();dirty=true;};const observer=new ResizeObserver(()=>{needsResize=true;});observer.observe(mount);resize();
-   const initial=camera.position.clone();reset.current=()=>{camera.position.copy(initial);controls.target.set(0,0,0);controls.update();};
+   const resize=()=>{const rect=mount.getBoundingClientRect(),width=Math.round(rect.width),height=Math.round(rect.height);if(!width||!height||width===renderWidth&&height===renderHeight)return;renderWidth=width;renderHeight=height;renderer.setSize(width,height,false);camera.aspect=width/height;fit();};const observer=new ResizeObserver(()=>{needsResize=true;});observer.observe(mount);resize();
+   reset.current=()=>fit(true);
    let visible=true;const inView=new IntersectionObserver(es=>{visible=es[0].isIntersecting;if(visible)dirty=true;});inView.observe(mount);
    const animate=()=>{frame=requestAnimationFrame(animate);if(!visible||document.hidden)return;if(needsResize){needsResize=false;resize();}controls.update();if(dirty){renderer.render(scene,camera);dirty=false;}};animate();
    dispose=()=>{cancelAnimationFrame(frame);observer.disconnect();inView.disconnect();theme.disconnect();controls.dispose();geometry.dispose();material.dispose();renderer.dispose();renderer.domElement.remove();};

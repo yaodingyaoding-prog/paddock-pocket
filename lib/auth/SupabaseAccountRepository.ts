@@ -91,8 +91,9 @@ export class SupabaseAccountRepository implements AccountRepository {
     if (updateError) providerError(updateError);
     return identity(data.user);
   }
-  async downloadAvatar(userId: string) {
-    const { data, error } = await this.client.storage.from('paddock-avatars').download(userId + '/avatar.webp');
+  async downloadAvatar(userId: string, revision?: string) {
+    const cacheNonce = revision && /^[a-f0-9-]{36}$/i.test(revision) ? revision : undefined;
+    const { data, error } = await this.client.storage.from('paddock-avatars').download(userId + '/avatar.webp', { cacheNonce }, { cache: 'no-store' });
     if (error) {
       if (['404','400'].includes(String(error.statusCode)) && /not found|does not exist|object/i.test(error.message)) return null;
       this.avatarStorageError(error);

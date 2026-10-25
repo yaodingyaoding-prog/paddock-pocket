@@ -1,0 +1,14 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import vm from 'node:vm';
+const source=fs.readFileSync('native/android/src/dev/paddock/pocket/MainActivity.java','utf8');
+const match=source.match(/BACK_SCRIPT\s*=\s*("(?:[^"\\]|\\.)*")/);
+assert(match,'The Android back handler must consult open web dialogs before navigating history');
+const script=JSON.parse(match[1]);
+const execute=dialogs=>vm.runInNewContext(script,{document:{querySelectorAll:()=>dialogs},Event});
+assert.equal(execute([]),false);
+let first=0,last=0,cancelled=0;
+const bottom={dispatchEvent:()=>true,close:()=>first++},top={dispatchEvent:e=>{assert.equal(e.type,'cancel');cancelled++;return true;},close:()=>last++};
+assert.equal(execute([bottom,top]),true);assert.equal(first,0);assert.equal(last,1);assert.equal(cancelled,1);
+assert.equal(execute([{dispatchEvent:e=>{e.preventDefault();return false;},close:()=>assert.fail('A cancelled close must be respected')}]),true);
+console.log('Native back: no-dialog fallback, topmost modal cancel event, single close and prevented-close semantics passed.');

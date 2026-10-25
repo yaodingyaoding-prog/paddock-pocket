@@ -16,7 +16,7 @@ export interface AccountRepository {
   updatePassword(password: string): Promise<void>;
   uploadAvatar(userId: string, bytes: Uint8Array): Promise<AccountIdentity>;
   removeAvatar(userId: string): Promise<AccountIdentity>;
-  downloadAvatar(userId: string): Promise<Blob | null>;
+  downloadAvatar(userId: string, revision?: string): Promise<Blob | null>;
   logout(all?: boolean): Promise<void>;
   clearSession(): void;
 }

@@ -5,6 +5,7 @@ import { lazy, Suspense, useEffect, useRef, useState } from 'react';
 import { CalendarDays, Trophy, Heart, ChevronDown, Info, Compass, UserRound, CircleEllipsis, ContactRound, Dot, RefreshCw, Flag, MapPin, Clock3, Star, Check, Download, WifiOff, Bell, ArrowLeft, Share2 } from 'lucide-react';
 import { snapshotDate, snapshotSeason } from '../lib/snapshot-meta';
 import {conservativeDataStamp} from '../lib/data-freshness';
+import {readPublicJson} from '../lib/public-read';
 import { useAccountControls } from './account-controls';
 import { useAccountPreferences } from './account-preferences';
 import { RaceHero } from './race-hero';
@@ -58,9 +59,8 @@ const sessionName = (s: Row) => (({ FirstPractice: '第一次自由练习赛', S
 const kind = (s: Row) => /Practice/.test(s.type) ? 'practices' : /Qualifying/.test(s.type) ? 'qualifying' : 'races';
 const dateParts = (date: string, tz: string, options: Intl.DateTimeFormatOptions) => new Date(date).toLocaleString('zh-CN', { timeZone: tz, ...options });
 async function fetchData(resource: string, season: string, extra: Record<string, string> = {}): Promise<Envelope> {
-  const response = await fetch('/api/data?' + new URLSearchParams({ resource, season, ...extra }), { signal: AbortSignal.timeout(12000) });
-  const json = await response.json() as Envelope & { error?: string };
-  if (!response.ok || json.error) throw new Error(json.error || '数据暂不可用');
+  const json = await readPublicJson<Envelope & {error?:string}>('/api/data?' + new URLSearchParams({ resource, season, ...extra }));
+  if (json.error || json.data == null) throw new Error(json.error || '数据暂不可用');
   return json;
 }
 function DriverPortrait({driver}:{driver:Row}) {
@@ -94,6 +94,7 @@ export default function App({ seed, seededAt }: { seed: Record<string, any>; see
   const [error, setError] = useState('');
   const [refreshStatus,setRefreshStatus]=useState('');
   const retryTimer=useRef<ReturnType<typeof setTimeout>|null>(null),retryAttempt=useRef(0),pendingSeason=useRef('');
+  const failedResources=useRef<string[]>([]);
   const resourceMeta=useRef<Record<string,Envelope>>(Object.fromEntries(Object.keys(seed).map(key=>[key,{data:null,source:'snapshot',updatedAt:seededAt}])));
   const [selected, setSelected] = useState<Row | null>(null);
   const [raceList, setRaceList] = useState(false);
@@ -148,6 +149,8 @@ export default function App({ seed, seededAt }: { seed: Record<string, any>; see
     if(native)window.location.href='paddock://ready';
     const smg=()=>{if(native)window.location.href='paddock://smg-live';};
     const tencent=()=>{if(native)window.location.href='paddock://open-tencent';};
+    const syncFollowing=()=>{if(native)window.location.href='paddock://sync-following';};
+    window.addEventListener('paddock:following-changed',syncFollowing);
     window.addEventListener('paddock:open-smg',smg);window.addEventListener('paddock:open-tencent',tencent);
     if(native)window.addEventListener('pagehide',()=>{window.removeEventListener('paddock:open-smg',smg);window.removeEventListener('paddock:open-tencent',tencent);},{once:true});
     setNow(Date.now());
@@ -159,7 +162,7 @@ export default function App({ seed, seededAt }: { seed: Record<string, any>; see
     if (cached?.season === snapshotSeason && cached.data?.next && cached.data?.races) { setData({...seed,...cached.data}); if(cached.meta?.updatedAt)setMeta(cached.meta); }
     const id = setInterval(() => setNow(Date.now()), 60000);
     const syncClock=()=>{if(!document.hidden)setNow(Date.now());};document.addEventListener('visibilitychange',syncClock);
-    return () => {clearInterval(id);document.removeEventListener('visibilitychange',syncClock);};
+    return () => {clearInterval(id);document.removeEventListener('visibilitychange',syncClock);window.removeEventListener('paddock:following-changed',syncFollowing);};
   }, []);
   useEffect(()=>{
     const time=Date.now(),boundary=sessions.flatMap(s=>[+new Date(s.startDate),+new Date(s.endDate)]).filter(at=>Number.isFinite(at)&&at>time).sort((a,b)=>a-b)[0];
@@ -169,7 +172,13 @@ export default function App({ seed, seededAt }: { seed: Record<string, any>; see
   useEffect(() => { document.documentElement.dataset.theme = theme; document.documentElement.dataset.native = /PaddockPocket\//.test(navigator.userAgent)?'android':'web'; }, [theme]);
   useEffect(() => { document.documentElement.dataset.accent = accent; }, [accent]);
   useEffect(() => { if (!toast) return; const t = setTimeout(() => setToast(''), 3500); return () => clearTimeout(t); }, [toast]);
-  useEffect(() => { retryAttempt.current=0;load(season); const id=setInterval(()=>{if(document.visibilityState==='visible')load(season);},300000); return ()=>{clearInterval(id);if(retryTimer.current)clearTimeout(retryTimer.current);}; }, [season]);
+  useEffect(() => {
+    retryAttempt.current=0;failedResources.current=[];void load(season);
+    const recover=()=>{if(!document.hidden&&failedResources.current.length)void load(season,false,failedResources.current);};
+    window.addEventListener('online',recover);document.addEventListener('visibilitychange',recover);
+    const id=setInterval(()=>{if(!document.hidden)void load(season);},300000);
+    return ()=>{clearInterval(id);if(retryTimer.current)clearTimeout(retryTimer.current);window.removeEventListener('online',recover);document.removeEventListener('visibilitychange',recover);};
+  }, [season]);
 
   useEffect(()=>{if(tab==='widgets'&&!driverId)setTab('profile');},[tab,driverId]);
   useEffect(()=>{if(driverId && driverSeason && driverSeason!==season)changeSeason(driverSeason);},[driverId,driverSeason,season]);
@@ -199,6 +208,7 @@ export default function App({ seed, seededAt }: { seed: Record<string, any>; see
       setData(current=>{const merged={...current,...nextData};try{localStorage.setItem('paddock-cache',JSON.stringify({storedAt:Date.now(),season:seasonId,data:merged,meta:info}));}catch{}return merged;});
     }
     const retryNames=names.filter((name,i)=>responses[i].status==='rejected'||responses[i].status==='fulfilled'&&responses[i].value.source!=='live');
+    failedResources.current=retryNames;
     const usable=successful.length>0||Object.keys(data).some(name=>name!=='seasons'&&data[name]);
     setRefreshStatus(retryNames.length?'部分数据使用最近保存的版本，稍后自动更新':'');
     if(!usable)setError('暂时无法读取这个赛季的数据，正在自动重试。');

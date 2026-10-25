@@ -55,11 +55,6 @@
     "reason": "date of birth mismatch or missing"
   },
   {
-    "driverId": "gene",
-    "name": "Marc Gené",
-    "reason": "Visual QA rejected candidate: racing car or multiple primary people, unsuitable as an unambiguous portrait."
-  },
-  {
     "driverId": "jak_crawford",
     "name": "Jak Crawford",
     "reason": "date of birth mismatch or missing"
@@ -175,11 +170,6 @@
     "reason": "curl: (22) The requested URL returned error: 429\r\n"
   },
   {
-    "driverId": "berger",
-    "name": "Gerhard Berger",
-    "reason": "curl: (22) The requested URL returned error: 429\r\n"
-  },
-  {
     "driverId": "bernard",
     "name": "Éric Bernard",
     "reason": "no Wikidata P18 image"
@@ -200,23 +190,8 @@
     "reason": "curl: (22) The requested URL returned error: 429\r\n"
   },
   {
-    "driverId": "boutsen",
-    "name": "Thierry Boutsen",
-    "reason": "curl: (22) The requested URL returned error: 429\r\n"
-  },
-  {
     "driverId": "brabham",
     "name": "David Brabham",
-    "reason": "curl: (22) The requested URL returned error: 429\r\n"
-  },
-  {
-    "driverId": "caffi",
-    "name": "Alex Caffi",
-    "reason": "curl: (22) The requested URL returned error: 429\r\n"
-  },
-  {
-    "driverId": "capelli",
-    "name": "Ivan Capelli",
     "reason": "curl: (22) The requested URL returned error: 429\r\n"
   },
   {
@@ -347,11 +322,6 @@
   {
     "driverId": "grouillard",
     "name": "Olivier Grouillard",
-    "reason": "curl: (22) The requested URL returned error: 429\r\n"
-  },
-  {
-    "driverId": "gugelmin",
-    "name": "Maurício Gugelmin",
     "reason": "curl: (22) The requested URL returned error: 429\r\n"
   },
   {
@@ -510,11 +480,6 @@
     "reason": "curl: (22) The requested URL returned error: 429\r\n"
   },
   {
-    "driverId": "moreno",
-    "name": "Roberto Moreno",
-    "reason": "curl: (22) The requested URL returned error: 429\r\n"
-  },
-  {
     "driverId": "nakano",
     "name": "Shinji Nakano",
     "reason": "curl: (22) The requested URL returned error: 429\r\n"
@@ -547,11 +512,6 @@
   {
     "driverId": "papis",
     "name": "Massimiliano Papis",
-    "reason": "curl: (22) The requested URL returned error: 429\r\n"
-  },
-  {
-    "driverId": "patrese",
-    "name": "Riccardo Patrese",
     "reason": "curl: (22) The requested URL returned error: 429\r\n"
   },
   {
@@ -610,11 +570,6 @@
     "reason": "curl: (22) The requested URL returned error: 429\r\n"
   },
   {
-    "driverId": "satoru_nakajima",
-    "name": "Satoru Nakajima",
-    "reason": "curl: (22) The requested URL returned error: 429\r\n"
-  },
-  {
     "driverId": "schenken",
     "name": "Tim Schenken",
     "reason": "curl: (22) The requested URL returned error: 429\r\n"
@@ -660,11 +615,6 @@
     "reason": "curl: (22) The requested URL returned error: 429\r\n"
   },
   {
-    "driverId": "suzuki",
-    "name": "Aguri Suzuki",
-    "reason": "curl: (22) The requested URL returned error: 429\r\n"
-  },
-  {
     "driverId": "takagi",
     "name": "Toranosuke Takagi",
     "reason": "curl: (22) The requested URL returned error: 429\r\n"
@@ -687,11 +637,6 @@
   {
     "driverId": "tuero",
     "name": "Esteban Tuero",
-    "reason": "curl: (22) The requested URL returned error: 429\r\n"
-  },
-  {
-    "driverId": "warwick",
-    "name": "Derek Warwick",
     "reason": "curl: (22) The requested URL returned error: 429\r\n"
   },
   {

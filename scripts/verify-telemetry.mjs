@@ -1,5 +1,5 @@
-import fs from 'node:fs';import assert from 'node:assert/strict';import ts from 'typescript';import {gzipSync} from 'node:zlib';
-const load=async path=>import('data:text/javascript;base64,'+Buffer.from(ts.transpileModule(fs.readFileSync(path,'utf8'),{compilerOptions:{target:ts.ScriptTarget.ES2022,module:ts.ModuleKind.ES2022}}).outputText).toString('base64'));
+import assert from 'node:assert/strict';import {gzipSync} from 'node:zlib';import {build} from 'esbuild';import {pathToFileURL} from 'node:url';
+const load=async path=>{const outfile='.wrangler/checks/'+path.replaceAll('/','-').replace(/\.ts$/,'.mjs');await build({entryPoints:[path],outfile,bundle:true,platform:'node',format:'esm',logLevel:'silent'});return import(pathToFileURL(process.cwd()+'/'+outfile).href);};
 const {sampleAt,lapTime,normaliseSamples}=await load('lib/telemetry.ts');
 const points=normaliseSamples({items:[{sampleTime:'2025-03-16T04:00:01Z',speed:20},{sampleTime:'2025-03-16T04:00:00Z',speed:0},{sampleTime:'2025-03-16T04:00:01Z',speed:20}]});
 assert.equal(points.length,2);assert.equal(sampleAt(points,Date.parse('2025-03-16T03:59:59Z')),undefined);assert.equal(sampleAt(points,Date.parse('2025-03-16T04:00:00.500Z')).speed,0);assert.equal(sampleAt(points,Date.parse('2025-03-16T04:00:01Z')).speed,20);assert.equal(lapTime(null),'—');assert.equal(lapTime(91234),'1:31.234');
