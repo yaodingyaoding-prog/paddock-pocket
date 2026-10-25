@@ -19,3 +19,5 @@
 | Video platforms and linked articles | Content remains hosted and controlled by its provider. Replay search links do not redistribute video files or guarantee viewing rights, availability or subscriptions. |
 
 Historical snapshots and data copied from upstream services are not presented as original project data. Formula 1 and team / platform names and marks identify their respective subjects. Paddock Pocket is an independent fan project without official endorsement from Formula 1, F1Push, Five Star Sports or the viewing platforms.
+
+Avatar WebP fallback: [jSquash / Squoosh](https://github.com/jamsinclair/jSquash), Apache-2.0; libwebp codec, BSD-style license. [Distributed notices](public/licenses/jsquash-webp/LICENSE) and [codec license](public/licenses/jsquash-webp/LICENSE.codec.md). Used locally on cropped pixels only when native canvas WebP encoding is unavailable.

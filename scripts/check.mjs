@@ -23,6 +23,7 @@ const scripts = [
   ['scripts/verify-startup-recovery.mjs'],
   ['scripts/verify-download.mjs'],
   ['scripts/verify-race-data.mjs'],
+  ['scripts/verify-avatar-encoding.mjs'],
 ];
 for (const args of scripts) {
   const result = spawnSync(process.execPath, args, { stdio: 'inherit' });

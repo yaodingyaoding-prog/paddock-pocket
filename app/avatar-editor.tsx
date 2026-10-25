@@ -3,7 +3,7 @@ import { useEffect, useRef, useState, type PointerEvent } from 'react';
 import { Camera, ImagePlus, LoaderCircle, Minus, Plus, RotateCcw } from 'lucide-react';
 import type { AccountUser } from '../lib/auth/contracts';
 import { avatarCrop } from '../lib/avatar-crop';
-import { stripAvatarMetadata } from '../lib/avatar-webp';
+import { encodeAvatar } from '../lib/avatar-encoder';
 import { Dialog } from './dialog';
 import './avatar-editor.css';
 
@@ -64,9 +64,7 @@ function AvatarDialog({ user, close, onSaved }: { user: AccountUser; close: () =
       let blob: Blob | null = null;
       if (!remove) {
         if (!image || !canvas.current) throw new Error('请先选择图片。');
-        blob = await new Promise<Blob | null>(resolve => canvas.current!.toBlob(resolve, 'image/webp', .82));
-        if (!blob || blob.type !== 'image/webp') throw new Error('浏览器暂不支持头像编码，请升级浏览器后重试。');
-        blob = new Blob([stripAvatarMetadata(new Uint8Array(await blob.arrayBuffer()))], { type: 'image/webp' });
+        blob = await encodeAvatar(canvas.current);
       }
       const response = await fetch('/api/auth/avatar', { method: remove ? 'DELETE' : 'POST', headers: remove ? undefined : { 'Content-Type': 'image/webp' }, body: blob, credentials: 'same-origin', signal: AbortSignal.timeout(30000) });
       const value = await response.json() as { user?: AccountUser; error?: string };
