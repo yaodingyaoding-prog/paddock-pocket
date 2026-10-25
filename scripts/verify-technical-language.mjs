@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';import {build} from 'esbuild';import {pathToFileURL} from 'node:url';
 await build({entryPoints:['lib/technical-language.ts'],outfile:'.wrangler/checks/technical-language.mjs',bundle:true,platform:'node',format:'esm',logLevel:'silent'});
-const {normalizeTechnicalLanguage}=await import(pathToFileURL(process.cwd()+'/.wrangler/checks/technical-language.mjs').href);
+const {normalizeTechnicalLanguage,technicalText}=await import(pathToFileURL(process.cwd()+'/.wrangler/checks/technical-language.mjs').href);
+assert.equal(technicalText('地板板'),'底板导流板');
 const source={technical:{updates:[{id:'one',component:'侧舱入口/焦炭',description:'前角勺和家具改善流量调节',reason:'镜子停留与gaitor',primaryReason:'Performance - Flow Conditioning'}]},meta:{round:18},powerUnit:{count:4}};
 const result=normalizeTechnicalLanguage(source);assert.equal(source.technical.updates[0].component,'侧舱入口/焦炭');
 assert.equal(result.technical.updates[0].component,'侧箱进气口／可乐瓶区域');assert(!/家具|焦炭|镜子停留|gaitor/.test(JSON.stringify(result)));

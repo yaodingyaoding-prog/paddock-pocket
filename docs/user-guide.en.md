@@ -57,10 +57,10 @@ In Standings → Championship conditions (积分 → 夺冠条件), choose a dri
 | --- | --- | --- |
 | Mobile, tablet and desktop browsers | Visit the live website | Reload to receive the latest deployed pages; internet access is required |
 | iPhone / iPad home screen | Safari → Share → Add to Home Screen | A web shortcut, without native iOS or Apple Watch widgets |
-| Android 8.0 or later | Install the 1.0.2 APK | Main pages follow production; native updates require a downloaded APK and user-confirmed installation |
+| Android 8.0 or later | Install the 1.0.3 APK | Main pages follow production; native updates require a downloaded APK and user-confirmed installation |
 | Android home-screen widget | Add it through the launcher's widget picker after installing the app | Next-session countdown, weather and up to three followed drivers; scheduling depends on power and network conditions |
 
-Android 1.0.2 uses package `dev.paddock.pocket` and `versionCode=11`. It checks native versions while open and supports manual checks. It does not silently install updates or deliver background push updates. Users of 0.5.0 need a manual installation; 0.6.0 users can check for updates in the app. In-place updates require the same signing certificate.
+Android 1.0.3 uses package `dev.paddock.pocket` and `versionCode=12`. It checks native versions while open and supports manual checks. It does not silently install updates or deliver background push updates. Users of 0.5.0 need a manual installation; 0.6.0 users can check for updates in the app. In-place updates require the same signing certificate.
 
 The maintainer has completed real-device validation of Android 0.7.0 and confirmed that it works. The APK uses the project's preview certificate, with Java compilation, signing and ZIP alignment checked. See the [download metadata and SHA-256](../public/downloads/android-build.json) and [native sources and build requirements](../native/android).
 

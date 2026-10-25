@@ -1,6 +1,6 @@
 # Android downloads
 
-- [Current 1.0.2 release APK](Paddock-Pocket-1.0.2.apk)
+- [Current 1.0.3 release APK](Paddock-Pocket-1.0.3.apk)
 - [Version, SHA-256 and signing certificate](android-build.json)
 - [Previous 1.0.1 APK](Paddock-Pocket-1.0.1.apk)
 

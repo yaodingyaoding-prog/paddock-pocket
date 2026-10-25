@@ -12,3 +12,12 @@ const bottom={dispatchEvent:()=>true,close:()=>first++},top={dispatchEvent:e=>{a
 assert.equal(execute([bottom,top]),true);assert.equal(first,0);assert.equal(last,1);assert.equal(cancelled,1);
 assert.equal(execute([{dispatchEvent:e=>{e.preventDefault();return false;},close:()=>assert.fail('A cancelled close must be respected')}]),true);
 console.log('Native back: no-dialog fallback, topmost modal cancel event, single close and prevented-close semantics passed.');
+const following=JSON.parse(source.match(/FOLLOWING_SCRIPT\s*=\s*("(?:[^"\\]|\\.)*")/)[1]);
+const snapshot=value=>vm.runInNewContext(following,{localStorage:{getItem:()=>value}});
+const ids=['11111111-1111-4111-8111-111111111111','22222222-2222-4222-8222-222222222222','33333333-3333-4333-8333-333333333333'];
+assert.equal(snapshot(JSON.stringify({driverIds:ids})),ids.join(','));
+assert.equal(snapshot(null),'','Removed mirror after logout must explicitly clear native preferences');
+assert.equal(snapshot('{malformed'),'');assert.equal(snapshot(JSON.stringify({driverIds:'invalid'})),'');
+assert.equal(snapshot(JSON.stringify({driverIds:[...ids,ids[0]]})),ids.join(','));
+assert.equal(snapshot(JSON.stringify({driverIds:['not-an-id',ids[1]]})),ids[1]);
+console.log('Native following bridge: three IDs, logout/missing mirror clearing, malformed input and bounded valid selection passed.');
