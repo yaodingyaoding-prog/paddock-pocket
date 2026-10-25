@@ -15,7 +15,7 @@ if(path.dirname(output)!==shellRoot||!/^\d+\.\d+\.\d+$/.test(version))throw Erro
 fs.rmSync(output,{recursive:true,force:true});
 fs.mkdirSync(output,{recursive:true});
 fs.writeFileSync(path.join(output,'index.html'),html);
-const roots=['_next/static','fonts','circuits/models','drivers','favicon.svg'];
+const roots=['_next/static','fonts','circuits/models','drivers','cars','favicon.svg'];
 function copy(relative){const source=path.join('dist/client',relative);if(!fs.existsSync(source))throw Error('Missing public build asset: '+relative);if(fs.statSync(source).isDirectory()){for(const name of fs.readdirSync(source))copy(relative+'/'+name);}else{const target=path.join(output,relative);fs.mkdirSync(path.dirname(target),{recursive:true});fs.copyFileSync(source,target);}}
 for(const root of roots)copy(root);
 const files=[];function scan(dir){for(const name of fs.readdirSync(dir)){const file=path.join(dir,name);if(fs.statSync(file).isDirectory())scan(file);else if(name!=='shell-manifest.json'){const bytes=fs.readFileSync(file);files.push({path:path.relative(output,file).replaceAll('\\','/'),bytes:bytes.length,sha256:createHash('sha256').update(bytes).digest('hex')});}}}scan(output);

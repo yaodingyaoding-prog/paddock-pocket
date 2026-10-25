@@ -20,5 +20,6 @@ assert(html.includes('RACE WEEKEND')&&html.includes('赛事时间安排')&&html.
 const scripts=[...html.matchAll(/(?:src|href)="(\/_next\/static\/[^"?]+\.js)"/g)].map(m=>m[1]);
 assert(scripts.length>0);
 for(const script of scripts)assert(readZipEntry(apk,'assets/shell'+script).length>0,'Every bootstrap script must be bundled');
+for(const name of fs.readdirSync('public/cars'))if(name.endsWith('.png'))assert(readZipEntry(apk,'assets/shell/cars/'+name).equals(fs.readFileSync('public/cars/'+name)),'Every team car must be bundled unchanged');
 assert(!/fixture-refresh-token|sb_publishable_|sb_secret_|service_role/.test(html),'Bootstrap HTML must contain no credentials');
 console.log('Startup recovery: old-browser API shims, timed/cancelled requests, pre-rendered race data and all bundled bootstrap scripts passed.');
