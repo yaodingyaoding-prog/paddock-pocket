@@ -105,6 +105,10 @@ npm run dev
 
 检查覆盖认证与账号隔离、个人设置同步、头像、天气、遥测、回放、争冠条件、动效、分享和 APK 发布一致性。
 
+## 微信小程序
+
+已准备面向个人主体的 [微信原生工程与导入指南](native/wechat/README.md)，复用现有赛事 API 和账号云同步。工程处于 AppID 接入与微信真机验收阶段，发布状态见工程内说明。
+
 ## 自行部署
 
 1. Fork 本仓库，修改 `wrangler.jsonc` 中的 Worker 名称，并将 `routes` 替换为自己的域名。
@@ -133,6 +137,7 @@ React 19 与 TypeScript 构建界面，Vite / Vinext 与 Cloudflare Workers 运�
 app/                   页面、交互组件与 API 路由
 lib/                   赛事、天气、遥测、账号与同步逻辑
 native/android/        Android 应用、小组件及构建脚本
+native/wechat/         个人主体微信原生工程与接入说明
 public/                图片、字体、模型、脚本和 APK
 scripts/               功能验证、索引生成与 APK 发布
 docs/                  使用、配置与发布文档

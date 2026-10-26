@@ -1,0 +1,15 @@
+{
+  "pages": ["pages/schedule/index", "pages/rankings/index", "pages/discover/index", "pages/profile/index", "pages/driver/index", "pages/results/index", "pages/article/index", "pages/replays/index", "pages/auth/index", "pages/privacy/index"],
+  "window": {"navigationBarTitleText":"围场口袋", "navigationBarBackgroundColor":"#0d1017", "navigationBarTextStyle":"white", "backgroundColor":"#0d1017", "backgroundTextStyle":"light", "enablePullDownRefresh":true},
+  "tabBar": {
+    "color":"#8795a9", "selectedColor":"#29dec0", "backgroundColor":"#111722", "borderStyle":"black",
+    "list":[
+      {"pagePath":"pages/schedule/index","text":"赛程","iconPath":"assets/nav/schedule.png","selectedIconPath":"assets/nav/schedule-on.png"},
+      {"pagePath":"pages/rankings/index","text":"积分","iconPath":"assets/nav/rankings.png","selectedIconPath":"assets/nav/rankings-on.png"},
+      {"pagePath":"pages/discover/index","text":"探索","iconPath":"assets/nav/discover.png","selectedIconPath":"assets/nav/discover-on.png"},
+      {"pagePath":"pages/profile/index","text":"我的","iconPath":"assets/nav/profile.png","selectedIconPath":"assets/nav/profile-on.png"}
+    ]
+  },
+  "networkTimeout":{"request":10000,"downloadFile":10000},
+  "style":"v2", "lazyCodeLoading":"requiredComponents", "sitemapLocation":"sitemap.json"
+}

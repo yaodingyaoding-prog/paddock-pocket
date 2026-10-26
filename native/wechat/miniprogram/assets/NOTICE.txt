@@ -1,0 +1,1 @@
+围场口袋原有车手、赛车与赛道图片保留原权利人授权和署名；不受项目MIT许可重新授权。图片已为小程序缩放压缩；完整来源和署名随工程附于third-party/。赛道图片©Formula One World Championship Limited。导航图标由lucide-react生成，MIT许可。

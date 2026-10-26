@@ -1,0 +1,11 @@
+{
+  "name": "paddock-pocket-wechat",
+  "version": "0.1.0",
+  "private": true,
+  "type": "commonjs",
+  "scripts": {
+    "generate": "node ../../scripts/prepare-wechat.mjs",
+    "test": "node tests/run.cjs && node tests/pages.cjs",
+    "configure": "node scripts/configure.cjs"
+  }
+}

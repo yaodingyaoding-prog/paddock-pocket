@@ -1,0 +1,1 @@
+{"desc":"账号页面不参与索引","rules":[{"action":"disallow","page":"pages/profile/index"},{"action":"disallow","page":"pages/auth/index"},{"action":"allow","page":"*"}]}

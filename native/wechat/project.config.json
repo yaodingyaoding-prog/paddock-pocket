@@ -1,0 +1,17 @@
+{
+  "description": "围场口袋个人主体原生微信小程序",
+  "projectname": "paddock-pocket",
+  "miniprogramRoot": "miniprogram/",
+  "compileType": "miniprogram",
+  "libVersion": "3.7.6",
+  "setting": {
+    "urlCheck": true,
+    "es6": true,
+    "enhance": true,
+    "postcss": true,
+    "minified": true,
+    "minifyWXSS": true,
+    "minifyWXML": true
+  },
+  "packOptions": {"ignore": [], "include": []}
+}

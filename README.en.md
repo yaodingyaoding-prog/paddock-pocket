@@ -105,6 +105,10 @@ Open `http://127.0.0.1:5174`. Start developing the race interface directly; conf
 
 Checks cover authentication and account separation, preference sync, avatars, weather, telemetry, replays, championship conditions, motion, sharing and APK release integrity.
 
+## WeChat Mini Program
+
+A [native project and import guide](native/wechat/README.en.md) is available for individual accounts, sharing the existing race API and cloud preferences. AppID setup and actual WeChat acceptance testing are still required before publication.
+
 ## Self-hosting
 
 1. Fork this repository. Change the Worker name in `wrangler.jsonc` and replace `routes` with your own domains.
@@ -133,6 +137,7 @@ React 19 and TypeScript provide the interface. Vite / Vinext and Cloudflare Work
 app/                   Pages, interactions and API routes
 lib/                   Race, weather, telemetry, accounts and sync logic
 native/android/        Android app, widget and build scripts
+native/wechat/         Native WeChat project for individual accounts
 public/                Images, fonts, models, scripts and APKs
 scripts/               Validation, indexing and APK publication
 docs/                  User, configuration and release guides
