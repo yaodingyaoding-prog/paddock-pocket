@@ -1,0 +1,2 @@
+.chips > button.chip { flex: 0 0 auto; width: auto; margin: 0; }
+.hero-meta > view { min-width: 0; }

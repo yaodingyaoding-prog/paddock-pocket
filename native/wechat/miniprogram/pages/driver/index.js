@@ -9,7 +9,7 @@ Page({ data: { skin: '', error: '', driver: {}, archive: null, stats: [], follow
         if (archive.status === 'rejected' && !row)
             throw archive.reason;
         const data = archive.status === 'fulfilled' ? archive.value.data : null;
-        this.setData({ driver: row || { driverName: data.name, avatar: fmt.portrait({ driverId: this.id }) }, archive: data ? { ...data, history: data.history.map((row, index) => ({ ...row, key: String(index) })) } : null, stats: data ? [['出赛', data.career.starts], ['分站冠军', data.career.wins], ['领奖台', data.career.podiums], ['杆位', data.career.poles], ['世界冠军', data.career.titles]].map(([label, value]) => ({ label, value: value == null ? '—' : value })) : [], error: archive.status === 'rejected' ? '生涯资料暂时无法读取。' : '' });
+        this.setData({ driver: row ? { ...row, avatar: row.headshot } : { driverName: data.name, avatar: fmt.portrait({ driverId: this.id }) }, archive: data ? { ...data, history: data.history.map((row, index) => ({ ...row, key: String(index) })) } : null, stats: data ? [['出赛', data.career.starts], ['分站冠军', data.career.wins], ['领奖台', data.career.podiums], ['杆位', data.career.poles], ['世界冠军', data.career.titles]].map(([label, value]) => ({ label, value: value == null ? '—' : value })) : [], error: archive.status === 'rejected' ? '生涯资料暂时无法读取。' : '' });
     }
     catch (error) {
         ui.fail(this, error);
