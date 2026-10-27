@@ -1,0 +1,14 @@
+/* Native buttons may occupy a full row; keep the action compact in a standing. */
+.row > .heart {
+  box-sizing: border-box;
+  flex: 0 0 64rpx;
+  width: 64rpx;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+.row > .rank, .row > .avatar, .row > .car, .row > .open-icon, .row > .points {
+  flex-shrink: 0;
+}
+.row > .grow { flex: 1 1 0; min-width: 0; }
+.chips > button.chip { flex: 0 0 auto; width: auto; margin: 0; }

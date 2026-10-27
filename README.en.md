@@ -107,7 +107,7 @@ Checks cover authentication and account separation, preference sync, avatars, we
 
 ## WeChat Mini Program
 
-A [native project and import guide](native/wechat/README.en.md) is available for individual accounts, sharing the existing race API and cloud preferences. AppID setup and actual WeChat acceptance testing are still required before publication.
+A [native project and import guide](native/wechat/README.en.md) is available for individual accounts, sharing the existing race API and cloud preferences. Selected pages have been checked in DevTools; real-device acceptance remains before publication.
 
 ## Self-hosting
 

@@ -35,4 +35,4 @@ Viewing and replay links are copied for opening in a browser. Website 3D/telemet
 
 Weather refreshes while visible every five minutes around sessions, hourly within 48 hours of an upcoming session, otherwise every three hours; manual refresh is available. No maintainer PC needs to remain running. Background refresh is not promised.
 
-See [TESTING.md](TESTING.md) for source and contract checks and the remaining device acceptance list. An AppID, DevTools build, real-device authentication and platform review are still required before release. This project is not yet a published, searchable Mini Program.
+See [TESTING.md](TESTING.md) for source checks, the maintainer's DevTools simulator results and the remaining device acceptance list. Real-device authentication and platform review are still required before release. This project is not yet a published, searchable Mini Program.
