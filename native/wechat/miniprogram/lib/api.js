@@ -1,5 +1,26 @@
 const config = require('./config');
 const transient = new Set([408, 425, 500, 502, 503, 504]);
+// Only expose an allowlisted failure category, never a URL, account, or raw platform message.
+function transportFailure(result) {
+    const raw = String(result && result.errMsg || '');
+    let diagnostic = 'WX_NETWORK', message = '连接暂时中断，请检查网络后重试。';
+    if (/not in domain list|domain.*(?:not|invalid|list)|合法域名/i.test(raw)) {
+        diagnostic = 'WX_DOMAIN'; message = '微信没有允许当前服务域名，请稍后重试。';
+    } else if (/timeout|timed?\s*out/i.test(raw)) {
+        diagnostic = 'WX_TIMEOUT'; message = '连接超时，请检查网络后重试。';
+    } else if (/ssl|tls|certificate|证书/i.test(raw)) {
+        diagnostic = 'WX_TLS'; message = '安全连接未建立，请稍后重试。';
+    } else {
+        const networkCode = raw.match(/\bERR_[A-Z0-9_]{3,48}\b/);
+        const iosCode = raw.match(/(?:^|[^0-9])-(100[0-9]|120[0-9])(?:\D|$)/);
+        if (networkCode) diagnostic = networkCode[0];
+        else if (iosCode) diagnostic = 'WX_IOS_' + iosCode[1];
+    }
+    const error = Error(message + '（' + diagnostic + '）');
+    error.network = true;
+    error.diagnostic = diagnostic;
+    return error;
+}
 function createApi(platform, now = Date.now) {
     let jar = {}, authTail = Promise.resolve(), cache = {};
     try {
@@ -77,7 +98,7 @@ function createApi(platform, now = Date.now) {
             catch (error) {
                 reject(error);
             } },
-            fail() { const error = Error('连接暂时中断，请检查网络后重试。'); error.network = true; reject(error); }
+            fail(result) { reject(transportFailure(result)); }
         }));
     }
     function request(path, options = {}) {
