@@ -59,7 +59,7 @@ const event = (dataset = {}, value = '') => ({ currentTarget: { dataset }, detai
         assert(rankings.data.rows.length > 5);
         rankings.switchKind(event({ kind: 'teams' }));
         await flush();
-        assert(rankings.data.rows[0].car.endsWith('.webp'));
+        assert(rankings.data.rows[0].car.endsWith('.png'));
         rankings.onHide();
         checks++;
         const driver = page('driver', { id: seed.drivers.items[0].standings[0].driverId, season: seed.season });
