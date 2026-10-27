@@ -3,9 +3,9 @@ const assert = require('node:assert/strict'), fs = require('node:fs'), path = re
 const flush = async () => { for (let i = 0; i < 8; i++)
     await new Promise(r => setImmediate(r)); };
 const savedWx = global.wx, savedApp = global.getApp, actions = [];
-let failPublic = false, authCalls = 0;
+let failPublic = false, authCalls = 0, publicCalls = [];
 const forecast = { data: { timezone: 'UTC', current: { temperature_2m: 20, weather_code: 0, wind_speed_10m: 3 }, hourly: { time: [], temperature_2m: [], precipitation_probability: [] } }, fetchedAt: Date.now() };
-const api = { async publicRead(url, fallback) { if (failPublic)
+const api = { async publicRead(url, fallback) { publicCalls.push(url); if (failPublic)
         throw Error('offline'); if (url.startsWith('/api/weather'))
         return forecast; if (fallback)
         return fallback; throw Error('missing fixture ' + url); }, async request(url, o = {}) { if (url === '/api/news')
@@ -29,6 +29,7 @@ const event = (dataset = {}, value = '') => ({ currentTarget: { dataset }, detai
     let checks = 0;
     try {
         const schedule = page('schedule');
+        assert(publicCalls[0].startsWith('/api/weather?'), 'weather must start before waiting for schedule requests');
         await flush();
         assert(schedule.data.sessions.length > 0);
         assert(schedule.data.race.id);

@@ -3,10 +3,10 @@ function cadence(sessions, now) { const times = sessions.map(s => ({ start: Date
     return 300000; if (times.some(s => s.start > now && s.start - now < 172800000))
     return 3600000; return 10800000; }
 Page({
-    data: { skin: '', error: '', busy: false, calendar: false, season: seed.season, seasons: seed.seasons.items, seasonIndex: 0, race: seed.next, races: seed.races.items, sessions: [], weather: null, weatherError: '', weatherIndex: 0, track: '', stamp: '最近保存 · ' + fmt.date(seed.updatedAt), countdown: '' },
+    data: { skin: '', error: '', busy: false, calendar: false, season: seed.season, seasons: seed.seasons.items, seasonIndex: 0, race: seed.next, races: seed.races.items, sessions: [], weather: null, weatherLoading: false, weatherError: '', weatherIndex: 0, track: '', stamp: '最近保存 · ' + fmt.date(seed.updatedAt), countdown: '' },
     onLoad(options) { this._desiredRace = options.race || ''; if (options.season && /^[a-f0-9-]{36}$/i.test(options.season))
         this.setData({ season: options.season }); },
-    onShow() { ui.attach(this, () => this.renderRace()); void this.refresh(); this._timer = setInterval(() => { this.renderRace(); if (Date.now() - (this._weatherAt || 0) >= cadence(this.data.race && this.data.race.schedule || [], Date.now()))
+    onShow() { ui.attach(this, () => this.renderRace()); if (this.data.season === seed.season && this.data.race) void this.loadWeather(); void this.refresh(); this._timer = setInterval(() => { this.renderRace(); if (Date.now() - (this._weatherAt || 0) >= cadence(this.data.race && this.data.race.schedule || [], Date.now()))
         void this.loadWeather(); }, 60000); },
     onHide() { ui.detach(this); clearInterval(this._timer); this._version = (this._version || 0) + 1; }, onUnload() { this.onHide(); },
     async onPullDownRefresh() { await this.refresh(); ui.stopRefresh(); },
@@ -42,21 +42,21 @@ Page({
         return; const race = this.data.race, timezone = getApp().store.get().preferences.timezone; const sessions = fmt.sessions(race, timezone); this.setData({ sessions, track: seed.tracks[race.circuitId] || '', countdown: fmt.countdown(race) }); },
     async loadWeather() { const race = this.data.race; if (!race || !this._visible)
         return; const coords = seed.locations[race.circuit && race.circuit.nameKey]; if (!coords) {
-        this.setData({ weather: null, weatherError: '这条赛道的气象坐标尚未收录。' });
+        this._weatherRequest = (this._weatherRequest || 0) + 1; this.setData({ weather: null, weatherLoading: false, weatherError: '这条赛道的气象坐标尚未收录。' });
         return;
-    } const id = race.id; if (this._weatherRace !== id)
-        this.setData({ weather: null }); this._weatherRace = id; this._weatherAt = Date.now(); try {
+    } const id = race.id, request = this._weatherRequest = (this._weatherRequest || 0) + 1; if (this._weatherRace !== id)
+        this.setData({ weather: null }); this.setData({ weatherLoading: true, weatherError: '' }); this._weatherRace = id; this._weatherAt = Date.now(); try {
         const value = await getApp().api.publicRead('/api/weather?' + query({ location: coords.join(',') }));
-        if (this._visible && this.data.race && this.data.race.id === id) {
+        if (this._visible && request === this._weatherRequest && this.data.race && this.data.race.id === id) {
             const selected = (race.schedule || [])[this.data.weatherIndex];
             this._forecast = value;
             this.setData({ weather: fmt.weatherView(value, race, selected && selected.id), weatherError: '' });
         }
     }
     catch (error) {
-        if (this._visible && this.data.race && this.data.race.id === id)
-            this.setData({ weatherError: error.message });
-    } },
+        if (this._visible && request === this._weatherRequest && this.data.race && this.data.race.id === id)
+            this.setData({ weatherError: error.message || '天气暂时无法获取，请重试。' });
+    } finally { if (this._visible && request === this._weatherRequest) this.setData({ weatherLoading: false }); } },
     changeSeason(e) { const index = Number(e.detail.value); this._desiredRace = ''; this._forecast = null; this.setData({ seasonIndex: index, season: this.data.seasons[index].id, calendar: false, weather: null, race: null, races: [], sessions: [], track: '' }); void this.refresh(); },
     showCalendar() { this.setData({ calendar: true }); }, showWeekend() { this.setData({ calendar: false }); },
     selectRace(e) { const race = this.data.races.find(r => r.id === e.currentTarget.dataset.id); if (!race)

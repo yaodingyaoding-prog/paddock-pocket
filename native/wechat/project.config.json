@@ -11,7 +11,9 @@
     "postcss": true,
     "minified": true,
     "minifyWXSS": true,
-    "minifyWXML": true
+    "minifyWXML": true,
+    "ignoreDevUnusedFiles": false,
+    "ignoreUploadUnusedFiles": false
   },
-  "packOptions": {"ignore": [], "include": []}
+  "packOptions": {"ignore": [], "include": [{"type": "folder", "value": "assets"}]}
 }
