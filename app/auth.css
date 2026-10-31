@@ -26,14 +26,14 @@
 .auth-sector-tag{fill:#78818d;font:600 11px "Barlow Condensed",sans-serif;letter-spacing:2px}
 .auth-start-lights{position:absolute;top:9px;right:25px;z-index:1;display:flex;gap:5px;padding:5px 8px;background:#15181e;border:1px solid #2c3038;border-radius:5px}
 .auth-light-pod{display:grid;gap:3px;padding:3px;background:#050609;border-radius:4px}
-.auth-light-pod i{width:7px;height:7px;border-radius:50%;background:#ff5148;opacity:.17;animation:grid-lights 9s linear infinite;animation-delay:calc(var(--light-index)*.28s)}
+.auth-light-pod i{width:7px;height:7px;border-radius:50%;background:#ff5148;opacity:.17;animation:grid-lights-1 9s step-end infinite}
+.auth-light-pod:nth-child(2) i{animation-name:grid-lights-2}.auth-light-pod:nth-child(3) i{animation-name:grid-lights-3}.auth-light-pod:nth-child(4) i{animation-name:grid-lights-4}.auth-light-pod:nth-child(5) i{animation-name:grid-lights-5}
 .auth-stage-label{position:absolute;top:21px;left:26px;font:500 9px "Barlow Condensed",sans-serif;letter-spacing:3px;color:#737c89}
 .auth-sector-strip{display:flex;gap:10px;margin:0 24px 19px;position:relative}
 .auth-sector-strip>span{flex:1;min-width:0}
 .auth-sector-strip small{font:500 9px "Barlow Condensed",sans-serif;letter-spacing:1.6px;color:#79838f}
 .auth-sector-strip i{display:block;height:3px;background:#2b3038;position:relative;overflow:hidden;margin-top:6px;border-radius:2px}
-.auth-sector-strip i:after{content:'';position:absolute;inset:0;background:#ff5148;transform:translateX(-101%);animation:sector-progress 9s cubic-bezier(.35,0,.2,1) infinite;animation-delay:calc(var(--sector-index)*3s)}
-.auth-sector-strip>span:nth-child(2) i:after{background:#8ce4cd}.auth-sector-strip>span:nth-child(3) i:after{background:#cabbfa}
+.auth-sector-strip i:after{content:'';position:absolute;inset:0;background:#b790ff;transform:translateX(-101%);animation:sector-progress 9s cubic-bezier(.35,0,.2,1) infinite;animation-delay:calc(var(--sector-index)*3s)}
 .auth-race-footer{display:flex;align-items:center;gap:11px;margin-top:auto;position:relative;color:#7e8793;font:500 9px "Barlow Condensed",sans-serif;letter-spacing:1.6px}
 .auth-race-footer small{margin-left:auto;font:10px Arial,sans-serif;letter-spacing:0;color:#626d7a}
 .auth-checker{width:24px;height:16px;background:conic-gradient(#bfc5cb 25%,transparent 0 50%,#bfc5cb 0 75%,transparent 0) 0 0/8px 8px;transform:skewX(-12deg);opacity:.8}
@@ -101,7 +101,12 @@
 @keyframes pit-arrival{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
 @keyframes circuit-lap{to{stroke-dashoffset:-1000}}
 @keyframes circuit-breathe{from{transform:translateY(-4px) rotate(-7deg)}to{transform:translateY(4px) rotate(-5deg)}}
-@keyframes grid-lights{0%,15%,48%,100%{opacity:.17}20%,42%{opacity:1}}
+/* Shared cycle boundaries keep all five columns switching off together. */
+@keyframes grid-lights-1{0%,70%,100%{opacity:.17}10%,69.999%{opacity:1}}
+@keyframes grid-lights-2{0%,70%,100%{opacity:.17}20%,69.999%{opacity:1}}
+@keyframes grid-lights-3{0%,70%,100%{opacity:.17}30%,69.999%{opacity:1}}
+@keyframes grid-lights-4{0%,70%,100%{opacity:.17}40%,69.999%{opacity:1}}
+@keyframes grid-lights-5{0%,70%,100%{opacity:.17}50%,69.999%{opacity:1}}
 @keyframes sector-progress{0%,8%{transform:translateX(-101%)}38%,68%{transform:translateX(0)}92%,100%{transform:translateX(101%)}}
 @keyframes race-glow{from{transform:translate3d(0,-20%,0);opacity:.4}to{transform:translate3d(15%,15%,0);opacity:1}}
 @keyframes race-horizon{0%{transform:translateX(-100%);opacity:0}15%,60%{opacity:.5}85%,100%{transform:translateX(230%);opacity:0}}
