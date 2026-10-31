@@ -4,7 +4,7 @@ create table if not exists public.paddock_preferences (
   user_id uuid primary key references auth.users(id) on delete cascade,
   driver_ids text[] not null default '{}',
   team_ids text[] not null default '{}',
-  theme text not null default 'dark',
+  theme text not null default 'sand',
   accent text not null default 'mint',
   time_zone text not null default 'Asia/Shanghai',
   revision bigint not null default 1,
