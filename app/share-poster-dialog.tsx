@@ -29,6 +29,6 @@ export function SharePosterDialog({ card, close }: { card: ShareCard; close: () 
   return <Dialog title={card.kind === 'weekend' ? '分享比赛周末' : '分享领奖台'} close={close}><div className="share-poster-dialog">
     <div className="share-poster-preview">{preview ? <img src={preview} alt={card.title + '分享海报，包含赛程或阵容和网站二维码'}/> : <div role="status">{error ? <><p>{error}</p><button className="small-button" onClick={() => setAttempt(n => n + 1)}>重新生成</button></> : <><LoaderCircle className="auth-spinner" size={24}/><p>正在制作海报…</p></>}</div>}</div>
     <div className="share-poster-actions"><button className="small-button" onClick={() => void share()} disabled={!blob || sharing}><Share2 size={16}/>{sharing ? '正在分享' : '分享图片'}</button>{preview && <a className="small-button" href={preview} download={'Paddock-Pocket-' + card.kind + '.png'}><Download size={16}/>保存海报</a>}<button className="small-button" onClick={() => void copy()}><Copy size={16}/>复制链接</button></div>
-    {notice && <p className="share-poster-notice" role="status">{notice}</p>}<a className="share-poster-url" href={card.url} title={card.url}>分享链接 · F1.xiaodinglab.com</a><p className="section-note">海报在当前设备生成。可长按图片保存；预报、赛程以站内最新数据为准。</p>
+    {notice && <p className="share-poster-notice" role="status">{notice}</p>}<p className="section-note">长按图片可保存。</p>
   </div></Dialog>;
 }

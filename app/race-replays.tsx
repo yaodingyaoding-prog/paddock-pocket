@@ -21,6 +21,6 @@ export function ReplayLibrary({races,year,focusedRaceId,loading=false}:{races:Re
       </article>;
     })}</div>
     {!filtered.length&&<p className="empty" role="status">{loading?'正在载入赛历…':'没有匹配的比赛'}</p>}
-    <p className="section-note replay-platform-note">入口按比赛与场次检索，播放及会员服务由对应平台提供。</p>
+
   </section>;
 }

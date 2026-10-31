@@ -31,10 +31,10 @@ export async function renderSharePoster(card: ShareCard): Promise<Blob> {
     const top = 441;
     if (!card.rows.length) text(ctx, '场次时间尚未公布', 94, 510, 30, '#afc5ca');
     card.rows.forEach((row, i) => { const y = top + i * 72; block(ctx, 64, y, 952, 62, i === card.rows.length - 1 ? '#214644' : '#ffffff08', 12); text(ctx, row.label, 88, y + 41, 27, i === card.rows.length - 1 ? '#84ecd7' : '#f6f8f7', 250); text(ctx, row.value, 358, y + 41, 27, '#d4e3e4', 630, 500); });
-    text(ctx, card.dataNote, 66, 1000, 19, '#93aeb2', 950, 400);
+    text(ctx, card.dataNote.split(' · ')[0], 66, 1000, 19, '#93aeb2', 950, 400);
     block(ctx, 64, 1030, 952, 115, '#ffffff0b', 18);
     text(ctx, card.weather?.summary || '未附比赛时段预报', 88, 1076, 26, '#d7eeeb', 900);
-    text(ctx, card.weather?.detail || '打开网站查看当地天气与可用预报。', 88, 1113, 17, '#93aeb2', 900, 400);
+    if (card.weather) text(ctx, 'Open-Meteo · CC BY 4.0', 88, 1113, 17, '#93aeb2', 900, 400);
   } else {
     const images = await Promise.all(card.rows.map(row => row.image?.startsWith('/drivers/') ? image(row.image).catch(() => null) : null));
     [1, 0, 2].forEach((index, order) => {
@@ -55,7 +55,6 @@ export async function renderSharePoster(card: ShareCard): Promise<Blob> {
       block(ctx, x, plinth, 300, 5, row?.color || '#527174', 0);
       text(ctx, String(index + 1).padStart(2, '0'), x + 22, plinth + 63, 46, '#f0f6f4', 230, 800);
     });
-    text(ctx, card.dataNote, 64, 1125, 22, '#93aeb2', 950, 400);
   }
   block(ctx, 64, 1190, 952, 190, '#f0f4ec', 24);
   text(ctx, '赛程 · 天气 · 回放', 94, 1255, 36, '#10262c', 680, 800);
