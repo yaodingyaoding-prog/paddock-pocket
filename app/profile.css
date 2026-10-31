@@ -2,6 +2,19 @@
 .profile-main>.data-footer{display:none}
 .personal-center{max-width:1120px;margin:0 auto}
 .personal-center button,.personal-center a{transition:background .18s,border-color .18s,color .18s}
+/* The guest account card is needed on the first profile visit, before any share dialog loads. */
+.guest-pass{display:grid;align-content:center;gap:16px;min-width:0;min-height:280px;padding:28px;border:1px solid #365b56;border-radius:24px;background:linear-gradient(135deg,#153d3a,#111f29);color:#f3f7f3;position:relative;isolation:isolate;overflow:hidden}
+.guest-pass:after{content:'FAN';position:absolute;right:-12px;bottom:-45px;font-size:150px;font-weight:900;opacity:.05;pointer-events:none;z-index:-1}
+.guest-pass .eyebrow{color:#87ebd3;font-size:10px;letter-spacing:2px;margin:0}
+.guest-pass h2{font-size:28px;line-height:1.4;margin:0;overflow-wrap:anywhere}
+.guest-pass>p:not(.eyebrow){max-width:42ch;margin:0;color:#b6d0ce;font-size:14px;line-height:1.8}
+.guest-pass-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:4px}
+.guest-pass-actions a{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:11px 20px;border:1px solid transparent;border-radius:12px;background:#8ce9d4;color:#112d2d;text-decoration:none;font-size:14px;font-weight:700;line-height:1.5}
+.guest-pass-actions a+a{background:#ffffff12;color:#e6f3ef;border-color:#ffffff40}
+.guest-pass-actions a:hover{background:#b5f5e6}.guest-pass-actions a+a:hover{background:#ffffff20}
+.guest-pass-actions a:focus-visible{outline:2px solid #b5f5e6;outline-offset:4px}
+.profile-about-link{color:var(--muted);font-size:12px;text-decoration:none}
+@media(max-width:600px){.guest-pass{padding:24px;min-height:250px}.guest-pass h2{font-size:24px}.guest-pass-actions a{flex:1;padding-left:12px;padding-right:12px}}
 .personal-top-grid{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(290px,1fr);gap:20px}
 .paddock-pass{isolation:isolate;position:relative;overflow:hidden;min-width:0;padding:27px 30px 21px;border:1px solid color-mix(in srgb,var(--accent) 32%,var(--line));border-radius:23px;background:linear-gradient(115deg,color-mix(in srgb,var(--accent) 15%,var(--panel)),var(--panel) 78%)}
 .paddock-pass:after{content:'';position:absolute;inset:auto 0 0;height:4px;background:linear-gradient(90deg,var(--accent),transparent 85%)}

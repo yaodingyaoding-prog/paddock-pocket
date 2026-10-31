@@ -72,6 +72,15 @@ assert.deepEqual(Object.keys((await service.remove()).user).sort(),['email','id'
 
 const zones=availableTimezones('Asia/Tokyo');assert.ok(zones.length>40);assert.ok(zones.includes('America/New_York')&&zones.includes('UTC')&&zones.includes('Australia/Melbourne'));
 assert.ok(!validTimezone('untrusted/not-a-timezone'));assert.equal(timezoneLabel('Asia/Shanghai'),'北京时间');
+// Older Android WebViews do not implement String.prototype.replaceAll.
+// An uncurated device timezone must still render the personal page.
+const replaceAllDescriptor=Object.getOwnPropertyDescriptor(String.prototype,'replaceAll')!;
+try {
+  Object.defineProperty(String.prototype,'replaceAll',{...replaceAllDescriptor,value:undefined});
+  assert.equal(timezoneLabel('Asia/Urumqi'),'Urumqi');
+  assert.equal(timezoneLabel('America/Argentina/San_Juan'),'Argentina / San Juan');
+  assert.equal(timezoneLabel('UTC'),'协调世界时');
+} finally { Object.defineProperty(String.prototype,'replaceAll',replaceAllDescriptor); }
 assert.equal(timezoneOffset('America/New_York',new Date('2024-06-01T00:00:00Z')),'UTC-4');
 assert.equal(timezoneOffset('America/New_York',new Date('2024-12-01T00:00:00Z')),'UTC-5');
 const raw={profile:{items:[{id:owner.id,firstName:'Fixture',lastName:'Driver',birth_date:'1985-01-07',countryName:'测试国籍',teams:[{seasonYear:2026,name:'当前车队',number:'44',standing:{position:1,points:340}},{seasonYear:2020,name:'历史车队',number:'44',standing:{position:1,points:350}}]}]},statistics:{items:[{type:'Wins',value:106},{type:'Titles',value:1},{type:'Poles',value:104},{type:'Results',value:397},{type:'Podiums',value:208}]}};

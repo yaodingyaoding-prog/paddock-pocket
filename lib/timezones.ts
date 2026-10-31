@@ -13,4 +13,4 @@ export function availableTimezones(local = 'Asia/Shanghai') {
 export function timezoneOffset(zone: string, date = new Date()) {
   try { return new Intl.DateTimeFormat('en', { timeZone: zone, timeZoneName: 'shortOffset' }).formatToParts(date).find(part => part.type === 'timeZoneName')?.value.replace('GMT', 'UTC') || 'UTC'; } catch { return zone; }
 }
-export const timezoneLabel = (zone: string) => timezoneNames[zone] || zone.split('/').slice(1).join(' / ').replaceAll('_', ' ') || zone;
+export const timezoneLabel = (zone: string) => timezoneNames[zone] || zone.split('/').slice(1).join(' / ').replace(/_/g, ' ') || zone;
