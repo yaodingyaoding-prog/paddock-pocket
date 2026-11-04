@@ -48,13 +48,13 @@ function Scene({file,preview,name,large=false,interactive=false}:{file:string;pr
  </div>;
 }
 export function CircuitPreview({circuit,interactive=false}:{circuit:Row;interactive?:boolean}){
- const entry=(models as any)[circuit?.id];const [open,setOpen]=useState(false),[enabled,setEnabled]=useState(false);const dialog=useRef<HTMLDialogElement>(null);
+ const entry=(models as any)[circuit?.id];const [open,setOpen]=useState(false);const dialog=useRef<HTMLDialogElement>(null);
  useEffect(()=>{const element=dialog.current;if(!element)return;if(open){if(typeof element.showModal==='function')element.showModal();else element.setAttribute('open','');}else if(typeof element.close==='function')element.close();else element.removeAttribute('open');},[open]);
- useEffect(()=>{setOpen(false);setEnabled(false);},[circuit?.id]);
+ useEffect(()=>setOpen(false),[circuit?.id]);
  if(!entry)return <div className="track-pending"><Move3D/><small>赛道模型待补充</small></div>;
  const flat=images.circuits.find(c=>c.id===circuit.id);
  return <><div className={"circuit-preview"+(interactive?" inline-interactive":"")}>
-  {enabled?<Scene key={circuit.id} file={entry.file} preview={flat?.file} name={circuit.name} interactive={interactive}/>:<div className="track-scene">{flat&&<img className="circuit-flat-preview" src={flat.file} alt={circuit.name+'平面布局'}/>}<button className="circuit-enable" onClick={()=>setEnabled(true)}>启用 3D</button></div>}
+  <Scene key={circuit.id} file={entry.file} preview={flat?.file} name={circuit.name} interactive={interactive}/>
   <button className="scene-maximize" aria-label={"放大"+circuit.name+"3D赛道"} onClick={()=>setOpen(true)}><Maximize size={16}/></button>
  </div>{open&&<dialog ref={dialog} className="sheet circuit-viewer" onCancel={()=>setOpen(false)}><div className="sheet-head"><div><h2>{circuit.name}</h2></div><button className="icon-button" aria-label="关闭" onClick={()=>setOpen(false)}><X size={21}/></button></div><div className="sheet-body"><Scene key={circuit.id} file={entry.file} preview={flat?.file} name={circuit.name} large/><p className="section-note">拖动旋转 · 双指缩放</p>{flat&&<details className="flat-track"><summary>查看详细平面布局</summary><img src={flat.file} alt={circuit.name+'详细布局'}/><small>现用布局 · © Formula 1</small></details>}</div></dialog>}</>;
 }

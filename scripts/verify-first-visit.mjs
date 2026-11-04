@@ -10,7 +10,8 @@ const {CircuitPreview}=await import(pathToFileURL(process.cwd()+'/.wrangler/chec
 const circuit=JSON.parse(fs.readFileSync('lib/circuit-images.json','utf8')).circuits[0];
 const html=renderToStaticMarkup(createElement(CircuitPreview,{circuit,interactive:true}));
 assert.ok(html.includes('src="'+circuit.file+'"'),'A first visitor must see the circuit layout without executing JavaScript or creating WebGL');
-assert.ok(html.includes('启用 3D'),'Heavy rendering must wait for an explicit request');
+assert.ok(html.includes('正在加载 3D'),'The circuit must start 3D automatically, without an enable button');
+assert.ok(!html.includes('启用 3D'),'Visitors must not need an extra click to start the circuit');
 const unknown=renderToStaticMarkup(createElement(CircuitPreview,{circuit:{id:'unknown',name:'Unknown circuit'}}));
 assert.ok(unknown.includes('待补充'),'An unknown circuit must not crash the page');
-console.log('First visit: server-rendered circuit preview, opt-in 3D and unknown circuit fallback passed.');
+console.log('First visit: readable server preview, automatic 3D and unknown circuit fallback passed.');

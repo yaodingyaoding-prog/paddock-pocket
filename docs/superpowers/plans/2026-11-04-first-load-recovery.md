@@ -30,3 +30,7 @@ Review focus: session data must survive reload recovery; error UI must not hide 
 - Production preview: with JavaScript disabled, SSR race text and a decoded circuit preview remain visible. A fresh 393 px mobile/WeChat user-agent context with 4x CPU throttling and constrained network starts without page exceptions and does not request Three.js/STL. Blocking the profile chunk shows a local recovery action; navigating to the schedule still works.
 - Independent review identified and resolved the unprotected team dialog and unbounded engine import. Re-review found no further important defects.
 - Actual Android/WeChat hardware is not connected; user-agent and network emulation do not prove those real-device results.
+
+## User correction: automatic 3D
+
+The user requires 3D to start directly when the page opens. Removed the enable-click gate; Scene now mounts immediately. The server-rendered image remains only while 3D loads or fails. Existing startup visibility, module error boundaries, 15-second loading deadline and retry behavior remain. Updated SSR and real-browser regressions verify automatic model requests and an actual WebGL canvas, plus unsupported-WebGL and stalled-engine recovery. Full checks and production build pass.
