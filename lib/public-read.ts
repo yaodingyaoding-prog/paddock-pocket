@@ -6,7 +6,9 @@ export async function readPublicJson<T>(url: string, options: ReadOptions = {}):
   const pause = options.pause || (ms => new Promise(resolve => setTimeout(resolve, ms)));
   for (let attempt = 0; attempt < 2; attempt++) {
     if (options.signal?.aborted) throw new DOMException('Request cancelled', 'AbortError');
-    const timeout = AbortSignal.timeout(options.timeoutMs || 6000);
+    // The upstream may use 6.5s before returning its cached/snapshot fallback.
+    // Leave room for that response and the visitor's network transit.
+    const timeout = AbortSignal.timeout(options.timeoutMs || 10000);
     const signal = options.signal ? AbortSignal.any([options.signal, timeout]) : timeout;
     let response: Response;
     try { response = await request(url, {method: 'GET', signal}); }

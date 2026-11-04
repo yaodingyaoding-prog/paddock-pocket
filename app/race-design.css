@@ -25,6 +25,10 @@ dialog[open]{animation:race-dialog .2s var(--race-ease,ease-out)}
 .hero-stage-title{pointer-events:none}.hero-track-orbit,.hero-round-watermark,.hero-stage-caption{pointer-events:none}
 .weekend-hero-stage .inline-interactive{cursor:grab}.weekend-hero-stage .inline-interactive:active{cursor:grabbing}
 .inline-interactive .track-scene{height:100%;width:100%}
+.circuit-flat-preview{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;padding:8px;box-sizing:border-box}
+.circuit-enable{position:absolute;left:50%;bottom:12px;transform:translateX(-50%);z-index:4;min-height:40px;padding:8px 14px;border:1px solid var(--line);border-radius:8px;background:var(--panel);color:var(--accent);font-size:12px;white-space:nowrap}
+.circuit-load-status{position:absolute;left:8px;right:8px;top:8px;z-index:3;text-align:center;color:var(--muted);font-size:11px;background:var(--panel);border-radius:6px;padding:5px}
+.weekend-hero-stage .circuit-enable{bottom:36px}
 .circuit-preview.inline-interactive canvas{pointer-events:auto;touch-action:none}
 .circuit-preview{position:relative}.scene-maximize{position:absolute;right:12px;bottom:12px;display:flex;align-items:center;gap:5px;background:var(--panel);color:var(--accent);border:1px solid var(--line);border-radius:8px;padding:8px 10px;z-index:3;font-size:11px;min-height:36px}
 .inline-interactive .scene-reset{left:10px;right:auto;bottom:12px;font-size:10px;padding:8px;min-height:36px;background:var(--panel);z-index:3}

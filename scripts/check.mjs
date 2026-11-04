@@ -30,6 +30,7 @@ const scripts = [
   ['scripts/verify-download.mjs'],
   ['scripts/verify-race-data.mjs'],
   ['scripts/verify-public-read.mjs'],
+  ['scripts/verify-first-visit.mjs'],
   ['scripts/verify-avatar-encoding.mjs'],
   ['scripts/verify-avatar-consistency.mjs'],
 ];

@@ -9,14 +9,14 @@ export const bootStatusScript = `(() => {
   // Server-rendered information pages use ordinary links and need no app-ready signal.
   const splash = document.getElementById('paddock-startup');
   const hideSplash = () => { if (splash) { splash.style.opacity='0'; splash.style.pointerEvents='none'; splash.hidden=true; } };
+  // Server-rendered content stays readable while the application downloads.
+  hideSplash();
   if (!['/', '/login', '/register', '/forgot-password', '/reset-password', '/auth/confirm'].includes(location.pathname)) { hideSplash(); return; }
   const notice = document.getElementById('paddock-boot-status');
   const retry = document.getElementById('paddock-boot-retry');
   if (!notice || !retry) return;
   let ready = false;
   let timer;
-  // A slow connection must still reveal the readable server-rendered schedule.
-  const revealTimer = setTimeout(hideSplash, 8000);
   const show = (reason) => {
     if (ready) return;
     hideSplash();
@@ -27,12 +27,12 @@ export const bootStatusScript = `(() => {
     const target = event.target;
     if (target && target.tagName === 'SCRIPT' && target.src &&
         target.src.startsWith(location.origin + '/_next/static/')) show('script-download');
+    else if (event.filename && event.filename.startsWith(location.origin + '/_next/static/')) show('script-execution');
   };
   window.addEventListener('error', failed, true);
   window.addEventListener('paddock:ready', () => {
     ready = true;
     clearTimeout(timer);
-    clearTimeout(revealTimer);
     hideSplash();
     notice.hidden = true;
     delete notice.dataset.reason;

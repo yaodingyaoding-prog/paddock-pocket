@@ -26,4 +26,14 @@ assert.deepEqual(await readPublicJson('/api/data',{pause:async()=>{},request:asy
  return Response.json(expected);
 }}),expected);
 assert.equal(calls,2,'A connection lost while reading the body gets one bounded retry');
-console.log('Public reads: bounded network/gateway/body retries, rate-limit restraint, cancellation and malformed responses passed.');
+calls=0;
+assert.deepEqual(await readPublicJson('/api/data',{request:async(_url,{signal})=>{
+ calls++;
+ return await new Promise((resolve,reject)=>{
+  const timer=setTimeout(()=>{signal.removeEventListener('abort',abort);resolve(Response.json(expected));},6200);
+  function abort(){clearTimeout(timer);reject(signal.reason);}
+  signal.addEventListener('abort',abort,{once:true});
+ });
+}}),expected,'The client must wait long enough to receive the server fallback instead of aborting it at six seconds');
+assert.equal(calls,1,'A slow successful response must not be downloaded twice');
+console.log('Public reads: bounded retries, cancellation, and slow server fallback delivery passed.');

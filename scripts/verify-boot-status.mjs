@@ -26,9 +26,7 @@ function boot(pathname = '/') {
 }
 const slow = boot();
 assert.equal(slow.notice.hidden, true);
-assert.equal(slow.splash.hidden,false);
-slow.timers.get(8000)();
-assert.equal(slow.splash.hidden,true,'Slow startup must reveal the readable schedule rather than permanently cover it');
+assert.equal(slow.splash.hidden,true,'The readable schedule must be visible before the application bundle starts');
 slow.timers.get(12000)();
 assert.equal(slow.notice.hidden, false, 'Slow startup must not silently leave inert buttons');
 slow.clicks[0]();
@@ -56,4 +54,10 @@ assert.equal(failed.notice.hidden, true, 'Unrelated extension errors must not ac
 failed.events.get('error')({ target: { tagName: 'SCRIPT', src: 'https://xiaodinglab.com/_next/static/chunks/framework.js' } });
 assert.equal(failed.notice.dataset.reason, 'script-download');
 assert.equal(failed.notice.hidden, false);
+const runtime = boot();
+runtime.events.get('error')({ filename: 'https://xiaodinglab.com/_next/static/chunks/framework.js', message: 'unsupported runtime API' });
+assert.equal(runtime.notice.dataset.reason,'script-execution','A downloaded script that cannot execute must report startup failure');
+const unrelated = boot();
+unrelated.events.get('error')({ filename: 'https://other.example/extension.js' });
+assert.equal(unrelated.notice.hidden,true);
 console.log('Startup checks passed: slow/failed bundles, pre-hydration retry, successful recovery, unrelated scripts.');
