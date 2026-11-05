@@ -1,0 +1,34 @@
+import assert from 'node:assert/strict';
+import {build} from 'esbuild';
+import {pathToFileURL} from 'node:url';
+import fs from 'node:fs';
+await build({entryPoints:['lib/circuit-elevation.ts'],outfile:'.wrangler/checks/circuit-elevation.mjs',bundle:true,platform:'node',format:'esm',logLevel:'silent'});
+const {buildElevationRibbon}=await import(pathToFileURL(process.cwd()+'/.wrangler/checks/circuit-elevation.mjs').href);
+const profile={version:1,points:[[0,0,100],[100,0,110],[100,100,120],[0,100,110],[0,0,100]]};
+const result=buildElevationRibbon(profile,3);
+assert.equal(result.maxElevation,120);
+assert.equal(result.minElevation,100);
+assert.equal(result.highest[1]-result.lowest[1],60,'The mesh must preserve measured elevation with an explicit 3x vertical scale');
+assert.equal(result.positions.length,48,'Four cross-section vertices per unique lap point');
+assert.equal(result.indices.length,96,'Four closed road faces per lap segment');
+assert.equal(Math.max(...result.indices),15,'The seam must connect existing vertices');
+assert.ok([...result.positions,...result.colors].every(Number.isFinite));
+const flat=buildElevationRibbon({...profile,points:profile.points.map(p=>[p[0],p[1],7])},3);
+assert.ok([...flat.colors].every(Number.isFinite),'A flat circuit must not divide by zero when colouring elevation');
+assert.equal(flat.highest[1],flat.lowest[1]);
+assert.throws(()=>buildElevationRibbon({version:1,points:[[0,0,0],[1,0,NaN],[0,1,2],[0,0,0]]}),/Invalid/);
+assert.throws(()=>buildElevationRibbon({version:1,points:[[0,0,0],[1,0,1],[1,1,2],[0,1,2]]}),/closed/);
+const models=JSON.parse(fs.readFileSync('lib/circuit-models.json','utf8'));
+const manifest=JSON.parse(fs.readFileSync('lib/circuit-elevation.json','utf8'));
+assert.deepEqual(Object.keys(manifest).sort(),Object.keys(models).sort(),'Every existing circuit must have a replacement elevation model');
+for(const [id,entry] of Object.entries(manifest)){
+ const saved=JSON.parse(fs.readFileSync('public'+entry.file,'utf8'));
+ assert.equal(saved.id,id);
+ assert.equal(saved.source.dataset,'Copernicus DEM GLO-90');
+ assert.equal(saved.source.resolutionMeters,90);
+ const mesh=buildElevationRibbon(saved);
+ assert.ok(Math.abs(mesh.maxElevation-entry.maxElevation)<0.11);
+ assert.ok(Math.abs(mesh.minElevation-entry.minElevation)<0.11);
+ assert.ok([...mesh.positions].every(Number.isFinite));
+}
+console.log('Circuit elevation: actual height, explicit vertical scale, closed road geometry, flat tracks and invalid data passed.');

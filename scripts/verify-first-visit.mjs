@@ -9,9 +9,10 @@ await build({entryPoints:['app/circuit-scene.tsx'],outfile:'.wrangler/checks/cir
 const {CircuitPreview}=await import(pathToFileURL(process.cwd()+'/.wrangler/checks/circuit-preview.mjs').href);
 const circuit=JSON.parse(fs.readFileSync('lib/circuit-images.json','utf8')).circuits[0];
 const html=renderToStaticMarkup(createElement(CircuitPreview,{circuit,interactive:true}));
-assert.ok(html.includes('src="'+circuit.file+'"'),'A first visitor must see the circuit layout without executing JavaScript or creating WebGL');
+assert.ok(!html.includes('<img'),'The 3D viewer must never preload a flat circuit image');
 assert.ok(html.includes('正在加载 3D'),'The circuit must start 3D automatically, without an enable button');
 assert.ok(!html.includes('启用 3D'),'Visitors must not need an extra click to start the circuit');
 const unknown=renderToStaticMarkup(createElement(CircuitPreview,{circuit:{id:'unknown',name:'Unknown circuit'}}));
 assert.ok(unknown.includes('待补充'),'An unknown circuit must not crash the page');
-console.log('First visit: readable server preview, automatic 3D and unknown circuit fallback passed.');
+assert.ok(html.includes('地形高差'),'The viewer must label the elevation range');
+console.log('First visit: automatic elevation model, no flat-image preload and unknown circuit fallback passed.');

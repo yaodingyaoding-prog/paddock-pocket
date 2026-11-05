@@ -1,0 +1,232 @@
+{
+  "ab874741-bfd4-4d27-7c84-08d9161fe87b": {
+    "file": "/circuits/elevation/ab874741-bfd4-4d27-7c84-08d9161fe87b.json",
+    "sourceId": "au-1953",
+    "minElevation": 2,
+    "maxElevation": 8.7,
+    "elevationRange": 6.7,
+    "lengthMeters": 5273,
+    "source": "Copernicus DEM / Open-Meteo",
+    "resolutionMeters": 90
+  },
+  "a18e0166-6188-4b0f-7c87-08d9161fe87b": {
+    "file": "/circuits/elevation/a18e0166-6188-4b0f-7c87-08d9161fe87b.json",
+    "sourceId": "cn-2004",
+    "minElevation": 2,
+    "maxElevation": 10.4,
+    "elevationRange": 8.4,
+    "lengthMeters": 5448,
+    "source": "Copernicus DEM / Open-Meteo",
+    "resolutionMeters": 90
+  },
+  "c2fa59a7-c57a-4757-7c7e-08d9161fe87b": {
+    "file": "/circuits/elevation/c2fa59a7-c57a-4757-7c7e-08d9161fe87b.json",
+    "sourceId": "jp-1962",
+    "minElevation": 16.9,
+    "maxElevation": 66.3,
+    "elevationRange": 49.4,
+    "lengthMeters": 5812,
+    "source": "Copernicus DEM / Open-Meteo",
+    "resolutionMeters": 90
+  },
+  "712b535e-edb5-49c3-af5b-a9ff8f7e6b80": {
+    "file": "/circuits/elevation/712b535e-edb5-49c3-af5b-a9ff8f7e6b80.json",
+    "sourceId": "us-2022",
+    "minElevation": 1,
+    "maxElevation": 11.7,
+    "elevationRange": 10.7,
+    "lengthMeters": 5415,
+    "source": "Copernicus DEM / Open-Meteo",
+    "resolutionMeters": 90
+  },
+  "53e98619-a09a-4741-7c75-08d9161fe87b": {
+    "file": "/circuits/elevation/53e98619-a09a-4741-7c75-08d9161fe87b.json",
+    "sourceId": "ca-1978",
+    "minElevation": 5,
+    "maxElevation": 16.1,
+    "elevationRange": 11.1,
+    "lengthMeters": 4365,
+    "source": "Copernicus DEM / Open-Meteo",
+    "resolutionMeters": 90
+  },
+  "d7fa6d12-55ae-4da7-7c4b-08d9161fe87b": {
+    "file": "/circuits/elevation/d7fa6d12-55ae-4da7-7c4b-08d9161fe87b.json",
+    "sourceId": "mc-1929",
+    "minElevation": 1.8,
+    "maxElevation": 58.7,
+    "elevationRange": 56.9,
+    "lengthMeters": 3324,
+    "source": "Copernicus DEM / Open-Meteo",
+    "resolutionMeters": 90
+  },
+  "00c587ef-3e4a-4cef-7c81-08d9161fe87b": {
+    "file": "/circuits/elevation/00c587ef-3e4a-4cef-7c81-08d9161fe87b.json",
+    "sourceId": "es-1991",
+    "minElevation": 114,
+    "maxElevation": 149,
+    "elevationRange": 35,
+    "lengthMeters": 4664,
+    "source": "Copernicus DEM / Open-Meteo",
+    "resolutionMeters": 90
+  },
+  "0002d9f6-faa7-4d60-7c8f-08d9161fe87b": {
+    "file": "/circuits/elevation/0002d9f6-faa7-4d60-7c8f-08d9161fe87b.json",
+    "sourceId": "at-1969",
+    "minElevation": 678.6,
+    "maxElevation": 746,
+    "elevationRange": 67.4,
+    "lengthMeters": 4302,
+    "source": "Copernicus DEM / Open-Meteo",
+    "resolutionMeters": 90
+  },
+  "351e95e1-329f-456d-7c4a-08d9161fe87b": {
+    "file": "/circuits/elevation/351e95e1-329f-456d-7c4a-08d9161fe87b.json",
+    "sourceId": "gb-1948",
+    "minElevation": 144.3,
+    "maxElevation": 156,
+    "elevationRange": 11.7,
+    "lengthMeters": 5877,
+    "source": "Copernicus DEM / Open-Meteo",
+    "resolutionMeters": 90
+  },
+  "d49564dc-1e19-46d3-7c4e-08d9161fe87b": {
+    "file": "/circuits/elevation/d49564dc-1e19-46d3-7c4e-08d9161fe87b.json",
+    "sourceId": "be-1925",
+    "minElevation": 365.6,
+    "maxElevation": 465.4,
+    "elevationRange": 99.9,
+    "lengthMeters": 6978,
+    "source": "Copernicus DEM / Open-Meteo",
+    "resolutionMeters": 90
+  },
+  "2a1c1543-abf1-4796-7c7d-08d9161fe87b": {
+    "file": "/circuits/elevation/2a1c1543-abf1-4796-7c7d-08d9161fe87b.json",
+    "sourceId": "hu-1986",
+    "minElevation": 202.1,
+    "maxElevation": 240.1,
+    "elevationRange": 38,
+    "lengthMeters": 4376,
+    "source": "Copernicus DEM / Open-Meteo",
+    "resolutionMeters": 90
+  },
+  "17625dab-2d8f-45c6-7c54-08d9161fe87b": {
+    "file": "/circuits/elevation/17625dab-2d8f-45c6-7c54-08d9161fe87b.json",
+    "sourceId": "nl-1948",
+    "minElevation": 3.1,
+    "maxElevation": 10.3,
+    "elevationRange": 7.2,
+    "lengthMeters": 4255,
+    "source": "Copernicus DEM / Open-Meteo",
+    "resolutionMeters": 90
+  },
+  "62ed1e15-500a-4e18-7c50-08d9161fe87b": {
+    "file": "/circuits/elevation/62ed1e15-500a-4e18-7c50-08d9161fe87b.json",
+    "sourceId": "it-1922",
+    "minElevation": 180.2,
+    "maxElevation": 203.6,
+    "elevationRange": 23.3,
+    "lengthMeters": 5787,
+    "source": "Copernicus DEM / Open-Meteo",
+    "resolutionMeters": 90
+  },
+  "5d783bbf-35e3-4805-9137-9c1bbcc52819": {
+    "file": "/circuits/elevation/5d783bbf-35e3-4805-9137-9c1bbcc52819.json",
+    "sourceId": "es-2026",
+    "minElevation": 670.3,
+    "maxElevation": 695.4,
+    "elevationRange": 25.1,
+    "lengthMeters": 5430,
+    "source": "Copernicus DEM / Open-Meteo",
+    "resolutionMeters": 90
+  },
+  "c271b9c9-b10f-484d-aa3d-2968f310391d": {
+    "file": "/circuits/elevation/c271b9c9-b10f-484d-aa3d-2968f310391d.json",
+    "sourceId": "az-2016",
+    "minElevation": -24.3,
+    "maxElevation": 11.3,
+    "elevationRange": 35.7,
+    "lengthMeters": 5986,
+    "source": "Copernicus DEM / Open-Meteo",
+    "resolutionMeters": 90
+  },
+  "117d13ed-7373-4347-7c85-08d9161fe87b": {
+    "file": "/circuits/elevation/117d13ed-7373-4347-7c85-08d9161fe87b.json",
+    "sourceId": "my-1999",
+    "minElevation": 23,
+    "maxElevation": 45.7,
+    "elevationRange": 22.7,
+    "lengthMeters": 5549,
+    "source": "Copernicus DEM / Open-Meteo",
+    "resolutionMeters": 90
+  },
+  "02118f4e-0b55-462b-7c8a-08d9161fe87b": {
+    "file": "/circuits/elevation/02118f4e-0b55-462b-7c8a-08d9161fe87b.json",
+    "sourceId": "sg-2008",
+    "minElevation": 3,
+    "maxElevation": 21.6,
+    "elevationRange": 18.6,
+    "lengthMeters": 4943,
+    "source": "Copernicus DEM / Open-Meteo",
+    "resolutionMeters": 90
+  },
+  "33935829-9247-4314-7c8e-08d9161fe87b": {
+    "file": "/circuits/elevation/33935829-9247-4314-7c8e-08d9161fe87b.json",
+    "sourceId": "us-2012",
+    "minElevation": 151.9,
+    "maxElevation": 173.3,
+    "elevationRange": 21.4,
+    "lengthMeters": 5520,
+    "source": "Copernicus DEM / Open-Meteo",
+    "resolutionMeters": 90
+  },
+  "1334cbc1-8d76-4283-7c60-08d9161fe87b": {
+    "file": "/circuits/elevation/1334cbc1-8d76-4283-7c60-08d9161fe87b.json",
+    "sourceId": "mx-1962",
+    "minElevation": 2228,
+    "maxElevation": 2234.9,
+    "elevationRange": 6.9,
+    "lengthMeters": 4302,
+    "source": "Copernicus DEM / Open-Meteo",
+    "resolutionMeters": 90
+  },
+  "1e65f843-4846-4b60-7c6e-08d9161fe87b": {
+    "file": "/circuits/elevation/1e65f843-4846-4b60-7c6e-08d9161fe87b.json",
+    "sourceId": "br-1940",
+    "minElevation": 740,
+    "maxElevation": 786,
+    "elevationRange": 46,
+    "lengthMeters": 4298,
+    "source": "Copernicus DEM / Open-Meteo",
+    "resolutionMeters": 90
+  },
+  "ed58dd38-e80c-4cd0-9706-92aeff3b468d": {
+    "file": "/circuits/elevation/ed58dd38-e80c-4cd0-9706-92aeff3b468d.json",
+    "sourceId": "us-2023",
+    "minElevation": 629,
+    "maxElevation": 653.8,
+    "elevationRange": 24.8,
+    "lengthMeters": 6221,
+    "source": "Copernicus DEM / Open-Meteo",
+    "resolutionMeters": 90
+  },
+  "7e4e00b0-f154-4530-890b-08d9a12419f9": {
+    "file": "/circuits/elevation/7e4e00b0-f154-4530-890b-08d9a12419f9.json",
+    "sourceId": "qa-2004",
+    "minElevation": 9.8,
+    "maxElevation": 14.9,
+    "elevationRange": 5.1,
+    "lengthMeters": 5421,
+    "source": "Copernicus DEM / Open-Meteo",
+    "resolutionMeters": 90
+  },
+  "36d922c2-e0ae-4e6d-7c8b-08d9161fe87b": {
+    "file": "/circuits/elevation/36d922c2-e0ae-4e6d-7c8b-08d9161fe87b.json",
+    "sourceId": "ae-2009",
+    "minElevation": 2,
+    "maxElevation": 13.6,
+    "elevationRange": 11.6,
+    "lengthMeters": 5293,
+    "source": "Copernicus DEM / Open-Meteo",
+    "resolutionMeters": 90
+  }
+}
