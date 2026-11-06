@@ -22,6 +22,13 @@ try{
  assert.ok(requests.some(url=>url.includes('/circuits/elevation/')),'3D must automatically fetch its elevation profile');
  assert.equal(requests.some(url=>/\/circuits\/[^/]+\.webp$/.test(url)),false,'3D startup must not request a flat track image');
  assert.equal(await page.locator('.track-scene canvas').count(),1,'Automatic startup must produce a real WebGL canvas');
+ assert.equal(await page.getByRole('combobox',{name:'高度显示比例'}).inputValue(),'8');
+ const elevationLabels=await page.locator('.circuit-elevation-pin').allTextContents();
+ await page.getByRole('combobox',{name:'高度显示比例'}).selectOption('1');
+ await page.getByRole('button',{name:'重置视角'}).waitFor();
+ assert.deepEqual(await page.locator('.circuit-elevation-pin').allTextContents(),elevationLabels,'Visual exaggeration must not alter altitude readouts');
+ await page.getByRole('combobox',{name:'高度显示比例'}).selectOption('8');
+ await page.getByRole('button',{name:'重置视角'}).waitFor();
  await page.getByRole('button',{name:'重新加载此页面'}).waitFor();
  assert.equal(await page.getByRole('button',{name:'返回赛程'}).isVisible(),true,'A failed module must leave navigation usable');
  await page.getByRole('button',{name:'返回赛程'}).click();

@@ -6,6 +6,8 @@ await build({entryPoints:['lib/circuit-elevation.ts'],outfile:'.wrangler/checks/
 const {buildElevationRibbon}=await import(pathToFileURL(process.cwd()+'/.wrangler/checks/circuit-elevation.mjs').href);
 const profile={version:1,points:[[0,0,100],[100,0,110],[100,100,120],[0,100,110],[0,0,100]]};
 const result=buildElevationRibbon(profile,3);
+const emphasized=buildElevationRibbon(profile);
+assert.equal(emphasized.highest[1]-emphasized.lowest[1],160,'The default viewer must emphasize the vertical profile at 8x');
 assert.equal(result.maxElevation,120);
 assert.equal(result.minElevation,100);
 assert.equal(result.highest[1]-result.lowest[1],60,'The mesh must preserve measured elevation with an explicit 3x vertical scale');

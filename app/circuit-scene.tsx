@@ -2,15 +2,14 @@
 import {useEffect, useRef, useState} from 'react';
 import {Maximize, RotateCcw, X, Move3D} from 'lucide-react';
 import profiles from '../lib/circuit-elevation.json';
-import {buildElevationRibbon, type ElevationProfile} from '../lib/circuit-elevation';
+import {buildElevationRibbon, defaultVerticalScale, type ElevationProfile} from '../lib/circuit-elevation';
 import {circuitCameraDistance} from '../lib/circuit-camera';
 
 type Circuit = {id?: string; name?: string};
 type ProfileInfo = {file: string; minElevation: number; maxElevation: number; elevationRange: number};
-const verticalScale = 3;
 
-function Scene({profile, name, large = false, interactive = false}: {
-  profile: ProfileInfo; name?: string; large?: boolean; interactive?: boolean;
+function Scene({profile, name, verticalScale, onScaleChange, large = false, interactive = false}: {
+  profile: ProfileInfo; name?: string; verticalScale: number; onScaleChange: (value: number) => void; large?: boolean; interactive?: boolean;
 }) {
   const host = useRef<HTMLDivElement>(null);
   const reset = useRef<() => void>(() => {});
@@ -102,7 +101,7 @@ function Scene({profile, name, large = false, interactive = false}: {
       light.position.set(-20, 100, 60);
       scene.add(light);
       const camera = new T.PerspectiveCamera(35, 1, 0.1, 1000);
-      const initialDirection = new T.Vector3(20, 85, 140).normalize();
+      const initialDirection = new T.Vector3(20, 65, 140).normalize();
       camera.position.copy(initialDirection).multiplyScalar(180);
       const controls = new OrbitControls(camera, renderer.domElement);
       controls.enableDamping = true;
@@ -179,11 +178,19 @@ function Scene({profile, name, large = false, interactive = false}: {
       if (!gone) setStatus('failed');
     });
     return () => { gone = true; clearTimeout(deadline); abort.abort(); dispose(); };
-  }, [profile.file, large, interactive, attempt]);
+  }, [profile.file, verticalScale, large, interactive, attempt]);
 
   return <div className={'track-scene' + (large ? ' large' : '')}>
     <div ref={host} role="img" aria-label={(name || '赛道') + '海拔立体模型'}/>
     <p className="circuit-elevation-summary">地形高差 ≈ {Math.round(profile.elevationRange)} m <span>高度 ×{verticalScale}</span></p>
+    {(large || interactive) && <label className="circuit-height-control">高度
+      <select aria-label="高度显示比例" value={verticalScale} onChange={event => onScaleChange(Number(event.target.value))}>
+        <option value={1}>1× 原始比例</option>
+        <option value={3}>3×</option>
+        <option value={8}>8×</option>
+        <option value={15}>15×</option>
+      </select>
+    </label>}
     {status !== 'ready' && <span className="circuit-load-status" role="status">{status === 'failed' ? '3D 加载失败，请重试' : '正在加载 3D…'}</span>}
     {status === 'failed' && <button className="circuit-enable" onClick={() => setAttempt(value => value + 1)}>重试 3D</button>}
     {(large || interactive) && status === 'ready' && <button className="scene-reset" aria-label="重置视角" title="重置视角" onClick={() => reset.current()}><RotateCcw size={16}/></button>}
@@ -193,6 +200,7 @@ function Scene({profile, name, large = false, interactive = false}: {
 export function CircuitPreview({circuit, interactive = false}: {circuit: Circuit; interactive?: boolean}) {
   const profile = (profiles as Record<string, ProfileInfo>)[circuit?.id || ''];
   const [open, setOpen] = useState(false);
+  const [verticalScale, setVerticalScale] = useState(defaultVerticalScale);
   const dialog = useRef<HTMLDialogElement>(null);
   useEffect(() => {
     const element = dialog.current;
@@ -204,13 +212,13 @@ export function CircuitPreview({circuit, interactive = false}: {circuit: Circuit
   if (!profile) return <div className="track-pending"><Move3D/><small>赛道模型待补充</small></div>;
   return <>
     <div className={'circuit-preview' + (interactive ? ' inline-interactive' : '')}>
-      <Scene key={circuit.id} profile={profile} name={circuit.name} interactive={interactive}/>
+      <Scene key={circuit.id} profile={profile} name={circuit.name} verticalScale={verticalScale} onScaleChange={setVerticalScale} interactive={interactive}/>
       <button className="scene-maximize" aria-label={'放大' + circuit.name + '3D赛道'} onClick={() => setOpen(true)}><Maximize size={16}/></button>
     </div>
     {open && <dialog ref={dialog} className="sheet circuit-viewer" onCancel={() => setOpen(false)}>
       <div className="sheet-head"><div><h2>{circuit.name}</h2></div><button className="icon-button" aria-label="关闭" onClick={() => setOpen(false)}><X size={21}/></button></div>
       <div className="sheet-body">
-        <Scene key={circuit.id} profile={profile} name={circuit.name} large/>
+        <Scene key={circuit.id} profile={profile} name={circuit.name} verticalScale={verticalScale} onScaleChange={setVerticalScale} large/>
         <p className="section-note">拖动旋转 · 双指缩放 · 高度按 {verticalScale} 倍显示</p>
         <p className="circuit-elevation-credit">海拔约 {Math.round(profile.minElevation)}–{Math.round(profile.maxElevation)} m，按 90 米地形数据估算。
           数据来自 <a href="https://open-meteo.com/en/docs/elevation-api" target="_blank" rel="noreferrer">Copernicus DEM / Open-Meteo</a>。

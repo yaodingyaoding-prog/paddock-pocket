@@ -1,7 +1,8 @@
 export type ElevationPoint = [number, number, number];
 export type ElevationProfile = { version: number; points: ElevationPoint[] };
+export const defaultVerticalScale = 8;
 
-export function buildElevationRibbon(profile: ElevationProfile, verticalScale = 3) {
+export function buildElevationRibbon(profile: ElevationProfile, verticalScale = defaultVerticalScale) {
   const points = profile?.points;
   if (profile?.version !== 1 || !Array.isArray(points) || points.length < 4 || points.length > 4097 ||
       !points.every(point => Array.isArray(point) && point.length === 3 && point.every(Number.isFinite)) ||
@@ -34,11 +35,11 @@ export function buildElevationRibbon(profile: ElevationProfile, verticalScale = 
     const dx = next[0] - previous[0], dz = next[2] - previous[2];
     const tangentLength = Math.hypot(dx, dz);
     if (!tangentLength) throw new Error('Invalid circuit tangent');
-    const offsetX = -dz / tangentLength * 0.65;
-    const offsetZ = dx / tangentLength * 0.65;
+    const offsetX = -dz / tangentLength * 0.95;
+    const offsetZ = dx / tangentLength * 0.95;
     const [x, y, z] = centerline[i];
     positions.push(x + offsetX, y, z + offsetZ, x - offsetX, y, z - offsetZ,
-      x + offsetX, y - 0.4, z + offsetZ, x - offsetX, y - 0.4, z - offsetZ);
+      x + offsetX, y - 0.7, z + offsetZ, x - offsetX, y - 0.7, z - offsetZ);
     const ratio = (elevations[i] - minElevation) / (maxElevation - minElevation || 1);
     const color = [0.13 + ratio * 0.87, 0.76 - ratio * 0.11, 0.83 - ratio * 0.58];
     colors.push(...color, ...color, ...color.map(value => value * 0.48), ...color.map(value => value * 0.48));
