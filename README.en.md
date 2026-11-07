@@ -42,6 +42,8 @@ The viewing centre combines Five Star Sports setup instructions with Tencent Vid
 
 Discover also includes paddock news, classic races, an F1 encyclopedia, rules and technical material. Telemetry tools compare two drivers and present tyre records, pit stops and race-control messages. Championship-condition tools calculate the rival results needed to clinch at the next round under selected finishing scenarios.
 
+Discover → Merchandise (周边购买) brings together 17 domestic and overseas apparel, model and collectible channels. Search teams or brands and combine region and product filters. A varied storefront layout highlights merchandise, apparel and building sets, with each brand linking directly to its F1, teamwear or Formula 1 model section.
+
 ### Make the paddock your own
 
 Choose from 10 interface themes, 12 accent colors and searchable time zones. Glass navigation, distinct transitions and a continuously animated F1 login scene carry the design across phones, tablets and desktops. Motion also respects the system's reduced-motion preference.

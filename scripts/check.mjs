@@ -10,6 +10,7 @@ const scripts = [
   ['scripts/verify-circuit-camera.mjs'],
   ['scripts/verify-circuit-elevation.mjs'],
   ['scripts/verify-weather-viewing.mjs'],
+  ['scripts/verify-shopping.mjs'],
   ['scripts/verify-portraits.mjs'],
   ['scripts/verify-boot-status.mjs'],
   ['scripts/verify-fonts.mjs'],
