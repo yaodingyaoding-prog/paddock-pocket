@@ -10,6 +10,7 @@ import { useAccountControls } from './account-controls';
 import { useAccountPreferences } from './account-preferences';
 import { RaceHero } from './race-hero';
 import { pruneClientCache } from '../lib/client-cache';
+import { currentWeekend } from '../lib/current-weekend';
 import { GlassNavigation } from './glass-navigation';
 import './ui-refinement.css';
 import './race-design.css';
@@ -84,7 +85,7 @@ function Countdown({ date }: { date?: string }) {
 function PanelTitle({ eyebrow, title, children }: { eyebrow?: string; title: string; children?: React.ReactNode }) {
   return <div className="panel-title"><div><h2>{title}</h2></div>{children}</div>;
 }
-export default function App({ seed, seededAt }: { seed: Record<string, any>; seededAt: string }) {
+export default function App({ seed, seededAt, initialNow }: { seed: Record<string, any>; seededAt: string; initialNow: number }) {
   const {tab,detail,setTab,openDetail,driverId,driverSeason,driverFrom,openDriver,closeDriver}=usePaddockNavigation();
   const preferencesRef = useRef<{ flush: () => Promise<void> } | null>(null);
   const account = useAccountControls({ beforeLogout: () => preferencesRef.current?.flush() || Promise.resolve() });
@@ -107,7 +108,7 @@ export default function App({ seed, seededAt }: { seed: Record<string, any>; see
   function navigateTab(next:Tab){setPageDirection(navs.indexOf(next)>=navs.indexOf(tab)?1:-1);setTab(next);}
   const [replayRaceId,setReplayRaceId]=useState('');
   const [rankType, setRankType] = useState('drivers');
-  const [now, setNow] = useState(0);
+  const [now, setNow] = useState(initialNow);
   const [localTimezone, setLocalTimezone] = useState('Asia/Shanghai');
   const [rankExpanded, setRankExpanded] = useState(false);
   const [rankHelp, setRankHelp] = useState(false);
@@ -122,7 +123,8 @@ export default function App({ seed, seededAt }: { seed: Record<string, any>; see
   const activeSeason = data.seasons?.items?.find((s: Row) => s.id === season);
   const year = activeSeason?.year || 2026;
   const races: Row[] = data.races?.items || [];
-  const race = selected || data.next || races[0];
+  const defaultRace = season === snapshotSeason ? currentWeekend<Row>(data.next, races, now) : data.next || races[0];
+  const race = selected || defaultRace;
   const sessions: Row[] = [...(race?.schedule || [])].sort((a, b) => +new Date(a.startDate) - +new Date(b.startDate));
   const nextSession = sessions.find(s => +new Date(s.startDate) > now);
   const drivers: Row[] = data.drivers?.items?.[0]?.standings || [];

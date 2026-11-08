@@ -18,6 +18,7 @@ const scripts = [
   ['scripts/verify-auth.mjs'],
   ['scripts/verify-personal-features.mjs'],
   ['scripts/verify-race-refresh.mjs'],
+  ['scripts/verify-current-weekend.mjs'],
   ['scripts/verify-motion.mjs'],
   ['scripts/verify-android-release.mjs'],
   ['scripts/verify-native-behavior.mjs'],
