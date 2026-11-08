@@ -14,5 +14,5 @@ assert.ok(html.includes('正在加载 3D'),'The circuit must start 3D automatica
 assert.ok(!html.includes('启用 3D'),'Visitors must not need an extra click to start the circuit');
 const unknown=renderToStaticMarkup(createElement(CircuitPreview,{circuit:{id:'unknown',name:'Unknown circuit'}}));
 assert.ok(unknown.includes('待补充'),'An unknown circuit must not crash the page');
-assert.ok(html.includes('地形高差'),'The viewer must label the elevation range');
+assert.ok(!html.includes('地形高差'),'The viewer must omit explanatory elevation summaries');
 console.log('First visit: automatic elevation model, no flat-image preload and unknown circuit fallback passed.');

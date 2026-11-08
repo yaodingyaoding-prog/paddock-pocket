@@ -187,7 +187,6 @@ function Scene({profile, name, verticalScale, onScaleChange, large = false, inte
 
   return <div className={'track-scene' + (large ? ' large' : '')}>
     <div ref={host} role="img" aria-label={(name || '赛道') + '海拔立体模型'}/>
-    <p className="circuit-elevation-summary">地形高差 ≈ {Math.round(profile.elevationRange)} m <span>高度 ×{verticalScale}</span></p>
     {(large || interactive) && <label className="circuit-height-control">高度
       <select aria-label="高度显示比例" value={verticalScale} onChange={event => onScaleChange(Number(event.target.value))}>
         <option value={1}>1× 原始比例</option>
@@ -224,10 +223,6 @@ export function CircuitPreview({circuit, interactive = false}: {circuit: Circuit
       <div className="sheet-head"><div><h2>{circuit.name}</h2></div><button className="icon-button" aria-label="关闭" onClick={() => setOpen(false)}><X size={21}/></button></div>
       <div className="sheet-body">
         <Scene key={circuit.id} profile={profile} name={circuit.name} verticalScale={verticalScale} onScaleChange={setVerticalScale} large/>
-        <p className="section-note">拖动旋转 · 双指缩放 · 高度按 {verticalScale} 倍显示</p>
-        <p className="circuit-elevation-credit">海拔约 {Math.round(profile.minElevation)}–{Math.round(profile.maxElevation)} m，按 90 米地形数据估算。
-          数据来自 <a href="https://open-meteo.com/en/docs/elevation-api" target="_blank" rel="noreferrer">Copernicus DEM / Open-Meteo</a>。
-        </p>
       </div>
     </dialog>}
   </>;
