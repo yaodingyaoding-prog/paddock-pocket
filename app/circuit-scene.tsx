@@ -104,6 +104,8 @@ function Scene({profile, name, verticalScale, onScaleChange, large = false, inte
       const initialDirection = new T.Vector3(20, 65, 140).normalize();
       camera.position.copy(initialDirection).multiplyScalar(180);
       const controls = new OrbitControls(camera, renderer.domElement);
+      controls.autoRotate = true;
+      controls.autoRotateSpeed = 1;
       controls.enableDamping = true;
       controls.enablePan = false;
       controls.enableZoom = large;
@@ -123,7 +125,7 @@ function Scene({profile, name, verticalScale, onScaleChange, large = false, inte
         controls.maxDistance = distance * 2.5;
         camera.far = Math.max(1000, distance * 5);
         camera.updateProjectionMatrix();
-        controls.update();
+        controls.update(0);
         dirty = true;
       }
       let width = 0, height = 0, needsResize = true;
@@ -136,8 +138,11 @@ function Scene({profile, name, verticalScale, onScaleChange, large = false, inte
       cleanups.push(() => visibility.disconnect());
       reset.current = () => fit(true);
       let frame = 0;
-      function draw() {
+      let previousTime = performance.now();
+      function draw(time = performance.now()) {
         frame = requestAnimationFrame(draw);
+        const deltaSeconds = Math.min(Math.max(0, (time - previousTime) / 1000), 0.1);
+        previousTime = time;
         if (!visible || document.hidden) return;
         if (needsResize) {
           needsResize = false;
@@ -145,7 +150,7 @@ function Scene({profile, name, verticalScale, onScaleChange, large = false, inte
           width = Math.round(box.width); height = Math.round(box.height);
           if (width && height) { renderer.setSize(width, height, false); camera.aspect = width / height; fit(); }
         }
-        controls.update();
+        controls.update(deltaSeconds);
         if (!dirty || !width || !height) return;
         renderer.render(scene, camera);
         const projectedPins = pins.map(pin => {

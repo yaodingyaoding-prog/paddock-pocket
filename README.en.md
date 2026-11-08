@@ -18,7 +18,7 @@ The project designs and implements its own product interface, interactive 3D cir
 
 ### A weekend view from the moment you open it
 
-The next Grand Prix, session countdown, timetable and tyre information appear together. Rotate the 3D circuit directly on the home page, zoom in or reset the view. Open the circuit archive for layouts, specifications and historical information.
+The next Grand Prix, session countdown, timetable and tyre information appear together. The 3D circuit slowly rotates around a vertical axis. Drag to adjust the view, then release to resume automatic rotation. Zoom in or reset the view, or open the circuit archive for layouts, specifications and historical information.
 
 Switch seasons and rounds, view session results, choose your display time zone and add races to your calendar. Plan viewing in your own time zone or follow the weekend in circuit-local time.
 
