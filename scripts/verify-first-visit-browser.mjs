@@ -22,45 +22,47 @@ try{
  assert.ok(requests.some(url=>url.includes('/circuits/elevation/')),'3D must automatically fetch its elevation profile');
  assert.equal(requests.some(url=>/\/circuits\/[^/]+\.webp$/.test(url)),false,'3D startup must not request a flat track image');
  assert.equal(await page.locator('.track-scene canvas').count(),1,'Automatic startup must produce a real WebGL canvas');
- const pinPosition=()=>page.locator('.circuit-elevation-pin').first().evaluate(element=>element.style.transform);
- const initialPosition=await pinPosition();
- await page.waitForFunction(position=>document.querySelector('.circuit-elevation-pin')?.style.transform!==position,initialPosition,{timeout:3000});
+ const modelCanvas=page.locator('.circuit-preview canvas');
+ const capture=(canvas=modelCanvas)=>canvas.screenshot({animations:'allow'});
+ async function waitForMotion(before,canvas=modelCanvas){
+  const start=Date.now();
+  while(Date.now()-start<4000){await page.waitForTimeout(100);if(!before.equals(await capture(canvas)))return;}
+  assert.fail('The actual rendered circuit must keep rotating');
+ }
+ const initialPosition=await capture();
+ await waitForMotion(initialPosition);
  const canvas=await page.locator('.track-scene canvas').boundingBox();
- const beforeDrag=await pinPosition();
+ const beforeDrag=await capture();
  await page.mouse.move(canvas.x+canvas.width/2,canvas.y+canvas.height/2);
  await page.mouse.down();
  await page.mouse.move(canvas.x+canvas.width*.75,canvas.y+canvas.height*.35,{steps:12});
- assert.notEqual(await pinPosition(),beforeDrag,'Dragging must take control of the rotating circuit');
- await page.waitForFunction(()=>{
-  const current=document.querySelector('.circuit-elevation-pin')?.style.transform;
-  const probe=window.__circuitSettled || (window.__circuitSettled={last:'',frames:0});
-  probe.frames=current===probe.last?probe.frames+1:0;
-  probe.last=current;
-  return probe.frames>=5;
- },null,{polling:'raf',timeout:12000});
- const heldPosition=await pinPosition();
+ assert.ok(!beforeDrag.equals(await capture()),'Dragging must take control of the rotating circuit');
+ let heldPosition=await capture(),stableFrames=0;
+ const settleStart=Date.now();
+ while(stableFrames<3&&Date.now()-settleStart<12000){
+  await page.waitForTimeout(100);
+  const current=await capture();
+  stableFrames=current.equals(heldPosition)?stableFrames+1:0;
+  heldPosition=current;
+ }
+ assert.equal(stableFrames,3,'Damping must settle while the pointer holds the drag');
  await page.waitForTimeout(250);
- const heldCoordinates=heldPosition.match(/translate\(([-\d.]+)px, ([-\d.]+)px/).slice(1).map(Number);
- const laterCoordinates=(await pinPosition()).match(/translate\(([-\d.]+)px, ([-\d.]+)px/).slice(1).map(Number);
- assert.ok(laterCoordinates.every((value,index)=>Math.abs(value-heldCoordinates[index])<0.1),'Automatic rotation must pause while the user holds the drag');
+ assert.ok(heldPosition.equals(await capture()),'Automatic rotation must pause while the user holds the drag');
  await page.mouse.up();
- await page.waitForFunction(position=>document.querySelector('.circuit-elevation-pin')?.style.transform!==position,heldPosition,{timeout:3000});
+ await waitForMotion(heldPosition);
  await page.getByRole('button',{name:'重置视角'}).click();
- const resetPosition=await pinPosition();
- await page.waitForFunction(position=>document.querySelector('.circuit-elevation-pin')?.style.transform!==position,resetPosition,{timeout:3000});
+ const resetPosition=await capture();
+ await waitForMotion(resetPosition);
  console.log('Circuit rotation: automatic motion, manual drag, held-pointer pause, release resume and reset passed.');
- assert.equal(await page.getByRole('combobox',{name:'高度显示比例'}).inputValue(),'8');
- const elevationLabels=await page.locator('.circuit-elevation-pin').allTextContents();
- await page.getByRole('combobox',{name:'高度显示比例'}).selectOption('1');
- await page.getByRole('button',{name:'重置视角'}).waitFor();
- assert.deepEqual(await page.locator('.circuit-elevation-pin').allTextContents(),elevationLabels,'Visual exaggeration must not alter altitude readouts');
- await page.getByRole('combobox',{name:'高度显示比例'}).selectOption('8');
- await page.getByRole('button',{name:'重置视角'}).waitFor();
+ assert.equal(await page.getByRole('combobox',{name:'高度显示比例'}).count(),0,'Only the original scale is available, without a scale selector');
+ assert.equal(await page.locator('.circuit-elevation-pin').count(),0,'The model must not display explanatory elevation labels');
  await page.getByRole('button',{name:/放大.*3D赛道/}).click();
  const circuitDialog=page.getByRole('dialog');
  await circuitDialog.getByRole('button',{name:'重置视角'}).waitFor();
- const dialogPosition=await circuitDialog.locator('.circuit-elevation-pin').first().evaluate(element=>element.style.transform);
- await page.waitForFunction(position=>document.querySelector('dialog .circuit-elevation-pin')?.style.transform!==position,dialogPosition,{timeout:3000});
+ const dialogCanvas=circuitDialog.locator('canvas');
+ const dialogPosition=await capture(dialogCanvas);
+ await waitForMotion(dialogPosition,dialogCanvas);
+ assert.equal(await circuitDialog.locator('select,.circuit-elevation-pin').count(),0,'The enlarged model must also omit scale controls and explanatory text');
  await circuitDialog.getByRole('button',{name:'关闭',exact:true}).click();
  await page.getByRole('button',{name:'重新加载此页面'}).waitFor();
  assert.equal(await page.getByRole('button',{name:'返回赛程'}).isVisible(),true,'A failed module must leave navigation usable');

@@ -15,4 +15,5 @@ assert.ok(!html.includes('启用 3D'),'Visitors must not need an extra click to 
 const unknown=renderToStaticMarkup(createElement(CircuitPreview,{circuit:{id:'unknown',name:'Unknown circuit'}}));
 assert.ok(unknown.includes('待补充'),'An unknown circuit must not crash the page');
 assert.ok(!html.includes('地形高差'),'The viewer must omit explanatory elevation summaries');
+assert.ok(!html.includes('高度显示比例')&&!html.includes('<select'),'The circuit viewer must use original scale without a scale menu');
 console.log('First visit: automatic elevation model, no flat-image preload and unknown circuit fallback passed.');

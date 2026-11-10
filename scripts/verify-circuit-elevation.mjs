@@ -6,8 +6,15 @@ await build({entryPoints:['lib/circuit-elevation.ts'],outfile:'.wrangler/checks/
 const {buildElevationRibbon}=await import(pathToFileURL(process.cwd()+'/.wrangler/checks/circuit-elevation.mjs').href);
 const profile={version:1,points:[[0,0,100],[100,0,110],[100,100,120],[0,100,110],[0,0,100]]};
 const result=buildElevationRibbon(profile,3);
-const emphasized=buildElevationRibbon(profile);
-assert.equal(emphasized.highest[1]-emphasized.lowest[1],160,'The default viewer must emphasize the vertical profile at 8x');
+const original=buildElevationRibbon(profile);
+assert.equal(original.highest[1]-original.lowest[1],20,'The default viewer must preserve the original 1:1 elevation scale');
+assert.equal(original.curtainPositions.length,24,'Each lap point needs a top vertex and its vertical projection');
+assert.equal(original.curtainIndices.length,24,'The projection curtain must close around all four lap segments');
+for(let i=0;i<original.centerline.length;i++){
+ const [x,y,z]=original.centerline[i],offset=i*6;
+ assert.deepEqual([...original.curtainPositions.slice(offset,offset+6)],[x,y,z,x,original.floorY,z],'Projection walls must drop vertically to a common floor without moving the track');
+}
+assert.deepEqual([...original.curtainIndices.slice(-6)],[6,0,7,7,0,1],'The final curtain segment must join the first, without an open seam');
 assert.equal(result.maxElevation,120);
 assert.equal(result.minElevation,100);
 assert.equal(result.highest[1]-result.lowest[1],60,'The mesh must preserve measured elevation with an explicit 3x vertical scale');
@@ -32,5 +39,9 @@ for(const [id,entry] of Object.entries(manifest)){
  assert.ok(Math.abs(mesh.maxElevation-entry.maxElevation)<0.11);
  assert.ok(Math.abs(mesh.minElevation-entry.minElevation)<0.11);
  assert.ok([...mesh.positions].every(Number.isFinite));
+ assert.ok([...mesh.curtainPositions].every(Number.isFinite));
+ const savedElevations=saved.points.map(point=>point[2]);
+ const extent=Math.max(Math.max(...saved.points.map(point=>point[0]))-Math.min(...saved.points.map(point=>point[0])),Math.max(...saved.points.map(point=>point[1]))-Math.min(...saved.points.map(point=>point[1])));
+ assert.ok(Math.abs((mesh.highest[1]-mesh.lowest[1])-(Math.max(...savedElevations)-Math.min(...savedElevations))*100/extent)<1e-8,'Every circuit must retain its measured aspect ratio');
 }
-console.log('Circuit elevation: actual height, explicit vertical scale, closed road geometry, flat tracks and invalid data passed.');
+console.log('Circuit elevation: original scale, vertical projection, closed curtain and road geometry, all saved circuits, flat tracks and invalid data passed.');

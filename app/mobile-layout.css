@@ -1,0 +1,242 @@
+/* Shared mobile alignment rails. Keep these rules scoped to the app and phone breakpoint. */
+@media (max-width: 700px) {
+  .app-shell {
+    --mobile-gutter: 18px;
+    --mobile-rank-columns: 27px minmax(0, 1fr) 48px 44px;
+    --mobile-rank-gap: 8px;
+    --mobile-rank-inset: 8px;
+  }
+
+  .app-shell .topbar {
+    padding-left: var(--mobile-gutter);
+    padding-right: var(--mobile-gutter);
+  }
+
+  .app-shell .main-content,
+  .app-shell .main-content.schedule-main {
+    padding: 24px var(--mobile-gutter) calc(116px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .app-shell .main-content .page-heading {
+    min-height: 62px;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+    padding-bottom: 17px;
+  }
+
+  .app-shell .main-content .page-heading h1 {
+    font-size: 28px;
+    line-height: 1.4;
+    margin-top: 0;
+  }
+
+  .app-shell .page-heading > div { min-width: 0; }
+  .app-shell .season-select { flex: none; }
+  .app-shell .season-select select {
+    min-height: 44px;
+    padding: 10px 12px;
+    text-align: center;
+    text-align-last: center;
+  }
+
+  /* A fixed score/action rail keeps every driver and team row on the same columns. */
+  .app-shell .rank-row,
+  .app-shell .standings-labels {
+    display: grid;
+    grid-template-columns: var(--mobile-rank-columns);
+    column-gap: var(--mobile-rank-gap);
+    padding-left: var(--mobile-rank-inset);
+    padding-right: 0;
+  }
+
+  .app-shell .standings-labels { align-items: center; }
+  .app-shell .standings-labels > span:first-child { grid-column: 1 / 3; }
+  .app-shell .standings-labels > span:last-child { grid-column: 3; text-align: right; }
+  .app-shell .rank-row { min-height: 96px; align-items: center; }
+  .app-shell .rank-row .position { min-width: 0; width: auto; }
+
+  .app-shell .rank-row .rank-person {
+    display: grid;
+    grid-template-columns: 38px minmax(0, 1fr) 22px;
+    gap: 6px;
+    width: 100%;
+    min-width: 0;
+    align-items: center;
+  }
+
+  .app-shell .rank-person .driver-portrait,
+  .app-shell .rank-person .rank-car { width: 38px; }
+  .app-shell .rank-person > svg:first-child { width: 30px; }
+  .app-shell .rank-row .rank-open-arrow {
+    box-sizing: border-box;
+    width: 22px;
+    height: 22px;
+    padding: 4px;
+    margin: 0;
+    justify-self: end;
+  }
+
+  .app-shell .rank-person strong { display: block; line-height: 1.5; }
+  .app-shell .rank-person small { flex-wrap: wrap; gap: 3px 4px; line-height: 1.5; }
+  .app-shell .rank-person small i { flex: none; }
+  .app-shell .rank-person em { margin-left: 0; white-space: nowrap; }
+  .app-shell .rank-row .rank-person:has(.rank-car) {
+    grid-template-columns: minmax(0, 1fr) 22px;
+    gap: 4px 6px;
+    align-content: center;
+  }
+  .app-shell .rank-row .rank-person:has(.rank-car) > .rank-car {
+    grid-column: 1;
+    width: 130px;
+    max-width: 100%;
+  }
+  .app-shell .rank-row .rank-person:has(.rank-car) > .rank-open-arrow {
+    grid-column: 2;
+    grid-row: 1 / 3;
+    align-self: center;
+  }
+  .app-shell .rank-row .rank-points { min-width: 0; width: 100%; text-align: right; }
+  .app-shell .rank-row .favorite-button {
+    width: 44px;
+    min-width: 44px;
+    height: 44px;
+    min-height: 44px;
+    padding: 0;
+    display: grid;
+    place-items: center;
+  }
+
+  /* Times and calendar actions have their own columns; long session names may wrap. */
+  .app-shell .schedule-section .session-main {
+    display: grid;
+    grid-template-columns: 32px minmax(0, 1fr) 48px;
+    gap: 8px;
+    padding: 14px 8px 14px 6px;
+  }
+
+  .app-shell .session-main > div { min-width: 0; }
+  .app-shell .schedule-section .session-mark { width: 32px; height: 36px; }
+  .app-shell .session-main time { margin-left: 0; text-align: right; font-variant-numeric: tabular-nums; }
+  .app-shell .schedule-section .calendar-button { width: 44px; min-width: 44px; }
+  .app-shell .schedule-section > .panel-title { align-items: center; flex-wrap: wrap; gap: 8px 12px; }
+  .app-shell .schedule-section .zone-select { margin-left: auto; }
+
+  /* Share one heading/control baseline across the weather and schedule sections. */
+  .app-shell .weather-heading { align-items: center; gap: 8px 12px; }
+  .app-shell .weather-heading h2 { font-size: 19px; line-height: 1.4; }
+  .app-shell .weather-card .weather-view-controls { gap: 8px; margin-left: auto; }
+  .app-shell .weather-card .weather-view-controls > select { min-width: 84px; min-height: 44px; }
+  .app-shell .weather-card .weather-refresh { width: 44px; height: 44px; }
+  .app-shell .weather-card .weather-hours > div { min-width: 0; }
+  .app-shell .weather-card .weather-hours small { text-align: center; }
+
+  .app-shell .weekend-hero h2 { font-size: clamp(26px, 8vw, 34px); overflow-wrap: anywhere; }
+  .app-shell .hero-race-facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .app-shell .hero-race-facts > div { min-width: 0; padding-left: 16px; }
+  .app-shell .hero-race-facts > div:first-child { padding-left: 0; }
+  .app-shell .hero-race-facts strong { display: flex; align-items: baseline; }
+
+  /* Equal internal rows keep paired tool headings and bottom links aligned. */
+  .app-shell .explore-card-grid .explore-card {
+    display: grid;
+    grid-template-rows: 36px auto 1fr auto;
+    align-content: stretch;
+    align-items: start;
+    padding: 20px 10px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .app-shell .explore-card .explore-card-top { margin-bottom: 0; }
+  .app-shell .explore-card h3 { margin-top: 18px; }
+  .app-shell .explore-card > p:not(.eyebrow) { min-height: 0; margin-top: 12px; }
+  .app-shell .explore-card .explore-card-bottom { align-self: end; margin-top: 20px; }
+
+  .app-shell .personal-settings-row {
+    display: grid;
+    grid-template-columns: 33px minmax(0, 1fr) auto;
+    gap: 12px;
+    align-items: center;
+  }
+
+  .app-shell .personal-settings-row > :last-child { justify-self: end; }
+  .app-shell .personal-settings-row > .timezone-trigger { min-width: 0; max-width: 132px; }
+  .app-shell .guest-pass-actions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .app-shell .guest-pass-actions a { min-width: 0; }
+
+  /* Compact the profile vertically, with full-size controls and visible theme choices. */
+  .app-shell .profile-main .profile-identity-grid { gap: 12px; margin-bottom: 18px; }
+  .app-shell .profile-main .guest-pass { min-height: 0; padding: 18px; gap: 10px; }
+  .app-shell .profile-main .guest-pass h2 { font-size: 21px; line-height: 1.4; }
+  .app-shell .profile-main .guest-pass > p { font-size: 13px; line-height: 1.7; }
+  .app-shell .profile-main .guest-pass-actions { margin-top: 2px; gap: 10px; }
+  .app-shell .profile-main .guest-pass-actions a { padding: 10px 8px; min-height: 44px; }
+
+  .app-shell .profile-main .super-licence { padding: 16px; }
+  .app-shell .profile-main .licence-top { padding-bottom: 10px; }
+  .app-shell .profile-main .licence-body { padding: 16px 0; gap: 14px; }
+  .app-shell .profile-main .licence-photo .pass-avatar { width: 72px; height: 88px; }
+  .app-shell .profile-main .licence-data { margin-top: 12px; }
+  .app-shell .profile-main .licence-bottom { padding-top: 10px; }
+
+  .app-shell .profile-main .follow-podium { padding: 4px 0 0; }
+  .app-shell .profile-main .podium-heading h2 { font-size: 18px; margin-top: 0; }
+  .app-shell .profile-main .podium-heading-actions > button { min-height: 44px; }
+  .app-shell .profile-main .podium-share { min-width: 44px; }
+  .app-shell .profile-main .podium-slots { margin-top: 10px; gap: 6px; }
+  .app-shell .profile-main .podium-driver { gap: 4px; }
+  .app-shell .profile-main .podium-driver > small { margin-bottom: 5px; font-size: 10px; }
+  .app-shell .profile-main .podium-portrait { height: 110px; }
+  .app-shell .profile-main .seat-1 .podium-portrait { height: 128px; }
+  .app-shell .profile-main .podium-seat:not(.has-driver) .podium-portrait { height: 44px; }
+  .app-shell .profile-main .podium-seat:not(.has-driver) .podium-portrait::after { display: none; }
+  .app-shell .profile-main .podium-plinth { height: 32px; }
+  .app-shell .profile-main .seat-1 .podium-plinth { height: 48px; }
+  .app-shell .profile-main .seat-3 .podium-plinth { height: 24px; }
+  .app-shell .profile-main .podium-plinth b { font-size: 23px; }
+  .app-shell .profile-main .podium-footer { padding: 6px 0; }
+  .app-shell .profile-main .podium-footer > button { min-height: 44px; }
+
+  .app-shell .profile-main .personal-settings-grid { gap: 14px; }
+  .app-shell .profile-main .appearance-panel { padding-bottom: 0; }
+  .app-shell .profile-main .personal-panel-heading { margin-bottom: 14px; }
+  .app-shell .profile-main .personal-option-heading { margin-bottom: 10px; }
+  .app-shell .profile-main .personal-themes { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; }
+  .app-shell .profile-main .personal-theme { padding: 3px; }
+  .app-shell .profile-main .theme-preview { height: 36px; padding: 6px; }
+  .app-shell .profile-main .theme-preview-bar { display: none; }
+  .app-shell .profile-main .theme-preview-layout { height: 22px; padding-top: 0; gap: 3px; }
+  .app-shell .profile-main .theme-preview-layout b { height: 2px; }
+  .app-shell .profile-main .theme-preview-layout em { height: 7px; }
+  .app-shell .profile-main .theme-label { padding: 6px 1px 2px; font-size: 10px; }
+  .app-shell .profile-main .theme-check { width: 12px; }
+  .app-shell .profile-main .personal-accent-section { margin-top: 14px; padding-top: 14px; }
+  .app-shell .profile-main .personal-accents { gap: 4px 6px; }
+  .app-shell .profile-main .personal-accents button { min-height: 54px; gap: 6px; padding: 5px 0; }
+  .app-shell .profile-main .personal-accents button > span { width: 27px; height: 27px; outline-offset: 3px; }
+  .app-shell .profile-main .personal-accents button small { font-size: 10px; }
+
+  .app-shell .profile-main .personal-settings-stack { gap: 14px; }
+  .app-shell .profile-main .personal-settings-stack > .personal-panel { padding: 14px 0 0; }
+  .app-shell .profile-main .personal-settings-stack .personal-panel-heading { margin-bottom: 4px; }
+  .app-shell .profile-main .personal-settings-row { min-height: 56px; padding: 6px 0; }
+  .app-shell .profile-main .personal-logout { min-height: 44px; }
+  .app-shell .profile-main .personal-about { margin-top: 18px; margin-bottom: 14px; padding-top: 14px; gap: 8px 12px; }
+  .app-shell .profile-main .personal-about-brand { gap: 8px; }
+  .app-shell .profile-main .personal-about-brand span { margin-top: 3px; }
+  .app-shell .profile-main .profile-about-link { display: inline-flex; align-items: center; min-height: 44px; }
+  .app-shell .profile-main .watch-guide { margin-top: 14px; padding: 18px 16px; }
+  .app-shell .profile-main .watch-guide .android-download { padding: 14px 0; }
+  .app-shell .profile-main .watch-guide .source-details { margin-top: 12px; padding-top: 12px; }
+}
+
+@media (max-width: 370px) {
+  .app-shell { --mobile-gutter: 14px; --mobile-rank-columns: 24px minmax(0, 1fr) 44px 44px; --mobile-rank-gap: 6px; }
+  .app-shell .rank-row .rank-person { grid-template-columns: 34px minmax(0, 1fr) 22px; gap: 4px; }
+  .app-shell .rank-person .driver-portrait,
+  .app-shell .rank-person .rank-car { width: 34px; }
+  .app-shell .rank-row .rank-person strong { font-size: 12px; }
+  .app-shell .schedule-section .session-main strong { font-size: 12px; }
+  .app-shell .personal-settings-row { gap: 8px; }
+  .app-shell .personal-settings-row > .timezone-trigger { max-width: 122px; }
+}

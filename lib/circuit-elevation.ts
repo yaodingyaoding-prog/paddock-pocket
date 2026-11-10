@@ -1,6 +1,6 @@
 export type ElevationPoint = [number, number, number];
 export type ElevationProfile = { version: number; points: ElevationPoint[] };
-export const defaultVerticalScale = 8;
+export const defaultVerticalScale = 1;
 
 export function buildElevationRibbon(profile: ElevationProfile, verticalScale = defaultVerticalScale) {
   const points = profile?.points;
@@ -28,6 +28,15 @@ export function buildElevationRibbon(profile: ElevationProfile, verticalScale = 
     (altitude - midElevation) * scale * verticalScale,
     -(y - (minNorth + maxNorth) / 2) * scale,
   ]);
+  // The presentation floor sits below the lowest point; measured heights stay at their original scale.
+  const floorY = (minElevation - midElevation) * scale * verticalScale - 12;
+  const curtainPositions: number[] = [], curtainIndices: number[] = [];
+  for (let i = 0; i < centerline.length; i++) {
+    const [x, y, z] = centerline[i];
+    curtainPositions.push(x, y, z, x, floorY, z);
+    const a = i * 2, b = ((i + 1) % centerline.length) * 2;
+    curtainIndices.push(a, b, a + 1, a + 1, b, b + 1);
+  }
   const positions: number[] = [], colors: number[] = [], indices: number[] = [];
   for (let i = 0; i < lap.length; i++) {
     const previous = centerline[(i + lap.length - 1) % lap.length];
@@ -51,9 +60,10 @@ export function buildElevationRibbon(profile: ElevationProfile, verticalScale = 
   }
   return {
     positions: new Float32Array(positions), colors: new Float32Array(colors), indices: new Uint16Array(indices),
+    curtainPositions: new Float32Array(curtainPositions), curtainIndices: new Uint16Array(curtainIndices),
     centerline, minElevation, maxElevation,
     highest: centerline[elevations.indexOf(maxElevation)],
     lowest: centerline[elevations.indexOf(minElevation)],
-    floorY: (minElevation - midElevation) * scale * verticalScale - 2.5,
+    floorY,
   };
 }

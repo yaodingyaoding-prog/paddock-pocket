@@ -16,6 +16,7 @@ import './ui-refinement.css';
 import './race-design.css';
 import './interaction-polish.css';
 import './compatible-controls.css';
+import './mobile-layout.css';
 import { toggleFollowing } from '../lib/following';
 import type { PreferencesPatch } from '../lib/preferences';
 import { followTeamKey } from './following';

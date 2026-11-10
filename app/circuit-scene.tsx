@@ -2,14 +2,14 @@
 import {useEffect, useRef, useState} from 'react';
 import {Maximize, RotateCcw, X, Move3D} from 'lucide-react';
 import profiles from '../lib/circuit-elevation.json';
-import {buildElevationRibbon, defaultVerticalScale, type ElevationProfile} from '../lib/circuit-elevation';
+import {buildElevationRibbon, type ElevationProfile} from '../lib/circuit-elevation';
 import {circuitCameraDistance} from '../lib/circuit-camera';
 
 type Circuit = {id?: string; name?: string};
 type ProfileInfo = {file: string; minElevation: number; maxElevation: number; elevationRange: number};
 
-function Scene({profile, name, verticalScale, onScaleChange, large = false, interactive = false}: {
-  profile: ProfileInfo; name?: string; verticalScale: number; onScaleChange: (value: number) => void; large?: boolean; interactive?: boolean;
+function Scene({profile, name, large = false, interactive = false}: {
+  profile: ProfileInfo; name?: string; large?: boolean; interactive?: boolean;
 }) {
   const host = useRef<HTMLDivElement>(null);
   const reset = useRef<() => void>(() => {});
@@ -38,7 +38,7 @@ function Scene({profile, name, verticalScale, onScaleChange, large = false, inte
       ]);
       if (gone || abort.signal.aborted || !host.current) return;
       const mount = host.current;
-      const ribbon = buildElevationRibbon(data, verticalScale);
+      const ribbon = buildElevationRibbon(data);
       const renderer = new T.WebGLRenderer({alpha: true, antialias: true, powerPreference: 'low-power'});
       renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
       renderer.setClearColor(0, 0);
@@ -51,50 +51,25 @@ function Scene({profile, name, verticalScale, onScaleChange, large = false, inte
       model.rotation.y = -0.28;
       scene.add(model);
       const geometry = new T.BufferGeometry();
-      const vertexColor = new T.Color();
-      for (let offset = 0; offset < ribbon.colors.length; offset += 3) {
-        vertexColor.setRGB(ribbon.colors[offset], ribbon.colors[offset + 1], ribbon.colors[offset + 2], T.SRGBColorSpace).toArray(ribbon.colors, offset);
-      }
       geometry.setAttribute('position', new T.BufferAttribute(ribbon.positions, 3));
-      geometry.setAttribute('color', new T.BufferAttribute(ribbon.colors, 3));
       geometry.setIndex(new T.BufferAttribute(ribbon.indices, 1));
       geometry.computeVertexNormals();
-      const material = new T.MeshStandardMaterial({vertexColors: true, roughness: 0.48, metalness: 0.15});
+      const material = new T.MeshStandardMaterial({color: 0x15191c, roughness: 0.48, metalness: 0.15});
       const road = new T.Mesh(geometry, material);
       model.add(road);
       cleanups.push(() => { geometry.dispose(); material.dispose(); });
 
+      const curtainGeometry = new T.BufferGeometry();
+      curtainGeometry.setAttribute('position', new T.BufferAttribute(ribbon.curtainPositions, 3));
+      curtainGeometry.setIndex(new T.BufferAttribute(ribbon.curtainIndices, 1));
+      const curtainMaterial = new T.MeshBasicMaterial({color: 0xef382b, transparent: true, opacity: 0.48, side: T.DoubleSide, depthWrite: false});
+      model.add(new T.Mesh(curtainGeometry, curtainMaterial));
+      cleanups.push(() => { curtainGeometry.dispose(); curtainMaterial.dispose(); });
+
       const baseGeometry = new T.BufferGeometry().setFromPoints(ribbon.centerline.map(([x, , z]) => new T.Vector3(x, ribbon.floorY, z)));
-      const baseMaterial = new T.LineBasicMaterial({color: 0x81979c, transparent: true, opacity: 0.25});
+      const baseMaterial = new T.LineBasicMaterial({color: 0xef382b, transparent: true, opacity: 0.5});
       model.add(new T.LineLoop(baseGeometry, baseMaterial));
       cleanups.push(() => { baseGeometry.dispose(); baseMaterial.dispose(); });
-
-      const pins = [
-        {point: ribbon.highest, elevation: ribbon.maxElevation, title: '高', color: 0xffb448},
-        {point: ribbon.lowest, elevation: ribbon.minElevation, title: '低', color: 0x39c5d4},
-      ].map(({point, elevation, title, color}) => {
-        const position = new T.Vector3(...point);
-        const sphere = new T.SphereGeometry(0.85, 12, 8);
-        const markerMaterial = new T.MeshBasicMaterial({color});
-        const marker = new T.Mesh(sphere, markerMaterial);
-        marker.position.copy(position).add(new T.Vector3(0, 0.8, 0));
-        model.add(marker);
-        const guide = new T.BufferGeometry().setFromPoints([new T.Vector3(point[0], ribbon.floorY, point[2]), position]);
-        const guideMaterial = new T.LineBasicMaterial({color, transparent: true, opacity: 0.55});
-        model.add(new T.Line(guide, guideMaterial));
-        const label = document.createElement('span');
-        label.className = 'circuit-elevation-pin';
-        label.textContent = title + ' ' + Math.round(elevation) + ' m';
-        label.style.borderColor = '#' + color.toString(16).padStart(6, '0');
-        const connector = document.createElement('span');
-        connector.className = 'circuit-elevation-connector';
-        connector.style.backgroundColor = label.style.borderColor;
-        connector.setAttribute('aria-hidden', 'true');
-        mount.appendChild(connector);
-        mount.appendChild(label);
-        cleanups.push(() => { sphere.dispose(); markerMaterial.dispose(); guide.dispose(); guideMaterial.dispose(); label.remove(); connector.remove(); });
-        return {position: position.add(new T.Vector3(0, 2.5, 0)), label, connector};
-      });
 
       scene.add(new T.AmbientLight(0xffffff, 1.1));
       const light = new T.DirectionalLight(0xffffff, 2);
@@ -113,7 +88,7 @@ function Scene({profile, name, verticalScale, onScaleChange, large = false, inte
       controls.maxPolarAngle = Math.PI * 0.88;
       cleanups.push(() => controls.dispose());
       model.updateMatrixWorld(true);
-      const sphere = new T.Box3().setFromObject(road).getBoundingSphere(new T.Sphere());
+      const sphere = new T.Box3().setFromObject(model).getBoundingSphere(new T.Sphere());
       let dirty = true;
       controls.addEventListener('change', () => { dirty = true; });
       function fit(resetView = false) {
@@ -153,22 +128,6 @@ function Scene({profile, name, verticalScale, onScaleChange, large = false, inte
         controls.update(deltaSeconds);
         if (!dirty || !width || !height) return;
         renderer.render(scene, camera);
-        const projectedPins = pins.map(pin => {
-          const point = pin.position.clone().applyMatrix4(model.matrixWorld).project(camera);
-          return {pin, point, x: (point.x + 1) * width / 2, y: (1 - point.y) * height / 2};
-        });
-        const [high, low] = projectedPins;
-        const overlaps = Math.abs(high.x - low.x) < 70 && Math.abs(high.y - low.y) < 26;
-        const middleY = (high.y + low.y) / 2;
-        for (const projected of projectedPins) {
-          const {pin, point, x, y} = projected;
-          const labelY = overlaps ? middleY + (projected === high ? -16 : 16) : y;
-          pin.label.style.transform = `translate(${x}px, ${labelY}px) translate(-50%, -100%)`;
-          pin.label.hidden = point.z < -1 || point.z > 1;
-          pin.connector.style.transform = `translate(${x}px, ${y}px) rotate(${Math.atan2(labelY - y, 0)}rad)`;
-          pin.connector.style.width = Math.abs(labelY - y) + 'px';
-          pin.connector.hidden = pin.label.hidden;
-        }
         dirty = false;
       }
       draw();
@@ -183,18 +142,10 @@ function Scene({profile, name, verticalScale, onScaleChange, large = false, inte
       if (!gone) setStatus('failed');
     });
     return () => { gone = true; clearTimeout(deadline); abort.abort(); dispose(); };
-  }, [profile.file, verticalScale, large, interactive, attempt]);
+  }, [profile.file, large, interactive, attempt]);
 
   return <div className={'track-scene' + (large ? ' large' : '')}>
     <div ref={host} role="img" aria-label={(name || '赛道') + '海拔立体模型'}/>
-    {(large || interactive) && <label className="circuit-height-control">高度
-      <select aria-label="高度显示比例" value={verticalScale} onChange={event => onScaleChange(Number(event.target.value))}>
-        <option value={1}>1× 原始比例</option>
-        <option value={3}>3×</option>
-        <option value={8}>8×</option>
-        <option value={15}>15×</option>
-      </select>
-    </label>}
     {status !== 'ready' && <span className="circuit-load-status" role="status">{status === 'failed' ? '3D 加载失败，请重试' : '正在加载 3D…'}</span>}
     {status === 'failed' && <button className="circuit-enable" onClick={() => setAttempt(value => value + 1)}>重试 3D</button>}
     {(large || interactive) && status === 'ready' && <button className="scene-reset" aria-label="重置视角" title="重置视角" onClick={() => reset.current()}><RotateCcw size={16}/></button>}
@@ -204,7 +155,6 @@ function Scene({profile, name, verticalScale, onScaleChange, large = false, inte
 export function CircuitPreview({circuit, interactive = false}: {circuit: Circuit; interactive?: boolean}) {
   const profile = (profiles as Record<string, ProfileInfo>)[circuit?.id || ''];
   const [open, setOpen] = useState(false);
-  const [verticalScale, setVerticalScale] = useState(defaultVerticalScale);
   const dialog = useRef<HTMLDialogElement>(null);
   useEffect(() => {
     const element = dialog.current;
@@ -216,13 +166,13 @@ export function CircuitPreview({circuit, interactive = false}: {circuit: Circuit
   if (!profile) return <div className="track-pending"><Move3D/><small>赛道模型待补充</small></div>;
   return <>
     <div className={'circuit-preview' + (interactive ? ' inline-interactive' : '')}>
-      <Scene key={circuit.id} profile={profile} name={circuit.name} verticalScale={verticalScale} onScaleChange={setVerticalScale} interactive={interactive}/>
+      <Scene key={circuit.id} profile={profile} name={circuit.name} interactive={interactive}/>
       <button className="scene-maximize" aria-label={'放大' + circuit.name + '3D赛道'} onClick={() => setOpen(true)}><Maximize size={16}/></button>
     </div>
     {open && <dialog ref={dialog} className="sheet circuit-viewer" onCancel={() => setOpen(false)}>
       <div className="sheet-head"><div><h2>{circuit.name}</h2></div><button className="icon-button" aria-label="关闭" onClick={() => setOpen(false)}><X size={21}/></button></div>
       <div className="sheet-body">
-        <Scene key={circuit.id} profile={profile} name={circuit.name} verticalScale={verticalScale} onScaleChange={setVerticalScale} large/>
+        <Scene key={circuit.id} profile={profile} name={circuit.name} large/>
       </div>
     </dialog>}
   </>;
