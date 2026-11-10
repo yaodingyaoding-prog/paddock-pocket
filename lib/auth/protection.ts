@@ -5,7 +5,7 @@ import type { AccountService } from './accountService';
 import type { AccountCookies } from './cookies';
 
 const publicPages = new Set(['/', '/about', '/login', '/register', '/forgot-password', '/reset-password', '/auth/confirm', '/privacy']);
-const publicRaceApis = new Set(['/api/data', '/api/weather', '/api/tools', '/api/race-media', '/api/news']);
+const publicRaceApis = new Set(['/api/data', '/api/weather', '/api/tools', '/api/race-media', '/api/news', '/api/race-events']);
 export function canonicalDocumentLocation(request: Request, config: AuthConfig): string | null {
   // Move documents before rendering a form; never forward a credential-bearing POST.
   if (!config.required || !config.configured || !['GET', 'HEAD'].includes(request.method)) return null;
