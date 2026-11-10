@@ -19,7 +19,7 @@ export class RaceEventsService {
  private failures=new Map<string,number>();
  constructor(private repository:RaceEventsRepository,private cache:RaceEventsCache,private now=Date.now){}
  async load(query:RaceEventsQuery){
-  const key=['race-events-v1',query.season,query.year,query.gp].join('/'),pending=this.pending.get(key);
+  const key=['race-events-v2',query.season,query.year,query.gp].join('/'),pending=this.pending.get(key);
   if(pending)return pending;
   const work=this.resolve(query,key);this.pending.set(key,work);
   try{return await work;}finally{this.pending.delete(key);}

@@ -22,7 +22,7 @@ The next Grand Prix, session countdown, timetable and tyre information appear to
 
 Switch seasons and rounds, view session results, choose your display time zone and add races to your calendar. Plan viewing in your own time zone or follow the weekend in circuit-local time.
 
-The homepage Race Control section summarizes published flag, safety-car and penalty records. It defaults to the latest completed round and supports round, session and category filters, with the original messages available on expansion. Records use [OpenF1](https://openf1.org/docs/) post-race data from 2023 onward. Unspecified safety-car causes remain unknown, and nearby incident messages are identified as related records rather than confirmed causes.
+The homepage Race Control section summarizes published flag, safety-car and penalty records. It defaults to the latest completed round and supports round, session and category filters, with the original messages available on expansion. Records use [OpenF1](https://openf1.org/docs/) post-race data from 2023 onward. Explicit flag and safety-car causes appear directly in each row, with common incident, debris and weather descriptions translated into Chinese. Missing causes remain unknown; nearby incidents are clearly marked as unconfirmed context and do not imply responsibility.
 
 ### Weather matched to the circuit and session
 

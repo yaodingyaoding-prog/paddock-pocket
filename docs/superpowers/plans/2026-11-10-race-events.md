@@ -18,3 +18,7 @@
 - [x] Run project checks/build plus real-data and phone/browser acceptance.
 
 Release procedure: use the existing main-branch deployment workflow, wait for successful checks and verify the same browser acceptance against production.
+
+## Follow-up: visible flag causes
+
+Show explicit reasons from the flag message in the existing summary row, translating common incident, debris and weather descriptions. Keep track-sector location separate from the reason. If the source omits a reason, show an unknown state and, where available, one nearby incident labelled as unconfirmed context. Context must stay within the same session and qualifying phase, within 90 seconds; no extra live source or inferred responsibility. Preserve original messages on expansion and invalidate the old normalized cache. Verify direct causes, unknowns, context isolation, grouped flags and phone layout before release.

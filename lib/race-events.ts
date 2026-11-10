@@ -53,6 +53,26 @@ function eventReason(message:string) {
  return translations.find(([pattern])=>pattern.test(reason))?.[1]||reason.slice(0,250);
 }
 
+function explicitControlCause(message:string,flag=false){
+ return message.match(/\b(?:DUE TO|CAUSED BY|BECAUSE OF)\s+(.+)/i)?.[1]?.trim()||(flag?message.split(/\s+-\s+/).slice(1).join(' - ').trim():'')||null;
+}
+
+function incidentSummary(message:string,drivers:EventDriver[],name:(driver:EventDriver)=>string){
+ const upper=message.toUpperCase(),turn=upper.match(/\bAT TURN (\d+(?:\.\d+)?)\s*$/)?.[1];
+ const people=drivers.map(driver=>name(driver)+' #'+driver.number).join('、');
+ const car=upper.match(/^CARS? \d{1,3}(?:\s*\([A-Z]{2,4}\))? (STOPPED|SPUN|CRASHED|IN THE GRAVEL)(?: AT TURN \d+(?:\.\d+)?)?\s*$/);
+ if(car&&people)return people+' '+(turn?'在'+turn+'号弯':'')+({STOPPED:'停车',SPUN:'打转',CRASHED:'撞车','IN THE GRAVEL':'陷入砂石区'} as Record<string,string>)[car[1]];
+ if(/^DEBRIS ON (?:THE )?TRACK(?: AT TURN \d+(?:\.\d+)?)?\s*$/.test(upper))return (turn?turn+'号弯':'')+'赛道有碎片';
+ return ({'HEAVY RAIN':'大雨','POOR VISIBILITY':'能见度不足','STANDING WATER':'赛道积水','BARRIER REPAIRS':'修复护墙','CAR RECOVERY':'清理故障赛车'} as Record<string,string>)[upper]||message;
+}
+
+export function raceEventExplanation(event:RaceEvent,name:(driver:EventDriver)=>string=driver=>driver.name){
+ return {
+  reason:event.cause?'原因：'+incidentSummary(event.cause,event.drivers,name):'原因未公布',
+  related:!event.cause&&event.related.length?'同期消息：'+incidentSummary(event.related[0].message,event.related[0].drivers,name)+'（关联未确认）':null,
+ };
+}
+
 export function normalizeRaceEvents(input:ControlMessage[],sessions:ControlSession[],roster:ControlDriver[]):RaceEvent[] {
  const known=new Map(sessions.map(session=>[session.session_key,session]));
  const seen=new Set<string>();
@@ -63,6 +83,7 @@ export function normalizeRaceEvents(input:ControlMessage[],sessions:ControlSessi
  }).sort((a,b)=>Date.parse(a.date)-Date.parse(b.date));
  const chequered=new Map<number,number>();
  for(const row of rows)if(row.flag==='CHEQUERED')chequered.set(row.session_key,Date.parse(row.date));
+ const nearbyIncidents=(row:ControlMessage)=>rows.filter(other=>other!==row&&other.session_key===row.session_key&&(!row.qualifying_phase||!other.qualifying_phase||row.qualifying_phase===other.qualifying_phase)&&Math.abs(Date.parse(other.date)-Date.parse(row.date))<=90000&&/\b(?:STOPPED|SPUN|CRASH(?:ED)?|COLLISION|DEBRIS|IN THE GRAVEL|STANDING WATER|CAR RECOVERY|BARRIER REPAIRS)\b/i.test(other.message)&&!other.flag&&!/PENALTY|NO FURTHER ACTION|NO PENALTY/i.test(other.message)).sort((a,b)=>Math.abs(Date.parse(a.date)-Date.parse(row.date))-Math.abs(Date.parse(b.date)-Date.parse(row.date))).slice(0,3).map(other=>({date:other.date,message:other.message,drivers:referencedDrivers(other,roster)}));
  const events:RaceEvent[]=[];
  for(const row of rows){
   const upper=row.message.toUpperCase(),session=known.get(row.session_key)!,drivers=referencedDrivers(row,roster);
@@ -73,15 +94,15 @@ export function normalizeRaceEvents(input:ControlMessage[],sessions:ControlSessi
    const kind=flag==='RED'?'red':'yellow',title=kind==='red'?'红旗':flag==='DOUBLE YELLOW'?'双黄旗':'黄旗';
    const group=events.find(event=>event.kind===kind&&event.sessionKey===row.session_key&&event.date===row.date);
    const sector=Number.isInteger(row.sector)&&row.sector!>0?row.sector!:null;
-   if(group){if(title==='双黄旗')group.title=title;if(sector&&!group.sectors.includes(sector))group.sectors.push(sector);if(!group.rawMessages.includes(row.message))group.rawMessages.push(row.message);continue;}
-   events.push({...common,id:[row.session_key,row.date,kind].join(':'),kind,title,reason:/PIT LANE/.test(upper)?'维修区':'',sectors:sector?[sector]:[]});
+   const cause=explicitControlCause(row.message,true);
+   if(group){if(title==='双黄旗')group.title=title;if(sector&&!group.sectors.includes(sector))group.sectors.push(sector);if(!group.rawMessages.includes(row.message))group.rawMessages.push(row.message);if(cause&&!group.cause)group.cause=cause;else if(cause&&group.cause&&!group.cause.split(' / ').includes(cause))group.cause+=' / '+cause;for(const driver of drivers)if(!group.drivers.some(other=>other.number===driver.number))group.drivers.push(driver);continue;}
+   events.push({...common,id:[row.session_key,row.date,kind].join(':'),kind,title,reason:/PIT LANE/.test(upper)?'维修区':'',sectors:sector?[sector]:[],cause,related:nearbyIncidents(row)});
    continue;
   }
   if(/\b(?:SAFETY CAR|VSC)\b/.test(upper)){
    const virtual=/\bVSC\b|VIRTUAL SAFETY CAR/.test(upper),title=virtual?'虚拟安全车出动':'安全车出动';
    if(/\bDEPLOYED\b/.test(upper)){
-    const cause=upper.match(/(?:DUE TO|CAUSED BY|BECAUSE OF)\s+(.+)/)?.[1]||null;
-    const related=rows.filter(other=>other.session_key===row.session_key&&Math.abs(Date.parse(other.date)-at)<=90000&&/\bCAR(?:S)?\b/.test(other.message)&&/STOPPED|CRASH|COLLISION/i.test(other.message)&&other!==row).slice(0,3).map(other=>({date:other.date,message:other.message,drivers:referencedDrivers(other,roster)}));
+    const cause=explicitControlCause(row.message),related=nearbyIncidents(row);
     events.push({...common,id:[row.session_key,row.date,'safety'].join(':'),kind:'safety',title,reason:cause?'':'原因未注明',cause,related});
    }else if(/ENDING|IN THIS LAP|WITHDRAWN/.test(upper)){
     const deployment=[...events].reverse().find(event=>event.kind==='safety'&&event.sessionKey===row.session_key&&event.title===title&&!event.endNotice);

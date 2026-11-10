@@ -2,7 +2,7 @@
 import {useEffect,useRef,useState} from 'react';
 import {ChevronDown,ExternalLink,Flag,RefreshCw,Scale,ShieldAlert} from 'lucide-react';
 import {readPublicJson} from '../lib/public-read';
-import {defaultEventRace,visibleRaceEvents,type EventRace,type EventFilter,type EventDriver,type RaceEvent} from '../lib/race-events';
+import {defaultEventRace,visibleRaceEvents,raceEventExplanation,type EventRace,type EventFilter,type EventDriver,type RaceEvent} from '../lib/race-events';
 import type {RaceEventsResult} from '../lib/race-events-service';
 import './race-events.css';
 
@@ -57,15 +57,19 @@ export function RaceEventsCard({races,season,year,focusedRaceId='',now,timezone,
   {available&&rows.length?<ol className="race-events-list" data-expanded={expanded}>{rows.map(event=>{
    const Icon=event.kind==='safety'?ShieldAlert:event.kind==='penalty'?Scale:Flag;
    const phase=event.qualifyingPhase?'Q'+event.qualifyingPhase:event.phase==='pre'?'赛前':event.phase==='post'?'赛后':event.lap?'第'+event.lap+'圈':shortTime(event.date);
-   const detail=event.kind==='safety'?(event.cause||'原因未注明'):event.reason||(event.sectors.length?'赛道区域 '+event.sectors.join('、'):'');
+   const controlled=event.kind!=='penalty',explanation=raceEventExplanation(event,name);
+   const location=event.reason&&event.kind!=='safety'?event.reason:event.sectors.length?'赛道区域 '+event.sectors.join('、'):'';
+   const detail=controlled?explanation.reason:event.reason;
    return <li key={event.id} className={'race-event-'+event.kind}>
     <details>
      <summary>
       <span className="race-event-phase"><Icon size={15}/>{phase}<small>{event.sessionName}</small></span>
       <span className="race-event-copy">
        <strong>{event.title}{event.status==='cancelled'?<em>已撤销</em>:event.servedAt?<em>已执行</em>:null}</strong>
-       {names(event)&&<span className="race-event-drivers">{event.kind==='safety'&&!event.cause?'消息涉及：':''}{names(event)}</span>}
+       {names(event)&&!event.cause&&<span className="race-event-drivers">{controlled?'消息涉及：':''}{names(event)}</span>}
        {detail&&<span className="race-event-reason">{detail}</span>}
+       {controlled&&location&&<small>{location}</small>}
+       {controlled&&explanation.related&&<span className="race-event-reason">{explanation.related}</span>}
       </span>
       <ChevronDown size={14}/>
      </summary>
@@ -73,7 +77,7 @@ export function RaceEventsCard({races,season,year,focusedRaceId='',now,timezone,
       <time dateTime={event.date}>{fullTime(event.date)} / {timezone}</time>
       {event.endNotice&&<p>结束通知：{shortTime(event.endNotice)}</p>}
       {event.rawMessages.map((message,index)=><p key={index}>{message}</p>)}
-      {event.related.length>0&&<div className="race-event-related"><b>相关赛会消息</b>{event.related.map((related,index)=><p key={index}>{shortTime(related.date)} {related.drivers.map(name).join('、')}<br/>{related.message}</p>)}</div>}
+      {event.related.length>0&&<div className="race-event-related"><b>同期赛会消息 · 与出旗关联未确认</b>{event.related.map((related,index)=><p key={index}>{shortTime(related.date)} {related.drivers.map(name).join('、')}<br/>{related.message}</p>)}</div>}
      </div>
     </details>
    </li>;
