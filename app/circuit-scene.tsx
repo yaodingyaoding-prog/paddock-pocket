@@ -4,6 +4,7 @@ import {Maximize, RotateCcw, X, Move3D} from 'lucide-react';
 import profiles from '../lib/circuit-elevation.json';
 import {buildElevationRibbon, type ElevationProfile} from '../lib/circuit-elevation';
 import {circuitCameraDistance} from '../lib/circuit-camera';
+import {layoutCircuitLabels} from '../lib/circuit-label-layout';
 
 type Circuit = {id?: string; name?: string};
 type ProfileInfo = {file: string; minElevation: number; maxElevation: number; elevationRange: number};
@@ -89,6 +90,54 @@ function Scene({profile, name, large = false, interactive = false}: {
       cleanups.push(() => controls.dispose());
       model.updateMatrixWorld(true);
       const sphere = new T.Box3().setFromObject(model).getBoundingSphere(new T.Sphere());
+      const pins = ribbon.landmarks.map(landmark => {
+        const color = landmark.id === 'highest' ? 0xffb448 : landmark.id === 'lowest' ? 0x39c5d4 : 0x2ba887;
+        const position = new T.Vector3(...landmark.point).add(new T.Vector3(0, .8, 0));
+        const markerGeometry = new T.SphereGeometry(.65, 12, 8);
+        const markerMaterial = new T.MeshBasicMaterial({color, depthTest: false});
+        const marker = new T.Mesh(markerGeometry, markerMaterial);
+        marker.position.copy(position);
+        marker.renderOrder = 2;
+        model.add(marker);
+        const label = document.createElement('span');
+        label.className = 'circuit-landmark';
+        label.dataset.landmark = landmark.id;
+        label.textContent = landmark.title + (landmark.elevation === undefined ? '' : ' ' + Math.round(landmark.elevation) + ' m');
+        label.style.setProperty('--landmark-color', '#' + color.toString(16).padStart(6, '0'));
+        const connector = document.createElement('span');
+        connector.className = 'circuit-landmark-line';
+        connector.style.backgroundColor = '#' + color.toString(16).padStart(6, '0');
+        connector.setAttribute('aria-hidden', 'true');
+        mount.appendChild(connector);
+        mount.appendChild(label);
+        cleanups.push(() => { markerGeometry.dispose(); markerMaterial.dispose(); label.remove(); connector.remove(); });
+        return {position, label, connector};
+      });
+      mount.setAttribute('aria-label', (name || '赛道') + '海拔立体模型，' + pins.map(pin => pin.label.textContent).join('，'));
+
+      const [gridX, gridY, gridZ] = ribbon.centerline[0];
+      const beforeGrid = ribbon.centerline.at(-1)!, afterGrid = ribbon.centerline[1];
+      const tangent = new T.Vector3(afterGrid[0] - beforeGrid[0], 0, afterGrid[2] - beforeGrid[2]).normalize();
+      const across = new T.Vector3(-tangent.z, 0, tangent.x);
+      const gridGeometry = new T.BufferGeometry();
+      gridGeometry.setAttribute('position', new T.Float32BufferAttribute([[-1,-1],[1,-1],[1,1],[-1,1]].flatMap(([side, row]) => [
+        gridX + across.x * side * 1.4 + tangent.x * row * .45,
+        gridY + .15,
+        gridZ + across.z * side * 1.4 + tangent.z * row * .45,
+      ]), 3));
+      gridGeometry.setAttribute('uv', new T.Float32BufferAttribute([0,0,1,0,1,1,0,1], 2));
+      gridGeometry.setIndex([0,1,2,0,2,3]);
+      const checks = new Uint8Array(8 * 2 * 4);
+      for (let row = 0; row < 2; row++) for (let column = 0; column < 8; column++) {
+        const value = (row + column) % 2 ? 245 : 24, offset = (row * 8 + column) * 4;
+        checks.set([value, value, value, 255], offset);
+      }
+      const gridTexture = new T.DataTexture(checks, 8, 2, T.RGBAFormat);
+      gridTexture.magFilter = T.NearestFilter;
+      gridTexture.needsUpdate = true;
+      const gridMaterial = new T.MeshBasicMaterial({map: gridTexture, side: T.DoubleSide});
+      model.add(new T.Mesh(gridGeometry, gridMaterial));
+      cleanups.push(() => { gridGeometry.dispose(); gridMaterial.dispose(); gridTexture.dispose(); });
       let dirty = true;
       controls.addEventListener('change', () => { dirty = true; });
       function fit(resetView = false) {
@@ -128,6 +177,23 @@ function Scene({profile, name, large = false, interactive = false}: {
         controls.update(deltaSeconds);
         if (!dirty || !width || !height) return;
         renderer.render(scene, camera);
+        const projected = pins.map(pin => {
+          const point = pin.position.clone().applyMatrix4(model.matrixWorld).project(camera);
+          const hidden = point.z < -1 || point.z > 1 || Math.abs(point.x) > 1 || Math.abs(point.y) > 1;
+          pin.label.hidden = hidden;
+          pin.connector.hidden = hidden;
+          return {pin, hidden, x: (point.x + 1) * width / 2, y: (1 - point.y) * height / 2,
+            width: pin.label.offsetWidth, height: pin.label.offsetHeight};
+        }).filter(point => !point.hidden);
+        const labels = layoutCircuitLabels(projected, width, height);
+        projected.forEach((point, index) => {
+          const label = labels[index];
+          point.pin.label.style.transform = `translate(${label.x}px, ${label.y}px)`;
+          const endX = Math.max(label.x, Math.min(point.x, label.x + point.width));
+          const endY = Math.max(label.y, Math.min(point.y, label.y + point.height));
+          point.pin.connector.style.transform = `translate(${point.x}px, ${point.y}px) rotate(${Math.atan2(endY - point.y, endX - point.x)}rad)`;
+          point.pin.connector.style.width = Math.hypot(endX - point.x, endY - point.y) + 'px';
+        });
         dirty = false;
       }
       draw();

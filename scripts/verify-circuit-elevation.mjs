@@ -7,6 +7,13 @@ const {buildElevationRibbon}=await import(pathToFileURL(process.cwd()+'/.wrangle
 const profile={version:1,points:[[0,0,100],[100,0,110],[100,100,120],[0,100,110],[0,0,100]]};
 const result=buildElevationRibbon(profile,3);
 const original=buildElevationRibbon(profile);
+assert.ok(Array.isArray(original.landmarks),'The model must expose its meaningful circuit landmarks');
+assert.deepEqual(original.landmarks.map(point=>point.id),['highest','lowest','grid']);
+assert.deepEqual(original.landmarks[0].point,original.highest);
+assert.equal(original.landmarks[0].elevation,120);
+assert.deepEqual(original.landmarks[1].point,original.lowest);
+assert.equal(original.landmarks[1].elevation,100);
+assert.deepEqual(original.landmarks[2].point,original.centerline[0],'The starting area must use the source layout origin, not an arbitrary extremum');
 assert.equal(original.highest[1]-original.lowest[1],20,'The default viewer must preserve the original 1:1 elevation scale');
 assert.equal(original.curtainPositions.length,24,'Each lap point needs a top vertex and its vertical projection');
 assert.equal(original.curtainIndices.length,24,'The projection curtain must close around all four lap segments');

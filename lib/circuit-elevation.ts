@@ -62,6 +62,12 @@ export function buildElevationRibbon(profile: ElevationProfile, verticalScale = 
     positions: new Float32Array(positions), colors: new Float32Array(colors), indices: new Uint16Array(indices),
     curtainPositions: new Float32Array(curtainPositions), curtainIndices: new Uint16Array(curtainIndices),
     centerline, minElevation, maxElevation,
+    landmarks: [
+      {id: 'highest', title: '最高点', point: centerline[elevations.indexOf(maxElevation)], elevation: maxElevation},
+      {id: 'lowest', title: '最低点', point: centerline[elevations.indexOf(minElevation)], elevation: minElevation},
+      // The dataset's lap origin identifies the starting area, not individual grid-box coordinates.
+      {id: 'grid', title: '发车区', point: centerline[0]},
+    ],
     highest: centerline[elevations.indexOf(maxElevation)],
     lowest: centerline[elevations.indexOf(minElevation)],
     floorY,

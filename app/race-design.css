@@ -25,6 +25,9 @@ dialog[open]{animation:race-dialog .2s var(--race-ease,ease-out)}
 .hero-stage-title{pointer-events:none}.hero-track-orbit,.hero-round-watermark,.hero-stage-caption{pointer-events:none}
 .weekend-hero-stage .inline-interactive{cursor:grab}.weekend-hero-stage .inline-interactive:active{cursor:grabbing}
 .inline-interactive .track-scene{height:100%;width:100%}
+.circuit-landmark{position:absolute;top:0;left:0;z-index:3;padding:4px 6px;border:1px solid var(--line,#b9c4c2);border-left:3px solid var(--landmark-color);border-radius:5px;background:var(--panel,#fffbf5);color:var(--text,#27313a);font:500 10px/1.4 system-ui,sans-serif;white-space:nowrap;pointer-events:none;box-shadow:0 1px 4px #0001}
+.circuit-landmark-line{position:absolute;left:0;top:0;height:1px;transform-origin:0 0;opacity:.8;pointer-events:none;z-index:2}
+.circuit-landmark[hidden],.circuit-landmark-line[hidden]{display:none}
 .circuit-enable{position:absolute;left:50%;bottom:12px;transform:translateX(-50%);z-index:4;min-height:40px;padding:8px 14px;border:1px solid var(--line);border-radius:8px;background:var(--panel);color:var(--accent);font-size:12px;white-space:nowrap}
 .circuit-load-status{position:absolute;left:8px;right:8px;top:8px;z-index:3;text-align:center;color:var(--muted);font-size:11px;background:var(--panel);border-radius:6px;padding:5px}
 .weekend-hero-stage .circuit-enable{bottom:36px}

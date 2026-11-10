@@ -8,6 +8,7 @@ const scripts = [
   ['scripts/verify-v4.mjs'],
   ['scripts/verify-news.mjs'],
   ['scripts/verify-circuit-camera.mjs'],
+  ['scripts/verify-circuit-labels.mjs'],
   ['scripts/verify-circuit-elevation.mjs'],
   ['scripts/verify-weather-viewing.mjs'],
   ['scripts/verify-shopping.mjs'],
